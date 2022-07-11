@@ -1,0 +1,7 @@
+# Files
+*.env
+.prettierrc.json
+*.lock
+
+# Folders
+node_modules
