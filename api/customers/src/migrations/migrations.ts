@@ -1,4 +1,6 @@
 // Libs
+import { setTimeout } from "timers/promises";
+
 import Database from "../models/database";
 import LoggerFactory from "../logger/logger";
 
@@ -8,6 +10,7 @@ const logger = LoggerFactory.createLogger("SERVER");
 // Class
 abstract class Migrations {
   public static async up() {
+    await setTimeout(10 * 1000);
     logger.info("Getting up Migrations...");
 
     try {
@@ -21,6 +24,7 @@ abstract class Migrations {
   }
 
   public static async down() {
+    await setTimeout(10 * 1000);
     logger.info("Getting down migrations...");
 
     try {
