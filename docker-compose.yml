@@ -16,8 +16,3 @@ services:
       - 3001:3001
     env_file:
       - api_customers.env
-
-networks:
-  api:
-    name: goodstock_api
-    driver: bridge

@@ -4,7 +4,7 @@ import winston, { Logger } from "winston";
 // Data
 const { combine, printf, timestamp, colorize } = winston.format;
 
-// Class
+// Classes
 /**
  * A class to represents a factory that produces the Logger object.
  */
@@ -25,10 +25,10 @@ abstract class LoggerFactory {
       format: combine(
         colorize(),
         timestamp({
-          format: 'YYYY-MM-DD HH:mm:ss'
+          format: "YYYY-MM-DD HH:mm:ss",
         }),
         format
-        ),
+      ),
       transports: [new winston.transports.Console()],
     });
 

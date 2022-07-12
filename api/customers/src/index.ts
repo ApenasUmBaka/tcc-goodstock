@@ -7,7 +7,7 @@ import LoggerFactory from "@logger";
 // Data
 const PORT = process.env.PORT;
 const app = Express();
-const logger = LoggerFactory.createLogger('Server');
+const logger = LoggerFactory.createLogger("SERVER");
 
 // Code
 app.use(Helmet());
