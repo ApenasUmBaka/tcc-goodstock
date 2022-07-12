@@ -2,8 +2,10 @@
 import Helmet from "helmet";
 import Express from "express";
 
-import router from '@router';
+import router from "@router";
 import LoggerFactory from "@logger";
+
+import "@types";
 
 // Data
 const PORT = process.env.PORT;
