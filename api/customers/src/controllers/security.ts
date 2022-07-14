@@ -15,10 +15,16 @@ abstract class Security {
     if (!body) return {};
 
     for (const index in neededParams) {
-      const value = neededParams[index];
+      let value = neededParams[index];
+      let optional = false;
+      if (value[0] == "?") {
+        optional = true;
+        value = value.slice(1);
+      }
+
       if (body[value]) {
         params[value] = body[value];
-      } else {
+      } else if (!optional) {
         return {};
       }
     }
