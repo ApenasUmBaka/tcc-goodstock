@@ -9,3 +9,11 @@ declare global {
     }
   }
 }
+
+// Interfaces
+export interface _Customer {
+  id: number;
+  email: string;
+  password: string;
+  fk_organizationId: number;
+}

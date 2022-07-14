@@ -1,16 +1,15 @@
 // Libs
 import Sequelize from "sequelize";
-
-import Database from "./database";
+import { ModelAttributes } from "sequelize/types";
 
 // Data
-const Customers = Database.seq.define("customers", {
+const customerSchema: ModelAttributes = {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
     autoIncrement: true,
   },
-  username: {
+  email: {
     type: Sequelize.STRING,
     allowNull: false,
     unique: true,
@@ -27,7 +26,7 @@ const Customers = Database.seq.define("customers", {
       key: "id",
     },
   },
-});
+};
 
 // Code
-export default Customers;
+export default customerSchema;

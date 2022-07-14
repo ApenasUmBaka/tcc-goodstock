@@ -6,20 +6,19 @@ import { NextFunction, Request, Response } from "express";
 class AuthController {
   public authRequest(req: Request, res: Response, next: NextFunction) {
     req.logger = LoggerFactory.createLogger(req.ip);
-    req.logger.info(`Acessing route: ${req.url}`);
+    req.logger.info(`Request on endpoint: ${req.method} ${req.url}`);
 
-    req.logger.info(`Checking auth...`);
+    req.logger.info("Checking auth...");
     const apiKey = `Bearer ${process.env.API_AUTH}`;
     if (req.header("authorization") == apiKey) {
       req.logger.info("Credential is valid.");
       return next();
     }
 
-    req.logger.info("The credential is invalid.");
-    req.logger.info('Returning response...');
+    req.logger.info("The credential is invalid. Returning response...");
     res.status(401).json({
       status: "error",
-      message: "Invalid credential",
+      message: "Invalid credential.",
     });
   }
 }

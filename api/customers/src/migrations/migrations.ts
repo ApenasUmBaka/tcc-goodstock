@@ -1,8 +1,10 @@
 // Libs
 import { setTimeout } from "timers/promises";
 
-import Database from "../models/database";
 import LoggerFactory from "../logger/logger";
+import DatabaseModel from "../models/databaseModel";
+import CustomersModel from "../models/customersModel";
+import OrganizationsModel from "../models/organizationsModel";
 
 // Data
 const logger = LoggerFactory.createLogger("SERVER");
@@ -14,7 +16,10 @@ abstract class Migrations {
     logger.info("Getting up Migrations...");
 
     try {
-      await Database.seq.sync();
+      await OrganizationsModel.model.sync();
+      await CustomersModel.model.sync();
+
+      await DatabaseModel.seq.sync();
       logger.info("The migrations have been getting up.");
     } catch (err) {
       logger.error(
@@ -28,7 +33,7 @@ abstract class Migrations {
     logger.info("Getting down migrations...");
 
     try {
-      await Database.seq.drop();
+      await DatabaseModel.seq.drop();
       logger.info("The migrations have been dropped.");
     } catch (err) {
       logger.error(

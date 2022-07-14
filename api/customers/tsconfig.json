@@ -31,9 +31,12 @@
     "baseUrl": "./" /* Specify the base directory to resolve non-relative module names. */,
     "paths": {
       "@types": ["./src/types/types"],
+      "@models/*": ["./src/models/*"],
       "@logger": ["./src/logger/logger"],
       "@router": ["./src/router/router"],
-      "@controllers/*": ["./src/controllers/*"]
+      "@schemas/*": ["./src/models/schemas/*"],
+      "@controllers/*": ["./src/controllers/*"],
+      "@security": ["./src/controllers/security"]
     } /* Specify a set of entries that re-map imports to additional lookup locations. */,
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
     // "typeRoots": [],                                  /* Specify multiple folders that act like './node_modules/@types'. */

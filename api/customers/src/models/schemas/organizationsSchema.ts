@@ -1,10 +1,8 @@
 // Libs
-import Sequelize from "sequelize";
-
-import Database from "./database";
+import Sequelize, { ModelAttributes } from "sequelize";
 
 // Data
-const Organizations = Database.seq.define("organizations", {
+const organizationsSchema: ModelAttributes = {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -18,7 +16,7 @@ const Organizations = Database.seq.define("organizations", {
     type: Sequelize.STRING,
     allowNull: false,
   },
-});
+};
 
 // Code
-export default Organizations;
+export default organizationsSchema;
