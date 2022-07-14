@@ -17,3 +17,9 @@ export interface _Customer {
   password: string;
   fk_organizationId: number;
 }
+
+export interface _Organization {
+  id: number;
+  organizationName: string;
+  password: string;
+}

@@ -13,9 +13,9 @@ const app = Express();
 const logger = LoggerFactory.createLogger("SERVER");
 
 // Code
-app.use(Helmet());
 app.use(Express.json());
 app.set("trust proxy", true);
+app.use(Helmet());
 
 app.use(router);
 
