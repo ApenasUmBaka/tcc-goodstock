@@ -20,7 +20,7 @@ abstract class CustomersModel {
     logger.info("Creating the new customer...");
     let newCustomer: _Customer;
     try {
-      newCustomer = (await CustomersModel.model.create(params)).toJSON();
+      newCustomer = (await this.model.create(params)).toJSON();
     } catch (err) {
       logger.error(`The customer couldn't be created. Error: ${err}`);
       throw err;
@@ -39,7 +39,7 @@ abstract class CustomersModel {
   ): Promise<_Customer | undefined> {
     logger.info("Locating a customer...");
 
-    const customer = await CustomersModel.model.findOne({
+    const customer = await this.model.findOne({
       where: params,
     });
 
@@ -50,6 +50,21 @@ abstract class CustomersModel {
 
     logger.info("A customer with the provided query was found.");
     return customer.toJSON();
+  }
+
+  public static async updateCustomer(
+    logger: Logger,
+    id: number,
+    params: any
+  ): Promise<_Customer> {
+    logger.info(`Updating customer #${id}`);
+
+    await this.model.update(params, {
+      where: {
+        id: id,
+      },
+    });
+    return this.findCustomer(logger, { id: id }) as any;
   }
 }
 

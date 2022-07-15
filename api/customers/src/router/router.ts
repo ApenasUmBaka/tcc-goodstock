@@ -28,6 +28,11 @@ router.get("/customers/:id", async (req, res) => {
   await customersController.getCustomers(req, res);
 });
 
+router.patch("/customers/:id", async (req, res) => {
+  const customersController = new CustomersController();
+  await customersController.patchCustomer(req, res);
+});
+
 router.all("*", (req, res) => {
   const logger = LoggerFactory.createLogger(req.ip);
   logger.info("Acessed an unknown route.");
