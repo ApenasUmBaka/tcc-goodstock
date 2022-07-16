@@ -16,7 +16,7 @@ class CustomersController {
    * POST /customers
    * A route to create customers.
    */
-  public async postCustomers(req: Request, res: Response) {
+  public async postCustomer(req: Request, res: Response) {
     // Check params.
     const neededParams = ["email", "password", "organization"];
     const params = Security.filterParams(neededParams, req.body);
@@ -79,7 +79,7 @@ class CustomersController {
    * GET /customer or GET /customer/:id
    * A route to get some customer.
    */
-  public async getCustomers(req: Request, res: Response) {
+  public async getCustomer(req: Request, res: Response) {
     const query = this.getCustomerQuery(req);
     if (!query) {
       req.logger.info("The query is empty. Returning...");
@@ -105,7 +105,7 @@ class CustomersController {
       });
     }
 
-    req.logger.info("The customer was not found. Returning");
+    req.logger.info("The customer was not found. Returning...");
     return res.status(400).json({
       status: "Error",
       message: "The customer was not found",

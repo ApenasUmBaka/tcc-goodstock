@@ -8,11 +8,12 @@ const organizationsSchema: ModelAttributes = {
     primaryKey: true,
     autoIncrement: true,
   },
-  organizationName: {
-    type: Sequelize.INTEGER,
+  name: {
+    type: Sequelize.STRING,
     allowNull: false,
+    unique: true,
   },
-  password: {
+  masterPassword: {
     type: Sequelize.STRING,
     allowNull: false,
   },

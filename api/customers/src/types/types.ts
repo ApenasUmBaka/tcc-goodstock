@@ -20,6 +20,6 @@ export interface _Customer {
 
 export interface _Organization {
   id: number;
-  organizationName: string;
-  password: string;
+  name: string;
+  masterPassword: string;
 }
