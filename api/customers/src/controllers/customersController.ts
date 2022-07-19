@@ -57,7 +57,7 @@ class CustomersController {
     try {
       const customerParams = {
         email: params.email,
-        password: params.password,
+        password: Security.toHash(params.password),
         fk_organizationId: params.organization,
       };
       const customer = await CustomersModel.createCustomer(

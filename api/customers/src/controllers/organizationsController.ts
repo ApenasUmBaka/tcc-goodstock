@@ -44,7 +44,7 @@ class OrganizationsController {
     try {
       const OrganizationParams = {
         name: params.name,
-        masterPassword: params.masterPassword,
+        masterPassword: Security.toHash(params.masterPassword),
       };
       const Organization = await organizationsModel.createOrganization(
         req.logger,

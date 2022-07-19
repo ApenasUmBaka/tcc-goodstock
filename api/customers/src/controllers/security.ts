@@ -1,4 +1,7 @@
 // Classes
+
+import { createHash, Hash } from "crypto";
+
 /**
  * A class to be used on security cases.
  */
@@ -30,6 +33,13 @@ abstract class Security {
     }
 
     return params;
+  }
+
+  /**
+   * A method to convert to hash.
+   */
+  public static toHash(value: string) {
+    return createHash('sha256').update(value).digest('hex');
   }
 }
 
