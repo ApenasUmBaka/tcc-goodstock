@@ -1,5 +1,13 @@
 version: "3.9"
 services:
+  goodstock_api_customers_db:
+    image: postgres:14
+    container_name: goodstock_api_customers_db
+    env_file:
+      - api_customers.env
+    links:
+      - goodstock_api_customers
+
   goodstock_api_customers:
     build: ./api/customers/
     container_name: goodstock_api_customers
