@@ -25,6 +25,12 @@ class CustomersController {
       return res.sendStatus(400);
     }
 
+    // Check if the email is valid.
+    if (!Security.isEmailValid(params.email)) {
+      req.logger.info("The provided email is invalid. Returning...");
+      return res.sendStatus(400);
+    }
+
     // Check if the customer already exists.
     const findCustomerResult = await CustomersModel.findCustomer(req.logger, {
       email: params.email,
@@ -127,6 +133,7 @@ class CustomersController {
     const findCustomerResult = await CustomersModel.findCustomer(req.logger, {
       id: customerId,
     });
+
     if (!findCustomerResult) {
       req.logger.info("The provided customer's id was not found. Returning...");
       return res.status(400).json({
@@ -136,6 +143,13 @@ class CustomersController {
     }
 
     // Update the customer.
+    if (req.body.email) {
+      if (!Security.isEmailValid(req.body.email)) {
+        req.logger.info('The provided email is not valid. Returning...');
+        return res.sendStatus(400);
+      }
+    }
+
     const customersParams = {
       email: req.body.email ? req.body.email : findCustomerResult.email,
       password: req.body.password

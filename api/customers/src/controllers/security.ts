@@ -41,6 +41,12 @@ abstract class Security {
   public static toHash(value: string) {
     return createHash('sha256').update(value).digest('hex');
   }
+
+  public static isEmailValid(email: string): boolean {
+    const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+    if (regex.test(email)) return true;
+    return false;
+  }
 }
 
 // Code
