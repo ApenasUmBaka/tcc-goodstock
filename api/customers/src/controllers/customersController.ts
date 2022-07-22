@@ -174,6 +174,34 @@ class CustomersController {
   }
 
   /**
+   * GET /customers/:id/auth
+   * A route to auth some customer.
+   */
+  public async getAuth(req: Request, res: Response) {
+    const customerId = req.params.id;
+    if (!customerId || !toNumber(customerId)) {
+      req.logger.info("The customer's id was not provided. Returning...");
+      return res.sendStatus(400);
+    }
+
+    const customerHash = req.query.password;
+    if (!customerHash) {
+      req.logger.info("The customer's password was not provided. Returning...");
+      return res.sendStatus(400);
+    }
+
+    const customerResult = await CustomersModel.findCustomer(req.logger, {
+      id: customerId,
+      password: customerHash
+    });
+
+    if (!customerResult) {
+      return res.sendStatus(4011);
+    }
+    res.sendStatus(200);
+  }
+
+  /**
    * Used by the GET /customer or GET/customer/:id
    */
   private getCustomerQuery(req: Request) {

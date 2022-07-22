@@ -34,6 +34,11 @@ router.patch("/customers/:id", async (req, res) => {
   await customersController.patchCustomer(req, res);
 });
 
+router.get("/customers/:id/auth", async (req, res) => {
+  const customersController = new CustomersController();
+  await customersController.getAuth(req, res);
+});
+
 // Organizations
 router.post("/organizations", async (req, res) => {
   const organizationsController = new OrganizationsController();
