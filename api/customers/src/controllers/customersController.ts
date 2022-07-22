@@ -145,7 +145,7 @@ class CustomersController {
     // Update the customer.
     if (req.body.email) {
       if (!Security.isEmailValid(req.body.email)) {
-        req.logger.info('The provided email is not valid. Returning...');
+        req.logger.info("The provided email is not valid. Returning...");
         return res.sendStatus(400);
       }
     }
@@ -192,7 +192,7 @@ class CustomersController {
 
     const customerResult = await CustomersModel.findCustomer(req.logger, {
       id: customerId,
-      password: customerHash
+      password: customerHash,
     });
 
     if (!customerResult) {
