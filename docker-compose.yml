@@ -17,3 +17,21 @@ services:
       - 3001:3001
     env_file:
       - api_customers.env
+
+  goodstock_api_sales_db:
+    image: mongo
+    container_name: goodstock_api_sales_db
+    env_file:
+      - api_sales.env
+    links:
+      - goodstock_api_sales
+
+  goodstock_api_sales:
+    build: ./api/sales/
+    container_name: goodstock_api_sales
+    # volumes:
+    #   - ./api/sales:/app
+    ports:
+      - 3002:3002
+    env_file:
+      - api_sales.env
