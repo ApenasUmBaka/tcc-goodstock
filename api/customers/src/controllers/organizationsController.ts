@@ -85,7 +85,7 @@ class OrganizationsController {
         status: "Success",
         data: {
           id: findOrganizationResult.id,
-          name: findOrganizationResult.name
+          name: findOrganizationResult.name,
         },
       });
     }
