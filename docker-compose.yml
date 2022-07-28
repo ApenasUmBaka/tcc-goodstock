@@ -17,3 +17,21 @@ services:
       - 3001:3001
     env_file:
       - api_customers.env
+
+  goodstock_api_products_db:
+    image: mongo
+    container_name: goodstock_api_products_db
+    env_file:
+      - api_products.env
+    links:
+      - goodstock_api_products
+
+  goodstock_api_products:
+    build: ./api/products/
+    container_name: goodstock_api_products
+    # volumes:
+    #   - ./api/products:/app
+    ports:
+      - 3001:3001
+    env_file:
+      - api_products.env
