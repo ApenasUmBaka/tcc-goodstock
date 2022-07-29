@@ -5,4 +5,17 @@
 
 body {
     font-family: 12 'Roboto Mono', monospace;
+    font-weight: 400;
 }
+
+::-webkit-scrollbar-thumb{
+    background-color: #DC4C5D;
+    border: 5px solid transparent;
+    border-radius: 50px;
+    background-clip: content-box;
+}
+
+::-webkit-scrollbar{
+    width: 15px;
+} 
+
