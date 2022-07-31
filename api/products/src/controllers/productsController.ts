@@ -40,12 +40,12 @@ class ProductsController {
     }
 
     // Check if the product already exists.
-    const findProductResult = await ProductModel.findProduct(req.logger, {
+    const findProductResult = await ProductModel.findProducts(req.logger, {
       organizationId: params.organizationId,
       name: params.name,
     });
 
-    if (findProductResult) {
+    if (findProductResult.length == 1) {
       req.logger.info("A product with this name already exists. Returning...");
       return res.sendStatus(400);
     }
@@ -64,6 +64,10 @@ class ProductsController {
     }
   }
 
+  /**
+   * GET /products/:organizationId/:productId
+   * A method to create a new product.
+   */
   public async getProduct(req: Request, res: Response) {
     // Check if the organization Id is valid.
     const organizationId = toNumber(req.params.organizationId);
@@ -74,20 +78,25 @@ class ProductsController {
       return res.sendStatus(400);
     }
 
-    // Check if the product id is valid.
-    const findProductResult = await ProductModel.findProduct(req.logger, {
+    let query: any = {
       _id: req.params.productId,
       organizationId: organizationId
-    });
+    };
+
+    if (!req.params.productId) {
+      query = {
+        organizationId: organizationId
+      }
+    }
+
+    // Check if the product id is valid.
+    const findProductResult = await ProductModel.findProducts(req.logger, query);
 
     if (!findProductResult) {
       req.logger.info(
         "The products provided id doesn't not exist. Returning..."
       );
-      return res.status(400).json({
-        status: "Error",
-        message: "The provided id doesn't not exist.",
-      });
+      return res.sendStatus(400);
     }
 
     req.logger.info('The product exists. Returning..');
@@ -95,6 +104,87 @@ class ProductsController {
       status: 'Success',
       data: findProductResult
     });
+  }
+
+  /**
+   * PATCH /product/:organizationId/:productId
+   * A method to update a product.
+   */
+  public async patchProduct(req: Request, res: Response) {
+    const organizationId = toNumber(req.params.organizationId);
+    if (!organizationId) {
+      req.logger.info(
+        "The provided organization id is not valid. Returning..."
+      );
+      return res.sendStatus(400);
+    }
+
+    const query = {
+      _id: req.params.productId,
+      organizationId: organizationId
+    };
+
+    // Check if the product id is valid.
+    const findProductResult = await ProductModel.findProducts(req.logger, query);
+
+    if (!findProductResult) {
+      req.logger.info(
+        "The products provided id doesn't not exist. Returning..."
+      );
+      return res.sendStatus(400);
+    }
+
+    const updatedProduct = await ProductModel.updateProduct(req.logger, query, req.body);
+
+    if (!updatedProduct) {
+      req.logger.info('The product was not updated. Returning...');
+      return res.sendStatus(400);
+    }
+
+    req.logger.info('The product was updated. Returning...');
+    return res.status(200).json({
+      status: 'Success',
+      data: updatedProduct
+    });
+  }
+
+  /**
+   * DELETE /product/:organizationId/:productId
+   * A method to delete a product.
+   */
+  public async deleteProduct(req: Request, res: Response) {
+    const organizationId = toNumber(req.params.organizationId);
+    if (!organizationId) {
+      req.logger.info(
+        "The provided organization id is not valid. Returning..."
+      );
+      return res.sendStatus(400);
+    }
+
+    // Check if the product id is valid.
+    const query = {
+      _id: req.params.productId,
+      organizationId: organizationId
+    };
+    const findProductResult = await ProductModel.findProducts(req.logger, query);
+
+    if (!findProductResult) {
+      req.logger.info(
+        "The products provided id doesn't not exist. Returning..."
+      );
+      return res.sendStatus(400);
+    }
+
+    // Delete the product.
+    const deletedProduct = await ProductModel.deleteProduct(req.logger, query);
+    if (!deletedProduct) {
+      req.logger.info('The product was not deleted. Returning...');
+      return res.sendStatus(500);
+    }
+
+    req.logger.info('The product was successfully deleted. Returning...');
+    return res.sendStatus(200);
+
   }
 }
 

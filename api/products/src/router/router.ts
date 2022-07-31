@@ -18,9 +18,24 @@ router.post("/products", async (req, res) => {
   await productsController.postProducts(req, res);
 });
 
+router.get("/products/:organizationId/", async (req, res) => {
+  const productsController = new ProductsController();
+  await productsController.getProduct(req, res);
+});
+
 router.get("/products/:organizationId/:productId", async (req, res) => {
   const productsController = new ProductsController();
   await productsController.getProduct(req, res);
+});
+
+router.patch("/products/:organizationId/:productId", async (req, res) => {
+  const productsController = new ProductsController();
+  await productsController.patchProduct(req, res);
+});
+
+router.delete("/products/:organizationId/:productId", async (req, res) => {
+  const productsController = new ProductsController();
+  await productsController.deleteProduct(req, res);
 });
 
 router.all("*", (req, res) => {
