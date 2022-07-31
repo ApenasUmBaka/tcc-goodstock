@@ -2,6 +2,7 @@
 *.env
 .prettierrc.json
 *.lock
+db
 
 # Folders
 node_modules

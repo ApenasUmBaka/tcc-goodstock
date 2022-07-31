@@ -3,6 +3,8 @@ services:
   goodstock_api_customers_db:
     image: postgres
     container_name: goodstock_api_customers_db
+    volumes:
+      - ./db/api-customers:/var/lib/postgresql/data
     env_file:
       - api_customers.env
     links:
@@ -11,6 +13,8 @@ services:
   goodstock_api_products_db:
     image: mongo
     container_name: goodstock_api_products_db
+    volumes:
+      - ./db/api-products:/data/db
     env_file:
       - api_products.env
     links:
