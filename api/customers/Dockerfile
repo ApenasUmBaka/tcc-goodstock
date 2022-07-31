@@ -8,5 +8,7 @@ RUN date
 COPY . ./
 RUN yarn
 
+USER node
+
 CMD yarn run start:prod
 # CMD yarn run start:dev
