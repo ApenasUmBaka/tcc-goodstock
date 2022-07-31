@@ -3,8 +3,7 @@ import { Router } from "express";
 
 import LoggerFactory from "@logger";
 import AuthController from "@controllers/auth";
-import CustomersController from "@controllers/customersController";
-import OrganizationsController from "@controllers/organizationsController";
+import ProductsController from "@controllers/productsController";
 
 // Data
 const router = Router();
@@ -14,50 +13,14 @@ const authMiddleware = new AuthController().authRequest.bind(AuthController);
 router.use(authMiddleware);
 
 // Customers
-router.post("/customers", async (req, res) => {
-  const customersController = new CustomersController();
-  await customersController.postCustomer(req, res);
+router.post("/products", async (req, res) => {
+  const productsController = new ProductsController();
+  await productsController.postProducts(req, res);
 });
 
-router.get("/customers", async (req, res) => {
-  const customersController = new CustomersController();
-  await customersController.getCustomer(req, res);
-});
-
-router.get("/customers/:id", async (req, res) => {
-  const customersController = new CustomersController();
-  await customersController.getCustomer(req, res);
-});
-
-router.patch("/customers/:id", async (req, res) => {
-  const customersController = new CustomersController();
-  await customersController.patchCustomer(req, res);
-});
-
-router.get("/customers/:id/auth", async (req, res) => {
-  const customersController = new CustomersController();
-  await customersController.getAuth(req, res);
-});
-
-// Organizations
-router.post("/organizations", async (req, res) => {
-  const organizationsController = new OrganizationsController();
-  await organizationsController.postOrganization(req, res);
-});
-
-router.get("/organizations", async (req, res) => {
-  const organizationsController = new OrganizationsController();
-  await organizationsController.getOrganization(req, res);
-});
-
-router.get("/organizations/:id", async (req, res) => {
-  const organizationsController = new OrganizationsController();
-  await organizationsController.getOrganization(req, res);
-});
-
-router.patch("/organizations/:id", async (req, res) => {
-  const organizationsController = new OrganizationsController();
-  await organizationsController.patchOrganization(req, res);
+router.get("/products/:organizationId/:productId", async (req, res) => {
+  const productsController = new ProductsController();
+  await productsController.getProduct(req, res);
 });
 
 router.all("*", (req, res) => {

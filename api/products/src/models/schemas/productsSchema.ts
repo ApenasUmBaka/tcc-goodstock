@@ -5,7 +5,7 @@ import { Schema } from "mongoose";
 const productsSchema = new Schema(
   {
     name: String,
-    fk_organizationId: Number,
+    organizationId: Number,
     price: Number,
     amount: Number,
   },

@@ -12,10 +12,15 @@ abstract class ProductsModel {
     try {
       const findProductResult = await this.model.findOne(query);
 
+      if (!findProductResult) {
+        logger.info("The product was not found in the database.");
+        return;
+      }
+
       logger.info("The product was found in the database.");
       return findProductResult;
     } catch (err) {
-      logger.error("Error on getting a product in the database.");
+      logger.error(`Error on getting a product in the database. Error: ${err}`);
       return;
     }
   }
