@@ -26,12 +26,12 @@ abstract class ProductsModel {
   }
 
   public static async updateProduct(logger: Logger, query: any, update: any) {
-    logger.info('Updating product...');
+    logger.info("Updating product...");
 
     try {
       const updatedProduct = await this.model.findOneAndReplace(query, update);
 
-      logger.info('The product was successfully updated.');
+      logger.info("The product was successfully updated.");
       return this.findProducts(logger, query);
     } catch (err) {
       logger.error(`Couldn't update the product. Error: ${err}`);
@@ -40,17 +40,16 @@ abstract class ProductsModel {
   }
 
   public static async deleteProduct(logger: Logger, query: any) {
-    logger.info('Deleting product...');
+    logger.info("Deleting product...");
 
     try {
       const deletedproduct = await this.model.findOneAndDelete(query);
-      logger.info('The product was successfully deleted.');
+      logger.info("The product was successfully deleted.");
       return deletedproduct;
     } catch (err) {
       logger.error(`Couldn't delete the product. Error: ${err}`);
     }
   }
-
 }
 
 // Code

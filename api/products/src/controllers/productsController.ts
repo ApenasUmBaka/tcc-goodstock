@@ -80,17 +80,20 @@ class ProductsController {
 
     let query: any = {
       _id: req.params.productId,
-      organizationId: organizationId
+      organizationId: organizationId,
     };
 
     if (!req.params.productId) {
       query = {
-        organizationId: organizationId
-      }
+        organizationId: organizationId,
+      };
     }
 
     // Check if the product id is valid.
-    const findProductResult = await ProductModel.findProducts(req.logger, query);
+    const findProductResult = await ProductModel.findProducts(
+      req.logger,
+      query
+    );
 
     if (!findProductResult) {
       req.logger.info(
@@ -99,10 +102,10 @@ class ProductsController {
       return res.sendStatus(400);
     }
 
-    req.logger.info('The product exists. Returning..');
+    req.logger.info("The product exists. Returning..");
     return res.status(200).json({
-      status: 'Success',
-      data: findProductResult
+      status: "Success",
+      data: findProductResult,
     });
   }
 
@@ -121,11 +124,14 @@ class ProductsController {
 
     const query = {
       _id: req.params.productId,
-      organizationId: organizationId
+      organizationId: organizationId,
     };
 
     // Check if the product id is valid.
-    const findProductResult = await ProductModel.findProducts(req.logger, query);
+    const findProductResult = await ProductModel.findProducts(
+      req.logger,
+      query
+    );
 
     if (!findProductResult) {
       req.logger.info(
@@ -134,17 +140,21 @@ class ProductsController {
       return res.sendStatus(400);
     }
 
-    const updatedProduct = await ProductModel.updateProduct(req.logger, query, req.body);
+    const updatedProduct = await ProductModel.updateProduct(
+      req.logger,
+      query,
+      req.body
+    );
 
     if (!updatedProduct) {
-      req.logger.info('The product was not updated. Returning...');
+      req.logger.info("The product was not updated. Returning...");
       return res.sendStatus(400);
     }
 
-    req.logger.info('The product was updated. Returning...');
+    req.logger.info("The product was updated. Returning...");
     return res.status(200).json({
-      status: 'Success',
-      data: updatedProduct
+      status: "Success",
+      data: updatedProduct,
     });
   }
 
@@ -164,9 +174,12 @@ class ProductsController {
     // Check if the product id is valid.
     const query = {
       _id: req.params.productId,
-      organizationId: organizationId
+      organizationId: organizationId,
     };
-    const findProductResult = await ProductModel.findProducts(req.logger, query);
+    const findProductResult = await ProductModel.findProducts(
+      req.logger,
+      query
+    );
 
     if (!findProductResult) {
       req.logger.info(
@@ -178,13 +191,12 @@ class ProductsController {
     // Delete the product.
     const deletedProduct = await ProductModel.deleteProduct(req.logger, query);
     if (!deletedProduct) {
-      req.logger.info('The product was not deleted. Returning...');
+      req.logger.info("The product was not deleted. Returning...");
       return res.sendStatus(500);
     }
 
-    req.logger.info('The product was successfully deleted. Returning...');
+    req.logger.info("The product was successfully deleted. Returning...");
     return res.sendStatus(200);
-
   }
 }
 
