@@ -1,12 +1,33 @@
 version: "3.9"
 services:
   goodstock_api_customers_db:
-    image: postgres:14
+    image: postgres
     container_name: goodstock_api_customers_db
+    volumes:
+      - ./db/api-customers:/var/lib/postgresql/data
     env_file:
       - api_customers.env
     links:
       - goodstock_api_customers
+
+  goodstock_api_products_db:
+    image: mongo
+    container_name: goodstock_api_products_db
+    volumes:
+      - ./db/api-products:/data/db
+    env_file:
+      - api_products.env
+    links:
+      - goodstock_api_products
+
+  goodstock_api_sales_db:
+    image: mongo
+    container_name: goodstock_api_sales_db
+    env_file:
+      - api_sales.env
+    links:
+      - goodstock_api_sales
+
 
   goodstock_api_customers:
     build: ./api/customers/
@@ -18,13 +39,15 @@ services:
     env_file:
       - api_customers.env
 
-  goodstock_api_sales_db:
-    image: mongo
-    container_name: goodstock_api_sales_db
+  goodstock_api_products:
+    build: ./api/products/
+    container_name: goodstock_api_products
+    # volumes:
+    #   - ./api/products:/app
+    ports:
+      - 3002:3002
     env_file:
-      - api_sales.env
-    links:
-      - goodstock_api_sales
+      - api_products.env
 
   goodstock_api_sales:
     build: ./api/sales/
