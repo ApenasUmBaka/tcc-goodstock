@@ -28,7 +28,6 @@ services:
     links:
       - goodstock_api_sales
 
-
   goodstock_api_customers:
     build: ./api/customers/
     container_name: goodstock_api_customers

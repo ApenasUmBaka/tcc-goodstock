@@ -1,5 +1,5 @@
 // Libs
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 // Classes
 /**
@@ -10,7 +10,9 @@ abstract class Database {
   private static pass = process.env.POSTGRES_PASSWORD;
   private static dbName = process.env.MONGO_INITDB_DATABASE;
 
-  public static mongoose = mongoose.createConnection(`mongodb://${this.user}:${this.pass}@goodstock_api_sales_db:27017/${this.dbName}`);
+  public static mongoose = mongoose.createConnection(
+    `mongodb://${this.user}:${this.pass}@goodstock_api_sales_db:27017/${this.dbName}`
+  );
 }
 
 // Code

@@ -9,3 +9,34 @@ declare global {
     }
   }
 }
+
+// Customers API
+export interface Customer {
+  id: number;
+  email: string;
+  password: string;
+  fk_organizationId: number;
+}
+
+export interface Organization {
+  id: number;
+  name: string;
+  masterPassword: string;
+}
+
+// Products API
+export interface Product {
+  id: string;
+  name: string;
+  organizationId: number;
+  price: number;
+  amount: number;
+  [key: string]: any;
+}
+
+// Basic response
+export interface BasicResponse {
+  status: "Success" | "Error";
+  message?: string;
+  data?: any;
+}

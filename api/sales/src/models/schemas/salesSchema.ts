@@ -1,5 +1,5 @@
 // Libs
-import { Schema } from 'mongoose';
+import { Schema } from "mongoose";
 
 // Data
 const salesSchema = new Schema({
