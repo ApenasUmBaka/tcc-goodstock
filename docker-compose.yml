@@ -38,6 +38,8 @@ services:
       - 3001:3001
     env_file:
       - api_customers.env
+    environment:
+      - API_AUTH=${CUSTOMERS_API_AUTH}
 
   goodstock_api_products:
     build: ./api/products/
@@ -48,6 +50,8 @@ services:
       - 3002:3002
     env_file:
       - api_products.env
+    environment:
+      - API_AUTH=${PRODUCTS_API_AUTH}
 
   goodstock_api_sales:
     build: ./api/sales/
@@ -55,6 +59,8 @@ services:
     # volumes:
     #   - ./api/sales:/app
     ports:
-      - 3002:3002
+      - 3003:3003
     env_file:
       - api_sales.env
+    environment:
+      - API_AUTH=${SALES_API_AUTH}
