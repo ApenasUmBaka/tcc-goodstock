@@ -6,7 +6,7 @@
     vertical-align: baseline;
     list-style: none;
     border: 0;
-    color: #ffffff;
+    color: var(--h1-color);
     font-family: 'Roboto Mono', monospace;
     font-size: 16px;
   }
