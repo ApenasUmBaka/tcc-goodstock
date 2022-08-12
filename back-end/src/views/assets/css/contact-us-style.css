@@ -1,21 +1,5 @@
 @import url('global.css');
 
-/* :root {
-    --primary-color: #010712;
-    --secondary-color: #818386;
-    --bg-color: #FCFDFD;
-    --button-color: #3B3636;
-    --h1-color: #3F444C;
-  }
-  
-  [data-theme="dark"] {
-    --primary-color: #FCFDFD;
-    --secondary-color: #818386;
-    --bg-color: #010712;
-    --button-color: #818386;
-    --h1-color: #FCFDFD;
-  }
-   */
   * {
     margin: 0;
     box-sizing: border-box;
@@ -32,7 +16,7 @@
   .left-col {
     width: 45vw;
     height: 100%;
-    background-image: url("https://www.history.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTYyNDg1MjE3MTI1Mjc5Mzk4/topic-london-gettyimages-760251843-promo.jpg");
+    background-image: url("../images/Shopping_Concepts_16.jpg");
     background-size: cover;
     background-repeat: no-repeat;
   }
@@ -200,7 +184,6 @@
     margin: 0.125rem 0;
     font-size: 0.75rem;
     text-transform: uppercase;
-    font-family: 'Jost';
     color: var(--secondary-color);
     }
   
@@ -264,70 +247,3 @@
   }
   
   }
-
-  .wrapper {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    background-color: #fff;
-    display: grid;
-    place-items: center;
-    transition: opacity .25s, visibility 1s;
-  }   
-  
-  .fade{
-      opacity: 0;
-      visibility: hidden;
-  }
-
-  .loader {
-    position: relative;
-    width: 64px;
-    height: 64px;
-    background-color: rgba(0, 0, 0, 0.5);
-    transform: rotate(45deg);
-    overflow: hidden;
-  }
-  .loader:after{
-    content: '';
-    position: absolute;
-    inset: 8px;
-    margin: auto;
-    background: #222b32;
-  }
-  .loader:before{
-    content: '';
-    position: absolute;
-    inset: -15px;
-    margin: auto;
-    background: #de3500;
-    animation: diamondLoader 2s linear infinite;
-  }
-  @keyframes diamondLoader {
-    0%  ,10% {
-      transform: translate(-64px , -64px) rotate(-45deg)
-    }
-    90% , 100% {
-      transform: translate(0px , 0px) rotate(-45deg)
-    }
-  }
-
-
-  .animate-bottom {
-    position: relative;
-    -webkit-animation-name: animatebottom;
-    -webkit-animation-duration: 1s;
-    animation-name: animatebottom;
-    animation-duration: 1s
-  }
-  
-  @-webkit-keyframes animatebottom {
-    from { bottom:-100px; opacity:0 } 
-    to { bottom:0px; opacity:1 }
-  }
-  
-  @keyframes animatebottom { 
-    from{ bottom:-100px; opacity:0 } 
-    to{ bottom:0; opacity:1 }
-  }
-  

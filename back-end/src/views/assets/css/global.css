@@ -29,9 +29,9 @@
   }
 
 body {
-    font-family: 12 'Roboto Mono', monospace;
+    font-family:'Roboto Mono', monospace;
     font-weight: 400;
-    background-color: #FCFDFD;
+    background-color: var(--bg2-color);
 }
 
 ::-webkit-scrollbar-thumb{
