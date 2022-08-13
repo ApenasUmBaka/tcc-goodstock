@@ -19,9 +19,7 @@ class CustomersModel {
   /**
    * A method to get some customer using the ID.
    */
-  public async getCustomer(
-    customerId: number
-  ): Promise<Customer | undefined> {
+  public async getCustomer(customerId: number): Promise<Customer | undefined> {
     // Get the customer.
     const res = await this.request("GET", customerId);
 

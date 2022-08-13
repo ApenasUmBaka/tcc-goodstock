@@ -20,14 +20,6 @@ services:
     links:
       - goodstock_api_products
 
-  goodstock_api_sales_db:
-    image: mongo
-    container_name: goodstock_api_sales_db
-    env_file:
-      - api_sales.env
-    links:
-      - goodstock_api_sales
-
   goodstock_api_customers:
     build: ./api/customers/
     container_name: goodstock_api_customers
