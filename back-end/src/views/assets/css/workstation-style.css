@@ -1,0 +1,45 @@
+@import url(reset.css);
+@import url(global.css);
+
+h1{
+    font-size: 40px;
+    font-weight: 300;
+    display: flex;
+    justify-content: center;
+    
+}
+
+h1:hover{
+    color:salmon;
+    opacity: 0.7;
+
+
+}
+
+p{
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    padding: 10px;
+}
+
+main{
+    display: grid;
+    margin: 10px;
+    padding: 10px;
+}
+
+button{
+    margin-top: 10px;
+    background-color: brown;
+    color: aliceblue;
+    box-shadow: black 5px 5px;
+
+}
+
+button:hover{
+    color: brown;
+    background-color: aliceblue;
+    transition: 2s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+}

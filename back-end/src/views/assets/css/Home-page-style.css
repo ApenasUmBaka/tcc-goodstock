@@ -24,7 +24,6 @@ nav {
 }
 
 main {
-    background-color: var(--one-color);
     background-size: cover;
     height: 90vh;
 }
@@ -40,6 +39,7 @@ footer {
 a {
     text-decoration: none;
 }
+
 
 /* Underline From Left */
 a.hvr-underline-from-left {
@@ -76,7 +76,7 @@ a.hvr-underline-from-left:active:before {
 }
 
 
-/* Button Criar Conta */
+/* Button New sign */
 
 a#New-Cont {
     position: relative;
@@ -127,10 +127,6 @@ span::after {
     border-right: 2px solid #DC4C5D;
 }
 
-/* span{
-    font-weight: 100;
-    font-style: oblique;
-} */
 
 a#New-Cont:hover::before,
 a#New-Cont:hover::after,
@@ -197,8 +193,9 @@ h1 {
     font-size: 24px;
     text-transform: uppercase;
     letter-spacing: 4px;
-    text-decoration: none;
+    text-decoration: none; 
 }
+
 
 .nav-list {
     list-style: none;
@@ -286,9 +283,6 @@ h1 {
 /* Slide Show */
 
 
-* {
-    box-sizing: border-box
-} */
 
 /* Slideshow container */
 .slides-images {
@@ -305,6 +299,7 @@ h1 {
 
 img {
     background-image: contain;
+
 }
 
 /* Fading animation */
@@ -328,6 +323,10 @@ img {
 section {
     min-height: 100vh;
     width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+    padding: 10px;
 }
 
 section:nth-child(2n) {
@@ -359,3 +358,34 @@ section:nth-child(2n) {
 }
 
 /* Loader */
+/* Background Linear Gradient */
+.css-selector {
+    background: linear-gradient(270deg, #2b6e8f, #dc4c5d);
+    background-size: 400% 400%;
+
+    -webkit-animation: AnimationName 30s ease infinite;
+    -moz-animation: AnimationName 30s ease infinite;
+    -o-animation: AnimationName 30s ease infinite;
+    animation: AnimationName 30s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@-o-keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}

@@ -34,16 +34,23 @@ body {
     background-color: var(--bg2-color);
 }
 
+button{
+    cursor: pointer;
+}
+
 ::-webkit-scrollbar-thumb{
     background-color: #DC4C5D;
-    border: 5px solid transparent;
     border-radius: 50px;
-    background-clip: content-box;
 }
 
 ::-webkit-scrollbar{
-    width: 15px;
+    width: 8px;
+    height: 8px;
 } 
+
+::-webkit-scrollbar-track{
+    background: var(--bg2-color);
+}
 
 ::selection{
     color: var(--bg-color);
