@@ -15,7 +15,7 @@
 
 <body>
   <header>
-    <nav>
+    <nav id="top">
       <a class="logo" href="#Slides-Images"><i class="fas fa-boxes"></i>Good Stock</a>
       <div class="mobile-menu">
         <div class="line1"></div>
@@ -31,30 +31,38 @@
     </nav>
   </header>
   <!-- Slide Images from apresention -->
-  <main class="css-selector" id="slides-images">
+  <main class="css-selector">
 
-    <div class="mySlides fade">
-      <img src="../assets/images/purchasesmall-business-owner-online-market-delivery-lifestyle-freelance-concept.png"
-        style="width: 100%;" alt="Imagem 1">
-    </div>
+    <div class="container-cards">
 
-    <div class="mySlides fade">
-      <img src="../assets/images/stock-computer-work-home-office-small-business.png" style="width: 100%" alt="Imagem 2">
-    </div>
+      <div class="panel active"
+        style="background-image: url('../assets/images/purchasesmall-business-owner-online-market-delivery-lifestyle-freelance-concept.png');"
+        alt="Imagem 1">
+        <h3>Hello Hello</h3>
+      </div>
 
-    <div class="mySlides fade">
-      <img src="../assets/images/young-asia.jpg" style="width: 100%" alt="Imagem 3">
-    </div>
+      <div class="panel"
+        style="background-image: url('../assets/images/stock-computer-work-home-office-small-business.png');"
+        alt="Imagem 2">
+        <h3>Hello Hello2</h3>
+      </div>
 
-    <div class="mySlides fade">
-      <img src="../assets/images/young-asia-entrepreneur-businesswoman.png" style="width: 100%" alt="Imagem 4">
-    </div>
+      <div class="panel" style="background-image: url('../assets/images/young-asia.jpg');" alt="Imagem 3">
+        <h3>Hello Hello3</h3>
+      </div>
 
-    <div class="mySlides fade">
-      <img src="../assets/images/young-asia-market-delivery-lifestyle-freelance-concept.png" style="width: 100%"
+      <div class="panel" style="background-image: url('../assets/images/young-asia-entrepreneur-businesswoman.png');"
+        alt="Imagem 4">
+        <h3>Hello Hello4</h3>
+      </div>
+
+      <div class="panel"
+        style="background-image: url('../assets/images/young-asia-market-delivery-lifestyle-freelance-concept.png');"
         alt="Imagem 5">
-    </div>
+        <h3>Hello Hello5</h3>
+      </div>
 
+    </div>
     <h2>Hello Hello</h2>
 
   </main>
@@ -64,10 +72,11 @@
   <script src="../assets/scripts/slide-show.js"></script>
   <script src="../assets/scripts/reveal.js"></script>
   <script src="../assets/scripts/mobile-navbar.js"></script>
+  <script src="../assets/scripts/expanding-cards-script.js"></script>
   <!-- Landing Page -->
 
   <section>
-    <div   class="container reveal" id="introducao">
+    <div class="container reveal" id="introducao">
       <h1>Introdução</h1>
       <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Scelerisque fames mus
         sollicitudin sagittis penatibus metus. Morbi fermentum placerat dis dui taciti imperdiet conubia. In odio aenean
@@ -82,7 +91,7 @@
   </section>
 
   <section>
-    <div  class="container reveal" id="tutorial">
+    <div class="container reveal" id="tutorial">
       <h1>tutorial</h1>
       <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Scelerisque fames mus
         sollicitudin sagittis penatibus metus. Morbi fermentum placerat dis dui taciti imperdiet conubia. In odio aenean
@@ -98,31 +107,35 @@
 
 
   <section>
-  <div  class="container reveal" id="good">
-    <h1>Comparação e vantagens</h1>
-    <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Scelerisque fames mus
-      sollicitudin sagittis penatibus metus. Morbi fermentum placerat dis dui taciti imperdiet conubia. In odio aenean
-      ad ad ornare lacinia, varius rhoncus? Ridiculus ridiculus etiam auctor sapien phasellus. Curae dis tristique diam
-      gravida ornare risus pharetra. Ut iaculis quam etiam egestas vivamus mus maximus. Ultricies imperdiet quam mattis
-      tellus mattis aenean eros bibendum. Ad vel litora magna quisque vehicula rhoncus integer consequat iaculis. Amet
-      commodo aenean sollicitudin, lacinia sociosqu vitae himenaeos.</p>
-    <img src="../assets/images/estoque.png">
-  </div>
-    </section>
-
-  <section>
-  <div  class="container reveal" id="about-us">
-    <h1>Sobre nós</h1>
-    <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Scelerisque fames mus
-      sollicitudin sagittis penatibus metus. Morbi fermentum placerat dis dui taciti imperdiet conubia. In odio aenean
-      ad ad ornare lacinia, varius rhoncus? Ridiculus ridiculus etiam auctor sapien phasellus. Curae dis tristique diam
-      gravida ornare risus pharetra. Ut iaculis quam etiam egestas vivamus mus maximus. Ultricies imperdiet quam mattis
-      tellus mattis aenean eros bibendum. Ad vel litora magna quisque vehicula rhoncus integer consequat iaculis. Amet
-      commodo aenean sollicitudin, lacinia sociosqu vitae himenaeos.</p>
-    <img src="../assets/images/box.png">
-  </div>
+    <div class="container reveal" id="good">
+      <h1>Comparação e vantagens</h1>
+      <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Scelerisque fames mus
+        sollicitudin sagittis penatibus metus. Morbi fermentum placerat dis dui taciti imperdiet conubia. In odio aenean
+        ad ad ornare lacinia, varius rhoncus? Ridiculus ridiculus etiam auctor sapien phasellus. Curae dis tristique
+        diam
+        gravida ornare risus pharetra. Ut iaculis quam etiam egestas vivamus mus maximus. Ultricies imperdiet quam
+        mattis
+        tellus mattis aenean eros bibendum. Ad vel litora magna quisque vehicula rhoncus integer consequat iaculis. Amet
+        commodo aenean sollicitudin, lacinia sociosqu vitae himenaeos.</p>
+      <img src="../assets/images/estoque.png">
+    </div>
   </section>
 
+  <section>
+    <div class="container reveal" id="about-us">
+      <h1>Sobre nós</h1>
+      <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Scelerisque fames mus
+        sollicitudin sagittis penatibus metus. Morbi fermentum placerat dis dui taciti imperdiet conubia. In odio aenean
+        ad ad ornare lacinia, varius rhoncus? Ridiculus ridiculus etiam auctor sapien phasellus. Curae dis tristique
+        diam
+        gravida ornare risus pharetra. Ut iaculis quam etiam egestas vivamus mus maximus. Ultricies imperdiet quam
+        mattis
+        tellus mattis aenean eros bibendum. Ad vel litora magna quisque vehicula rhoncus integer consequat iaculis. Amet
+        commodo aenean sollicitudin, lacinia sociosqu vitae himenaeos.</p>
+      <img src="../assets/images/box.png">
+    </div>
+  </section>
+  <button id="btn-top" class="hvr-sweep-to-top"><a href="#top">Ir para o topo</a></button>
   <footer>
     <span>© 2022 Todos os direitos Good Stock</span>
   </footer>

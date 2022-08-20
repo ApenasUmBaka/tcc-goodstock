@@ -126,6 +126,21 @@ input {
 	width: 100%;
 }
 
+/* Error message Forms */
+#error,
+#success-msg {
+  width: 40vw;
+  margin: 0.125rem 0;
+  font-size: 0.75rem;
+  color: var(--secondary-color);
+}
+
+
+#success-msg {
+  transition-delay: 3s;
+}
+
+
 .container {
 	background-color: var(--bg-color);
 	border-radius: 10px;

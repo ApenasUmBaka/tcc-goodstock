@@ -16,7 +16,7 @@
 
     <div class="container" id="container">
         <div class="form-container sign-up-container">
-            <form action="#">
+            <form id="form-up" method="post" action="#">
                 <h1>Criar uma nova conta</h1>
                 <div class="social-container">
                     <a href="#" class="social"><i class="fas fa-box"></i></i></a>
@@ -24,14 +24,16 @@
                     <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
                 </div>
                 <span>Ou ultilize seu email para registrar</span>
-                <input id="name" type="text" placeholder="Nome Completo" />
-                <input id="email" type="email" placeholder="Email" />
-                <input  type="password" placeholder="Senha" />
-                <button>Registrar</button>
+                <input id="name" type="text" placeholder="Nome Completo" autofocus required/>
+                <input id="email" type="email" placeholder="Email" required />
+                <input id="password-up" type="password" placeholder="Senha" required />
+                <button type="submit" id="submit-up" name="submit-up">Registrar</button>
             </form>
+                <div id="error-sig-up"></div>
+                <div id="success-msg-sign-up"></div>
         </div>
         <div class="form-container sign-in-container">
-            <form action="#">
+            <form id="form-in" action="#">
                 <h1>Se conectar</h1>
                 <div class="social-container">
                     <a href="#" class="social"><i class="fas fa-box"></i></i></a>
@@ -39,11 +41,13 @@
                     <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
                 </div>
                 <span>Ou use sua conta</span>
-                <input type="email" placeholder="Email" />
-                <input type="password" placeholder="Senha" />
+                <input id="email-in" type="email" placeholder="Email" required/>
+                <input  id="password-in" type="password" placeholder="Senha" required/>
                 <a href="#">Esqueci minha senha</a>
-                <button>Entrar</button>
+                <button type="submit" id="submit-in" name="submit-in" >Entrar</button>
             </form>
+                <div id="error-sign-in"></div>
+                <div id="success-msg-sign-in"></div>
         </div>
         <div class="overlay-container">
             <div class="overlay">
@@ -63,7 +67,7 @@
 
 
     <script src="../assets/scripts/cad-login-script.js" charset="utf-8"></script>
-
+    <script src="../assets/scripts/cad-login-func.js"></script>
 </body>
 
 </html>

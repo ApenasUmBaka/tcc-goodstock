@@ -32,9 +32,15 @@ body {
     font-family:'Roboto Mono', monospace;
     font-weight: 400;
     background-color: var(--bg2-color);
+    
 }
 
 button{
+    cursor: pointer;
+}
+
+a{
+    text-decoration: none;
     cursor: pointer;
 }
 
