@@ -1,9 +1,6 @@
-@import url(global.css);
-@import url(reset.css);
+@import url(../base/global.css);
+@import url(../base/reset.css);
 
-* {
-	box-sizing: border-box;
-}
 
 body {
 	display: flex;
