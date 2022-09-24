@@ -1,0 +1,302 @@
+openapi: 3.1.0
+info:
+  version: '1.0.0'
+  title: 'Goodstock'
+  license:
+    name: MIT
+servers:
+  - url: 'localhost:3000'
+paths:
+# Customers API
+  /customers:
+    post:
+      summary: 'Create customer'
+      operationId: postCustomer
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: email
+          in: query
+          required: true
+          description: 'The customers email'
+          schema:
+            type: string
+            examples:
+              - email@gmail.com
+        - name: password
+          in: query
+          required: true
+          description: 'The customers password'
+          schema:
+            type: string
+            examples:
+              - password
+        - name: organization
+          in: query
+          required: true
+          description: 'The customers organization'
+          schema:
+            type: integer
+            format: int32
+            examples:
+              - 1
+      responses:
+        '201':
+          description: 'Customer created.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        '400':
+          description: 'Invalid Params'
+        default:
+          description: Unexpected error
+
+  /customers/{id}:
+    get:
+      summary: 'Get customer'
+      operationId: getCustomer
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id 
+          in: path
+          required: true
+          description: 'The customers id'
+          schema:
+            type: integer
+            examples:
+              - 1
+      responses:
+        '200':
+          description: 'Customer found.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        '400':
+          description: 'Invalid Params'
+        default:
+          description: Unexpected error
+
+    patch:
+      summary: 'Update customer'
+      operationId: patchCustomer
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id 
+          in: path
+          required: true
+          description: 'The customers id'
+          schema:
+            type: integer
+            examples:
+              - 1
+        - name: email
+          in: query
+          required: false
+          description: 'The customers email'
+          schema:
+            type: string
+            examples:
+              - email@gmail.com
+        - name: password
+          in: query
+          required: false
+          description: 'The customers password'
+          schema:
+            type: string
+            examples:
+              - password
+      responses:
+        '200':
+          description: 'Customer updated.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        '400':
+          description: 'Invalid Params'
+        default:
+          description: Unexpected error
+
+  /customers/{id}/auth:
+    get:
+      summary: 'Auth customer'
+      operationId: authCustomer
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+              type: integer
+              format: int32
+              examples:
+                - id
+        - name: password
+          in: query
+          required: true
+          schema:
+            type: string
+            examples:
+              - password
+      responses:
+        '200':
+          description: 'Customer authorized.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        '400':
+          description: 'Invalid Params'
+        default:
+          description: Unexpected error
+
+# Organizations API
+  /organizations:
+    post:
+      summary: 'Create Organization'
+      operationId: postOrganization
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: name
+          in: query
+          required: true
+          schema:
+            type: string
+            examples:
+              - organizationName
+        - name: masterPassword
+          in: query
+          required: true
+          schema:
+            type: string
+            examples:
+              - password
+      responses:
+        '200':
+          description: 'organization created.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+        '400':
+          description: 'Invalid Params'
+        default:
+          description: Unexpected error
+  
+  /organizations/{id}:
+    get:
+      summary: 'Find Organization'
+      operationId: getOrganization
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+            examples:
+              - 1
+      responses:
+        '200':
+          description: 'organization found.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+        '400':
+          description: 'Invalid Params'
+        default:
+          description: Unexpected error
+    patch:
+      summary: 'Update Organization'
+      operationId: patchOrganization
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+            examples:
+              - 1
+        - name: name
+          in: query
+          required: false
+          schema:
+            type: string
+            examples:
+              - organizationName
+        - name: masterPassword
+          in: query
+          required: false
+          schema:
+            type: string
+            examples:
+              - password
+      responses:
+        '200':
+          description: 'organization updated.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+        '400':
+          description: 'Invalid Params'
+        default:
+          description: Unexpected error
+
+components:
+  schemas:
+    Customer:
+      type: object
+      required:
+        - id
+        - email
+        - organization
+      properties:
+        id:
+          type: integer
+          format: int32
+          examples:
+            - 1
+        email:
+          type: string
+          examples:
+            - email@gmail.com
+        organization:
+          type: integer
+          format: int32
+          examples:
+            - 1
+    Organizations:
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: integer
+          format: int32
+          examples:
+            - 1
+        name:
+          type: string
+          examples:
+            - organizationName
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+security:
+  - bearerAuth: []

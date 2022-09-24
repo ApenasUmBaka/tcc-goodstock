@@ -21,13 +21,21 @@ services:
       - goodstock_api_sales
       - goodstock_api_products
 
+  goodstock_api_main:
+    build: ./api/main/
+    container_name: goodstock_api_main
+    # volumes:
+    #   - ./api/main:/app
+    ports:
+      - 3000:3000
+    env_file:
+      - api_main.env
+
   goodstock_api_customers:
     build: ./api/customers/
     container_name: goodstock_api_customers
     # volumes:
     #   - ./api/customers:/app
-    ports:
-      - 3001:3001
     env_file:
       - api_customers.env
     environment:
@@ -38,8 +46,6 @@ services:
     container_name: goodstock_api_products
     # volumes:
     #   - ./api/products:/app
-    ports:
-      - 3002:3002
     env_file:
       - api_products.env
     environment:

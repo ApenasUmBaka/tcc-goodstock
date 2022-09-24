@@ -2,16 +2,11 @@
 import { Router } from "express";
 
 import LoggerFactory from "@logger";
-import AuthController from "@controllers/auth";
 import CustomersController from "@controllers/customersController";
 import OrganizationsController from "@controllers/organizationsController";
 
 // Data
 const router = Router();
-const authMiddleware = new AuthController().authRequest.bind(AuthController);
-
-// Routes
-router.use(authMiddleware);
 
 // Customers
 router.post("/customers", async (req, res) => {
