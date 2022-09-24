@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/base/normalize.css"/>
+    <link rel="icon" type="image/png" href="../assets/images/box.png" />
+    <link href="../assets/css/layout/cad-login-style.css" rel="stylesheet" />
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'>
+    <title>Welcome</title>
+</head>
+
+<body class="css-selector">
+
+
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form id="form-up" method="post" action="#">
+                <h1>Criar uma nova conta</h1>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fas fa-box"></i></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <span>Ou ultilize seu email para registrar</span>
+                <input id="name" type="text" placeholder="Nome Completo" autofocus required/>
+                <input id="email" type="email" placeholder="Email" required />
+                <input id="password-up" type="password" placeholder="Senha" required />
+                <button type="submit" id="submit-up" name="submit-up">Registrar</button>
+            </form>
+                <div id="error-sig-up"></div>
+                <div id="success-msg-sign-up"></div>
+        </div>
+        <div class="form-container sign-in-container">
+            <form id="form-in" action="#">
+                <h1>Se conectar</h1>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fas fa-box"></i></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <span>Ou use sua conta</span>
+                <input id="email-in" type="email" placeholder="Email" required/>
+                <input  id="password-in" type="password" placeholder="Senha" required/>
+                <a href="#">Esqueci minha senha</a>
+                <button type="submit" id="submit-in" name="submit-in" >Entrar</button>
+            </form>
+                <div id="error-sign-in"></div>
+                <div id="success-msg-sign-in"></div>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Bem Vindo de volta!</h1>
+                    <p>Se mantenha conectado conosco, faça login de sua conta</p>
+                    <button class="ghost" id="signIn">Conectar</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Seja Bem Vindo!</h1>
+                    <p>Registre seus dados e crie uma conta conosco</p>
+                    <button class="ghost" id="signUp">Registrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="../assets/scripts/cad-login-script.js" charset="utf-8"></script>
+    <script src="../assets/scripts/cad-login-func.js"></script>
+</body>
+
+</html>
