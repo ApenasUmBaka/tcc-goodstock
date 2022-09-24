@@ -10,28 +10,18 @@ declare global {
   }
 }
 
-// Customers API
-export interface Customer {
-  id: number;
-  email: string;
-  password: string;
-  fk_organizationId: number;
-}
-
-export interface Organization {
-  id: number;
-  name: string;
-  masterPassword: string;
-}
-
-// Products API
-export interface Product {
-  id: string;
-  name: string;
-  organizationId: number;
-  price: number;
+// Sales API
+export interface _ProductInSale {
   amount: number;
-  [key: string]: any;
+  productId: string;
+  unitPrice: number;
+}
+
+export interface _Sales {
+  totalPrice: number;
+  responsibleId: number;
+  organizationId: number;
+  products: _ProductInSale[]
 }
 
 // Basic response

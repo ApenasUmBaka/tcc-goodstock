@@ -1,39 +1,19 @@
 // Libs
-import Sequelize from "sequelize";
-import { ModelAttributes } from "sequelize/types";
+import { Schema } from "mongoose";
 
 // Data
-const salesSchema: ModelAttributes = {
-  id: {
-    type: Sequelize.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
+const salesSchema = new Schema(
+  {
+    amount: Number,
+    productId: String,
+    totalPrice: Number,
+    responsibleId: Number,
+    organizationId: Number,
   },
-  organizationId: {
-    type: Sequelize.NUMBER,
-    allowNull: false,
-  },
-  productId: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  amount: {
-    type: Sequelize.NUMBER,
-    allowNull: false,
-  },
-  price: {
-    type: Sequelize.FLOAT,
-    allowNull: false,
-  },
-  status: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  responsible: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-};
+  {
+    strict: false,
+  }
+);
 
 // Code
 export default salesSchema;

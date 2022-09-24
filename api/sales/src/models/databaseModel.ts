@@ -1,22 +1,18 @@
 // Libs
-import { Sequelize } from "sequelize";
+import mongoose from "mongoose";
 
 // Classes
 /**
  * A class to represents de database connection.
  */
 abstract class Database {
-  private static user = process.env.POSTGRES_USER;
-  private static pass = process.env.POSTGRES_PASSWORD;
+  private static user = process.env.MONGO_INITDB_ROOT_USERNAME;
+  private static pass = process.env.MONGO_INITDB_ROOT_PASSWORD;
+  private static dbName = "admin";
 
-  public static seq = new Sequelize({
-    host: "goodstock_api_customers_db",
-    port: 5432,
-    username: this.user,
-    password: this.pass,
-    dialect: "postgres",
-    logging: false,
-  });
+  public static mongoose = mongoose.createConnection(
+    `mongodb://${this.user}:${this.pass}@goodstock_api_products_db:27017/${this.dbName}`
+  );
 }
 
 // Code

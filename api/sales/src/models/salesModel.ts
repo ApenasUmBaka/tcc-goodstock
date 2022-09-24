@@ -1,31 +1,29 @@
 // Libs
 import { Logger } from "winston";
 
+import { _Sales } from "@types";
 import Database from "@models/databaseModel";
 import salesSchema from "@schemas/salesSchema";
 
-// Data
-abstract class SalesModel {
-  public static model = Database.seq.define("sales", salesSchema);
 
-  public static async getSale(logger: Logger, saleId: number) {
-    logger.info('Getting a sale using the provided id...');
+// Classes
+class SalesModel {
+  private logger!: Logger;
+  public model = Database.mongoose.model("sales", salesSchema);
 
-    const saleResult = await this.model.findOne({
-      where: {
-        id: saleId
-      }
-    });
+  constructor(logger: Logger) {
+    this.logger = logger;
+  }
 
-    if (!saleResult) {
-      logger.info('The sale was not found. Returning...');
-      return;
+  public async getSale(saleId: string) {
+    try {
+      this.logger.info('Searching a sale in the database...');
+      const result = await this.model.findById(saleId);
+      return result;
+    } catch (err) {
+      this.logger.warn(
+        `Couldn\'t search the sale in the database. Error: ${err}`);
+        return;
     }
-
-    logger.info('The sale was found. Returning...');
-    return saleResult;
   }
 }
-
-// Code
-export default SalesModel;
