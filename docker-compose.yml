@@ -18,6 +18,7 @@ services:
     env_file:
       - api_products.env
     links:
+      - goodstock_api_sales
       - goodstock_api_products
 
   goodstock_api_customers:
@@ -53,5 +54,3 @@ services:
       - 3003:3003
     env_file:
       - api_sales.env
-    environment:
-      - API_AUTH=${SALES_API_AUTH}

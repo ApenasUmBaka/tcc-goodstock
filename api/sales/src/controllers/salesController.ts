@@ -12,32 +12,29 @@ class SalesController {
   */
   public async getSale(req: Request, res: Response) {
     // Check params
-    const saleId = toNumber(req.params.saleId);
+    const saleId = req.params.saleId;
     if (!saleId) {
-        req.logger.info('The provided sale id is not declared. Returning...');
-        return res.sendStatus(400);
-    }
-    if (!saleId) {
-        req.logger.info('The provided sale id is not valid. Returning...');
-        return res.sendStatus(400);
+      req.logger.info("The provided sale id is not valid. Returning...");
+      return res.sendStatus(400);
     }
 
     // Get in the database the sale.
-    const saleResult = await SalesModel.getSale(req.logger, saleId);
+    const salesModel = new SalesModel(req.logger);
+    const saleResult = await salesModel.getSale(saleId);
 
-    req.logger.info('Returning...');
+    // Return the result to the client.
+    req.logger.info("Returning...");
     if (!saleResult) {
-        return res.status(400).json({
-            status: 'Error',
-            message: 'Sale not found.'
-        });
+      return res.status(400).json({
+        status: "Error",
+        message: "Sale not found.",
+      });
     }
 
     return res.status(200).json({
-        status: 'Success',
-        data: saleResult
+      status: "Success",
+      data: saleResult,
     });
-
   }
 }
 

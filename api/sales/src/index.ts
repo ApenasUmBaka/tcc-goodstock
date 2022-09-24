@@ -8,7 +8,7 @@ import LoggerFactory from "@logger";
 import "@types";
 
 // Data
-const PORT = process.env.PORT;
+const PORT = 3000;
 const app = Express();
 const logger = LoggerFactory.createLogger("SERVER");
 

@@ -21,7 +21,7 @@ export interface _Sales {
   totalPrice: number;
   responsibleId: number;
   organizationId: number;
-  products: _ProductInSale[]
+  products: _ProductInSale[];
 }
 
 // Basic response
