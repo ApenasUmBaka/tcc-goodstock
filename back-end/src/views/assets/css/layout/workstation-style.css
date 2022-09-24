@@ -1,0 +1,103 @@
+@import url(reset.css);
+@import url(global.css);
+
+h1{
+    font-size: 40px;
+    font-weight: 300;
+    display: flex;
+    justify-content: center;
+    
+}
+
+h1:hover{
+    color: var(--second-color);
+    opacity: 0.7;
+}
+
+p{
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    padding: 10px;
+    font-size: clamp(0.7em, 0.7em + 0.7vw, 1em);
+}
+
+main{
+    display: grid;
+    margin: 10px;
+    padding: 10px;
+}
+
+button{
+    margin-top: 10px;
+    background-color: brown;
+    color: aliceblue;
+    box-shadow: black 5px 5px;
+
+}
+
+button:hover{
+    color: brown;
+    background-color: aliceblue;
+    transition: 2s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+}
+
+/* The side navigation menu */
+.sidebar {
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: var(--one-color);
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+  }
+  
+  /* Sidebar links */
+  .sidebar a {
+    display: block;
+    color: var(--h1-color);
+    padding: 16px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-decoration: none;
+  }
+  
+  /* Active/current link */
+  .sidebar a.active {
+    background-color: var(--button-color);
+    color: white;
+  }
+  
+  /* Links on mouse-over */
+  .sidebar a:hover:not(.active) {
+    background-color: var(--op-color);
+    color: var(--bg-color);
+  }
+  
+  /* Page content. The value of the margin-left property should match the value of the sidebar's width property */
+  div.content {
+    margin-left: 200px;
+    padding: 1px 16px;
+    height: 1000px;
+  }
+  
+  /* On screens that are less than 700px wide, make the sidebar into a topbar */
+  @media screen and (max-width: 700px) {
+    .sidebar {
+      width: 100%;
+      height: auto;
+      position: relative;
+    }
+    .sidebar a {float: left;}
+    div.content {margin-left: 0;}
+  }
+  
+  /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+  @media screen and (max-width: 400px) {
+    .sidebar a {
+      text-align: center;
+      float: none;
+    }
+  }
