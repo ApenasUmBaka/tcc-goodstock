@@ -3,12 +3,6 @@
 @import url('../base/global.css');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200&display=swap');
 
-/* Tags */
-
-html {
-    scroll-behavior: smooth;
-}
-
 nav {
     display: flex;
     justify-content: space-around;
