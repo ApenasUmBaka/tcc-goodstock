@@ -2,9 +2,9 @@
 node_modules
 dist
 certs
+db
 
 # Files
 *.env
 .prettierrc.json
 *.lock
-db
