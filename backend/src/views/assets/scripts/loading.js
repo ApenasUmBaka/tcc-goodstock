@@ -1,10 +1,9 @@
 const fadeOut = () => {
-    const loaderWrapper =
-    document.querySelector('.wrapper');
-    loaderWrapper.classList.add('fade');
-}
+  const loaderWrapper = document.querySelector(".wrapper");
+  loaderWrapper.classList.add("fade");
+};
 
-window.addEventListener('load', fadeOut);
+window.addEventListener("load", fadeOut);
 
 var myVar;
 

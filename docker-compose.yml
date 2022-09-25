@@ -1,8 +1,19 @@
 version: "3.9"
 services:
+  goodstock_backend:
+    container_name: goodstock_backend
+    build: ./backend
+    ports:
+      - 80:80 # HTTP server
+      - 443:443     # HTTPS server
+    env_file:
+      - backend.env
+    links:
+      - goodstock_api_main
+
   goodstock_api_customers_db:
-    image: postgres
     container_name: goodstock_api_customers_db
+    image: postgres
     volumes:
       - ./db/api-customers:/var/lib/postgresql/data
     env_file:
@@ -11,8 +22,8 @@ services:
       - goodstock_api_customers
 
   goodstock_api_products_db:
-    image: mongo
     container_name: goodstock_api_products_db
+    image: mongo
     volumes:
       - ./db/api-products:/data/db
     env_file:
@@ -21,8 +32,8 @@ services:
       - goodstock_api_products
 
   goodstock_api_main:
-    build: ./api/main/
     container_name: goodstock_api_main
+    build: ./api/main/
     # volumes:
     #   - ./api/main:/app
     ports:
@@ -31,16 +42,16 @@ services:
       - api_main.env
 
   goodstock_api_customers:
-    build: ./api/customers/
     container_name: goodstock_api_customers
+    build: ./api/customers/
     # volumes:
     #   - ./api/customers:/app
     env_file:
       - api_customers.env
 
   goodstock_api_products:
-    build: ./api/products/
     container_name: goodstock_api_products
+    build: ./api/products/
     # volumes:
     #   - ./api/products:/app
     env_file:
