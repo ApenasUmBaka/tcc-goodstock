@@ -4,7 +4,8 @@ services:
     container_name: goodstock_backend
     build: ./backend
     ports:
-      - 80:80
+      - 80:80 # HTTP server
+      - 443:443     # HTTPS server
     env_file:
       - backend.env
     links:
