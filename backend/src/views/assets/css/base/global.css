@@ -1,52 +1,48 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200&display=swap');
-
-
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200&display=swap");
 
 :root {
-    --one-color:#2B6E8F;
-    --two-color: #E6844F;
-    --op-color: #33808E;
-    --primary-color: #090C24;
-    --secondary-color: #818386;
-    --bg-color: #FCFDFD;
-    --bg2-color: #e5e5e5;
-    --button2-color: #DC4C5D;
-    --button-color: #379F70;
-    --h1-color: #191824;
-  }
-  
-  [data-theme="dark"] {
-    --one-color:#2B6E8F;
-    --two-color: #E6844F;
-    --op-color: #33808E;
-    --primary-color: #FCFDFD;
-    --secondary-color: #818386;
-    --bg-color: #090C24;
-    --bg2-color: #e5e5e5;
-    --button2-color: #DC4C5D;
-    --button-color: #36B558;
-    --h1-color: #FCFDFD;
-  }
-
-html{
-    scroll-behavior: smooth;
+  --one-color: #2b6e8f;
+  --two-color: #e6844f;
+  --op-color: #33808e;
+  --primary-color: #090c24;
+  --secondary-color: #818386;
+  --bg-color: #fcfdfd;
+  --bg2-color: #e5e5e5;
+  --button2-color: #dc4c5d;
+  --button-color: #379f70;
+  --h1-color: #191824;
 }
 
+[data-theme="dark"] {
+  --one-color: #2b6e8f;
+  --two-color: #e6844f;
+  --op-color: #33808e;
+  --primary-color: #fcfdfd;
+  --secondary-color: #818386;
+  --bg-color: #090c24;
+  --bg2-color: #e5e5e5;
+  --button2-color: #dc4c5d;
+  --button-color: #36b558;
+  --h1-color: #fcfdfd;
+}
+
+html {
+  scroll-behavior: smooth;
+}
 
 body {
-    font-family:'Roboto Mono', monospace;
-    font-weight: 400;
-    background-color: var(--bg2-color);
-    
+  font-family: "Roboto Mono", monospace;
+  font-weight: 400;
+  background-color: var(--bg2-color);
 }
 
-button{
-    cursor: pointer;
+button {
+  cursor: pointer;
 }
 
-a{
-    text-decoration: none;
-    cursor: pointer;
+a {
+  text-decoration: none;
+  cursor: pointer;
 }
 
 ::-webkit-scrollbar-thumb{
@@ -54,23 +50,22 @@ a{
     border-radius: 50px;
 }
 
-::-webkit-scrollbar{
-    width: 8px;
-    height: 8px;
-} 
-
-::-webkit-scrollbar-track{
-    background: var(--bg2-color);
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
 }
 
-::selection{
-    color: var(--bg-color);
-    background-color: var(--button2-color);
+::-webkit-scrollbar-track {
+  background: var(--bg2-color);
 }
 
-h1::selection, h2::selection{
-    color: var(--bg-color);
-    background-color: var(--two-color);
+::selection {
+  color: var(--bg-color);
+  background-color: var(--button2-color);
 }
 
-
+h1::selection,
+h2::selection {
+  color: var(--bg-color);
+  background-color: var(--two-color);
+}
