@@ -50,7 +50,7 @@ a{
 }
 
 ::-webkit-scrollbar-thumb{
-    background-color: #DC4C5D;
+    background-color: var(--button2-color);
     border-radius: 50px;
 }
 

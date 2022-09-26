@@ -296,7 +296,6 @@ figure.snip0056 {
     font-size: 24px;
     text-transform: uppercase;
     letter-spacing: 4px;
-    text-decoration: none; 
 }
 
 
@@ -318,7 +317,7 @@ figure.snip0056 {
 .mobile-menu div {
     width: 32px;
     height: 2px;
-    background: var(--bg2-color);
+    background: var(--primary-color);
     margin: 8px;
     transition: 0.3s;
     z-index: 2;
