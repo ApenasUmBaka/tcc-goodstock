@@ -7,7 +7,13 @@ const router = Router();
 // Routes
 router.use(express.static("src/views"));
 
+router.get("/register", (req: Request, res: Response) => {
+  res.cookie('loginPageStatus', 'register');
+  res.status(200).sendFile("src/views/pages/cad-login.html", { root: "." });
+});
+
 router.get("/login", (req: Request, res: Response) => {
+  res.cookie('loginPageStatus', 'login');
   res.status(200).sendFile("src/views/pages/cad-login.html", { root: "." });
 });
 
