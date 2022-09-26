@@ -11,6 +11,10 @@ router.get("/login", (req: Request, res: Response) => {
   res.status(200).sendFile("src/views/pages/cad-login.html", { root: "." });
 });
 
+router.all("/contact-us", (req: Request, res: Response) => {
+  res.status(200).sendFile("src/views/pages/contact-us.html", { root: "." });
+});
+
 router.get("/", (req: Request, res: Response) => {
   res.status(200).sendFile("src/views/pages/index.html", { root: "." });
 });
