@@ -1,6 +1,3 @@
-// Libs
-import CookieModel from "/assets/scripts/cookieModel.js";
-
 // Data
 const signUpButton = document.getElementById("signUp");
 const signInButton = document.getElementById("signIn");
@@ -14,9 +11,10 @@ signUpButton.addEventListener("click", () => {
 signInButton.addEventListener("click", () => {
   container.classList.remove("right-panel-active");
 });
-// Conexão entre a tela inicial com o panel-right e panel-left
 
-// Code
-if (CookieModel.getCookie('loginPageStatus') == 'register') {
+if (window.location.pathname == '/register') {
   container.classList.add("right-panel-active");
+} else {
+  container.classList.add("right-panel-active");
+  container.classList.remove("right-panel-active");
 }
