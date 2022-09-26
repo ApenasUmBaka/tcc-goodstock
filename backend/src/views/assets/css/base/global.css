@@ -45,9 +45,9 @@ a {
   cursor: pointer;
 }
 
-::-webkit-scrollbar-thumb {
-  background-color: #dc4c5d;
-  border-radius: 50px;
+::-webkit-scrollbar-thumb{
+    background-color: var(--button2-color);
+    border-radius: 50px;
 }
 
 ::-webkit-scrollbar {

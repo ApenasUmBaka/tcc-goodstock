@@ -287,10 +287,9 @@ figure.snip0056.hover > img {
 
 /* Classes */
 .logo {
-  font-size: 24px;
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  text-decoration: none;
+    font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
 }
 
 .nav-list {
@@ -309,12 +308,12 @@ figure.snip0056.hover > img {
 }
 
 .mobile-menu div {
-  width: 32px;
-  height: 2px;
-  background: var(--bg2-color);
-  margin: 8px;
-  transition: 0.3s;
-  z-index: 2;
+    width: 32px;
+    height: 2px;
+    background: var(--primary-color);
+    margin: 8px;
+    transition: 0.3s;
+    z-index: 2;
 }
 
 /* Utils */
