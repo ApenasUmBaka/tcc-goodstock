@@ -19,9 +19,7 @@ class HTTPSServer extends ServerModel {
         key: cert.getKey(),
         cert: cert.getCert(),
       },
-      this.getApp(
-        helmet()
-      )
+      this.getApp(helmet())
     );
     server.listen(this.HTTPSPORT, () => {
       logger.info(`The HTTPS server is online on port: ${this.HTTPSPORT}`);
