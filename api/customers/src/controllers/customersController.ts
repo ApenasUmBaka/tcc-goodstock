@@ -196,7 +196,7 @@ class CustomersController {
     });
 
     if (!customerResult) {
-      return res.sendStatus(4011);
+      return res.sendStatus(401);
     }
     res.sendStatus(200);
   }

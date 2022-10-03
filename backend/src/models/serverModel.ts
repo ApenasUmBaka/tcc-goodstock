@@ -1,18 +1,26 @@
 // Libs
-import express, { Express } from "express";
 import { Logger } from "winston";
+import session from "express-session";
+import express, { Express } from "express";
 
 import router from "@router";
-import { _ExpressMiddleware } from "@types";
+import { ExpressMiddleware } from "@types";
 
 // Classes
 export abstract class ServerModel {
   public startServer(logger: Logger): void {}
 
-  protected static getApp(helmetMiddleware: _ExpressMiddleware): Express {
+  protected static getApp(helmetMiddleware: ExpressMiddleware): Express {
     const app = express();
-    app.set("trust-proxy", true);
     app.use(helmetMiddleware);
+    app.use(
+      session({
+        secret: process.env.SESSIONSECRET!,
+        cookie: { secure: true },
+      })
+    );
+
+    app.set("trust-proxy", true);
     app.use(router);
 
     return app;

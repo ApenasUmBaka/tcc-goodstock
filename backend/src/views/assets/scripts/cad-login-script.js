@@ -12,6 +12,6 @@ signInButton.addEventListener("click", () => {
   container.classList.remove("right-panel-active");
 });
 
-if (window.location.pathname == '/register') {
+if (window.location.pathname == "/register") {
   container.classList.add("right-panel-active");
 }
