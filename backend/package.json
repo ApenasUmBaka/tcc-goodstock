@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "build/index.js",
   "scripts": {
-    "start:dev": "tsc; node -r ts-node/register/transpile-only -r tsconfig-paths/register ."
+    "start:prod": "tsc; node -r ts-node/register/transpile-only -r tsconfig-paths/register ."
   },
   "license": "MIT",
   "dependencies": {
