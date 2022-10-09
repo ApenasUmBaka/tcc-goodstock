@@ -17,7 +17,7 @@
   <body class="css-selector">
     <div class="container" id="container">
       <div class="form-container sign-up-container">
-        <form id="form-up" method="post" action="#">
+        <form id="form-up" method="post" action="/register">
           <h1>Criar uma nova conta</h1>
           <div class="social-container">
             <a href="#" class="social"><i class="fas fa-box"></i></a>
@@ -26,29 +26,39 @@
           </div>
           <span>Ou ultilize seu email para registrar</span>
           <input
-            id="name"
             type="text"
+            name="name"
+            id="registerName"
             placeholder="Nome Completo"
             autofocus
             required
           />
-          <input id="email" type="email" placeholder="Email" required />
           <input
-            id="password-up"
+            type="email"
+            name="email"
+            id="registerEmail"
+            placeholder="Email"
+            required
+          />
+          <input
             type="password"
+            name="passwd"
+            id="registerPasswd"
             placeholder="Senha"
             required
           />
-          <input id="email" type="email" placeholder="Email" required />
-          <button type="submit" id="submit-up" name="submit-up">
-            Registrar
-          </button>
+          <input
+            type="submit"
+            class="submitInput"
+            value="Registrar"
+            onsubmit="return registerAccount()"
+          />
         </form>
         <div id="error-sig-up"></div>
         <div id="success-msg-sign-up"></div>
       </div>
       <div class="form-container sign-in-container">
-        <form id="form-in" action="#">
+        <form id="form-in" method="post" action="/login">
           <h1>Se conectar</h1>
           <div class="social-container">
             <a href="#" class="social"><i class="fas fa-box"></i></a>
@@ -56,15 +66,27 @@
             <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
           </div>
           <span>Ou use sua conta</span>
-          <input id="email-in" type="email" placeholder="Email" required />
           <input
-            id="password-in"
+            type="email"
+            name="email"
+            id="loginEmail"
+            placeholder="Email"
+            required
+          />
+          <input
             type="password"
+            id="loginPasswd"
+            name="passwd"
             placeholder="Senha"
             required
           />
           <a href="#">Esqueci minha senha</a>
-          <button type="submit" id="submit-in" name="submit-in">Entrar</button>
+          <input
+            type="submit"
+            class="submitInput"
+            value="Entrar"
+            onsubmit="return signinAccount()"
+          />
         </form>
         <div id="error-sign-in"></div>
         <div id="success-msg-sign-in"></div>
@@ -85,10 +107,7 @@
       </div>
     </div>
 
-    <script
-      src="../assets/scripts/cad-login-script.js"
-      charset="utf-8"
-    ></script>
-    <script src="../assets/scripts/cad-login-func.js"></script>
+    <script src="../assets/scripts/cadLoginScript.js" charset="utf-8"></script>
+    <script src="../assets/scripts/cadLoginValidator.js"></script>
   </body>
 </html>

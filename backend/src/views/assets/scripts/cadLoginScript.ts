@@ -1,7 +1,7 @@
 // Data
-const signUpButton = document.getElementById("signUp");
-const signInButton = document.getElementById("signIn");
-const container = document.getElementById("container");
+const signUpButton = document.getElementById("signUp") as HTMLButtonElement;
+const signInButton = document.getElementById("signIn") as HTMLButtonElement;
+const container = document.getElementById("container") as HTMLDivElement;
 
 // Functions
 signUpButton.addEventListener("click", () => {

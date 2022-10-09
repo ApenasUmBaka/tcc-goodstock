@@ -95,11 +95,13 @@ a {
 }
 
 button,
+input.submitInput,
 a:hover {
   cursor: pointer;
 }
 
-button {
+button,
+input.submitInput {
   border-radius: 20px;
   border: 2px solid #f2eee3;
   background-color: #f2eee3;
@@ -113,11 +115,13 @@ button {
   border-color: var(--button2-color);
 }
 
-button:active {
+button:active,
+input.submitInput:active {
   transform: scale(0.95);
 }
 
-button:focus {
+button:focus,
+input.submitInput:focus {
   outline: none;
 }
 
