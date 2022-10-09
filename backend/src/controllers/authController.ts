@@ -9,9 +9,10 @@ class AuthController {
     req.logger = LoggerFactory.createLogger(req.ip);
     req.logger.info(`Request on endpoint: ${req.method} ${req.url}`);
 
-    req.logger.info("Creating new session...");
     if (!req.session.user) {
+      req.logger.info("Creating new session...");
       req.session.user = {
+        id: undefined,
         email: undefined,
         organizationId: undefined,
       };

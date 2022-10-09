@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-br" dir="ltr">
   <head>
+    <title>Welcome</title>
+
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,7 +13,6 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
     />
-    <title>Welcome</title>
   </head>
 
   <body class="css-selector">
@@ -27,7 +28,7 @@
           <span>Ou ultilize seu email para registrar</span>
           <input
             type="text"
-            name="name"
+            name="registerName"
             id="registerName"
             placeholder="Nome Completo"
             autofocus
@@ -35,14 +36,14 @@
           />
           <input
             type="email"
-            name="email"
+            name="registerEmail"
             id="registerEmail"
             placeholder="Email"
             required
           />
           <input
             type="password"
-            name="passwd"
+            name="registerPasswd"
             id="registerPasswd"
             placeholder="Senha"
             required
@@ -51,14 +52,13 @@
             type="submit"
             class="submitInput"
             value="Registrar"
-            onsubmit="return registerAccount()"
           />
         </form>
         <div id="error-sig-up"></div>
         <div id="success-msg-sign-up"></div>
       </div>
       <div class="form-container sign-in-container">
-        <form id="form-in" method="post" action="/login">
+        <form id="form-in" method="post" action="/login" onsubmit="return signinAccount();">
           <h1>Se conectar</h1>
           <div class="social-container">
             <a href="#" class="social"><i class="fas fa-box"></i></a>
@@ -68,15 +68,15 @@
           <span>Ou use sua conta</span>
           <input
             type="email"
-            name="email"
+            name="loginEmail"
             id="loginEmail"
             placeholder="Email"
             required
           />
           <input
             type="password"
+            name="loginPasswd"
             id="loginPasswd"
-            name="passwd"
             placeholder="Senha"
             required
           />
@@ -85,7 +85,6 @@
             type="submit"
             class="submitInput"
             value="Entrar"
-            onsubmit="return signinAccount()"
           />
         </form>
         <div id="error-sign-in"></div>
@@ -107,7 +106,7 @@
       </div>
     </div>
 
-    <script src="../assets/scripts/cadLoginScript.js" charset="utf-8"></script>
-    <script src="../assets/scripts/cadLoginValidator.js"></script>
+    <script src="/assets/scripts/cadLoginContainer.js" charset="utf-8"></script>
+    <script src="/assets/scripts/cadLoginValidator.js" charset="utf-8"></script>
   </body>
 </html>

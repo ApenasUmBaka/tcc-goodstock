@@ -21,6 +21,7 @@ class LoginController {
       "organizationId",
       "masterPassword",
     ];
+
     if (!Security.filterParams(neededParams, req.body)) {
       req.logger.info(`Some param was not included in the neededParams.`);
       req.logger.info("Returning...");

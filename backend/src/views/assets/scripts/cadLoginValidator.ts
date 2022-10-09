@@ -22,12 +22,16 @@ class Validator {
   }
 
   public static isPasswdValid(passwd: string): boolean {
-    const regexPasswd =
-      /^ (? =. * [0-9]) (? =. * [az]) (? =. * [AZ]) (? =. * [@ # $% ^ & - + =() ]) (? = \\ S + $). {8, 20} $/;
+    const regexPasswd = /([^0-9a-z\ !#-&(-.:-@[-_{-~])/g;
 
-    if (!regexPasswd.test(passwd)) {
+    if (passwd.length >= 8 && passwd.length <= 20) {
+      errorElement.innerHTML = "A senha deve conter no minimo 8 digitos e máximo 20.";
+      return false;
+    }
+
+    if (regexPasswd.exec(passwd)) {
       errorElement.innerHTML =
-        "A senha deve conter no minimo 8 digitos e máximo 20, uma caractere especial, letra maiuscula, letra minuscula e um numero.";
+        "A senha deve conter apenas caracteres comuns, evite utilizar caracteres especiais como \' e \".";
       return false;
     }
 
@@ -35,34 +39,33 @@ class Validator {
   }
 }
 
-// Code
-function registerAccount() {
-  const registerName = document.getElementById(
-    "registerName"
-  ) as HTMLInputElement;
+// Functions
+export function registerAccount(event: Event) {
+  const registerName = document.getElementById("registerName") as HTMLInputElement;
   if (!Validator.isNameValid(registerName.value)) return false;
 
-  const registerEmail = document.getElementById(
-    "registerEmail"
-  ) as HTMLInputElement;
+  const registerEmail = document.getElementById("registerEmail") as HTMLInputElement;
   if (!Validator.isEmailValid(registerEmail.value)) return false;
 
-  const registerPasswd = document.getElementById(
-    "registerPasswd"
-  ) as HTMLInputElement;
-  if (!Validator.isEmailValid(registerPasswd.value)) return false;
+  const registerPasswd = document.getElementById("registerPasswd") as HTMLInputElement;
+  if (!Validator.isPasswdValid(registerPasswd.value)) return false;
 
-  return true;
+  return false;
 }
 
-function signinAccount() {
+export function signinAccount(event: Event) {
   const loginEmail = document.getElementById("loginEmail") as HTMLInputElement;
-  if (Validator.isEmailValid(loginEmail.value)) return false;
+  if (!Validator.isEmailValid(loginEmail.value)) return false;
 
-  const loginPasswd = document.getElementById(
-    "loginPasswd"
-  ) as HTMLInputElement;
-  if (Validator.isPasswdValid(loginPasswd.value)) return false;
+  const loginPasswd = document.getElementById("loginPasswd") as HTMLInputElement;
+  if (!Validator.isPasswdValid(loginPasswd.value)) return false;
 
-  return true;
+  return false;
 }
+
+// Events
+const formRegister = document.getElementById("form-up") as HTMLFormElement;
+formRegister.onsubmit = registerAccount;
+
+const formSignIn = document.getElementById("form-in") as HTMLFormElement;
+formSignIn.onsubmit = signinAccount;
