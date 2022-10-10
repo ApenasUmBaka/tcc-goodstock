@@ -15,6 +15,18 @@ class CustomersModel extends APIModel {
     this.logger = logger;
   }
 
+  /**
+   * A method to get the ID from some customer using the email.
+   */
+  public async getIdByEmail(email: string): Promise<number | undefined> {
+    const apiResult = await this.callAPI('GET', '/customer', {email: email});
+    if (!apiResult) return;
+    return apiResult.data.id;
+  }
+
+  /**
+   * A method to test the auth using the email and password from some customer.
+   */
   public async authCustomer(
     email: string,
     password: string

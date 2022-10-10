@@ -47,6 +47,20 @@ abstract class Security {
     if (regex.test(email)) return true;
     return false;
   }
+
+  public static isPasswdValid(passwd: string): boolean {
+    const regexPasswd = /([^0-9a-z\ !#-&(-.:-@[-_{-~])/g;
+
+    if (!(passwd.length >= 8 && passwd.length <= 20)) {
+      return false;
+    }
+
+    if (regexPasswd.exec(passwd)) {
+      return false;
+    }
+
+    return true;
+  }
 }
 
 // Code

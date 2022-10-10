@@ -16,12 +16,12 @@ export interface User {
   organizationId: number | undefined;
 }
 
-export interface RegisterUser {
-  name: string | undefined;
-  email: string | undefined;
-  password: string | undefined;
-  organizationId: number | undefined;
-  masterPassword: string | undefined;
+export interface RequestRegisterUserBody {
+  registerName: string;
+  registerEmail: string;
+  registerPasswd: string;
+  registerOrgId: number;
+  registerOrgPasswd: string;
 }
 
 export interface APIResponse {

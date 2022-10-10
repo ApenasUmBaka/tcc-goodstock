@@ -38,38 +38,46 @@ class Validator {
 
     return true;
   }
+
+  public static isOrgIdValid(orgId: string): boolean {
+    if (!(Number(orgId) > 0)) {
+      errorElement.innerHTML =
+        "O ID da organização deve ser maior que 0 e se referir ao ID correspondente da sua organização.";
+      return false;
+    }
+    return true;
+  }
 }
 
 // Functions
-function registerAccount(event: Event) {
-  const registerName = document.getElementById(
-    "registerName"
-  ) as HTMLInputElement;
-  if (!Validator.isNameValid(registerName.value)) return false;
-
-  const registerEmail = document.getElementById(
-    "registerEmail"
-  ) as HTMLInputElement;
-  if (!Validator.isEmailValid(registerEmail.value)) return false;
-
-  const registerPasswd = document.getElementById(
-    "registerPasswd"
-  ) as HTMLInputElement;
-  console.log(registerPasswd.value);
-  if (!Validator.isPasswdValid(registerPasswd.value)) return false;
-
-  return true;
-}
-
 function signinAccount(event: Event) {
   const loginEmail = document.getElementById("loginEmail") as HTMLInputElement;
   if (!Validator.isEmailValid(loginEmail.value)) return false;
 
-  const loginPasswd = document.getElementById(
-    "loginPasswd"
-  ) as HTMLInputElement;
+  const loginPasswd = document.getElementById("loginPasswd") as HTMLInputElement;
   if (!Validator.isPasswdValid(loginPasswd.value)) return false;
 
+  return true;
+}
+
+function registerAccount(event: Event) {
+  const fieldsToCheck: any = {
+    "registerName": Validator.isNameValid,
+    "registerEmail": Validator.isPasswdValid,
+    "registerPasswd": Validator.isPasswdValid,
+    "registerOrgId": Validator.isOrgIdValid,
+    "registerOrgPasswd": Validator.isPasswdValid,
+  };
+  
+  const fieldsToCheckKeys = Object.keys(fieldsToCheck);
+  
+  for (const index in fieldsToCheckKeys) {
+    const fieldToCheckId = fieldsToCheckKeys[index];
+    const validatorFunction = fieldsToCheck[fieldToCheckId];
+  
+    const fieldElement = document.getElementById(fieldToCheckId) as HTMLInputElement;
+    if (!validatorFunction(fieldElement)) return false;
+  }
   return true;
 }
 

@@ -25,9 +25,11 @@
                     <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
                 </div>
                 <span>Ou ultilize seu email para registrar</span>
-                <input id="name" type="text" placeholder="Nome Completo" autofocus required/>
-                <input id="email" type="email" placeholder="Email" required />
-                <input id="password-up" type="password" placeholder="Senha" required />
+                <input type="text" name="registerName" id="name" placeholder="Nome Completo" autofocus required/>
+                <input type="email" name="registerEmail" id="email" placeholder="Email" required />
+                <input type="password" name="registerPasswd" id="password-up" placeholder="Senha" required />
+                <input type="number" name="registerOrgId" id="orgId" placeholder="ID da organização" required />
+                <input type="password" name="registerOrgPasswd" id="orgPasswd" placeholder="Senha mestre da organização" required />
                 <button type="submit" id="submit-up" name="submit-up">Registrar</button>
             </form>
                 <div id="error-sig-up"></div>
@@ -42,8 +44,8 @@
                     <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
                 </div>
                 <span>Ou use sua conta</span>
-                <input id="email-in" type="email" placeholder="Email" required/>
-                <input  id="password-in" type="password" placeholder="Senha" required/>
+                <input type="email" name ="loginEmail" id="email-in" placeholder="Email" required/>
+                <input  type="password" name ="loginPasswd" id="password-in" placeholder="Senha" required/>
                 <a href="#">Esqueci minha senha</a>
                 <button type="submit" id="submit-in" name="submit-in" >Entrar</button>
             </form>
