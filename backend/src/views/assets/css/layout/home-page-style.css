@@ -331,12 +331,18 @@ figure.intro__card.hover > img {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> develop
 /* Classes */
 .logo {
   font-size: 24px;
   text-transform: uppercase;
   letter-spacing: 4px;
 }
+<<<<<<< HEAD
+=======
+>>>>>>> develop
 =======
 >>>>>>> develop
 
@@ -346,6 +352,9 @@ footer {
   background: var(--op-color);
   display: flex;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> develop
 }
 
 .nav-list li {
@@ -365,10 +374,13 @@ footer {
   margin: 8px;
   transition: 0.3s;
   z-index: 2;
+<<<<<<< HEAD
 =======
   justify-content: center;
   align-items: center;
   height: 50px;
+>>>>>>> develop
+=======
 >>>>>>> develop
 }
 
