@@ -1,28 +1,59 @@
 // Libs
 import helmet from "helmet";
 import { Logger } from "winston";
+import bodyParser from "body-parser";
 import { createServer } from "https";
+import session from "express-session";
+import express, { Express } from "express";
 
+import router from "@router";
 import CertModel from "@cert";
-import ServerModel from "@models/serverModel";
 
 // Classes
-class HTTPSServer extends ServerModel {
-  private static HTTPSPORT = process.env.HTTPSPORT || 443;
+class HTTPSServer {
+  private logger: Logger;
+  private HTTPSPORT = process.env.HTTPSPORT || 443;
 
-  public static startServer(logger: Logger): void {
-    logger.info("Starting the HTTPS server...");
+  constructor(logger: Logger) {
+    this.logger = logger;
+  }
 
-    const cert = new CertModel(logger);
+  private createApp(): Express {
+    this.logger.info("Configuring app instance...");
+
+    const app = express();
+    app.use(express.json());
+    app.use(bodyParser.urlencoded({ extended: true }));
+
+    app.set("trust-proxy", true);
+    app.set("view engine", "ejs");
+    app.set("views", "src/views/pages");
+
+    app.use(helmet());
+    app.use(
+      session({
+        secret: process.env.SESSIONSECRET!,
+        cookie: { secure: true },
+        saveUninitialized: false,
+        resave: true,
+      })
+    );
+    app.use(router);
+
+    return app;
+  }
+
+  public createHTTPSServer() {
+    const cert = new CertModel(this.logger);
     const server = createServer(
       {
         key: cert.getKey(),
         cert: cert.getCert(),
       },
-      this.getApp(helmet())
+      this.createApp()
     );
     server.listen(this.HTTPSPORT, () => {
-      logger.info(`The HTTPS server is online on port: ${this.HTTPSPORT}`);
+      this.logger.info(`The HTTPS server is online on port: ${this.HTTPSPORT}`);
     });
   }
 }

@@ -6,6 +6,8 @@ import HTTPSServer from "@models/httpsServerModel";
 const logger = LoggerFactory.createLogger("SERVER");
 
 // Code
-logger.info("Turning on server...");
+logger.info("Starting server...");
 
-HTTPSServer.startServer(logger);
+logger.info("Starting the HTTPS server...");
+const httpsServer = new HTTPSServer(logger);
+httpsServer.createHTTPSServer();

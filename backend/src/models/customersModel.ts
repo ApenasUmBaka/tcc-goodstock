@@ -46,7 +46,7 @@ class CustomersModel extends APIModel {
     );
     if (!authResponse) return;
     if (authResponse.status == 400) {
-      this.logger.info('Bad login.');
+      this.logger.info("Bad login.");
       return;
     }
 

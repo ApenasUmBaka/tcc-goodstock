@@ -9,7 +9,7 @@ abstract class Security {
    * A method to get all the neededparams from some request.
    * @param neededParams - The name from the params.
    * @param body - The request's body.
-   * @returns The treated params or empty array if bad request.
+   * @returns The treated params or undefined if bad request.
    */
   public static filterParams(neededParams: string[], body: any): any {
     const params: any = {};

@@ -5,13 +5,12 @@ const container = document.getElementById("container") as HTMLDivElement;
 class ContainerController {
   public static changeToRegister() {
     container.classList.add("right-panel-active");
-    window.history.replaceState('', '', '/register');
-
+    window.history.replaceState("", "", "/register");
   }
 
   public static changeToLogin() {
     container.classList.remove("right-panel-active");
-    window.history.replaceState('', '', '/login');
+    window.history.replaceState("", "", "/login");
   }
 }
 
@@ -23,4 +22,5 @@ const signInButton = document.getElementById("signIn") as HTMLButtonElement;
 signInButton.addEventListener("click", ContainerController.changeToLogin);
 
 // Code
-if (window.location.pathname == "/register") ContainerController.changeToRegister();
+if (window.location.pathname == "/register")
+  ContainerController.changeToRegister();
