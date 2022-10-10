@@ -14,6 +14,10 @@ router.use(AuthController.authRequest);
 router.use(express.static("src/views"));
 router.use(express.static("build/views"));
 
+router.get("/", (req: Request, res: Response) => {
+  res.status(200).render("index");
+});
+
 router.get("/register", RegisterController.get);
 router.post("/register", RegisterController.post);
 
@@ -22,8 +26,8 @@ router.post("/login", LoginController.post);
 
 router.all("/contact-us", ContactUsController.all);
 
-router.get("/", (req: Request, res: Response) => {
-  res.status(200).render("index", { error: false });
+router.all('*', (req: Request, res: Response) => {
+  res.status(404).render('notfound');
 });
 
 // Code
