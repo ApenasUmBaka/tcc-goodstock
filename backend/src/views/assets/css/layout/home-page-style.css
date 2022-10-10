@@ -330,15 +330,46 @@ figure.intro__card.hover > img {
   background-color: var(--bg-color);
 }
 
+<<<<<<< HEAD
+/* Classes */
+.logo {
+  font-size: 24px;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+}
+=======
+>>>>>>> develop
 
 /* Footer */
 
 footer {
   background: var(--op-color);
   display: flex;
+<<<<<<< HEAD
+}
+
+.nav-list li {
+  letter-spacing: 3px;
+  margin-left: 32px;
+}
+
+.mobile-menu {
+  display: none;
+  cursor: pointer;
+}
+
+.mobile-menu div {
+  width: 32px;
+  height: 2px;
+  background: var(--primary-color);
+  margin: 8px;
+  transition: 0.3s;
+  z-index: 2;
+=======
   justify-content: center;
   align-items: center;
   height: 50px;
+>>>>>>> develop
 }
 
 /* Utils */
