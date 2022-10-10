@@ -19,7 +19,6 @@ class LoginController {
       return res
         .status(400)
         .render("cad-login", {
-          error: false,
           messageError: "Algum campo não foi devidamente enviado.",
         });
   }
