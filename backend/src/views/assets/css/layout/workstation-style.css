@@ -1,5 +1,5 @@
-@import url(reset.css);
-@import url(global.css);
+@import url("/assets/css/base/reset.css");
+@import url("/assets/css/base/global.css");
 
 h1 {
   font-size: 40px;
@@ -62,7 +62,7 @@ button:hover {
 }
 
 /* Active/current link */
-.sidebar a.active {
+.sidebar a.sidebar__active {
   background-color: var(--button-color);
   color: white;
 }
