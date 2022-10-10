@@ -17,7 +17,7 @@
 .left-col {
   width: 45vw;
   height: 100%;
-  background-image: url("/backend/src/views/assets/images/Shopping_Concepts_16.jpg");
+  background-image: url("/assets/images/Shopping_Concepts_16.jpg");
   background-size: cover;
   background-repeat: no-repeat;
 }
