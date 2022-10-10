@@ -9,7 +9,7 @@ import CustomersModel from "@models/customersModel";
 // Classes
 class RegisterController {
   public static async get(req: Request, res: Response) {
-    res.status(200).render("cad-login", { error: false });
+    res.status(200).render("cad-login", { messageError: "" });
   }
 
   public static async post(req: Request, res: Response) {
