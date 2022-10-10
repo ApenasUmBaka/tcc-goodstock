@@ -1,5 +1,5 @@
-@import url("../base/global.css");
-@import url("../base/reset.css");
+@import url("/assets/css/base/global.css");
+@import url("/assets/css/base/reset.css");
 
 * {
   margin: 0;
