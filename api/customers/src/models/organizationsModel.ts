@@ -40,7 +40,7 @@ abstract class OrganizationsModel {
     logger: Logger,
     params: any
   ): Promise<_Organization | undefined> {
-    logger.info("Locating a organization...");
+    logger.info("Locating an organization...");
 
     const organization = await this.model.findOne({
       where: params,

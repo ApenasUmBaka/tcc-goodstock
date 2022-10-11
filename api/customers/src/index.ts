@@ -1,6 +1,7 @@
 // Libs
 import Helmet from "helmet";
 import Express from "express";
+import bodyParser from "body-parser";
 
 import router from "@router";
 import LoggerFactory from "@logger";
@@ -13,9 +14,10 @@ const app = Express();
 const logger = LoggerFactory.createLogger("SERVER");
 
 // Code
-app.use(Express.json());
-app.set("trust proxy", true);
 app.use(Helmet());
+app.use(Express.json());
+app.set("trust-proxy", true);
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(router);
 

@@ -3,8 +3,8 @@ import { Request, Response } from "express";
 
 import Security from "@security";
 import { toNumber } from "@utils";
-import organizationsModel from "@models/organizationsModel";
-import { _Organization } from "@types";
+import { ReqOrgAuth, _Organization } from "@types";
+import OrganizationsModel from "@models/organizationsModel";
 
 // Classes
 /**
@@ -15,7 +15,7 @@ class OrganizationsController {
    * POST /organizations
    * A route to create organizations.
    */
-  public async postOrganization(req: Request, res: Response) {
+  public static async postOrganization(req: Request, res: Response) {
     // Check params.
     const neededParams = ["name", "masterPassword"];
     const params = Security.filterParams(neededParams, req.body);
@@ -25,7 +25,7 @@ class OrganizationsController {
     }
 
     // Check if the Organization already exists.
-    const findOrganizationResult = await organizationsModel.findOrganization(
+    const findOrganizationResult = await OrganizationsModel.findOrganization(
       req.logger,
       {
         name: params.name,
@@ -46,7 +46,7 @@ class OrganizationsController {
         name: params.name,
         masterPassword: Security.toHash(params.masterPassword),
       };
-      const Organization = await organizationsModel.createOrganization(
+      const Organization = await OrganizationsModel.createOrganization(
         req.logger,
         OrganizationParams
       );
@@ -65,14 +65,14 @@ class OrganizationsController {
    * GET /Organization or GET /Organization/:id
    * A route to get some Organization.
    */
-  public async getOrganization(req: Request, res: Response) {
+  public static async getOrganization(req: Request, res: Response) {
     const query = this.getOrganizationQuery(req);
     if (!query) {
       req.logger.info("The query is empty. Returning...");
       return res.sendStatus(400);
     }
 
-    const findOrganizationResult = await organizationsModel.findOrganization(
+    const findOrganizationResult = await OrganizationsModel.findOrganization(
       req.logger,
       query
     );
@@ -101,7 +101,7 @@ class OrganizationsController {
    * PATCH /organizations/:id
    * A route to update a Organization.
    */
-  public async patchOrganization(req: Request, res: Response) {
+  public static async patchOrganization(req: Request, res: Response) {
     const OrganizationId = req.params.id;
     if (!OrganizationId || !toNumber(OrganizationId)) {
       req.logger.info("The Organization's id was not provided. Returning...");
@@ -109,7 +109,7 @@ class OrganizationsController {
     }
 
     // Find if Organization exists.
-    const findOrganizationResult = await organizationsModel.findOrganization(
+    const findOrganizationResult = await OrganizationsModel.findOrganization(
       req.logger,
       {
         id: OrganizationId,
@@ -133,7 +133,7 @@ class OrganizationsController {
         : findOrganizationResult.masterPassword,
     };
 
-    const updatedOrganization = await organizationsModel.updateOrganization(
+    const updatedOrganization = await OrganizationsModel.updateOrganization(
       req.logger,
       Number(OrganizationId),
       organizationsParams
@@ -150,9 +150,49 @@ class OrganizationsController {
   }
 
   /**
+   * GET /organizations/auth
+   * A route to auth with some organization.
+   */
+  public static async getAuth(req: Request, res: Response) {
+    const neededParams = ["organizationId", "organizationPasswd"];
+
+    req.logger.info('Checking params...');
+    const params = Security.filterParams(neededParams, req.body) as ReqOrgAuth;
+    if (!params || !toNumber(params.organizationId)) {
+      req.logger.info('Invalid params. Returning...');
+      return res.sendStatus(400);
+    }
+
+    // Check if the ID exists.
+    req.logger.info('Checking if the provided ID exists...');
+    const organizationResult = await OrganizationsModel.findOrganization(req.logger, {
+      id: params.organizationId
+    });
+    if (!organizationResult) {
+      req.logger.info('The organization ID was not found. Returning...');
+      return res.sendStatus(400);
+    }
+    req.logger.info('Organization ID Found.');
+
+    // Check if the password is correct.
+    req.logger.info('Trying to auth the masterPassword with the organization...');
+    const authResult = await OrganizationsModel.findOrganization(req.logger, {
+      id: params.organizationId,
+      masterPassword: params.organizationPasswd?.toString(),
+    });
+    if (!authResult) {
+      req.logger.info('The provided credential is not valid. Returning...');
+      return res.sendStatus(403);
+    }
+
+    req.logger.info('The auth operation was successfully completed. Returning...');
+    return res.sendStatus(200);
+  }
+
+  /**
    * Used by the GET /Organization or GET/Organization/:id
    */
-  private getOrganizationQuery(req: Request) {
+  private static getOrganizationQuery(req: Request) {
     if (req.params.id) {
       if (!toNumber(req.params.id)) return;
       return {

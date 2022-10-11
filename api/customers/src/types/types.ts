@@ -23,3 +23,8 @@ export interface _Organization {
   name: string;
   masterPassword: string;
 }
+
+export interface ReqOrgAuth {
+  organizationId: number | undefined,
+  organizationPasswd: string | undefined
+}
