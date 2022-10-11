@@ -25,6 +25,6 @@ export interface _Organization {
 }
 
 export interface ReqOrgAuth {
-  organizationId: number | undefined,
-  organizationPasswd: string | undefined
+  organizationId: number | undefined;
+  organizationPasswd: string | undefined;
 }

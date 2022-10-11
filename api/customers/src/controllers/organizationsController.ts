@@ -156,36 +156,43 @@ class OrganizationsController {
   public static async getAuth(req: Request, res: Response) {
     const neededParams = ["organizationId", "organizationPasswd"];
 
-    req.logger.info('Checking params...');
+    req.logger.info("Checking params...");
     const params = Security.filterParams(neededParams, req.body) as ReqOrgAuth;
     if (!params || !toNumber(params.organizationId)) {
-      req.logger.info('Invalid params. Returning...');
+      req.logger.info("Invalid params. Returning...");
       return res.sendStatus(400);
     }
 
     // Check if the ID exists.
-    req.logger.info('Checking if the provided ID exists...');
-    const organizationResult = await OrganizationsModel.findOrganization(req.logger, {
-      id: params.organizationId
-    });
+    req.logger.info("Checking if the provided ID exists...");
+    const organizationResult = await OrganizationsModel.findOrganization(
+      req.logger,
+      {
+        id: params.organizationId,
+      }
+    );
     if (!organizationResult) {
-      req.logger.info('The organization ID was not found. Returning...');
+      req.logger.info("The organization ID was not found. Returning...");
       return res.sendStatus(400);
     }
-    req.logger.info('Organization ID Found.');
+    req.logger.info("Organization ID Found.");
 
     // Check if the password is correct.
-    req.logger.info('Trying to auth the masterPassword with the organization...');
+    req.logger.info(
+      "Trying to auth the masterPassword with the organization..."
+    );
     const authResult = await OrganizationsModel.findOrganization(req.logger, {
       id: params.organizationId,
       masterPassword: params.organizationPasswd?.toString(),
     });
     if (!authResult) {
-      req.logger.info('The provided credential is not valid. Returning...');
+      req.logger.info("The provided credential is not valid. Returning...");
       return res.sendStatus(403);
     }
 
-    req.logger.info('The auth operation was successfully completed. Returning...');
+    req.logger.info(
+      "The auth operation was successfully completed. Returning..."
+    );
     return res.sendStatus(200);
   }
 

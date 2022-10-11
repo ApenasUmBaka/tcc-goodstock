@@ -1,7 +1,7 @@
 // Libs
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction, Request, Response } from "express";
 
-import LoggerFactory from '@logger';
+import LoggerFactory from "@logger";
 
 // Classes
 class AuthController {
