@@ -5,40 +5,24 @@ import { Request, Response } from "express";
 // Data
 const services: any = {
     'customers': process.env.CUSTOMERS_API_URL,
-    'organizations': process.env.PRODUCTS_API_URL,
+    'organizations': process.env.CUSTOMERS_API_URL,
 };
 
 
 // Classes
 class RedictController {
-  /**
-   * A method to get the service from some url.
-   * @returns The service from the customer.
-   */
-  private static getService(url: string) {
-    // Get the target api.
-    const urlWithoutParams = url.split("?")[0];
-    const service = urlWithoutParams.split('/')[1];
-    const servicesKeys = Object.keys(services);
-    for (let i = 0; i < servicesKeys.length; i++) {
-      const serviceKey = servicesKeys[i];
-      console.log(`"${serviceKey}" - "${service}"`);
-      if (serviceKey == service) {
-        return serviceKey;
-      }
-    }
-    return;
-  }
 
   public static async allRedirect(req: Request, res: Response) {
-    const service = RedictController.getService(req.url);
+    const service = req.url.split('/').slice(1,2)[0]; // [ '', '/customers', '/something']
 
     if (!service) {
       return res.sendStatus(400);
     }
 
     // Do the request and return it.
-    const url = services[service];
+    const selectedRoute = req.url.split('/').slice(2).join('/');
+    const url = `${services[service]}/${selectedRoute}`;
+    req.logger.info(`Doing request to: ${url}`);
     try {
       const request = await Axios.request({
         url: url,
@@ -46,14 +30,18 @@ class RedictController {
         method: req.method,
         headers: req.headers as any,
       });
+      req.logger.info('The request has been completed.');
+
       return res.status(request.status).json(request.data);
     } catch (err) {
       const error = err as AxiosError;
 
       if (!("response" in error)) {
+        req.logger.warn(`The request has returned an error. Error: ${err}`);
         return res.sendStatus(500);
       }
 
+      req.logger.info('The request has been completed.');
       res.status(error.response?.status as any).json(error.response?.data);
     }
   }
