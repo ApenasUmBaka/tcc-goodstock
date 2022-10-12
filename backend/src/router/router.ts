@@ -5,6 +5,7 @@ import AuthController from "@controllers/authController";
 import LoginController from "@controllers/loginController";
 import RegisterController from "@controllers/registerController";
 import ContactUsController from "@controllers/contactUsController";
+import WorkspaceController from "@controllers/workspaceController";
 
 // Data
 const router = Router();
@@ -18,13 +19,15 @@ router.get("/", (req: Request, res: Response) => {
   res.status(200).render("index");
 });
 
-router.get("/register", RegisterController.get);
-router.post("/register", RegisterController.post);
+router.get("/register", RegisterController.get.bind(RegisterController));
+router.post("/register", RegisterController.post.bind(RegisterController));
 
-router.get("/login", LoginController.get);
-router.post("/login", LoginController.post);
+router.get("/login", LoginController.get.bind(LoginController));
+router.post("/login", LoginController.post.bind(LoginController));
 
-router.all("/contact-us", ContactUsController.all);
+router.get("/workspace", WorkspaceController.get.bind(WorkspaceController));
+
+router.all("/contact-us", ContactUsController.all.bind(ContactUsController));
 
 router.all('*', (req: Request, res: Response) => {
   res.status(404).render('notfound');

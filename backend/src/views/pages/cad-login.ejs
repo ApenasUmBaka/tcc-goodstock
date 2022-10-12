@@ -13,11 +13,11 @@
 </head>
 
 <body class="css-selector">
-
-
+    <div id="error-message"><%= messageError %></div>
+    <script src="/assets/scripts/cadLoginValidator.js"></script>
     <div class="container" id="container">
         <div class="form-container sign-up-container">
-            <form id="form-up" method="post" action="#">
+            <form id="form-up" method="post" onsubmit="return registerAccount()">
                 <h1>Criar uma nova conta</h1>
                 <div class="social-container">
                     <a href="#" class="social"><i class="fas fa-box"></i></a>
@@ -25,18 +25,16 @@
                     <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
                 </div>
                 <span>Ou ultilize seu email para registrar</span>
-                <input type="text" name="registerName" id="name" placeholder="Nome Completo" autofocus required/>
-                <input type="email" name="registerEmail" id="email" placeholder="Email" required />
-                <input type="password" name="registerPasswd" id="password-up" placeholder="Senha" required />
-                <input type="number" name="registerOrgId" id="orgId" placeholder="ID da organização" required />
-                <input type="password" name="registerOrgPasswd" id="orgPasswd" placeholder="Senha mestre da organização" required />
+                <input type="text" name="registerName" id="registerName" placeholder="Nome Completo" autofocus required/>
+                <input type="email" name="registerEmail" id="registerEmail" placeholder="Email" required />
+                <input type="password" name="registerPasswd" id="registerPasswd" placeholder="Senha" required />
+                <input type="number" name="registerOrgId" id="registerOrgId" placeholder="ID da organização" required />
+                <input type="password" name="registerOrgPasswd" id="registerOrgPasswd" placeholder="Senha mestre da organização" required />
                 <button type="submit" id="submit-up" name="submit-up">Registrar</button>
             </form>
-                <div id="error-sig-up"></div>
-                <div id="success-msg-sign-up"></div>
         </div>
         <div class="form-container sign-in-container">
-            <form id="form-in" action="#">
+            <form id="form-in" method="post" onsubmit="return signinAccount()">
                 <h1>Se conectar</h1>
                 <div class="social-container">
                     <a href="#" class="social"><i class="fas fa-box"></i></a>
@@ -44,13 +42,11 @@
                     <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
                 </div>
                 <span>Ou use sua conta</span>
-                <input type="email" name ="loginEmail" id="email-in" placeholder="Email" required/>
-                <input  type="password" name ="loginPasswd" id="password-in" placeholder="Senha" required/>
+                <input type="email" name="loginEmail" id="loginEmail" placeholder="Email" required/>
+                <input  type="password" name ="loginPasswd" id="loginPasswd" placeholder="Senha" required/>
                 <a href="#">Esqueci minha senha</a>
                 <button type="submit" id="submit-in" name="submit-in" >Entrar</button>
             </form>
-                <div id="error-sign-in"></div>
-                <div id="success-msg-sign-in"></div>
         </div>
         <div class="overlay-container">
             <div class="overlay">
@@ -67,10 +63,7 @@
             </div>
         </div>
     </div>
-
-
-    <script src="/assets/scripts/cadLoginContainer.js" charset="utf-8"></script>
-    <script src="/assets/scripts/cadLoginValidator.js" charset="utf-8"></script>
+    <script src="/assets/scripts/cadLoginContainer.js"></script>
 </body>
 
 </html>
