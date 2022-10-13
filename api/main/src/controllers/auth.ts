@@ -15,7 +15,7 @@ class AuthController {
       return next();
     }
 
-    req.logger.info("The credential is invalid. Returning response...");
+    req.logger.info("The API token is invalid. Returning response...");
     res.status(401).json({
       status: "error",
       message: "Invalid credential.",

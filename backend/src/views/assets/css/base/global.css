@@ -45,6 +45,10 @@ a {
   cursor: pointer;
 }
 
+input{
+  caret-color: var(--two-color);
+}
+
 ::-webkit-scrollbar-thumb {
   background-color: var(--button2-color);
   border-radius: 50px;
