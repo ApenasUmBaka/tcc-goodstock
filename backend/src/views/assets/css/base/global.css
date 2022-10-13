@@ -19,7 +19,7 @@
   --op-color: #33808e;
   --primary-color: #fcfdfd;
   --secondary-color: #818386;
-  --bg-color: #090c24;
+  --bg-color: #18191a;
   --bg2-color: #e5e5e5;
   --button2-color: #dc4c5d;
   --button-color: #36b558;
@@ -72,4 +72,30 @@ h1::selection,
 h2::selection {
   color: var(--bg-color);
   background-color: var(--two-color);
+}
+
+/* Color mode WorkStation */
+:root{
+  /* ===== Colors ===== */
+  --body-color: #e5e5e5;
+  --sidebar-color: #FFF;
+  --two-color: #e6844f;
+  --two-color-light: #F6F5FF;
+  --toggle-color: #DDD;
+  --text-color: #191824;
+
+  /* ====== Transition ====== */
+  --tran-03: all 0.2s ease;
+  --tran-03: all 0.3s ease;
+  --tran-04: all 0.3s ease;
+  --tran-05: all 0.3s ease;
+}
+
+body.dark{
+  --body-color: #18191a;
+  --sidebar-color: #242526;
+  --two-color: #e6844f;
+  --two-color-light: #3a3b3c;
+  --toggle-color: #fff;
+  --text-color: #ccc;
 }
