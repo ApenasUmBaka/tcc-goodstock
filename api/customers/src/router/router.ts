@@ -1,7 +1,8 @@
 // Libs
-import { Router } from "express";
+import { Request, Router } from "express";
 
 import LoggerFactory from "@logger";
+import AuthController from "@controllers/authController";
 import CustomersController from "@controllers/customersController";
 import OrganizationsController from "@controllers/organizationsController";
 
@@ -9,51 +10,54 @@ import OrganizationsController from "@controllers/organizationsController";
 const router = Router();
 
 // Customers
-router.post("/customers", async (req, res) => {
-  const customersController = new CustomersController();
-  await customersController.postCustomer(req, res);
-});
+router.use(AuthController.auth);
 
-router.get("/customers", async (req, res) => {
-  const customersController = new CustomersController();
-  await customersController.getCustomer(req, res);
-});
+router.get(
+  "/customers",
+  CustomersController.getCustomer.bind(CustomersController)
+);
+router.post(
+  "/customers",
+  CustomersController.postCustomer.bind(CustomersController)
+);
 
-router.get("/customers/:id", async (req, res) => {
-  const customersController = new CustomersController();
-  await customersController.getCustomer(req, res);
-});
+router.get(
+  "/customers/:id",
+  CustomersController.getCustomer.bind(CustomersController)
+);
+router.patch(
+  "/customers/:id",
+  CustomersController.patchCustomer.bind(CustomersController)
+);
 
-router.patch("/customers/:id", async (req, res) => {
-  const customersController = new CustomersController();
-  await customersController.patchCustomer(req, res);
-});
-
-router.get("/customers/:id/auth", async (req, res) => {
-  const customersController = new CustomersController();
-  await customersController.getAuth(req, res);
-});
+router.get(
+  "/customers/:id/auth",
+  CustomersController.getAuth.bind(CustomersController)
+);
 
 // Organizations
-router.post("/organizations", async (req, res) => {
-  const organizationsController = new OrganizationsController();
-  await organizationsController.postOrganization(req, res);
-});
+router.get(
+  "/organizations",
+  OrganizationsController.getOrganization.bind(OrganizationsController)
+);
+router.post(
+  "/organizations",
+  OrganizationsController.postOrganization.bind(OrganizationsController)
+);
 
-router.get("/organizations", async (req, res) => {
-  const organizationsController = new OrganizationsController();
-  await organizationsController.getOrganization(req, res);
-});
+router.get(
+  "/organizations/auth",
+  OrganizationsController.getAuth.bind(OrganizationsController)
+);
 
-router.get("/organizations/:id", async (req, res) => {
-  const organizationsController = new OrganizationsController();
-  await organizationsController.getOrganization(req, res);
-});
-
-router.patch("/organizations/:id", async (req, res) => {
-  const organizationsController = new OrganizationsController();
-  await organizationsController.patchOrganization(req, res);
-});
+router.get(
+  "/organizations/:id",
+  OrganizationsController.getOrganization.bind(OrganizationsController)
+);
+router.patch(
+  "/organizations/:id",
+  OrganizationsController.patchOrganization.bind(OrganizationsController)
+);
 
 router.all("*", (req, res) => {
   const logger = LoggerFactory.createLogger(req.ip);

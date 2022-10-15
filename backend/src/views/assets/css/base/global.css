@@ -1,0 +1,101 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200&display=swap");
+
+:root {
+  --one-color: #2b6e8f;
+  --two-color: #e6844f;
+  --op-color: #33808e;
+  --primary-color: #090c24;
+  --secondary-color: #818386;
+  --bg-color: #fcfdfd;
+  --bg2-color: #e5e5e5;
+  --button2-color: #dc4c5d;
+  --button-color: #379f70;
+  --h1-color: #191824;
+}
+
+[data-theme="dark"] {
+  --one-color: #2b6e8f;
+  --two-color: #e6844f;
+  --op-color: #33808e;
+  --primary-color: #fcfdfd;
+  --secondary-color: #818386;
+  --bg-color: #18191a;
+  --bg2-color: #e5e5e5;
+  --button2-color: #dc4c5d;
+  --button-color: #36b558;
+  --h1-color: #fcfdfd;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Roboto Mono", monospace;
+  font-weight: 400;
+  background-color: var(--bg2-color);
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+input{
+  caret-color: var(--two-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--button2-color);
+  border-radius: 50px;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg2-color);
+}
+
+::selection {
+  color: var(--bg-color);
+  background-color: var(--button2-color);
+}
+
+h1::selection,
+h2::selection {
+  color: var(--bg-color);
+  background-color: var(--two-color);
+}
+
+/* Color mode WorkStation */
+:root{
+  /* ===== Colors ===== */
+  --body-color: #e5e5e5;
+  --sidebar-color: #FFF;
+  --two-color: #e6844f;
+  --two-color-light: #F6F5FF;
+  --toggle-color: #DDD;
+  --text-color: #191824;
+
+  /* ====== Transition ====== */
+  --tran-03: all 0.2s ease;
+  --tran-03: all 0.3s ease;
+  --tran-04: all 0.3s ease;
+  --tran-05: all 0.3s ease;
+}
+
+body.dark{
+  --body-color: #18191a;
+  --sidebar-color: #242526;
+  --two-color: #e6844f;
+  --two-color-light: #3a3b3c;
+  --toggle-color: #fff;
+  --text-color: #ccc;
+}

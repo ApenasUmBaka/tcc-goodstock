@@ -16,7 +16,7 @@ class CustomersController {
    * POST /customers
    * A route to create customers.
    */
-  public async postCustomer(req: Request, res: Response) {
+  public static async postCustomer(req: Request, res: Response) {
     // Check params.
     const neededParams = ["email", "password", "organization"];
     const params = Security.filterParams(neededParams, req.body);
@@ -85,7 +85,7 @@ class CustomersController {
    * GET /customer or GET /customer/:id
    * A route to get some customer.
    */
-  public async getCustomer(req: Request, res: Response) {
+  public static async getCustomer(req: Request, res: Response) {
     const query = this.getCustomerQuery(req);
     if (!query) {
       req.logger.info("The query is empty. Returning...");
@@ -122,7 +122,7 @@ class CustomersController {
    * PATCH /customers/:id
    * A route to update a customer.
    */
-  public async patchCustomer(req: Request, res: Response) {
+  public static async patchCustomer(req: Request, res: Response) {
     const customerId = req.params.id;
     if (!customerId || !toNumber(customerId)) {
       req.logger.info("The customer's id was not provided. Returning...");
@@ -177,7 +177,7 @@ class CustomersController {
    * GET /customers/:id/auth
    * A route to auth some customer.
    */
-  public async getAuth(req: Request, res: Response) {
+  public static async getAuth(req: Request, res: Response) {
     const customerId = req.params.id;
     if (!customerId || !toNumber(customerId)) {
       req.logger.info("The customer's id was not provided. Returning...");
@@ -196,7 +196,7 @@ class CustomersController {
     });
 
     if (!customerResult) {
-      return res.sendStatus(4011);
+      return res.sendStatus(401);
     }
     res.sendStatus(200);
   }
@@ -204,7 +204,7 @@ class CustomersController {
   /**
    * Used by the GET /customer or GET/customer/:id
    */
-  private getCustomerQuery(req: Request) {
+  private static getCustomerQuery(req: Request) {
     if (req.params.id) {
       if (!toNumber(req.params.id)) return;
       return {
