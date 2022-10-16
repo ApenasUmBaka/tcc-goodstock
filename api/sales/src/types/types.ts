@@ -11,17 +11,19 @@ declare global {
 }
 
 // Sales API
-export interface _ProductInSale {
+export interface ProductInSale {
   amount: number;
   productId: string;
   unitPrice: number;
 }
 
-export interface _Sales {
+export interface Sale {
   totalPrice: number;
   responsibleId: number;
   organizationId: number;
-  products: _ProductInSale[];
+  soldProducts: {
+    [id: string]: ProductInSale
+  };
 }
 
 // Basic response

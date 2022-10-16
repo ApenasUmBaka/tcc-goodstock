@@ -8,7 +8,7 @@ services:
       - 443:443     # HTTPS server
     env_file:
       - backend.env
-    links:
+    depends_on:
       - goodstock_api_main
   
   goodstock_api_main:
@@ -20,6 +20,10 @@ services:
     #   - ./api/main:/app
     env_file:
       - api_main.env
+    depends_on:
+      - goodstock_api_sales
+      - goodstock_api_products
+      - goodstock_api_customers
 
   # Databases
   goodstock_api_customers_db:
@@ -29,7 +33,7 @@ services:
       - ./db/api-customers:/var/lib/postgresql/data
     env_file:
       - api_customers.env
-    links:
+    depends_on:
       - goodstock_api_customers
 
   goodstock_api_products_db:
@@ -39,7 +43,7 @@ services:
       - ./db/api-products:/data/db
     env_file:
       - api_products.env
-    links:
+    depends_on:
       - goodstock_api_sales
       - goodstock_api_products
 
@@ -51,8 +55,6 @@ services:
     #   - ./api/customers:/app
     env_file:
       - api_customers.env
-    environment:
-      - API_AUTH=${CUSTOMERS_API_AUTH}
 
   goodstock_api_products:
     container_name: goodstock_api_products
@@ -61,8 +63,6 @@ services:
     #   - ./api/products:/app
     env_file:
       - api_products.env
-    environment:
-      - API_AUTH=${PRODUCTS_API_AUTH}
 
   goodstock_api_sales:
     build: ./api/sales/
