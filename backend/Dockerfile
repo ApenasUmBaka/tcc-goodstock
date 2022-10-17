@@ -27,4 +27,5 @@ USER node
 RUN yarn install
 
 # Run the container
+# CMD yarn run start:dev
 CMD yarn run start:prod
