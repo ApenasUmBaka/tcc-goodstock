@@ -81,6 +81,30 @@ class SalesController {
       data: result
     });
   }
+
+  /**
+   * A method to delete some sale.
+   * /sale/:id
+   */
+  public static async deleteSale(req: Request, res: Response) {
+    if (!req.query.saleId) {
+      req.logger.info('The sale ID was not provided. Returning...');
+      return res.status(400).json({
+        status: 'Error',
+        message: 'Sale ID not provided.'
+      });
+    }
+
+    const saleModel = new SalesModel(req.logger);
+    const result = await saleModel.deleteSale(req.query.saleId as string);
+    if (result) {
+      req.logger.info('The sale was not deleted. Returning...');
+      return res.status(400).json({
+        status: 'Error',
+        message: result
+      });
+    }
+  }
 }
 
 // Code

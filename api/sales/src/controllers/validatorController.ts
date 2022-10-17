@@ -1,16 +1,15 @@
 // Libs
 import { Logger } from "winston";
 
-import Security from "@security";
+import { Sale } from "@types";
 import { toNumber } from "@utils";
-import { _Sales } from "@types";
 
 // Classes
 class ValidatorController {
   /**
    * A method to check if the email already has an account linked.
    */
-  public static isSaleValid(sale: _Sales): boolean {
+  public static isSaleValid(sale: Sale): boolean {
     if (!toNumber(sale.totalPrice)) return false;
     if (!toNumber(sale.responsibleId)) return false;
     if (!toNumber(sale.organizationId)) return false;
