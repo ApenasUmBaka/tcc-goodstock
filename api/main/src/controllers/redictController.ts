@@ -4,8 +4,9 @@ import { Request, Response } from "express";
 
 // Data
 const services: any = {
-    'customers': process.env.CUSTOMERS_API_URL,
-    'organizations': process.env.CUSTOMERS_API_URL,
+    'customers': process.env.API_CUSTOMERS_URL,
+    'organizations': process.env.API_CUSTOMERS_URL,
+    'data': process.env.API_DATA_URL
 };
 
 

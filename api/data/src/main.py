@@ -1,17 +1,16 @@
 # Libs
 from flask import Flask
 
-from controllers.auth_controller import AuthController
-from controllers.graph_controller import GraphController
+from router.route import Router
 
 # Data
 app = Flask(__name__)
-PORT = 3000
+PORT = 80
 
 # Routes
-app.wsgi_app = AuthController(app.wsgi_app)
-app.add_url_rule('/graph/summary', 'graph_summary', GraphController.getSummary)
+app.add_url_rule(
+    '/graph/summary', 'graph_summary', Router.graph_summary, methods=['POST'])
 
 # Code
 if (__name__ == "__main__"):
-    app.run(port=PORT)
+    app.run('0.0.0.0', PORT)

@@ -9,8 +9,8 @@ RUN useradd user
 
 COPY . ./
 RUN chown -R user .
-RUN yarn
+RUN pip3 install -r requirements.txt
 
 USER user
 
-CMD python3 src/main.py
+CMD python3 -u src/main.py
