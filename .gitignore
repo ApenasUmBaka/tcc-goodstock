@@ -1,10 +1,11 @@
 # Folders
-node_modules
+db
 dist
 certs
-db
+.vscode
+node_modules
 
 # Files
 *.env
-.prettierrc.json
 *.lock
+.prettierrc.json
