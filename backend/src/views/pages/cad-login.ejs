@@ -12,15 +12,15 @@
     <title>Welcome</title>
 </head>
 
-<body class="css-selector">
-    <div id="error-message"><%= messageError %></div>
+<body>
+    
     
     <div class="container" id="container">
         <div class="form-container sign-up-container">
             <form id="form-up" method="post" onsubmit="return registerAccount()">
                 <h1>Criar uma nova conta</h1>
                 <div class="social-container">
-                    <a href="#" class="social"><i class="fas fa-box"></i></a>
+                    <a href="#" class="social"><i class=" fab fa-brands fa-microsoft"></i></a>
                     <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
                     <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
                 </div>
@@ -34,14 +34,13 @@
                 
                 <button type="submit" id="submit-up" name="submit-up">Prosseguir</button>
             </form>
-            <div id="error"></div>
-            <div id="success-msg"></div>
+           <div id="error-message"><%= messageError %></div>
         </div>
         <div class="form-container sign-in-container">
             <form id="form-in" method="post" onsubmit="return signinAccount()">
                 <h1>Se conectar</h1>
                 <div class="social-container">
-                    <a href="#" class="social"><i class="fas fa-box"></i></a>
+                    <a href="#" class="social"><i class="fab fa-brands fa-microsoft"></i></a>
                     <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
                     <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
                 </div>
