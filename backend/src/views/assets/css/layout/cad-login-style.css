@@ -382,9 +382,10 @@ a.form__hvr-underline-from-left:active:before {
   transform: scale(1, 1);
   background: rgba(0, 0, 0, 0.5);
   transition: 0.5s;
+  z-index: 2;
 }
 
-body.open .modal-background {
+.modal-background.modal-opened {
   visibility: visible;
   opacity: 1;
   animation: background-in 1s both;
@@ -416,15 +417,16 @@ body.open .modal-background {
   opacity: 0;
   visibility: hidden;
   transition: 0.3s;
+  z-index: 3;
 }
 
-body.open .modal {
+.modal.modal-opened {
   opacity: 1;
   visibility: visible;
   animation: modal-in 1s;
 }
 
-body.closed .modal {
+.modal.modal-closed {
   opacity: 0;
   visibility: hidden;
   translate: -50% -50%;
