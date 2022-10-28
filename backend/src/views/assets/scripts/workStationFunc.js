@@ -1,8 +1,8 @@
 const body = document.querySelector('body'),
       sidebar = body.querySelector('nav'),
       toggle = body.querySelector(".toggle"),
-      searchBtn = body.querySelector(".search-box"),
-      modeSwitch = body.querySelector(".toggle-switch"),
+      searchBtn = body.querySelector(".sidebar__search-box"),
+      modeSwitch = body.querySelector(".sidebar__toggle-switch"),
       modeText = body.querySelector(".mode-text");
 
 
