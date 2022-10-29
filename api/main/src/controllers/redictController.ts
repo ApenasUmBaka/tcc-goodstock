@@ -16,8 +16,9 @@ class RedictController {
   public static async allRedirect(req: Request, res: Response) {
     const service = req.url.split('/').slice(1,2)[0]; // [ '', '/customers', '/something']
 
-    if (!service) {
-      return res.sendStatus(400);
+    if (!services[service]) {
+      req.logger.info('Endpoint not found. Returning...');
+      return res.sendStatus(404);
     }
 
     // Do the request and return it.
