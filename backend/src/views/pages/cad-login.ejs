@@ -12,39 +12,43 @@
     <title>Welcome</title>
 </head>
 
-<body class="css-selector">
-    <div id="error-message"><%= messageError %></div>
-    <script src="/assets/scripts/cadLoginValidator.js"></script>
+<body>
+    
     <div class="container" id="container">
         <div class="form-container sign-up-container">
             <form id="form-up" method="post" onsubmit="return registerAccount()">
                 <h1>Criar uma nova conta</h1>
                 <div class="social-container">
-                    <a href="#" class="social"><i class="fas fa-box"></i></a>
+                    <a href="#" class="social"><i class="fab fa-brands fa-microsoft"></i></a>
                     <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
                     <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
                 </div>
                 <span>Ou ultilize seu email para registrar</span>
-                <input type="text" name="registerName" id="registerName" placeholder="Nome Completo" autofocus required/>
-                <input type="email" name="registerEmail" id="registerEmail" placeholder="Email" required />
-                <input type="password" name="registerPasswd" id="registerPasswd" placeholder="Senha" required />
-                <input type="number" name="registerOrgId" id="registerOrgId" placeholder="ID da organização" required />
-                <input type="password" name="registerOrgPasswd" id="registerOrgPasswd" placeholder="Senha mestre da organização" required />
-                <button type="submit" id="submit-up" name="submit-up">Registrar</button>
+                    <label class="--text-label" for="registerName">Nome Completo</label>
+                <input class="--text-input" type="text" name="registerName" id="registerName" placeholder="Nome Completo" autofocus required/>
+                    <label class="--text-label" for="registerEmail">Email</label>
+                <input class="--text-input" type="email" name="registerEmail" id="registerEmail" placeholder="Email" required />
+                    <label class="--text-label" for="registerPasswd">Senha</label>
+                <input class="--text-input" type="password" name="registerPasswd" id="registerPasswd" placeholder="Senha" required />
+                
+                <button type="submit" id="submit-up" name="submit-up">Prosseguir</button>
             </form>
+           <div id="error-message"><%= messageError %></div>
         </div>
         <div class="form-container sign-in-container">
             <form id="form-in" method="post" onsubmit="return signinAccount()">
                 <h1>Se conectar</h1>
                 <div class="social-container">
-                    <a href="#" class="social"><i class="fas fa-box"></i></a>
+                    <a href="#" class="social"><i class="fab fa-brands fa-microsoft"></i></a>
                     <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
                     <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
                 </div>
                 <span>Ou use sua conta</span>
+                    <label class="--text-label" for="loginEmail">Email</label>
                 <input type="email" name="loginEmail" id="loginEmail" placeholder="Email" required/>
+                    <label class="--text-label" for="loginPasswd">Senha</label>
                 <input  type="password" name ="loginPasswd" id="loginPasswd" placeholder="Senha" required/>
-                <a href="#">Esqueci minha senha</a>
+                <a class="form__hvr-underline-from-left" href="#">Esqueci minha senha</a>
                 <button type="submit" id="submit-in" name="submit-in" >Entrar</button>
             </form>
         </div>
@@ -52,18 +56,45 @@
             <div class="overlay">
                 <div class="overlay-panel overlay-left">
                     <h1>Bem Vindo de volta!</h1>
-                    <p>Se mantenha conectado conosco, faça login de sua conta</p>
+                    <p>Se mantenha conectado conosco, faça login de sua conta.</p>
                     <button class="ghost" id="signIn">Conectar</button>
                 </div>
                 <div class="overlay-panel overlay-right">
                     <h1>Seja Bem Vindo!</h1>
-                    <p>Registre seus dados e crie uma conta conosco</p>
+                    <p>Registre seus dados e crie uma conta conosco.</p>
                     <button class="ghost" id="signUp">Registrar</button>
                 </div>
             </div>
         </div>
     </div>
+
+    <button onclick="toggleModal()" type="button">Open Modal</button>
+    <div class="modal-background" onclick="toggleModal()"></div>
+    <div class="modal">
+      <h2>Modal Window</h2>
+      <p>
+        You have opened the modal, they are great for confirming actions or
+        displaying critical information.
+      </p>  
+          <div class="org-modal">
+        <div class="org-modal__old">
+            <p>Logar Id</p>
+            <input type="number" name="registerOrgId" id="registerOrgId" placeholder="ID da organização" required />
+            <input type="password" name="registerOrgPasswd" id="registerOrgPasswd" placeholder="Senha mestre da organização" required />
+            </div>
+        <div class="org-modal__new">    
+            <p>Cadastrar id</p>
+            <input type="number" name="registerOrgId" id="NewregisterOrgId" placeholder="ID da organização" required />
+            <input type="password" name="registerOrgPasswd" id="NewregisterOrgPasswd" placeholder="Senha mestre da organização" required />
+        </div>    
+    </div>  
+    </div>
+
+  
+                <!-- Scripts -->
+    <script src="/assets/scripts/cadLoginModal.js"></script>
     <script src="/assets/scripts/cadLoginContainer.js"></script>
+    <script src="/assets/scripts/cadLoginValidator.js"></script>
 </body>
 
 </html>
