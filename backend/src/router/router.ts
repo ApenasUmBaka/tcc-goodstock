@@ -6,6 +6,7 @@ import LoginController from "@controllers/loginController";
 import RegisterController from "@controllers/registerController";
 import ContactUsController from "@controllers/contactUsController";
 import WorkspaceController from "@controllers/workspaceController";
+import microsoftAuthController from "@controllers/microsoftAuthController";
 
 // Data
 const router = Router();
@@ -18,6 +19,8 @@ router.use(express.static("build/views"));
 router.get("/", (req: Request, res: Response) => {
   res.status(200).render("index");
 });
+
+router.get('/microsoftAuth', microsoftAuthController.get.bind(microsoftAuthController));
 
 router.get("/register", RegisterController.get.bind(RegisterController));
 router.post("/register", RegisterController.post.bind(RegisterController));

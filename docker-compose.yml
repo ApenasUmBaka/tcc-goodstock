@@ -10,8 +10,8 @@ services:
     #   - ./backend:/app
     env_file:
       - backend.env
-    links:
-      - goodstock_api_main
+    # depends_on:
+    #   - goodstock_api_main
   
   goodstock_api_main:
     container_name: goodstock_api_main
@@ -22,6 +22,10 @@ services:
     #   - ./api/main:/app
     env_file:
       - api_main.env
+    depends_on:
+      - goodstock_api_sales
+      - goodstock_api_products
+      - goodstock_api_customers
 
   # Databases
   goodstock_api_customers_db:
@@ -31,7 +35,7 @@ services:
       - ./db/api-customers:/var/lib/postgresql/data
     env_file:
       - api_customers.env
-    links:
+    depends_on:
       - goodstock_api_customers
 
   goodstock_api_products_db:
@@ -41,7 +45,8 @@ services:
       - ./db/api-products:/data/db
     env_file:
       - api_products.env
-    links:
+    depends_on:
+      - goodstock_api_sales
       - goodstock_api_products
 
   # APIs
@@ -60,3 +65,13 @@ services:
     #   - ./api/products:/app
     env_file:
       - api_products.env
+
+  goodstock_api_sales:
+    build: ./api/sales/
+    container_name: goodstock_api_sales
+    # volumes:
+    #   - ./api/sales:/app
+    ports:
+      - 3003:3003
+    env_file:
+      - api_sales.env

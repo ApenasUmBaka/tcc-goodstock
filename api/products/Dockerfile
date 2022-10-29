@@ -7,9 +7,9 @@ RUN date
 
 COPY . ./
 RUN chown -R node .
-RUN yarn
 
 USER node
+RUN yarn
 
 CMD yarn run start:prod
 # CMD yarn run start:dev

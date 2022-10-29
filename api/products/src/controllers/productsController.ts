@@ -15,7 +15,7 @@ class ProductsController {
    * POST /products
    * A route to create a new product.
    */
-  public async postProducts(req: Request, res: Response) {
+  public static async postProducts(req: Request, res: Response) {
     // Check params.
     const neededParams = ["name", "price", "organizationId"];
     const params = Security.filterParamsOptional(neededParams, req.body);
@@ -68,7 +68,7 @@ class ProductsController {
    * GET /products/:organizationId/:productId
    * A method to create a new product.
    */
-  public async getProduct(req: Request, res: Response) {
+  public static async getProduct(req: Request, res: Response) {
     // Check if the organization Id is valid.
     const organizationId = toNumber(req.params.organizationId);
     if (!organizationId) {
@@ -113,7 +113,7 @@ class ProductsController {
    * PATCH /product/:organizationId/:productId
    * A method to update a product.
    */
-  public async patchProduct(req: Request, res: Response) {
+  public static async patchProduct(req: Request, res: Response) {
     const organizationId = toNumber(req.params.organizationId);
     if (!organizationId) {
       req.logger.info(
@@ -162,7 +162,7 @@ class ProductsController {
    * DELETE /product/:organizationId/:productId
    * A method to delete a product.
    */
-  public async deleteProduct(req: Request, res: Response) {
+  public static async deleteProduct(req: Request, res: Response) {
     const organizationId = toNumber(req.params.organizationId);
     if (!organizationId) {
       req.logger.info(

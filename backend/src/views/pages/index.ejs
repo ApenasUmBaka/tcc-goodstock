@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/assets/css/layout/home-page-style.css" />
-    <link rel="stylesheet" href="/assets/css/base/normalize.css" />
-    <link rel="icon" type="image/png" href="/assets/images/box.png" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
-    />
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/assets/css/layout/home-page-style.css" />
+  <link rel="stylesheet" href="/assets/css/base/normalize.css" />
+  <link rel="stylesheet" href="/assets/css/module/module-styles.css"/>
+  <link rel="icon" type="image/png" href="/assets/images/box.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
 
   <title>Good Stock</title>
 </head>
@@ -19,19 +18,20 @@
   <header>
     <!-- Navbar -->
     <nav id="nav">
-      <a class="nav__logo"><i class="fas fa-boxes fa-lg"></i>Good Stock</a>  
+      <a class="nav__logo"><i class="fas fa-boxes fa-lg"></i>Good Stock</a>
       <div class="nav__mobile-menu">
         <div class="line1"></div>
         <div class="line2"></div>
         <div class="line3"></div>
       </div>
       <ul class="nav__list">
-        <li><a class="nav__hvr-underline-from-left" href="#about-us">Sobre nós</a></li>
+        <li><a class="--text" href="#about-us">Sobre nós</a></li>
         <li><a class="nav__new-cont" href="/register"><span class="nav__new-cont-span">Criar Conta</span></a></li>
-        <li><a class="nav__hvr-underline-from-left" href="/login">Login</a></li>
-        <li><a class="nav__hvr-underline-from-left" href="/contact-us">Contato</a></li>
+        <li><a class="--text" href="/login">Login</a></li>
+        <li><a class="--text" href="/contact-us">Contato</a></li>
       </ul>
     </nav>
+    <div id="progress"></div>
   </header>
   <!-- Main Elements -->
   <main class="css-selector">
@@ -54,25 +54,6 @@
           Amet
           commodo aenean sollicitudin, lacinia sociosqu vitae himenaeos.</p>
       </div>
-      <br>
-      <figure class="intro__card --yellow">
-        <figcaption>
-          <h2>Trabalho de conclusão de curso<span>TCC</span></h2>
-          <p>I suppose if we couldn't laugh at things that don't make sense, we couldn't react to a lot of life.</p>
-          <div class="icons"><a href="#"><i class="ion-ios-home"></i></a><a href="#"><i class="ion-ios-email"></i></a><a href="#"><i class="ion-ios-telephone"></i></a></div>
-        </figcaption><img src="/assets/images/image-school.png" alt="sample8" />
-        <div class="position">ETEC Dr. Celso Giglio</div>
-      </figure>
-      <br>
-      <figure class="intro__card --red">
-        <figcaption>
-          <h2>Diana <span>Reed</span></h2>
-          <p>The only skills I have patience to learn are those that have no real application in life.</p>
-          <div class="icons"><a href="#"><i class="ion-ios-home"></i></a><a href="#"><i class="ion-ios-email"></i></a><a href="#"><i class="ion-ios-telephone"></i></a></div>
-        </figcaption><img src="/assets/images/image-school.png" alt="sample9" />
-        <div class="position">Sales Manager</div>
-      </figure>
-    </div>
   </section>
 
   <section id="tutorial">
@@ -107,29 +88,54 @@
   <section id="about-us">
     <div class="container reveal">
       <h1>Sobre nós</h1><br>
-      <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Scelerisque fames mus
-        sollicitudin sagittis penatibus metus. Morbi fermentum placerat dis dui taciti imperdiet conubia. In odio aenean
-        ad ad ornare lacinia, varius rhoncus? Ridiculus ridiculus etiam auctor sapien phasellus. Curae dis tristique
-        diam
-        gravida ornare risus pharetra. Ut iaculis quam etiam egestas vivamus mus maximus. Ultricies imperdiet quam
-        mattis
-        tellus mattis aenean eros bibendum. Ad vel litora magna quisque vehicula rhoncus integer consequat iaculis. Amet
-        commodo aenean sollicitudin, lacinia sociosqu vitae himenaeos.</p>
-      <img src="/assets/images/box.png">
-    </div>
+      <div class="about-us__display">
+        <figure class="snip1336 hover">
+          <img src="/assets/images/Valhallan Nebula.gif" alt="sample87" />
+          <figcaption>
+            <img src="/assets/images/Tumblr.png" alt="profile-sample4" class="profile" />
+            <h2>Gustavo Saiki<span>API</span></h2>
+            <p>I'm looking for something that can deliver a 50-pound payload of snow on a small feminine target. Can you
+              suggest something? Hello...? suggest something? Hello...? suggest something? Hello...?</p>
+            <a href="#" class="follow">Follow</a>
+            <a href="#" class="info">More Info</a>
+          </figcaption>
+        </figure>
+        <figure class="snip1336 hover">
+          <img src="/assets/images/Rhade-Zapan.gif" alt="sample74" />
+          <figcaption>
+            <img src="/assets/images/gatinho-preto.jpg" alt="profile-sample2" class="profile" />
+            <h2>André Sousa<span>Front End</span></h2>
+            <p>Calvin: I'm a genius, but I'm a misunderstood genius. Hobbes: What's misunderstood about you? Calvin:
+              Nobody thinks I'm a genius.</p>
+            <a href="#" class="follow">Follow</a>
+            <a href="#" class="info">More Info</a>
+          </figcaption>
+        </figure>
+        <figure class="snip1336 hover">
+          <img src="/assets/images/NEOMECHANICA.gif" alt="sample69" />
+          <figcaption>
+            <img src="/assets/images/gato-de-óculos.jpg" alt="profile-sample5" class="profile" />
+            <h2>Eduardo Silva<span>Back End</span></h2>
+            <p>If you want to stay dad you've got to polish your image. I think the image we need to create for you is
+              "repentant but learning".</p>
+            <a href="#" class="follow">Follow</a>
+            <a href="#" class="info">More Info</a>
+          </figcaption>
+        </figure>
+      </div>
   </section>
 
-  <button class="hvr-sweep-to-top btn-top"><a href="#nav">Ir para o topo</a></button>
-<!-- Footer -->
+  <button id="btn-top" class="--btn-top --btn-top__hover"><i class="fas fa-solid fa-arrow-up fa-lg"></i></button>
+  <!-- Footer -->
   <footer>
     <span>© 2022 Todos os direitos Good Stock</span>
   </footer>
 
   <!-- Scripsts -->
-  <script src="/assets/scripts/slide-show.js"></script>
+  <script src="/assets/scripts/backTotop.js"></script>
   <script src="/assets/scripts/reveal.js"></script>
   <script src="/assets/scripts/mobile-navbar.js"></script>
-  <script src="/assets/scripts/expanding-cards-script.js"></script>
+  <script src="/assets/scripts/progressBar.js"></script>
 </body>
 
 </html>
