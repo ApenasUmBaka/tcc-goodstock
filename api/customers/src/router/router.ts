@@ -16,23 +16,28 @@ router.get(
   "/customers",
   CustomersController.getCustomer.bind(CustomersController)
 );
-router.post(
-  "/customers",
-  CustomersController.postCustomer.bind(CustomersController)
-);
-
 router.get(
   "/customers/:id",
   CustomersController.getCustomer.bind(CustomersController)
 );
-router.patch(
-  "/customers/:id",
-  CustomersController.patchCustomer.bind(CustomersController)
-);
 
+router.get(
+  "/customers/auth/",
+  CustomersController.getAuth.bind(CustomersController)
+);
 router.get(
   "/customers/:id/auth",
   CustomersController.getAuth.bind(CustomersController)
+);
+
+router.post(
+  "/customers/",
+  CustomersController.postCustomer.bind(CustomersController)
+);
+
+router.patch(
+  "/customers/:id",
+  CustomersController.patchCustomer.bind(CustomersController)
 );
 
 // Organizations

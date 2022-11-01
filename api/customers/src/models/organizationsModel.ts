@@ -3,7 +3,7 @@ import { Logger } from "winston";
 
 import Database from "./databaseModel";
 import organizationsSchema from "./schemas/organizationsSchema";
-import { _Organization } from "@types";
+import { Organization } from "../types/types";
 
 // Data
 abstract class OrganizationsModel {
@@ -18,10 +18,10 @@ abstract class OrganizationsModel {
   public static async createOrganization(
     logger: Logger,
     params: any
-  ): Promise<_Organization> {
+  ): Promise<Organization> {
     logger.info("Creating the new organization...");
 
-    let newOrganization: _Organization;
+    let newOrganization: Organization;
     try {
       newOrganization = (await this.model.create(params)).toJSON();
     } catch (err) {
@@ -39,7 +39,7 @@ abstract class OrganizationsModel {
   public static async findOrganization(
     logger: Logger,
     params: any
-  ): Promise<_Organization | undefined> {
+  ): Promise<Organization | undefined> {
     logger.info("Locating an organization...");
 
     const organization = await this.model.findOne({
@@ -59,7 +59,7 @@ abstract class OrganizationsModel {
     logger: Logger,
     id: number,
     params: any
-  ): Promise<_Organization> {
+  ): Promise<Organization> {
     logger.info(`Updating organization #${id}`);
 
     await this.model.update(params, {

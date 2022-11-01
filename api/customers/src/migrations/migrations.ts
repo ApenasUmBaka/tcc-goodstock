@@ -12,14 +12,15 @@ const logger = LoggerFactory.createLogger("SERVER");
 // Class
 abstract class Migrations {
   public static async up() {
-    await setTimeout(10 * 1000);
     logger.info("Getting up Migrations...");
 
     try {
-      await OrganizationsModel.model.sync();
-      await CustomersModel.model.sync();
+      const customersModel = new CustomersModel(logger);
+      await customersModel.model.sync();
 
+      await OrganizationsModel.model.sync();
       await DatabaseModel.seq.sync();
+
       logger.info("The migrations have been getting up.");
     } catch (err) {
       logger.error(
@@ -29,7 +30,6 @@ abstract class Migrations {
   }
 
   public static async down() {
-    await setTimeout(10 * 1000);
     logger.info("Getting down migrations...");
 
     try {

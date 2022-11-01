@@ -4,8 +4,11 @@ import { Request, Response } from "express";
 
 // Data
 const services: any = {
-    'customers': process.env.CUSTOMERS_API_URL,
-    'organizations': process.env.CUSTOMERS_API_URL,
+  'data': process.env.API_DATA_URL,
+  'sales': process.env.API_SALES_URL,
+  'products': process.env.API_PRODUCTS_URL,
+  'customers': process.env.API_CUSTOMERS_URL,
+  'organizations': process.env.API_CUSTOMERS_URL,
 };
 
 
@@ -21,14 +24,13 @@ class RedictController {
 
     // Do the request and return it.
     const selectedRoute = req.url.split('/').slice(2).join('/');
-    const url = `${services[service]}/${selectedRoute}`;
+    const url = `http://${services[service]}/${selectedRoute}`;
     req.logger.info(`Doing request to: ${url}`);
     try {
       const request = await Axios.request({
         url: url,
         data: req.body,
         method: req.method,
-        headers: req.headers as any,
       });
       req.logger.info('The request has been completed.');
 

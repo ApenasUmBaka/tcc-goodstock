@@ -1,11 +1,11 @@
 {
   "name": "main",
   "version": "1.0.0",
-  "main": "src/index.js",
+  "main": "build/index.js",
   "license": "MIT",
   "scripts": {
-    "start:dev": "yarn run migrations:up; nodemon --ext ts -r tsconfig-paths/register src/index.ts",
-    "start:prod": "yarn run migrations:up; tsc; node -r ts-node/register/transpile-only -r tsconfig-paths/register ."
+    "start:dev": "nodemon --ext ts -r tsconfig-paths/register src/index.ts",
+    "start:prod": "tsc; node -r ts-node/register/transpile-only -r tsconfig-paths/register ."
   },
   "dependencies": {
     "axios": "^0.27.2",

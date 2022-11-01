@@ -11,20 +11,48 @@ declare global {
 }
 
 // Interfaces
-export interface _Customer {
+// Customers
+export interface Customer {
   id: number;
+  name: string;
   email: string;
   password: string;
   fk_organizationId: number;
 }
 
-export interface _Organization {
+export interface ClientCustomer {
+  id: number;
+  name: string;
+  email: string;
+  organizationId: number;
+}
+
+export interface PostCustomer {
+  name: string;
+  email: string;
+  password: string;
+  organizationId: number;
+}
+
+export interface PatchCustomer {
+  name?: string;
+  email?: string;
+  password?: string;
+}
+
+export interface FindCustomer {
+  id?: number;
+  email?: string;
+}
+
+// Organizations
+export interface Organization {
   id: number;
   name: string;
   masterPassword: string;
 }
 
 export interface ReqOrgAuth {
-  organizationId: number | undefined;
-  organizationPasswd: string | undefined;
+  organizationId?: number;
+  organizationPasswd?: string;
 }

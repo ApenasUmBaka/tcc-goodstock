@@ -2,10 +2,11 @@
 import { Request, Response } from "express";
 
 import Security from "@security";
-import { toNumber } from "@utils";
+import { Customer, PostCustomer } from "@types";
 import CustomersModel from "@models/customersModel";
+import ValidatorModel from "@models/validatorModel";
 import OrganizationsModel from "@models/organizationsModel";
-import { _Customer } from "@types";
+import { customerToClientCustomer, toNumber } from "@utils";
 
 // Classes
 /**
@@ -13,30 +14,121 @@ import { _Customer } from "@types";
  */
 class CustomersController {
   /**
+   * GET /customer or GET /customer/:id
+   * A route to get some customer.
+   */
+  public static async getCustomer(req: Request, res: Response) {
+    // Check if the request has an param.
+    const searchQuery: any = {};
+
+    if (toNumber(req.params.id)) searchQuery.id = req.params.id;
+    if (
+      req.query.email &&
+      !ValidatorModel.isEmailValid(req.query.email as string)
+    )
+      searchQuery.email = req.query.email;
+
+    if (!Object.keys(searchQuery).length) {
+      req.logger.info("The searchQuery is empty. Returning...");
+      return res.status(400).json({
+        status: "Error",
+        message: "Any query/param was send.",
+      });
+    }
+
+    // Search if the database by the customer.
+    req.logger.info("Searching by customer in the database...");
+    const customersModel = new CustomersModel(req.logger);
+    const customer = await customersModel.findCustomer(searchQuery) as Customer;
+
+    // Return the result to the client.
+    if (!customer) {
+      req.logger.info("The customer was not found. Returning...");
+      return res.status(400).json({
+        status: "Error",
+        message: "The customer was not found.",
+      });
+    }
+
+    req.logger.info(`The customer was found. Returning...`);
+    return res.status(200).json({
+      status: "Success",
+      data: customerToClientCustomer(customer),
+    });
+  }
+
+  /**
+   * GET /customers/auth
+   * GET /customers/:id/auth
+   * A route to auth some customer.
+   */
+  public static async getAuth(req: Request, res: Response) {
+    // Check if the request has an param.
+    const searchQuery: any = {};
+
+    if (toNumber(req.params.id)) searchQuery.id = req.params.id;
+    if (
+      req.query.email &&
+      !ValidatorModel.isEmailValid(req.query.email as string)
+    )
+      searchQuery.email = req.query.email;
+
+    if (!Object.keys(searchQuery).length) {
+      req.logger.info("The searchQuery is empty. Returning...");
+      return res.status(400).json({
+        status: "Error",
+        message: "Any query/param was send.",
+      });
+    }
+
+    // Set the password and search in the database.
+    req.logger.info("Trying to auth the customer in the database...");
+    searchQuery.password = req.query.password;
+    const customersModel = new CustomersModel(req.logger);
+    const customer = await customersModel.findCustomer(searchQuery) as Customer;
+
+    // Return the result to the client.
+    if (!customer) {
+      req.logger.info("The customer was not authorized. Returning...");
+      return res.status(401).json({
+        status: "Error",
+        message: "The user was not authorized.",
+      });
+    }
+
+    req.logger.info("The customer was authorized. Returning...");
+    res.status(200).json({
+      status: "Success",
+      data: customerToClientCustomer(customer),
+    });
+  }
+
+  /**
    * POST /customers
    * A route to create customers.
    */
   public static async postCustomer(req: Request, res: Response) {
     // Check params.
-    const neededParams = ["email", "password", "organization"];
-    const params = Security.filterParams(neededParams, req.body);
-    if (!Object.keys(params).length) {
+    const neededParams = ["name", "email", "password", "organizationId"];
+    const body: PostCustomer = Security.filterArgs(neededParams, req.body);
+    if (
+      !Object.keys(body).length ||
+      !ValidatorModel.isNewCustomerArgsValid(body)
+    ) {
       req.logger.info("The provided body is not valid. Returning...");
-      return res.sendStatus(400);
-    }
-
-    // Check if the email is valid.
-    if (!Security.isEmailValid(params.email)) {
-      req.logger.info("The provided email is invalid. Returning...");
-      return res.sendStatus(400);
+      return res.status(400).json({
+        status: "Error",
+        message: "The customer id or the body is invalid.",
+      });
     }
 
     // Check if the customer already exists.
-    const findCustomerResult = await CustomersModel.findCustomer(req.logger, {
-      email: params.email,
+    const customersModel = new CustomersModel(req.logger);
+    const findCustomerByEmail = await customersModel.findCustomer({
+      email: body.email,
     });
 
-    if (findCustomerResult) {
+    if (findCustomerByEmail) {
       req.logger.info("The customer already exists. Returning...");
       return res.status(400).json({
         status: "Error",
@@ -48,9 +140,10 @@ class CustomersController {
     const findOrganizationResult = await OrganizationsModel.findOrganization(
       req.logger,
       {
-        id: params.organization,
+        id: body.organizationId,
       }
     );
+
     if (!findOrganizationResult) {
       req.logger.info("The provided organization does not exist. Returning...");
       return res.status(400).json({
@@ -60,61 +153,25 @@ class CustomersController {
     }
 
     // Create the new customer.
-    try {
-      const customerParams = {
-        email: params.email,
-        password: Security.toHash(params.password),
-        fk_organizationId: params.organization,
-      };
-      const customer = await CustomersModel.createCustomer(
-        req.logger,
-        customerParams
-      );
-      req.logger.info("Returning result...");
-      res.status(201).json({
-        status: "Success",
-        data: customer,
-      });
-    } catch {
-      req.logger.warn("Returning internal server error...");
-      res.sendStatus(500);
-    }
-  }
+    const customer = await customersModel.createCustomer({
+      name: body.name,
+      email: body.email,
+      password: body.password,
+      fk_organizationId: body.organizationId,
+    } as any);
 
-  /**
-   * GET /customer or GET /customer/:id
-   * A route to get some customer.
-   */
-  public static async getCustomer(req: Request, res: Response) {
-    const query = this.getCustomerQuery(req);
-    if (!query) {
-      req.logger.info("The query is empty. Returning...");
-      return res.sendStatus(400);
-    }
-
-    const findCustomerResult = await CustomersModel.findCustomer(
-      req.logger,
-      query
-    );
-
-    if (findCustomerResult) {
-      req.logger.info(
-        `The customer ${findCustomerResult.id} was found. Returning...`
-      );
-      return res.status(200).json({
-        status: "Success",
-        data: {
-          id: findCustomerResult.id,
-          email: findCustomerResult.email,
-          organization: findCustomerResult.fk_organizationId,
-        },
+    // Return the response to the client.
+    if (!customer) {
+      req.logger.warn(`The user was not created. Returning...`);
+      return res.status(500).json({
+        status: "Error",
+        message: "Internal Server Error.",
       });
     }
 
-    req.logger.info("The customer was not found. Returning...");
-    return res.status(400).json({
-      status: "Error",
-      message: "The customer was not found",
+    res.status(201).json({
+      status: "Success",
+      data: customerToClientCustomer(customer),
     });
   }
 
@@ -123,104 +180,59 @@ class CustomersController {
    * A route to update a customer.
    */
   public static async patchCustomer(req: Request, res: Response) {
-    const customerId = req.params.id;
-    if (!customerId || !toNumber(customerId)) {
+    const customerId = toNumber(req.params.id);
+    if (!customerId) {
       req.logger.info("The customer's id was not provided. Returning...");
-      return res.sendStatus(400);
+      return res.status(400).json({
+        status: "Error",
+        message: "The customer Id is not valid.",
+      });
     }
 
     // Find if customer exists.
-    const findCustomerResult = await CustomersModel.findCustomer(req.logger, {
+    const customersModel = new CustomersModel(req.logger);
+    const findCustomer = await customersModel.findCustomer({
       id: customerId,
     });
 
-    if (!findCustomerResult) {
+    if (!findCustomer) {
       req.logger.info("The provided customer's id was not found. Returning...");
       return res.status(400).json({
         status: "Error",
-        message: "The provided id was not found.",
+        message: "The customer Id is not valid.",
+      });
+    }
+
+    // Get all the args in the body and test it.
+    const patchCustomer = ValidatorModel.getCustomerPatchArgs(req.body);
+
+    if (!patchCustomer) {
+      req.logger.info("Some param in invalid. Returning...");
+      return res.status(400).json({
+        status: "Error",
+        message: "Some argument is invalid.",
       });
     }
 
     // Update the customer.
-    if (req.body.email) {
-      if (!Security.isEmailValid(req.body.email)) {
-        req.logger.info("The provided email is not valid. Returning...");
-        return res.sendStatus(400);
-      }
-    }
-
-    const customersParams = {
-      email: req.body.email ? req.body.email : findCustomerResult.email,
-      password: req.body.password
-        ? req.body.password
-        : findCustomerResult.password,
-    };
-
-    const updatedCustomer = await CustomersModel.updateCustomer(
-      req.logger,
+    const updatedCustomer = await customersModel.updateCustomer(
       Number(customerId),
-      customersParams
+      patchCustomer
     );
+
+    // Return the result to the client.
+    if (!updatedCustomer) {
+      req.logger.warn(`The customer couldn't be updated. Returning...`);
+      return res.status(500).json({
+        status: "Error",
+        message: "Internal Server Error.",
+      });
+    }
 
     return res.status(200).json({
       status: "Success",
-      data: {
-        id: updatedCustomer.id,
-        email: updatedCustomer.email,
-        organization: updatedCustomer.fk_organizationId,
-      },
+      data: customerToClientCustomer(updatedCustomer),
     });
-  }
-
-  /**
-   * GET /customers/:id/auth
-   * A route to auth some customer.
-   */
-  public static async getAuth(req: Request, res: Response) {
-    const customerId = req.params.id;
-    if (!customerId || !toNumber(customerId)) {
-      req.logger.info("The customer's id was not provided. Returning...");
-      return res.sendStatus(400);
-    }
-
-    const customerHash = req.query.password;
-    if (!customerHash) {
-      req.logger.info("The customer's password was not provided. Returning...");
-      return res.sendStatus(400);
-    }
-
-    const customerResult = await CustomersModel.findCustomer(req.logger, {
-      id: customerId,
-      password: customerHash,
-    });
-
-    if (!customerResult) {
-      return res.sendStatus(401);
-    }
-    res.sendStatus(200);
-  }
-
-  /**
-   * Used by the GET /customer or GET/customer/:id
-   */
-  private static getCustomerQuery(req: Request) {
-    if (req.params.id) {
-      if (!toNumber(req.params.id)) return;
-      return {
-        id: req.params.id,
-      };
-    }
-
-    const neededParams = ["email"];
-    const params = Security.filterParams(neededParams, req.body);
-    if (Object.keys(params).length) {
-      return {
-        email: params.email,
-      };
-    }
-
-    return;
   }
 }
 

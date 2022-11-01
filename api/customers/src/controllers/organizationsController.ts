@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 
 import Security from "@security";
 import { toNumber } from "@utils";
-import { ReqOrgAuth, _Organization } from "@types";
+import { ReqOrgAuth } from "@types";
 import OrganizationsModel from "@models/organizationsModel";
 
 // Classes
@@ -18,7 +18,7 @@ class OrganizationsController {
   public static async postOrganization(req: Request, res: Response) {
     // Check params.
     const neededParams = ["name", "masterPassword"];
-    const params = Security.filterParams(neededParams, req.body);
+    const params = Security.filterArgs(neededParams, req.body);
     if (!Object.keys(params).length) {
       req.logger.info("The provided body is not valid. Returning...");
       return res.sendStatus(400);
@@ -157,7 +157,7 @@ class OrganizationsController {
     const neededParams = ["organizationId", "organizationPasswd"];
 
     req.logger.info("Checking params...");
-    const params = Security.filterParams(neededParams, req.body) as ReqOrgAuth;
+    const params = Security.filterArgs(neededParams, req.body) as ReqOrgAuth;
     if (!params || !toNumber(params.organizationId)) {
       req.logger.info("Invalid params. Returning...");
       return res.sendStatus(400);
@@ -208,7 +208,7 @@ class OrganizationsController {
     }
 
     const neededParams = ["name"];
-    const params = Security.filterParams(neededParams, req.body);
+    const params = Security.filterArgs(neededParams, req.body);
     if (Object.keys(params).length) {
       return {
         name: params.name,
