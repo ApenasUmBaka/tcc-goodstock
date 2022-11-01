@@ -4,11 +4,13 @@ import { Schema } from "mongoose";
 // Data
 const salesSchema = new Schema(
   {
-    totalPrice: Number,
-    responsibleId: Number,
-    organizationId: Number,
+    date: { type: Date, required: true },
+    totalPrice: { type: Number, required: true },
+    responsibleId: { type: Number, required: true },
+    organizationId: { type: Number, required: true },
     soldProducts: {
       type: Map,
+      required: true,
       of: {
         type: Map,
         values: Number
@@ -17,6 +19,7 @@ const salesSchema = new Schema(
   },
   {
     strict: false,
+    timestamps: true
   }
 );
 

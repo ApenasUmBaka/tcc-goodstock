@@ -4,8 +4,9 @@ import { Request, Response } from "express";
 
 // Data
 const services: any = {
-    'customers': process.env.CUSTOMERS_API_URL,
-    'organizations': process.env.CUSTOMERS_API_URL,
+    'customers': process.env.API_CUSTOMERS_URL,
+    'organizations': process.env.API_CUSTOMERS_URL,
+    'data': process.env.API_DATA_URL
 };
 
 
@@ -15,8 +16,9 @@ class RedictController {
   public static async allRedirect(req: Request, res: Response) {
     const service = req.url.split('/').slice(1,2)[0]; // [ '', '/customers', '/something']
 
-    if (!service) {
-      return res.sendStatus(400);
+    if (!services[service]) {
+      req.logger.info('Endpoint not found. Returning...');
+      return res.sendStatus(404);
     }
 
     // Do the request and return it.

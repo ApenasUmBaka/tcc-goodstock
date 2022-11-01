@@ -71,7 +71,9 @@ services:
     container_name: goodstock_api_sales
     # volumes:
     #   - ./api/sales:/app
-    ports:
-      - 3003:3003
     env_file:
       - api_sales.env
+
+  goodstock_api_data:
+    build: ./api/data/
+    container_name: goodstock_api_data
