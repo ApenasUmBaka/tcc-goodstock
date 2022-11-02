@@ -1,6 +1,6 @@
 /* Libs */
-@import url("../base/global.css");
-@import url("../base/reset.css");
+@import url("/assets/css/base/global.css");
+@import url("/assets/css/base/reset.css");
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200&display=swap");
 
 /* base */
@@ -30,10 +30,17 @@ nav {
   z-index: 3;
 }
 
+i{
+  margin: 10px;
+}
+
 .nav__logo {
   font-size: 24px;
   text-transform: uppercase;
   letter-spacing: 4px;
+  font-family: 'Age Regular';
+  margin-left: 5px;
+  cursor: default;
 }
 
 .nav__list {
@@ -87,8 +94,6 @@ nav {
 .nav__mobile-menu.active .line3 {
   transform: rotate(45deg) translate(-5px, -7px);
 }
-
-/* Underline From Left */
 
 
 /* Button New sign */
