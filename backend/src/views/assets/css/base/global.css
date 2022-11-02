@@ -74,6 +74,13 @@ h2::selection {
   background-color: var(--two-color);
 }
 
+@font-face {
+  font-family: 'Age Regular';
+  src: url('/assets/Fonts/Age.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 /* Color mode WorkStation */
 :root{
   /* ===== Colors ===== */
