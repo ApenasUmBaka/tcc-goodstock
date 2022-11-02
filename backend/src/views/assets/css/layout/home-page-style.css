@@ -30,10 +30,17 @@ nav {
   z-index: 3;
 }
 
+i{
+  margin: 10px;
+}
+
 .nav__logo {
   font-size: 24px;
   text-transform: uppercase;
   letter-spacing: 4px;
+  font-family: 'Age Regular';
+  margin-left: 5px;
+  cursor: default;
 }
 
 .nav__list {
@@ -87,8 +94,6 @@ nav {
 .nav__mobile-menu.active .line3 {
   transform: rotate(45deg) translate(-5px, -7px);
 }
-
-
 
 
 /* Button New sign */
