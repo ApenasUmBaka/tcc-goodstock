@@ -1,5 +1,10 @@
 // Libs
-import { ClientCustomer, Customer } from "@types";
+import {
+  Customer,
+  ClientCustomer,
+  Organization,
+  ClientOrganization,
+} from "@types";
 
 // Functions
 /**
@@ -15,7 +20,7 @@ export function toNumber(numb: any): number | undefined {
 }
 
 /**
- * A method to transform the customer to clientCustomer
+ * A method to transform the customer to clientCustomer.
  */
 export function customerToClientCustomer(customer: Customer): ClientCustomer {
   return {
@@ -23,5 +28,17 @@ export function customerToClientCustomer(customer: Customer): ClientCustomer {
     name: customer.name,
     email: customer.email,
     organizationId: customer.fk_organizationId,
+  };
+}
+
+/**
+ * A method to transform the organization to clientOrganization.
+ */
+export function organizationToClientOrganization(
+  organization: Organization
+): ClientOrganization {
+  return {
+    id: organization.id,
+    name: organization.name,
   };
 }

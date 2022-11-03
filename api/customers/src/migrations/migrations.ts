@@ -15,8 +15,9 @@ abstract class Migrations {
     logger.info("Getting up Migrations...");
 
     try {
-      await OrganizationsModel.model.sync();
-      
+      const organizationsModel = new OrganizationsModel(logger);
+      await organizationsModel.model.sync();
+
       const customersModel = new CustomersModel(logger);
       await customersModel.model.sync();
 

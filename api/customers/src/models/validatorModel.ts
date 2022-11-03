@@ -1,7 +1,5 @@
 // Libs
-import Security from "@controllers/security";
-
-import { PatchCustomer, PostCustomer } from "@types";
+import { PatchCustomer, PatchOrganization, PostCustomer } from "@types";
 
 // Classes
 class ValidatorModel {
@@ -17,7 +15,7 @@ class ValidatorModel {
   }
 
   /**
-   * A method to validate the args from a patch request.
+   * A method to validate the args from a patch customer request.
    */
   public static getCustomerPatchArgs(
     body: PatchCustomer
@@ -43,9 +41,31 @@ class ValidatorModel {
   }
 
   /**
+   * A method to validate the args from a patch organization request.
+   */
+  public static getOrganizationPatchArgs(
+    body: PatchOrganization
+  ): PatchOrganization | undefined {
+    const patchOrganization: PatchOrganization = {};
+    // Check all the args in the body.
+    if (body.name) {
+      if (!this.isNameValid(body.name)) return;
+      patchOrganization.name = body.name;
+    }
+
+    if (body.masterPassword) {
+      if (!this.isPasswdValid(body.masterPassword)) return;
+      patchOrganization.masterPassword = body.masterPassword;
+    }
+
+    return patchOrganization;
+  }
+
+  /**
    * A method to validate a name.
    */
   public static isNameValid(name: string): boolean {
+    if (!name) return false;
     if (name.length < 3) {
       return false;
     }

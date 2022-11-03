@@ -39,7 +39,9 @@ class CustomersController {
     // Search if the database by the customer.
     req.logger.info("Searching by customer in the database...");
     const customersModel = new CustomersModel(req.logger);
-    const customer = await customersModel.findCustomer(searchQuery) as Customer;
+    const customer = (await customersModel.findCustomer(
+      searchQuery
+    )) as Customer;
 
     // Return the result to the client.
     if (!customer) {
@@ -64,14 +66,16 @@ class CustomersController {
    */
   public static async getAuth(req: Request, res: Response) {
     // Check if the request has an param.
+    req.logger.info("Checking params...");
     const searchQuery: any = {};
 
     if (toNumber(req.params.id)) searchQuery.id = req.params.id;
     if (
       req.query.email &&
       ValidatorModel.isEmailValid(req.query.email as string)
-    )
+    ) {
       searchQuery.email = req.query.email;
+    }
 
     if (!Object.keys(searchQuery).length) {
       req.logger.info("The searchQuery is empty. Returning...");
@@ -81,14 +85,29 @@ class CustomersController {
       });
     }
 
+    // Find the customer.
+    req.logger.info("Trying to find the customer...");
+    const customersModel = new CustomersModel(req.logger);
+    const customer = (await customersModel.findCustomer(
+      searchQuery
+    )) as Customer;
+    if (!customer) {
+      req.logger.info("The customer was not found. Returning...");
+      return res.status(400).json({
+        status: "Error",
+        message: "The customer was not found.",
+      });
+    }
+
     // Set the password and search in the database.
     req.logger.info("Trying to auth the customer in the database...");
-    searchQuery.password = Security.toHash(req.query.password as string);
-    const customersModel = new CustomersModel(req.logger);
-    const customer = await customersModel.findCustomer(searchQuery) as Customer;
+    searchQuery.password = Security.toHash(req.query.password as string || '');
+    const customerWithPasswd = (await customersModel.findCustomer(
+      searchQuery
+    )) as Customer;
 
     // Return the result to the client.
-    if (!customer) {
+    if (!customerWithPasswd) {
       req.logger.info("The customer was not authorized. Returning...");
       return res.status(401).json({
         status: "Error",
@@ -99,7 +118,7 @@ class CustomersController {
     req.logger.info("The customer was authorized. Returning...");
     res.status(200).json({
       status: "Success",
-      data: customerToClientCustomer(customer),
+      data: customerToClientCustomer(customerWithPasswd),
     });
   }
 
@@ -137,12 +156,10 @@ class CustomersController {
     }
 
     // Check if the organization exists.
-    const findOrganizationResult = await OrganizationsModel.findOrganization(
-      req.logger,
-      {
-        id: body.organizationId,
-      }
-    );
+    const organizationsModel = new OrganizationsModel(req.logger);
+    const findOrganizationResult = await organizationsModel.findOrganization({
+      id: body.organizationId,
+    });
 
     if (!findOrganizationResult) {
       req.logger.info("The provided organization does not exist. Returning...");
@@ -190,10 +207,9 @@ class CustomersController {
     }
 
     // Find if customer exists.
+    req.logger.info(`Searching by the customer's id...`);
     const customersModel = new CustomersModel(req.logger);
-    const findCustomer = await customersModel.findCustomer({
-      id: customerId,
-    });
+    const findCustomer = await customersModel.findCustomer({ id: customerId });
 
     if (!findCustomer) {
       req.logger.info("The provided customer's id was not found. Returning...");

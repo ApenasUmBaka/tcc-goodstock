@@ -61,9 +61,15 @@ router.get(
   "/organizations/:id",
   OrganizationsController.getOrganization.bind(OrganizationsController)
 );
+
 router.patch(
   "/organizations/:id",
   OrganizationsController.patchOrganization.bind(OrganizationsController)
+);
+
+router.get(
+  "/customers/:id/auth",
+  CustomersController.getAuth.bind(CustomersController)
 );
 
 router.all("*", (req, res) => {

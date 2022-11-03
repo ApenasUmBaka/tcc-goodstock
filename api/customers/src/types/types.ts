@@ -52,6 +52,16 @@ export interface Organization {
   masterPassword: string;
 }
 
+export interface ClientOrganization {
+  id: number;
+  name: string;
+}
+
+export interface PatchOrganization {
+  name?: string;
+  masterPassword?: string;
+}
+
 export interface ReqOrgAuth {
   organizationId?: number;
   organizationPasswd?: string;

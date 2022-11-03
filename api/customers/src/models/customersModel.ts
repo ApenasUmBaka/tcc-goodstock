@@ -39,7 +39,10 @@ class CustomersModel {
   /**
    * A method to get a customer.
    */
-  public async findCustomer(params: FindCustomer, returnModel?: boolean): Promise<Customer | Model | undefined> {
+  public async findCustomer(
+    params: FindCustomer,
+    returnModel?: boolean
+  ): Promise<Customer | Model | undefined> {
     this.logger.info("Locating a customer...");
 
     // Try to find the customer.
@@ -74,14 +77,18 @@ class CustomersModel {
 
     // Try to update the customer.
     try {
-      const customer = await this.findCustomer({ id: id }, true) as any;
+      const customer = (await this.findCustomer({ id: id }, true)) as any;
+      if (!customer) throw "No customer found.";
 
-      if (!customer) throw 'No customer found.';
+      const paramsKeys = Object.keys(params);
+      paramsKeys.forEach((value, index) => {
+        customer[paramsKeys[index]] = value;
+      });
 
       customer.name = params.name!;
       customer.email = params.email!;
       customer.password = params.password!;
-      customer.save();
+      await customer.save();
 
       return customer;
     } catch (err) {
