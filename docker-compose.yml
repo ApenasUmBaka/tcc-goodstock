@@ -12,7 +12,7 @@ services:
       - backend.env
     depends_on:
       - goodstock_api_main
-  
+
   goodstock_api_main:
     container_name: goodstock_api_main
     build: ./api/main/

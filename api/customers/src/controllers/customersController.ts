@@ -24,7 +24,7 @@ class CustomersController {
     if (toNumber(req.params.id)) searchQuery.id = req.params.id;
     if (
       req.query.email &&
-      !ValidatorModel.isEmailValid(req.query.email as string)
+      ValidatorModel.isEmailValid(req.query.email as string)
     )
       searchQuery.email = req.query.email;
 
@@ -69,7 +69,7 @@ class CustomersController {
     if (toNumber(req.params.id)) searchQuery.id = req.params.id;
     if (
       req.query.email &&
-      !ValidatorModel.isEmailValid(req.query.email as string)
+      ValidatorModel.isEmailValid(req.query.email as string)
     )
       searchQuery.email = req.query.email;
 
@@ -83,7 +83,7 @@ class CustomersController {
 
     // Set the password and search in the database.
     req.logger.info("Trying to auth the customer in the database...");
-    searchQuery.password = req.query.password;
+    searchQuery.password = Security.toHash(req.query.password as string);
     const customersModel = new CustomersModel(req.logger);
     const customer = await customersModel.findCustomer(searchQuery) as Customer;
 

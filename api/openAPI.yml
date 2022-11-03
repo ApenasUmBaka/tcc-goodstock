@@ -140,7 +140,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PostCustomer'
+              $ref: '#/components/schemas/PatchCustomer'
       responses:
         '201':
           description: Successful operation.
@@ -210,6 +210,19 @@ components:
           type: integer
           format: int32
 
+    PatchCustomer:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Joel
+        email:
+          type: string
+          example: email@domain.com
+        password:
+          type: string
+          example: password123
+
     # Response Schemas
     ClientCustomer:
       type: object
@@ -225,7 +238,7 @@ components:
           required:
           - id
           - email
-          - organization
+          - organizationId
           properties:
             id:
               type: integer

@@ -11,7 +11,7 @@ abstract class Security {
   public static filterArgs(neededParams: string[], body: any): any | undefined {
     const params: any = {};
 
-    if (!body) return;
+    if (!body) return {};
 
     for (const index in neededParams) {
       let value = neededParams[index];
@@ -24,7 +24,7 @@ abstract class Security {
       if (body[value]) {
         params[value] = body[value];
       } else if (!optional) {
-        return;
+        return {};
       }
     }
 

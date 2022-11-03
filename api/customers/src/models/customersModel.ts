@@ -74,14 +74,16 @@ class CustomersModel {
 
     // Try to update the customer.
     try {
-      const customer = await this.findCustomer({ id: id }) as Customer;
-      if (!customer) throw 'No customer was found.';
+      const customer = await this.findCustomer({ id: id }, true) as any;
+
+      if (!customer) throw 'No customer found.';
+
       customer.name = params.name!;
       customer.email = params.email!;
       customer.password = params.password!;
+      customer.save();
 
-      customer
-      return 
+      return customer;
     } catch (err) {
       this.logger.error(`The customer couldn't be updated. Error: ${err}`);
       return;

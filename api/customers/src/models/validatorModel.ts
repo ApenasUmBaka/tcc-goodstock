@@ -23,10 +23,9 @@ class ValidatorModel {
     body: PatchCustomer
   ): PatchCustomer | undefined {
     const patchCustomer: PatchCustomer = {};
-
     // Check all the args in the body.
     if (body.name) {
-      if (!this.isPasswdValid(body.name)) return;
+      if (!this.isNameValid(body.name)) return;
       patchCustomer.name = body.name;
     }
 

@@ -15,10 +15,11 @@ abstract class Migrations {
     logger.info("Getting up Migrations...");
 
     try {
+      await OrganizationsModel.model.sync();
+      
       const customersModel = new CustomersModel(logger);
       await customersModel.model.sync();
 
-      await OrganizationsModel.model.sync();
       await DatabaseModel.seq.sync();
 
       logger.info("The migrations have been getting up.");
