@@ -75,3 +75,7 @@ services:
       - ./db/api-products:/data/db
     env_file:
       - api_products.env
+
+  goodstock_api_data:
+    build: ./api/data/
+    container_name: goodstock_api_data

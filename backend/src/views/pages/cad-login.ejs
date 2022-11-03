@@ -14,6 +14,7 @@
 
 <body>
     
+    
     <div class="container" id="container">
         <div class="form-container sign-up-container">
             <form id="form-up" method="post" onsubmit="return registerAccount()">
@@ -68,9 +69,10 @@
         </div>
     </div>
 
-    <button onclick="toggleModal()" type="button">Open Modal</button>
-    <div class="modal-background" onclick="toggleModal()"></div>
-    <div class="modal">
+    <button id="modal-button">Open Modal</button>
+    <div id="organization-modal-bg" class="modal-background"></div>
+    <div id="organization-modal" class="modal modal-closed">
+    
       <h2>Modal Window</h2>
       <p>
         You have opened the modal, they are great for confirming actions or
