@@ -1,7 +1,7 @@
 {
   "name": "main",
   "version": "1.0.0",
-  "main": "src/index.js",
+  "main": "build/index.js",
   "license": "MIT",
   "scripts": {
     "start:dev": "nodemon --ext ts -r tsconfig-paths/register src/index.ts",
