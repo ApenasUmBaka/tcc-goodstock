@@ -1,6 +1,5 @@
 // Classes
-
-import { createHash, Hash } from "crypto";
+import { createHash } from "crypto";
 
 /**
  * A class to be used on security cases.
@@ -8,11 +7,8 @@ import { createHash, Hash } from "crypto";
 abstract class Security {
   /**
    * A method to get all the neededparams from some request.
-   * @param neededParams - The name from the params.
-   * @param body - The request's body.
-   * @returns The treated params or empty array if bad request.
    */
-  public static filterParams(neededParams: string[], body: any): any {
+  public static filterArgs(neededParams: string[], body: any): any | undefined {
     const params: any = {};
 
     if (!body) return {};
@@ -40,13 +36,6 @@ abstract class Security {
    */
   public static toHash(value: string) {
     return createHash("sha256").update(value).digest("hex");
-  }
-
-  public static isEmailValid(email: string): boolean {
-    const regex =
-      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-    if (regex.test(email)) return true;
-    return false;
   }
 }
 

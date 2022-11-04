@@ -1,302 +1,454 @@
-openapi: 3.1.0
+openapi: 3.0.0
 info:
-  version: '1.0.0'
-  title: 'Goodstock'
-  license:
-    name: MIT
+  title: Goodstock API
+  version: 1.0.0
 servers:
-  - url: 'localhost:3000'
+  - url: http://localhost:3000
+tags:
+  - name: Customers
+    description: All routes related to the the customers API.
+  - name: Organizations
+    description: All routes related to the customers API, using the organizations functions.
+  - name: Products
+    description: All routes related to the Products API.
+  - name: Sales
+    description: All routes related to the Sales API.
 paths:
-# Customers API
-  /customers:
-    post:
-      summary: 'Create customer'
-      operationId: postCustomer
-      security:
-        - bearerAuth: []
+  # Customers API
+  /customers/customers/:
+    get:
+      tags:
+        - Customers
+      summary: Get an existing customer by email or id.
       parameters:
-        - name: email
-          in: query
+        - in: query
+          name: email
           required: true
-          description: 'The customers email'
           schema:
             type: string
-            examples:
-              - email@gmail.com
-        - name: password
-          in: query
+            example: email@domain.com
+      responses:
+        '200':
+          description: Successful operation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientCustomer'          
+        '400':
+          description: Invalid email or id.
+      security:
+        - bearerAuth: [read]
+
+  /customers/customers/auth:
+    get:
+      tags:
+        - Customers
+      summary: Try to auth a customer.
+      parameters:
+        - in: query
+          name: email
           required: true
-          description: 'The customers password'
           schema:
             type: string
-            examples:
-              - password
-        - name: organization
-          in: query
+            example: email@domain.com
+        - in: query
+          name: password
           required: true
-          description: 'The customers organization'
+          schema:
+            type: string
+            example: password123
+      responses:
+        '200':
+          description: Successful operation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientCustomer'          
+        '400':
+          description: Invalid email.
+        '401':
+          description: Invalid password.
+      security:
+        - bearerAuth: [read]
+
+  /customers/customers/{id}:
+    get:
+      tags:
+        - Customers
+      summary: Get an existing customer by email or id.
+      parameters:
+        - in: path
+          name: id
+          required: true
           schema:
             type: integer
             format: int32
-            examples:
-              - 1
+      responses:
+        '200':
+          description: Successful operation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientCustomer'          
+        '400':
+          description: Invalid email or id.
+      security:
+        - bearerAuth: [read]
+
+    post:
+      tags:
+        - Customers
+      summary: Try to create a new customer.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostCustomer'
       responses:
         '201':
-          description: 'Customer created.'
+          description: Successful operation.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Customer'
+                $ref: '#/components/schemas/ClientCustomer'          
         '400':
-          description: 'Invalid Params'
-        default:
-          description: Unexpected error
-
-  /customers/{id}:
-    get:
-      summary: 'Get customer'
-      operationId: getCustomer
+          description: Invalid customer.
       security:
-        - bearerAuth: []
-      parameters:
-        - name: id 
-          in: path
-          required: true
-          description: 'The customers id'
-          schema:
-            type: integer
-            examples:
-              - 1
-      responses:
-        '200':
-          description: 'Customer found.'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Customer'
-        '400':
-          description: 'Invalid Params'
-        default:
-          description: Unexpected error
-
+        - bearerAuth: [write]
     patch:
-      summary: 'Update customer'
-      operationId: patchCustomer
-      security:
-        - bearerAuth: []
+      tags:
+        - Customers
+      summary: Try to update a customer.
       parameters:
-        - name: id 
-          in: path
+        - in: path
+          name: id
           required: true
-          description: 'The customers id'
           schema:
             type: integer
-            examples:
-              - 1
-        - name: email
-          in: query
-          required: false
-          description: 'The customers email'
-          schema:
-            type: string
-            examples:
-              - email@gmail.com
-        - name: password
-          in: query
-          required: false
-          description: 'The customers password'
-          schema:
-            type: string
-            examples:
-              - password
+            format: int32
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostCustomer'
       responses:
-        '200':
-          description: 'Customer updated.'
+        '201':
+          description: Successful operation.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Customer'
+                $ref: '#/components/schemas/ClientCustomer'          
         '400':
-          description: 'Invalid Params'
-        default:
-          description: Unexpected error
-
-  /customers/{id}/auth:
-    get:
-      summary: 'Auth customer'
-      operationId: authCustomer
+          description: Invalid customer.
       security:
-        - bearerAuth: []
+        - bearerAuth: [write]
+
+  /customers/customers/{id}/auth/:
+    get:
+      tags:
+        - Customers
+      summary: Try to auth a customer.
       parameters:
-        - name: id
-          in: path
+        - in: path
+          name: id
           required: true
           schema:
-              type: integer
-              format: int32
-              examples:
-                - id
-        - name: password
-          in: query
+            type: integer
+            format: int32
+        - in: query
+          name: password
           required: true
           schema:
             type: string
-            examples:
-              - password
+            example: password123
       responses:
         '200':
-          description: 'Customer authorized.'
+          description: Successful operation.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Customer'
+                $ref: '#/components/schemas/ClientCustomer'          
         '400':
-          description: 'Invalid Params'
-        default:
-          description: Unexpected error
+          description: Invalid email.
+        '401':
+          description: Invalid password.
+      security:
+        - bearerAuth: [read]
 
-# Organizations API
-  /organizations:
+  /organizations/organizations/:
+    get:
+      tags:
+        - Organizations
+      summary: Try to get a organization.
+      parameters:
+        - in: query
+          name: name
+          required: true
+          schema:
+            type: string
+            example: organization A
+      responses:
+        '200':
+          description: Successful operation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientOrganization'          
+        '400':
+          description: Invalid name.
+      security:
+        - bearerAuth: [read]
     post:
-      summary: 'Create Organization'
-      operationId: postOrganization
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: name
-          in: query
-          required: true
-          schema:
-            type: string
-            examples:
-              - organizationName
-        - name: masterPassword
-          in: query
-          required: true
-          schema:
-            type: string
-            examples:
-              - password
+      tags:
+        - Organizations
+      summary: Try to create a new organization.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostOrganization'
       responses:
         '200':
-          description: 'organization created.'
+          description: Successful operation.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Organization'
+                $ref: '#/components/schemas/ClientOrganization'          
         '400':
-          description: 'Invalid Params'
-        default:
-          description: Unexpected error
+          description: Invalid name or master password.
+      security:
+        - bearerAuth: [write]
   
-  /organizations/{id}:
+  /organizations/organizations/auth:
     get:
-      summary: 'Find Organization'
-      operationId: getOrganization
-      security:
-        - bearerAuth: []
+      tags:
+        - Organizations
+      summary: Try to auth an organization.
       parameters:
-        - name: id
-          in: path
+        - in: query
+          name: id
           required: true
           schema:
             type: integer
             format: int32
-            examples:
-              - 1
+        - in: query
+          name: masterPassword
+          required: true
+          schema:
+            type: string
+            example: password123
       responses:
         '200':
-          description: 'organization found.'
+          description: Successful operation.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Organization'
+                $ref: '#/components/schemas/ClientOrganization'          
         '400':
-          description: 'Invalid Params'
-        default:
-          description: Unexpected error
+          description: Invalid id.
+        '401':
+          description: Invalid password.
+      security:
+        - bearerAuth: [read]
+
+  /organizations/organizations/{id}:
+    get:
+      tags:
+        - Organizations
+      summary: Try to get an organization.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Successful operation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientOrganization'          
+        '400':
+          description: Invalid id.
+      security:
+        - bearerAuth: [read]
     patch:
-      summary: 'Update Organization'
-      operationId: patchOrganization
-      security:
-        - bearerAuth: []
+      tags:
+        - Organizations
+      summary: Try to update an organization.
       parameters:
-        - name: id
-          in: path
+        - in: path
+          name: id
           required: true
           schema:
             type: integer
             format: int32
-            examples:
-              - 1
-        - name: name
-          in: query
-          required: false
-          schema:
-            type: string
-            examples:
-              - organizationName
-        - name: masterPassword
-          in: query
-          required: false
-          schema:
-            type: string
-            examples:
-              - password
       responses:
         '200':
-          description: 'organization updated.'
+          description: Successful operation.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Organization'
+                $ref: '#/components/schemas/ClientOrganization'          
         '400':
-          description: 'Invalid Params'
-        default:
-          description: Unexpected error
+          description: Invalid id.
+      security:
+        - bearerAuth: [write]
+
+  /organizations/organizations/{id}/auth:
+    get:
+      tags:
+        - Organizations
+      summary: Try to auth an organization.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Successful operation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientOrganization'          
+        '400':
+          description: Invalid id.
+      security:
+        - bearerAuth: [read]
 
 components:
   schemas:
-    Customer:
+    # Customers
+    # Request Schemas
+    PostCustomer:
       type: object
       required:
-        - id
-        - email
-        - organization
-      properties:
-        id:
-          type: integer
-          format: int32
-          examples:
-            - 1
-        email:
-          type: string
-          examples:
-            - email@gmail.com
-        organization:
-          type: integer
-          format: int32
-          examples:
-            - 1
-    Organizations:
-      type: object
-      required:
-        - id
         - name
+        - email
+        - password
+        - organizationId
       properties:
-        id:
-          type: integer
-          format: int32
-          examples:
-            - 1
         name:
           type: string
-          examples:
-            - organizationName
+          example: Joel
+        email:
+          type: string
+          example: email@domain.com
+        password:
+          type: string
+          example: password123
+        organizationId:
+          type: integer
+          format: int32
+
+    PatchCustomer:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Joel
+        email:
+          type: string
+          example: email@domain.com
+        password:
+          type: string
+          example: password123
+
+    # Organizations
+    PostOrganization:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Organization A
+        masterPassword:
+          type: string
+          example: password123
+    
+    PatchOrganization:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Organization A
+        masterPassword:
+          type: string
+          example: password123
+
+    # Response Schemas
+    ClientCustomer:
+      type: object
+      required:
+        - status
+        - data
+      properties:
+        status:
+          type: string
+          example: Success
+        data:
+          type: object
+          required:
+          - id
+          - email
+          - organizationId
+          properties:
+            id:
+              type: integer
+              format: int32
+            name:
+              type: string
+              example: Joel
+            email:
+              type: string
+              example: email@domain.com
+            organizationId:
+              type: integer
+              format: int32
+
+    ClientOrganization:
+      type: object
+      required:
+        - status
+        - data
+      properties:
+        status:
+          type: string
+          example: Success
+        data:
+          type: object
+          required:
+            - id
+            - name
+          properties:
+            id:
+              type: integer
+              format: int32
+            name:
+              type: string
+              example: Organization A
 
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
+
+
 security:
-  - bearerAuth: []
+  - bearerAuth:
+    - read
+    - write

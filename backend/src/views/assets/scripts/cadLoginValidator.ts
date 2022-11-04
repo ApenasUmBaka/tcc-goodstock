@@ -5,6 +5,7 @@ const errorElement = document.getElementById("error-message") as HTMLDivElement;
 class Validator {
   public static isNameValid(name: string): boolean {
     console.log('Checking if name is valid...');
+    if (!name) return false;
     if (name.length < 3) {
       errorElement.innerHTML = "Seu nome deve ter pelo menos 3 caracteres.";
       return false;

@@ -16,23 +16,30 @@ router.get(
   "/customers",
   CustomersController.getCustomer.bind(CustomersController)
 );
-router.post(
-  "/customers",
-  CustomersController.postCustomer.bind(CustomersController)
+
+router.get(
+  "/customers/auth/",
+  CustomersController.getAuth.bind(CustomersController)
 );
 
 router.get(
   "/customers/:id",
   CustomersController.getCustomer.bind(CustomersController)
 );
-router.patch(
-  "/customers/:id",
-  CustomersController.patchCustomer.bind(CustomersController)
-);
 
 router.get(
   "/customers/:id/auth",
   CustomersController.getAuth.bind(CustomersController)
+);
+
+router.post(
+  "/customers/",
+  CustomersController.postCustomer.bind(CustomersController)
+);
+
+router.patch(
+  "/customers/:id",
+  CustomersController.patchCustomer.bind(CustomersController)
 );
 
 // Organizations
@@ -54,9 +61,15 @@ router.get(
   "/organizations/:id",
   OrganizationsController.getOrganization.bind(OrganizationsController)
 );
+
 router.patch(
   "/organizations/:id",
   OrganizationsController.patchOrganization.bind(OrganizationsController)
+);
+
+router.get(
+  "/customers/:id/auth",
+  CustomersController.getAuth.bind(CustomersController)
 );
 
 router.all("*", (req, res) => {
