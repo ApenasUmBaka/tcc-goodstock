@@ -13,8 +13,6 @@
 </head>
 
 <body>
-    
-    
     <div class="container" id="container">
         <div class="form-container sign-up-container">
             <form id="form-up" method="post" onsubmit="return registerAccount()">
@@ -25,14 +23,32 @@
                     <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
                 </div>
                 <span>Ou ultilize seu email para registrar</span>
-                    <label class="--text-label" for="registerName">Nome Completo</label>
+                    <!-- <label class="--text-label" for="registerName">Nome Completo</label>
                 <input class="--text-input" type="text" name="registerName" id="registerName" placeholder="Nome Completo" autofocus required/>
                     <label class="--text-label" for="registerEmail">Email</label>
                 <input class="--text-input" type="email" name="registerEmail" id="registerEmail" placeholder="Email" required />
                     <label class="--text-label" for="registerPasswd">Senha</label>
-                <input class="--text-input" type="password" name="registerPasswd" id="registerPasswd" placeholder="Senha" required />
+                <input class="--text-input" type="password" name="registerPasswd" id="registerPasswd" placeholder="Senha" required /> -->
                 
-                <button type="submit" id="submit-up" name="submit-up">Prosseguir</button>
+                <div class="label-float">
+                    <input type="text" id="nome" placeholder=" " required>
+                    <label id="registerName" for="nome">Nome</label>
+                 </div>
+                 <div class="label-float">
+                    <input type="text" id="email" placeholder=" " required>
+                    <label id="registerEmail" for="email">Email</label>
+                 </div>
+                 <div class="label-float">
+                    <input type="password" id="senha" placeholder=" " required>
+                    <label id="labelSenha" for="senha">Senha</label>
+                    <i id="verSenha" class="fa fa-eye" aria-hidden="true"></i> 
+                 </div>
+                 <div class="label-float">
+                    <input type="password" id="confirmSenha" placeholder=" " required>
+                    <label id="labelConfirmSenha" for="confirmSenha">Confirmar Senha</label>
+                    <i id="verConfirmSenha" class="fa fa-eye" aria-hidden="true"></i>
+                 </div>
+                  <button  onclick="cadastrar()"  type="submit" id="submit-up" name="submit-up">Prosseguir</button>
             </form>
            <div id="error-message"><%= messageError %></div>
         </div>
@@ -45,21 +61,34 @@
                     <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
                 </div>
                 <span>Ou use sua conta</span>
-                    <label class="--text-label" for="loginEmail">Email</label>
+                    <!-- <label class="--text-label" for="loginEmail">Email</label>
                 <input type="email" name="loginEmail" id="loginEmail" placeholder="Email" required/>
                     <label class="--text-label" for="loginPasswd">Senha</label>
-                <input  type="password" name ="loginPasswd" id="loginPasswd" placeholder="Senha" required/>
+                <input  type="password" name ="loginPasswd" id="loginPasswd" placeholder="Senha" required/> -->
+
+                <div class="label-float">
+                    <input type="email" name="loginEmail" id="loginEmail" placeholder=" " required>
+                    <label id="labelNomeLog" for="nome">Nome</label>
+                 </div>
+                 
+                 <div class="label-float">
+                    <input type="password" name="loginPasswd" id="loginPasswd" placeholder=" " required>
+                    <label id="labelSenhaLog" for="loginPasswd">Senha</label>
+                    <i id="verSenha" class="fa fa-eye" aria-hidden="true"></i> 
+                 </div>
+
                 <a class="form__hvr-underline-from-left" href="#">Esqueci minha senha</a>
-                <button type="submit" id="submit-in" name="submit-in" >Entrar</button>
+                <button type="submit" id="submit-in" name="submit-in">Entrar</button>
             </form>
         </div>
+        <!-- Icons não aparecem -->
         <div class="overlay-container">
             <div class="overlay">
                 <div class="overlay-panel overlay-left">
                     <h1>Bem Vindo de volta!</h1>
                     <p>Se mantenha conectado conosco, faça login de sua conta.</p>
                     <button class="ghost" id="signIn">Conectar</button>
-                </div>
+                </div> 
                 <div class="overlay-panel overlay-right">
                     <h1>Seja Bem Vindo!</h1>
                     <p>Registre seus dados e crie uma conta conosco.</p>
@@ -72,30 +101,50 @@
     <button id="modal-button">Open Modal</button>
     <div id="organization-modal-bg" class="modal-background"></div>
     <div id="organization-modal" class="modal modal-closed">
-    
       <h2>Modal Window</h2>
       <p>
         You have opened the modal, they are great for confirming actions or
         displaying critical information.
       </p>  
           <div class="org-modal">
-        <div class="org-modal__old">
             <p>Logar Id</p>
-            <input type="number" name="registerOrgId" id="registerOrgId" placeholder="ID da organização" required />
-            <input type="password" name="registerOrgPasswd" id="registerOrgPasswd" placeholder="Senha mestre da organização" required />
-            </div>
-        <div class="org-modal__new">    
+
+            <div class="label-float">
+                <input type="number" name="registerOrgId" id="registerOrgId" placeholder=" " required /> 
+                <label id="labelId" for="registerOrgId">ID da organização</label>
+             </div>
+
+             <div class="label-float">
+                <input type="password" name="registerOrgPasswd" id="registerOrgPasswd" placeholder=" " required /> 
+                <label id="labelOrgPasswd" for="registerOrgPasswd">Senha mestra</label>
+                <i id="verSenha" class="fa fa-eye" aria-hidden="true"></i> 
+             </div> 
+
             <p>Cadastrar id</p>
-            <input type="number" name="registerOrgId" id="NewregisterOrgId" placeholder="ID da organização" required />
-            <input type="password" name="registerOrgPasswd" id="NewregisterOrgPasswd" placeholder="Senha mestre da organização" required />
-        </div>    
+
+            <div class="label-float">
+                <input type="number" name="NewregisterOrgId" id="NewregisterOrgId" placeholder=" " required />
+                <label id="labelIdNew" for="NewregisterOrgId">ID da organização</label>
+            </div>
+
+            <div class="label-float">
+                <input type="password" name="NewregisterOrgPasswd" id="NewregisterOrgPasswd" placeholder=" " required />
+                <label id="labelNewOrgPasswd" for="NewregisterOrgPasswd">Senha mestra</label>
+                <i id="verSenha" class="fa fa-eye" aria-hidden="true"></i> 
+            </div> 
+
+            <div class="label-float">
+                <input type="password" name="NewregisterOrgPasswdConf" id="NewregisterOrgPasswdConf" placeholder=" " required>
+                <label id="labelNewOrgPasswdConfirmSenha" for="NewregisterOrgPasswdConf">Confirmar Senha</label>
+                <i id="verConfirmSenha" class="fa fa-eye" aria-hidden="true"></i>
+             </div>
+           <button class="justify-center" type="submit" id="submit-up-finish" name="submit-up-finish">Cadastrar</button>    
     </div>  
     </div>
-
-  
                 <!-- Scripts -->
-    <script src="/assets/scripts/cadLoginModal.js"></script>
+    <script src="/assets/scripts/cadLoginNewValidator"></script>
     <script src="/assets/scripts/cadLoginContainer.js"></script>
+    <script src="/assets/scripts/cadLoginModal.js"></script>
     <script src="/assets/scripts/cadLoginValidator.js"></script>
 </body>
 

@@ -1,7 +1,7 @@
 
 /* Hover Button Background Linear */
 .--text,
-.icon{
+.--icon{
     color: var(--h1-color);
     transition: var(--tran-03);
     height: 30px;
@@ -24,10 +24,15 @@ li a{
 li a:hover{
     background-color: var(--two-color);
     color: var(--bg-color);
+    font-weight: 500;
 }
-li a:hover .icon,
+li a:hover .--icon,
 li a:hover .--text{
-    color: var(--sidebar-color);
+    color: var(--bg-color);
+}
+
+button i:hover .--icon {
+  color: var(--bg-color);
 }
 
 /* Hover Button underline-from-left */
