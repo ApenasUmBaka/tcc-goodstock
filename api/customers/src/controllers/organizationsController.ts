@@ -93,7 +93,9 @@ class OrganizationsController {
 
     // Set the password and search in the database.
     req.logger.info("Trying to auth the organization in the database...");
-    searchQuery.masterPassword = Security.toHash(req.query.masterPassword as string || '');
+    searchQuery.masterPassword = Security.toHash(
+      (req.query.masterPassword as string) || ""
+    );
     const organizationWithPasswd = (await organizationsModel.findOrganization(
       searchQuery
     )) as Organization;

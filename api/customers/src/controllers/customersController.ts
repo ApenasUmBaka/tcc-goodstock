@@ -101,7 +101,9 @@ class CustomersController {
 
     // Set the password and search in the database.
     req.logger.info("Trying to auth the customer in the database...");
-    searchQuery.password = Security.toHash(req.query.password as string || '');
+    searchQuery.password = Security.toHash(
+      (req.query.password as string) || ""
+    );
     const customerWithPasswd = (await customersModel.findCustomer(
       searchQuery
     )) as Customer;

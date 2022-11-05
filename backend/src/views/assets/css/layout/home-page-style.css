@@ -30,7 +30,7 @@ nav {
   z-index: 3;
 }
 
-i{
+i {
   margin: 10px;
 }
 
@@ -38,7 +38,7 @@ i{
   font-size: 24px;
   text-transform: uppercase;
   letter-spacing: 4px;
-  font-family: 'Age Regular';
+  font-family: "Age Regular";
   margin-left: 5px;
   cursor: default;
 }
@@ -94,7 +94,6 @@ i{
 .nav__mobile-menu.active .line3 {
   transform: rotate(45deg) translate(-5px, -7px);
 }
-
 
 /* Button New sign */
 a.nav__new-cont {
@@ -196,8 +195,6 @@ main {
   box-shadow: 15px 15px 0 -4px var(--two-color), 15px 15px black;
 }
 
-
-
 /* Tutorial */
 #tutorial {
   display: flex;
@@ -205,7 +202,6 @@ main {
   background-color: var(--bg-color);
   margin: 5px;
 }
-
 
 /* Good */
 #good {
@@ -221,7 +217,7 @@ main {
   background-color: var(--bg-color);
 }
 
-.about-us__display{
+.about-us__display {
   display: inline-flex;
 }
 
@@ -257,14 +253,14 @@ figure.snip1336 * {
 }
 .snip1336 figcaption:before {
   position: absolute;
-  content: '';
+  content: "";
   bottom: 100%;
   left: 0;
   width: 0;
   height: 0;
   border-style: solid;
   border-width: 55px 0 0 400px;
-  border-color: transparent transparent transparent var(--bg2-color)
+  border-color: transparent transparent transparent var(--bg2-color);
 }
 .snip1336 figcaption a {
   padding: 5px;
@@ -302,7 +298,7 @@ figure.snip1336 * {
 .snip1336 h2 {
   margin: 0 0 5px;
   font-weight: 500;
-  color:  var(--h1-color);
+  color: var(--h1-color);
 }
 .snip1336 h2 span {
   display: block;
@@ -318,14 +314,12 @@ figure.snip1336 * {
   color: var(--h1-color);
 }
 
-
 /* Classes */
 .logo {
   font-size: 24px;
   text-transform: uppercase;
   letter-spacing: 4px;
 }
-
 
 /* Footer */
 
@@ -396,7 +390,6 @@ footer {
   }
 }
 
-
 /* Fading animation */
 .fade {
   animation-name: fade;
@@ -429,8 +422,8 @@ section:nth-child(2n) {
 /* Button to top */
 button.--btn-top {
   position: fixed;
-  bottom: 20px; 
-  right: 30px; 
+  bottom: 20px;
+  right: 30px;
   width: 45px;
   height: 45px;
   line-height: 45px;
@@ -439,12 +432,12 @@ button.--btn-top {
   border-radius: 50%;
 }
 
-button.--btn-top__hover{
+button.--btn-top__hover {
   opacity: 0.65;
   transition: all 0.25s ease;
 }
 
-button.--btn-top__hover:hover{
+button.--btn-top__hover:hover {
   opacity: 1;
 }
 
@@ -470,7 +463,6 @@ button.--btn-top__hover:hover{
 }
 
 /* Loader */
-
 
 /* Background Linear Gradient */
 .css-selector {

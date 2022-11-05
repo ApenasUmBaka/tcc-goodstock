@@ -3,78 +3,136 @@ import { Logger } from "winston";
 import { Request, Response } from "express";
 
 import Security from "@security";
-import { RequestRegisterUserBody } from "@types";
+import {
+  RequestRegisterUserLoginOrg,
+  RequestRegisterUserRegisterOrg,
+} from "@types";
 import OrganizationsModel from "@models/organizationsModel";
 import ValidatorController from "@controllers/validatorController";
+import CustomersModel from "@models/customersModel";
 
 // Classes
 class RegisterController {
   public static async get(req: Request, res: Response) {
-    res.status(200).render("cad-login", { messageError: "" });
+    if (!req.session.user?.email) {
+      return res.status(200).render("cad-login", { messageError: "" });
+    }
+
+    res.status(200).render("workstation");
   }
 
   public static async post(req: Request, res: Response) {
-    console.log(JSON.stringify(req.body, null, 4));
-    if (!this.postCheckParams(req.logger, req.body)) {
-      req.logger.info('The request has some invalid param. Returning...');
+    // Check the params.
+    const neededParams = ["name", "email", "password"];
+
+    if (!Security.filterParams(neededParams, req.body)) {
+      req.logger.info("The request has some invalid param. Returning...");
       return res.status(400).render("cad-login", {
         messageError: "Algum campo não foi devidamente enviado.",
       });
     }
 
-    const params: RequestRegisterUserBody = req.body;
-    // Check if the email has already been taken.
-    if (await ValidatorController.isEmailTaken(req.logger, params.registerEmail)) {
-      req.logger.info('The provided email has already been taken. Returning...');
-      return res.status(400).render('cad-login', {
-        messageError: "O email fornecido já está sendo utilizado por uma conta."
+    // Check the organization.
+    req.logger.info("Checking the organization informations...");
+    let orgId: number | undefined;
+    const body: RequestRegisterUserRegisterOrg | RequestRegisterUserLoginOrg =
+      req.body;
+    if (req.body.registerAccountRegisterOrganization) {
+      req.logger.info("The [CREATE] organization was called.");
+      orgId = await this.createOrganization(req.logger, body as any);
+    } else {
+      req.logger.info("The [FIND] organization was called.");
+      orgId = await this.findOrganization(req.logger, body as any);
+    }
+
+    if (!orgId) {
+      return res.status(400).render("cad-login", {
+        messageError: "O id da organização está incorreto.",
       });
     }
 
-    // Check if the organization password is valid.
+    // Try to auth with the organization
+    req.logger.info("Trying to auth with the organization...");
     const orgModel = new OrganizationsModel(req.logger);
-    const authResult = await orgModel.authOrganization(params.registerOrgId, params.registerOrgPasswd);
-    
-    if (!authResult) {
-      req.logger.info('The provided organization is not valid. Returning...');
-      return res.status(400).render('cad-login', {
-        messageError: "A autenticação com a organização não foi realizada."
+    if (!(await orgModel.authOrganization(orgId, body.masterPassword))) {
+      return res.status(401).render("cad-login", {
+        messageError: "Não foi possivel se autenticar com a organização.",
       });
     }
 
     // Create the user.
-    req.logger.info('All the data is valid. Creating new user...');
-
+    req.logger.info("All the data is valid. Creating new user...");
+    const customersModel = new CustomersModel(req.logger);
+    const customer = await customersModel.createCustomer(
+      body.name,
+      body.email,
+      body.password,
+      orgId
+    );
+    if (!customer) {
+      return res.status(500).render("cad-login", {
+        messageError: "O usuário não foi criado devido a um erro no servidor.",
+      });
+    }
 
     // Set the user in the session.
+    req.session.user!.id = customer.id;
+    req.session.user!.name = customer.name;
+    req.session.user!.email = customer.email;
+    req.session.user!.organizationId = customer.organizationId;
+    req.session.save();
 
-    res.status(200).redirect('/workspace');
+    // Redirect to the workspace.
+    res.status(200).redirect("/workspace");
   }
 
   /**
-   * A method to check the params from the route POST /register.
-   * @param body 
+   * A method to create an organization and return the id.
    */
-  private static postCheckParams(logger: Logger, body: any): boolean {
-    // Check the params ('name', 'email', 'password', 'organizationId', 'masterPassword')
-    const neededParams = [
-      "registerName",
-      "registerEmail",
-      "registerPasswd",
-      "registerOrgId",
-      "registerOrgPasswd",
-    ];
-
-    if (!Security.filterParams(neededParams, body)) {
-      return false;
+  private static async createOrganization(
+    logger: Logger,
+    body: RequestRegisterUserRegisterOrg
+  ): Promise<number | undefined> {
+    // Check the params.
+    const neededParamsToRegisterOrg = ["organizationName", "masterPassword"];
+    if (!Security.filterParams(neededParamsToRegisterOrg, body)) {
+      return;
     }
 
-    // Check params type
-    if (!ValidatorController.isRegisterUserValid(logger, body)) {
-      return false;
+    // Try to create the organization.
+    const organizationsModel = new OrganizationsModel(logger);
+    const createdOrganization = await organizationsModel.createOrganization(
+      body.organizationName,
+      body.masterPassword
+    );
+
+    // Return the result.
+    if (!createdOrganization) return;
+    return createdOrganization.id;
+  }
+
+  /**
+   * A method to find an organization and return the id.
+   */
+  private static async findOrganization(
+    logger: Logger,
+    body: RequestRegisterUserLoginOrg
+  ): Promise<number | undefined> {
+    // Check the params.
+    const neededParamsToRegisterOrg = ["organizationId", "masterPassword"];
+    if (!Security.filterParams(neededParamsToRegisterOrg, body)) {
+      return;
     }
 
-    return true;
+    // Try to create the organization.
+    const organizationsModel = new OrganizationsModel(logger);
+    const createdOrganization = await organizationsModel.findOrganization(
+      body.organizationId
+    );
+
+    // Return the result.
+    if (!createdOrganization) return;
+    return createdOrganization.id;
   }
 }
 

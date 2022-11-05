@@ -67,11 +67,6 @@ router.patch(
   OrganizationsController.patchOrganization.bind(OrganizationsController)
 );
 
-router.get(
-  "/customers/:id/auth",
-  CustomersController.getAuth.bind(CustomersController)
-);
-
 router.all("*", (req, res) => {
   const logger = LoggerFactory.createLogger(req.ip);
   logger.info("Acessed an unknown route.");

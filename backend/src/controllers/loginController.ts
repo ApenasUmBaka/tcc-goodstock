@@ -11,7 +11,7 @@ class LoginController {
       return res.status(200).render("cad-login", { messageError: "" });
     }
 
-    res.status(200).render('workstation');
+    res.status(200).render("workstation");
   }
 
   public static async post(req: Request, res: Response) {
@@ -19,25 +19,30 @@ class LoginController {
 
     const params = Security.filterParams(neededParams, req.body);
     if (!params) {
-      req.logger.info('Some requested fields was not sent in the request. Returning...');
+      req.logger.info(
+        "Some requested fields was not sent in the request. Returning..."
+      );
       return res.status(400).render("cad-login", {
-          messageError: "Algum campo não foram devidamente enviado.",
-        });
+        messageError: "Algum campo não foram devidamente enviado.",
+      });
     }
 
     // Check if customer is valid.
     const customerModel = new CustomersModel(req.logger);
-    const user = await customerModel.authCustomer(params.loginEmail, params.loginPasswd);
+    const user = await customerModel.authCustomer(
+      params.loginEmail,
+      params.loginPasswd
+    );
 
     if (!user) {
-      req.logger.info('Invalid credentials. Returning...');
-      return res.status(400).render('cad-login', {
-        messageError: "As credenciais inseridas não são válidas."
-      })
+      req.logger.info("Invalid credentials. Returning...");
+      return res.status(400).render("cad-login", {
+        messageError: "As credenciais inseridas não são válidas.",
+      });
     }
 
     req.session.user = user;
-    res.redirect('/workstation');
+    res.redirect("/workstation");
   }
 }
 

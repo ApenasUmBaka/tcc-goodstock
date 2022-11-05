@@ -28,13 +28,13 @@ paths:
             type: string
             example: email@domain.com
       responses:
-        '200':
+        "200":
           description: Successful operation.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ClientCustomer'          
-        '400':
+                $ref: "#/components/schemas/ClientCustomer"
+        "400":
           description: Invalid email or id.
       security:
         - bearerAuth: [read]
@@ -58,15 +58,15 @@ paths:
             type: string
             example: password123
       responses:
-        '200':
+        "200":
           description: Successful operation.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ClientCustomer'          
-        '400':
+                $ref: "#/components/schemas/ClientCustomer"
+        "400":
           description: Invalid email.
-        '401':
+        "401":
           description: Invalid password.
       security:
         - bearerAuth: [read]
@@ -84,13 +84,13 @@ paths:
             type: integer
             format: int32
       responses:
-        '200':
+        "200":
           description: Successful operation.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ClientCustomer'          
-        '400':
+                $ref: "#/components/schemas/ClientCustomer"
+        "400":
           description: Invalid email or id.
       security:
         - bearerAuth: [read]
@@ -111,15 +111,15 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PostCustomer'
+              $ref: "#/components/schemas/PostCustomer"
       responses:
-        '201':
+        "201":
           description: Successful operation.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ClientCustomer'          
-        '400':
+                $ref: "#/components/schemas/ClientCustomer"
+        "400":
           description: Invalid customer.
       security:
         - bearerAuth: [write]
@@ -139,15 +139,15 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PostCustomer'
+              $ref: "#/components/schemas/PostCustomer"
       responses:
-        '201':
+        "201":
           description: Successful operation.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ClientCustomer'          
-        '400':
+                $ref: "#/components/schemas/ClientCustomer"
+        "400":
           description: Invalid customer.
       security:
         - bearerAuth: [write]
@@ -171,15 +171,15 @@ paths:
             type: string
             example: password123
       responses:
-        '200':
+        "200":
           description: Successful operation.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ClientCustomer'          
-        '400':
+                $ref: "#/components/schemas/ClientCustomer"
+        "400":
           description: Invalid email.
-        '401':
+        "401":
           description: Invalid password.
       security:
         - bearerAuth: [read]
@@ -197,13 +197,13 @@ paths:
             type: string
             example: organization A
       responses:
-        '200':
+        "200":
           description: Successful operation.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ClientOrganization'          
-        '400':
+                $ref: "#/components/schemas/ClientOrganization"
+        "400":
           description: Invalid name.
       security:
         - bearerAuth: [read]
@@ -216,19 +216,19 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PostOrganization'
+              $ref: "#/components/schemas/PostOrganization"
       responses:
-        '200':
+        "200":
           description: Successful operation.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ClientOrganization'          
-        '400':
+                $ref: "#/components/schemas/ClientOrganization"
+        "400":
           description: Invalid name or master password.
       security:
         - bearerAuth: [write]
-  
+
   /organizations/organizations/auth:
     get:
       tags:
@@ -248,15 +248,15 @@ paths:
             type: string
             example: password123
       responses:
-        '200':
+        "200":
           description: Successful operation.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ClientOrganization'          
-        '400':
+                $ref: "#/components/schemas/ClientOrganization"
+        "400":
           description: Invalid id.
-        '401':
+        "401":
           description: Invalid password.
       security:
         - bearerAuth: [read]
@@ -274,13 +274,13 @@ paths:
             type: integer
             format: int32
       responses:
-        '200':
+        "200":
           description: Successful operation.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ClientOrganization'          
-        '400':
+                $ref: "#/components/schemas/ClientOrganization"
+        "400":
           description: Invalid id.
       security:
         - bearerAuth: [read]
@@ -296,13 +296,13 @@ paths:
             type: integer
             format: int32
       responses:
-        '200':
+        "200":
           description: Successful operation.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ClientOrganization'          
-        '400':
+                $ref: "#/components/schemas/ClientOrganization"
+        "400":
           description: Invalid id.
       security:
         - bearerAuth: [write]
@@ -320,13 +320,13 @@ paths:
             type: integer
             format: int32
       responses:
-        '200':
+        "200":
           description: Successful operation.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ClientOrganization'          
-        '400':
+                $ref: "#/components/schemas/ClientOrganization"
+        "400":
           description: Invalid id.
       security:
         - bearerAuth: [read]
@@ -379,7 +379,7 @@ components:
         masterPassword:
           type: string
           example: password123
-    
+
     PatchOrganization:
       type: object
       properties:
@@ -403,9 +403,9 @@ components:
         data:
           type: object
           required:
-          - id
-          - email
-          - organizationId
+            - id
+            - email
+            - organizationId
           properties:
             id:
               type: integer
@@ -447,8 +447,7 @@ components:
       type: http
       scheme: bearer
 
-
 security:
   - bearerAuth:
-    - read
-    - write
+      - read
+      - write

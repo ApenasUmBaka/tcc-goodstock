@@ -35,7 +35,7 @@ class HTTPSServer {
         secret: process.env.SESSIONSECRET!,
         cookie: { secure: true },
         saveUninitialized: false,
-        resave: true
+        resave: true,
       })
     );
     app.use(router);

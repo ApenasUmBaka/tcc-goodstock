@@ -13,13 +13,13 @@ const salesSchema = new Schema(
       required: true,
       of: {
         type: Map,
-        values: Number
-      }
-    }
+        values: Number,
+      },
+    },
   },
   {
     strict: false,
-    timestamps: true
+    timestamps: true,
   }
 );
 

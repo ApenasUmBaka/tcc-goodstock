@@ -29,7 +29,7 @@ p {
   margin: 20px 0 30px;
 }
 
-i{
+i {
   margin: 3px;
 }
 
@@ -58,7 +58,7 @@ input.submitInput {
   border-color: var(--button2-color);
 }
 
-button{
+button {
   border-radius: 6px;
   background-color: var(--two-color);
   width: 10rem;
@@ -69,8 +69,7 @@ button{
   transition: var(--tran-03);
 }
 
-
-button:hover{
+button:hover {
   color: var(--bg-color);
 }
 
@@ -113,7 +112,7 @@ input {
   width: 100%;
 }
 /* Input */
-.label-float input{
+.label-float input {
   width: 100%;
   padding: 5px 5px;
   display: inline-block;
@@ -123,45 +122,44 @@ input {
   outline: none;
   min-width: 200px;
   font-size: 16px;
-  transition: all .3s ease-out;
+  transition: all 0.3s ease-out;
   border-radius: 0;
-  
 }
 
-.label-float{
+.label-float {
   position: relative;
   padding-top: 13px;
   margin-top: 1%;
   margin-bottom: 1%;
 }
 
-.label-float input:focus{
+.label-float input:focus {
   border-bottom: 2px solid #fcc99e;
 }
 
-.label-float label{
+.label-float label {
   color: var(--two-color);
   /* pointer-event: none; */
   position: absolute;
   top: 0;
   left: 0;
   margin-top: 13px;
-  transition: all .3s ease-out;
+  transition: all 0.3s ease-out;
 }
 
 .label-float input:focus + label,
-.label-float input:valid + label{
+.label-float input:valid + label {
   font-size: 13px;
   margin-top: 0;
   color: #fcc99e;
 }
 
-.justify-center{
+.justify-center {
   display: flex;
   justify-content: center;
 }
 
-.fa-eye{
+.fa-eye {
   position: absolute;
   top: 15px;
   right: 10px;
@@ -171,7 +169,7 @@ input {
 
 /* Error message Forms */
 
-#msgError{
+#msgError {
   text-align: center;
   color: #ff0000;
   background-color: #ffbbbb;
@@ -180,7 +178,7 @@ input {
   display: none;
 }
 
-#msgSuccess{
+#msgSuccess {
   text-align: center;
   color: #00bb00;
   background-color: #bbffbe;
@@ -365,14 +363,13 @@ a.form__hvr-underline-from-left:active:before {
 
 /* Modal Window */
 
-.org-modal{
+.org-modal {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   padding: 0 50px;
 }
-
 
 @keyframes background-in {
   0% {
@@ -460,4 +457,3 @@ a.form__hvr-underline-from-left:active:before {
 .modal p {
   color: var(--h1-color);
 }
-

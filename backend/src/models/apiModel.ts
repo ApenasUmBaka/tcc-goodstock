@@ -24,8 +24,8 @@ abstract class APIModel {
         url: requestUrl,
         data: data,
         headers: {
-          'authorization':`Bearer ${process.env.API_AUTH}`
-        }
+          authorization: `Bearer ${process.env.API_AUTH}`,
+        },
       });
     } catch (err) {
       const error: AxiosError = err as any;

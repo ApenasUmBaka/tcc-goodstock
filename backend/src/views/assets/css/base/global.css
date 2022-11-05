@@ -45,7 +45,7 @@ a {
   cursor: pointer;
 }
 
-input{
+input {
   caret-color: var(--two-color);
 }
 
@@ -75,20 +75,20 @@ h2::selection {
 }
 
 @font-face {
-  font-family: 'Age Regular';
-  src: url('/assets/Fonts/Age.otf') format('opentype');
+  font-family: "Age Regular";
+  src: url("/assets/Fonts/Age.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
 }
 
 /* Color mode WorkStation */
-:root{
+:root {
   /* ===== Colors ===== */
   --body-color: #e5e5e5;
-  --sidebar-color: #FFF;
+  --sidebar-color: #fff;
   --two-color: #e6844f;
-  --two-color-light: #F6F5FF;
-  --toggle-color: #DDD;
+  --two-color-light: #f6f5ff;
+  --toggle-color: #ddd;
   --text-color: #191824;
 
   /* ====== Transition ====== */
@@ -98,7 +98,7 @@ h2::selection {
   --tran-05: all 0.3s ease;
 }
 
-body.dark{
+body.dark {
   --body-color: #18191a;
   --sidebar-color: #242526;
   --two-color: #e6844f;
@@ -129,36 +129,36 @@ body.dark{
 
 @keyframes loader {
   0% {
-      transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   25% {
-      transform: rotate(180deg);
+    transform: rotate(180deg);
   }
   50% {
-      transform: rotate(180deg);
+    transform: rotate(180deg);
   }
   75% {
-      transform: rotate(360deg);
+    transform: rotate(360deg);
   }
   100% {
-      transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 
 @keyframes loader-inner {
   0% {
-      height: 0%;
+    height: 0%;
   }
   25% {
-      height: 0%;
+    height: 0%;
   }
   50% {
-      height: 100%;
+    height: 100%;
   }
   75% {
-      height: 100%;
+    height: 100%;
   }
   100% {
-      height: 0%;
+    height: 0%;
   }
 }
