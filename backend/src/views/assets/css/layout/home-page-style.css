@@ -154,6 +154,11 @@ a.nav__new-cont:hover span.nav__new-cont-span::after {
   height: calc(50px / 2);
 }
 
+.justify-center{
+  display: flex;
+  justify-content: center;
+}
+
 /* Progress Bar */
 #progress {
   background-color: var(--two-color);
@@ -170,11 +175,145 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
   height: 100vh;
-  overflow: hidden;
-  margin: 0;
 }
 
+h1.main-goodstock{
+  font-size: 50px;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-family: 'Age Regular';
+}
+
+h1.main-text {
+  color: #333;
+  font-size: 3rem;
+  font-weight: 100;
+  line-height: 1.5;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  position: relative;
+  width: 550px;
+}
+
+h1.main-text span.main-text {
+  font-size: 40px;
+  margin-left: 40px;
+}
+
+.message {
+  background-color: yellow;
+  color: #333;
+  display: block;
+  font-weight: 900;
+  overflow: hidden;
+  position: absolute;
+  padding-left: 0.5rem;
+  top: 0.2rem;
+  left: 270px;
+  animation: openclose 5s ease-in-out infinite;
+}
+
+.word1, .word2, .word3 {
+  font-family: tahoma;
+}
+
+@keyframes openclose {
+  0% {
+    top: 0.2rem;
+    width: 0;
+  }
+  5% {
+    width: 0;
+  }
+  15% {
+    width: 230px;
+  }
+  30% {
+    top: 0.2rem;
+    width: 230px;
+  }
+  33% {
+    top: 0.2rem;
+    width: 0;
+  }
+  35% {
+    top: 0.2rem;
+    width: 0;
+  }
+  38% {
+    top: -4.5rem;
+    
+  }
+  48% {
+    top: -4.5rem;
+    width: 190px;
+  }
+  62% {
+    top: -4.5rem;
+    width: 190px;
+  }
+  66% {
+    top: -4.5rem;
+    width: 0;
+    text-indent: 0;
+  }
+  71% {
+    top: -9rem;
+    width: 0;
+    text-indent: 5px;
+  }
+  86% {
+    top: -9rem;
+    width: 285px;
+  }
+  95% {
+    top: -9rem;
+    width: 285px;
+  }
+  98% {
+    top: -9rem;
+    width: 0;
+    text-indent: 5px;
+  }
+  100% {
+    top: 0;
+    width: 0;
+    text-indent: 0;
+  }
+}
+
+.main-slider{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 1000px;
+  height: 200px;
+  overflow-x: scroll;
+  background-color: var(--bg-color);
+  padding: 2%;
+  border-radius: 8px;
+  box-shadow: 0  4px 5px 0 var(--two-color), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.main-slide__img{
+  display: flex;
+  flex-direction: row;
+}
+
+img.main-slide__img{
+  width: 200px;
+  height: 200px;
+  border-radius: 6px;
+  box-shadow: 0px 0px 15px var(--primary-color);
+  margin-right: 50px;
+  object-fit: cover;
+}
+
+/* Introdução */
 #introducao {
   display: flex;
   justify-content: center;
@@ -191,9 +330,12 @@ main {
 
 .intro__card-intro {
   background-color: var(--bg-color);
+  padding: 5px;
+  text-align: center;
+  text-align-last: center;
   border-radius: 6px;
   border: solid 4px var(--primary-color);
-  box-shadow: 15px 15px 0 -4px var(--two-color), 15px 15px black;
+  box-shadow: 15px 15px 0 -4px var(--two-color), 15px 15px var(--primary-color);
 }
 
 
@@ -206,12 +348,43 @@ main {
   margin: 5px;
 }
 
+.tutorial__cards{
+  display: inline-flex;
+  margin: 10px;
+}
+
+.card-info{
+  background-color: var(--bg2-color);
+  text-align: center;
+  border-radius: 6px;
+  min-width: 120px;
+  max-width: 230px;
+  margin: 25px;
+  width: 100%;
+  border: solid 4px var(--primary-color);
+  box-shadow: 15px 15px 0 -4px var(--button-color), 15px 15px var(--primary-color);
+}
+
+.card-info .photo {
+  display: flex;
+  justify-content: center;
+  border-radius: 50%;
+  margin-top: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 1;
+  max-width: 180px;
+  opacity: 1;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
 
 /* Good */
 #good {
   display: flex;
   justify-content: center;
 }
+
+
 
 /* About us */
 #about-us {
@@ -236,7 +409,7 @@ figure.snip1336 {
   color: var(--bg-color);
   text-align: left;
   line-height: 1.4em;
-  background-color: var(--primary-color);
+  background-color: var(--bg-color);
 }
 figure.snip1336 * {
   -webkit-box-sizing: border-box;
@@ -284,6 +457,7 @@ figure.snip1336 * {
 .snip1336 figcaption a:hover {
   opacity: 1;
 }
+/* Ideia de Card */
 .snip1336 .profile {
   border-radius: 50%;
   position: absolute;
