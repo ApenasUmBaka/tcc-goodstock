@@ -12,7 +12,7 @@ class WorkspaceController {
     }
 
     console.log(req.session.user!.name);
-    res.status(200).render("work-station1", {user: req.session.user!});
+    res.status(200).render("work-station1", { user: req.session.user! });
   }
 }
 

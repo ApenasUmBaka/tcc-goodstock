@@ -29,7 +29,7 @@ p {
   margin: 20px 0 30px;
 }
 
-i{
+i {
   margin: 3px;
 }
 
@@ -58,8 +58,8 @@ input.submitInput {
   border-color: var(--button2-color);
 }
 
-
-button, input[type="submit"] {
+button,
+input[type="submit"] {
   border-radius: 6px;
   background-color: var(--two-color);
   width: 10rem;
@@ -71,8 +71,8 @@ button, input[type="submit"] {
   cursor: pointer;
 }
 
-
-button:hover, input[type="submit"]:hover {
+button:hover,
+input[type="submit"]:hover {
   color: var(--bg-color);
 }
 
@@ -80,12 +80,14 @@ input.submitInput:active {
   transform: scale(0.95);
 }
 
-button:focus, input.submitInput:focus, input[type="submit"]:focus {
+button:focus,
+input.submitInput:focus,
+input[type="submit"]:focus {
   outline: none;
 }
 
-
-button.ghost, input[type="submit"] {
+button.ghost,
+input[type="submit"] {
   background-color: var(--button2-color);
   border-radius: 6px;
   width: 10rem;
@@ -125,11 +127,11 @@ input {
   outline: none;
   min-width: 200px;
   font-size: 16px;
-  transition: all .3s ease-out;
+  transition: all 0.3s ease-out;
   border-radius: 0;
 }
 
-.label-float{
+.label-float {
   transition: all 0.3s ease-out;
   border-radius: 0;
 }
@@ -141,7 +143,7 @@ input {
   margin-bottom: 1%;
 }
 
-.label-float input:focus{
+.label-float input:focus {
   border-bottom: 2px solid #fcc99e;
 }
 
@@ -152,7 +154,7 @@ input {
   top: 0;
   left: 0;
   margin-top: 13px;
-  transition: all .3s ease-out;
+  transition: all 0.3s ease-out;
 }
 
 .label-float input:focus + label,

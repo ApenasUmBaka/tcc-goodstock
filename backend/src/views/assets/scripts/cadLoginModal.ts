@@ -38,8 +38,8 @@ function toggleModal() {
 }
 
 // Events
-const modalButton = document.getElementById('modal-button')!;
-modalButton.addEventListener('click', toggleModal);
+const modalButton = document.getElementById("modal-button")!;
+modalButton.addEventListener("click", toggleModal);
 
 // Register event
 const registerSubmitButton = document.getElementById(

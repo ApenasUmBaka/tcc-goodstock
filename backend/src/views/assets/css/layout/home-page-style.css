@@ -153,7 +153,7 @@ a.nav__new-cont:hover span.nav__new-cont-span::after {
   height: calc(50px / 2);
 }
 
-.justify-center{
+.justify-center {
   display: flex;
   justify-content: center;
 }
@@ -178,11 +178,11 @@ main {
   height: 100vh;
 }
 
-h1.main-goodstock{
+h1.main-goodstock {
   font-size: 50px;
   text-transform: uppercase;
   letter-spacing: 4px;
-  font-family: 'Age Regular';
+  font-family: "Age Regular";
 }
 
 h1.main-text {
@@ -215,7 +215,9 @@ h1.main-text span.main-text {
   animation: openclose 5s ease-in-out infinite;
 }
 
-.word1, .word2, .word3 {
+.word1,
+.word2,
+.word3 {
   font-family: tahoma;
 }
 
@@ -244,7 +246,6 @@ h1.main-text span.main-text {
   }
   38% {
     top: -4.5rem;
-    
   }
   48% {
     top: -4.5rem;
@@ -284,7 +285,7 @@ h1.main-text span.main-text {
   }
 }
 
-.main-slider{
+.main-slider {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -295,15 +296,15 @@ h1.main-text span.main-text {
   background-color: var(--bg-color);
   padding: 2%;
   border-radius: 8px;
-  box-shadow: 0  4px 5px 0 var(--two-color), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 5px 0 var(--two-color), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.main-slide__img{
+.main-slide__img {
   display: flex;
   flex-direction: row;
 }
 
-img.main-slide__img{
+img.main-slide__img {
   width: 200px;
   height: 200px;
   border-radius: 6px;
@@ -345,12 +346,12 @@ img.main-slide__img{
   margin: 5px;
 }
 
-.tutorial__cards{
+.tutorial__cards {
   display: inline-flex;
   margin: 10px;
 }
 
-.card-info{
+.card-info {
   background-color: var(--bg2-color);
   text-align: center;
   border-radius: 6px;
@@ -359,7 +360,8 @@ img.main-slide__img{
   margin: 25px;
   width: 100%;
   border: solid 4px var(--primary-color);
-  box-shadow: 15px 15px 0 -4px var(--button-color), 15px 15px var(--primary-color);
+  box-shadow: 15px 15px 0 -4px var(--button-color),
+    15px 15px var(--primary-color);
 }
 
 .card-info .photo {
@@ -380,8 +382,6 @@ img.main-slide__img{
   display: flex;
   justify-content: center;
 }
-
-
 
 /* About us */
 #about-us {
