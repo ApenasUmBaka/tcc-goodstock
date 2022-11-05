@@ -1,9 +1,8 @@
 // Libs
 import { Logger } from "winston";
 
-import { APIResponse, User } from "@types";
-import Security from "@security";
 import APIModel from "@models/apiModel";
+import { APIResponse, ClientOrganization } from "@types";
 
 // Classes
 class OrganizationsModel extends APIModel {
@@ -22,17 +21,10 @@ class OrganizationsModel extends APIModel {
     orgId: number,
     orgPasswd: string
   ): Promise<boolean> {
-    this.logger.info(`Checking the auth from organization[${orgId}]`);
-    const data = {
-        organizationId: orgId,
-        organizationPasswd: orgPasswd
-    };
-
     this.logger.info("Trying to auth with the organization...");
     const authResponse = await this.callAPI(
       "GET",
-      '/organizations/auth',
-      data
+      `/organizations/auth/?id=${orgId}&masterPassword=${orgPasswd}`
     );
 
     if (!authResponse) {
@@ -41,12 +33,72 @@ class OrganizationsModel extends APIModel {
 
     const resData: APIResponse = authResponse?.data;
 
-    if (authResponse.status != 200 || resData.status == 'Error') {
-        this.logger.info('The auth was not authorized.');
-        return false;
+    if (resData.status == "Error") {
+      this.logger.info("The auth was not authorized.");
+      return false;
     }
 
     return true;
+  }
+
+  /**
+   * A method to create an organization.
+   */
+  public async createOrganization(
+    orgName: string,
+    orgPasswd: string
+  ): Promise<ClientOrganization | undefined> {
+    const data = {
+      name: orgName,
+      masterPassword: orgPasswd,
+    };
+
+    this.logger.info("Trying to create the new organization...");
+    const authResponse = await this.callAPI("POST", "/organizations/", data);
+
+    if (!authResponse) {
+      this.logger.info(`The organization couldn't be created.`);
+      return;
+    }
+
+    const resData: APIResponse = authResponse?.data;
+    if (resData.status == "Error") {
+      this.logger.info("The request has returned some error.");
+      return;
+    }
+
+    return resData.data;
+  }
+
+  /**
+   * A method to find an organization.
+   */
+  public async findOrganization(
+    query: any
+  ): Promise<ClientOrganization | undefined> {
+    this.logger.info("Trying to find an organization...");
+    let authResponse: any;
+    if (query.id) {
+      authResponse = await this.callAPI("GET", `/organizations/${query.id}`);
+    } else {
+      const data = {
+        where: query,
+      };
+      authResponse = await this.callAPI("GET", `/organizations/`, data);
+    }
+
+    if (!authResponse) {
+      this.logger.info(`The organization couldn't be found.`);
+      return;
+    }
+
+    const resData: APIResponse = authResponse?.data;
+    if (resData.status == "Error") {
+      this.logger.info("The request has returned some error.");
+      return;
+    }
+
+    return resData.data;
   }
 }
 

@@ -29,7 +29,7 @@ p {
   margin: 20px 0 30px;
 }
 
-i{
+i {
   margin: 3px;
 }
 
@@ -58,7 +58,7 @@ input.submitInput {
   border-color: var(--button2-color);
 }
 
-button{
+button, input[type="submit"] {
   border-radius: 6px;
   background-color: var(--two-color);
   width: 10rem;
@@ -67,10 +67,10 @@ button{
   font-weight: 500;
   letter-spacing: 0.1rem;
   transition: var(--tran-03);
+  cursor: pointer;
 }
 
-
-button:hover{
+button:hover, input[type="submit"]:hover {
   color: var(--bg-color);
 }
 
@@ -78,12 +78,11 @@ input.submitInput:active {
   transform: scale(0.95);
 }
 
-button:focus,
-input.submitInput:focus {
+button:focus, input.submitInput:focus, input[type="submit"]:focus {
   outline: none;
 }
 
-button.ghost {
+button.ghost, input[type="submit"] {
   background-color: var(--button2-color);
   border-radius: 6px;
   width: 10rem;
@@ -113,7 +112,7 @@ input {
   width: 100%;
 }
 /* Input */
-.label-float input{
+.label-float input {
   width: 100%;
   padding: 5px 5px;
   display: inline-block;
@@ -135,11 +134,11 @@ input {
   margin-bottom: 1%;
 }
 
-.label-float input:focus{
+.label-float input:focus {
   border-bottom: 2px solid #fcc99e;
 }
 
-.label-float label{
+.label-float label {
   color: var(--two-color);
   /* pointer-event: none; */
   position: absolute;
@@ -150,18 +149,18 @@ input {
 }
 
 .label-float input:focus + label,
-.label-float input:valid + label{
+.label-float input:valid + label {
   font-size: 13px;
   margin-top: 0;
   color: #fcc99e;
 }
 
-.justify-center{
+.justify-center {
   display: flex;
   justify-content: center;
 }
 
-.fa-eye{
+.fa-eye {
   position: absolute;
   top: 15px;
   right: 10px;
@@ -171,7 +170,7 @@ input {
 
 /* Error message Forms */
 
-#msgError{
+#msgError {
   text-align: center;
   color: #ff0000;
   background-color: #ffbbbb;
@@ -180,7 +179,7 @@ input {
   display: none;
 }
 
-#msgSuccess{
+#msgSuccess {
   text-align: center;
   color: #00bb00;
   background-color: #bbffbe;
@@ -365,14 +364,13 @@ a.form__hvr-underline-from-left:active:before {
 
 /* Modal Window */
 
-.org-modal{
+.org-modal {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   padding: 0 50px;
 }
-
 
 @keyframes background-in {
   0% {

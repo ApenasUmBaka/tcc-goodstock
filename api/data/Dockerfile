@@ -1,15 +1,16 @@
-FROM node:19
+FROM python:3.10
 WORKDIR /app
 
 ENV TZ=America/Sao_Paulo
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime; echo $TZ > /etc/timezone
 RUN date 
 
+RUN useradd user
+
 COPY . ./
-RUN chown -R node .
+RUN chown -R user .
+RUN pip3 install -r requirements.txt
 
-USER node
-RUN yarn
+USER user
 
-CMD yarn run start:prod
-# CMD yarn run start:dev
+CMD python3 -u src/main.py
