@@ -109,6 +109,21 @@ body.dark {
 
 /* Loader */
 
+.fade{
+  opacity: 0;
+  visibility: hidden;
+}
+
+.wrapper{
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-color: #090c24;
+  display: grid;
+  place-items: center;
+  transition: opacity .25s, visibility 1s;
+}
+
 .loader {
   display: inline-block;
   width: 50px;
@@ -116,6 +131,7 @@ body.dark {
   position: relative;
   border: 4px solid var(--button2-color);
   top: 50%;
+  z-index: 1000;
   animation: loader 2s infinite ease;
 }
 

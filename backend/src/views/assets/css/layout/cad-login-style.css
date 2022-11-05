@@ -122,11 +122,12 @@ input {
   outline: none;
   min-width: 200px;
   font-size: 16px;
-  transition: all 0.3s ease-out;
+  transition: all .3s ease-out;
   border-radius: 0;
+  
 }
 
-.label-float {
+.label-float{
   position: relative;
   padding-top: 13px;
   margin-top: 1%;
@@ -144,7 +145,7 @@ input {
   top: 0;
   left: 0;
   margin-top: 13px;
-  transition: all 0.3s ease-out;
+  transition: all .3s ease-out;
 }
 
 .label-float input:focus + label,
