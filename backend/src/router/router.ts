@@ -20,7 +20,10 @@ router.get("/", (req: Request, res: Response) => {
   res.status(200).render("index");
 });
 
-router.get('/microsoftAuth', microsoftAuthController.get.bind(microsoftAuthController));
+router.get(
+  "/microsoftAuth",
+  microsoftAuthController.get.bind(microsoftAuthController)
+);
 
 router.get("/register", RegisterController.get.bind(RegisterController));
 router.post("/register", RegisterController.post.bind(RegisterController));
@@ -32,8 +35,8 @@ router.get("/workspace", WorkspaceController.get.bind(WorkspaceController));
 
 router.all("/contact-us", ContactUsController.all.bind(ContactUsController));
 
-router.all('*', (req: Request, res: Response) => {
-  res.status(404).render('notfound');
+router.all("*", (req: Request, res: Response) => {
+  res.status(404).render("notfound");
 });
 
 // Code

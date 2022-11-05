@@ -1,70 +1,100 @@
 // Libs
 import { Logger } from "winston";
-import Sequelize from "sequelize";
+import { Model } from "sequelize";
 
 import Database from "./databaseModel";
+import Security from "../controllers/security";
 import customerSchema from "./schemas/customersSchema";
-import { _Customer } from "@types";
+import { Customer, FindCustomer, PatchCustomer } from "../types/types";
 
 // Data
-abstract class CustomersModel {
-  public static model = Database.seq.define("customers", customerSchema);
+class CustomersModel {
+  private logger: Logger;
+  public model = Database.seq.define("customers", customerSchema);
+
+  constructor(logger: Logger) {
+    this.logger = logger;
+  }
 
   /**
    * A method to create a new Customer.
    */
-  public static async createCustomer(
-    logger: Logger,
-    params: any
-  ): Promise<_Customer> {
-    logger.info("Creating the new customer...");
-    let newCustomer: _Customer;
-    try {
-      newCustomer = (await this.model.create(params)).toJSON();
-    } catch (err) {
-      logger.error(`The customer couldn't be created. Error: ${err}`);
-      throw err;
-    }
+  public async createCustomer(params: Customer): Promise<Customer | undefined> {
+    this.logger.info("Creating the new customer...");
 
-    logger.info(`The new customer #${newCustomer.id} was created.`);
-    return newCustomer;
+    // Create the new customer.
+    params.password = Security.toHash(params.password);
+    try {
+      const newCustomer: Customer = (
+        await this.model.create(params as any)
+      ).toJSON();
+      this.logger.info(`The new customer #${newCustomer.id} was created.`);
+      return newCustomer;
+    } catch (err) {
+      this.logger.error(`The customer couldn't be created. Error: ${err}`);
+      return;
+    }
   }
 
   /**
    * A method to get a customer.
    */
-  public static async findCustomer(
-    logger: Logger,
-    params: any
-  ): Promise<_Customer | undefined> {
-    logger.info("Locating a customer...");
+  public async findCustomer(
+    params: FindCustomer,
+    returnModel?: boolean
+  ): Promise<Customer | Model | undefined> {
+    this.logger.info("Locating a customer...");
 
-    const customer = await this.model.findOne({
-      where: params,
-    });
+    // Try to find the customer.
+    try {
+      const customer = await this.model.findOne({
+        where: params as any,
+      });
 
-    if (!customer) {
-      logger.info("A customer with the provided query was not found.");
+      // Return the result to the caller.
+      if (!customer) {
+        this.logger.info("A customer with the provided query was not found.");
+        return;
+      }
+
+      this.logger.info("A customer with the provided query was found.");
+      if (returnModel) return customer;
+      return customer.toJSON();
+    } catch (err) {
+      this.logger.error(`The customer couldn't be found. Error: ${err}`);
       return;
     }
-
-    logger.info("A customer with the provided query was found.");
-    return customer.toJSON();
   }
 
-  public static async updateCustomer(
-    logger: Logger,
+  /**
+   * A method to update a customer
+   */
+  public async updateCustomer(
     id: number,
-    params: any
-  ): Promise<_Customer> {
-    logger.info(`Updating customer #${id}`);
+    params: PatchCustomer
+  ): Promise<Customer | undefined> {
+    this.logger.info(`Updating customer #${id}`);
 
-    await this.model.update(params, {
-      where: {
-        id: id,
-      },
-    });
-    return this.findCustomer(logger, { id: id }) as any;
+    // Try to update the customer.
+    try {
+      const customer = (await this.findCustomer({ id: id }, true)) as any;
+      if (!customer) throw "No customer found.";
+
+      const paramsKeys = Object.keys(params);
+      paramsKeys.forEach((value, index) => {
+        customer[paramsKeys[index]] = value;
+      });
+
+      customer.name = params.name!;
+      customer.email = params.email!;
+      customer.password = params.password!;
+      await customer.save();
+
+      return customer;
+    } catch (err) {
+      this.logger.error(`The customer couldn't be updated. Error: ${err}`);
+      return;
+    }
   }
 }
 

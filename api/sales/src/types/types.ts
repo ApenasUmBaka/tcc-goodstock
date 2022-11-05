@@ -22,7 +22,7 @@ export interface Sale {
   responsibleId: number;
   organizationId: number;
   soldProducts: {
-    [id: string]: ProductInSale
+    [id: string]: ProductInSale;
   };
 }
 

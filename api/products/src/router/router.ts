@@ -2,7 +2,7 @@
 import { Router } from "express";
 
 import LoggerFactory from "@logger";
-import AuthController from '@controllers/authController';
+import AuthController from "@controllers/authController";
 import ProductsController from "@controllers/productsController";
 
 // Data
@@ -14,11 +14,20 @@ router.post("/products", ProductsController.postProducts.bind);
 
 router.get("/products/:organizationId/", ProductsController.getProduct.bind);
 
-router.get("/products/:organizationId/:productId", ProductsController.getProduct.bind);
+router.get(
+  "/products/:organizationId/:productId",
+  ProductsController.getProduct.bind
+);
 
-router.patch("/products/:organizationId/:productId", ProductsController.patchProduct.bind);
+router.patch(
+  "/products/:organizationId/:productId",
+  ProductsController.patchProduct.bind
+);
 
-router.delete("/products/:organizationId/:productId", ProductsController.deleteProduct.bind);
+router.delete(
+  "/products/:organizationId/:productId",
+  ProductsController.deleteProduct.bind
+);
 
 router.all("*", (req, res) => {
   const logger = LoggerFactory.createLogger(req.ip);
