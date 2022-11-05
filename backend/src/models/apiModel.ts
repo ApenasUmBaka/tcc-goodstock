@@ -2,8 +2,6 @@
 import { Logger } from "winston";
 import axios, { AxiosError, AxiosResponse } from "axios";
 
-import { APIResponse } from "@types";
-
 // Classes
 abstract class APIModel {
   abstract url: string;
