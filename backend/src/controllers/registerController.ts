@@ -14,6 +14,7 @@ class RegisterController {
   }
 
   public static async post(req: Request, res: Response) {
+    console.log(JSON.stringify(req.body, null, 4));
     if (!this.postCheckParams(req.logger, req.body)) {
       req.logger.info('The request has some invalid param. Returning...');
       return res.status(400).render("cad-login", {
