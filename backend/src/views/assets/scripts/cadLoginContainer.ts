@@ -12,6 +12,14 @@ class ContainerController {
     container.classList.remove("right-panel-active");
     window.history.replaceState("", "", "/login");
   }
+
+  public static changePasswordVisibility(passwdInput: HTMLInputElement) {
+    if (passwdInput.getAttribute('type') == 'text') {
+      passwdInput.setAttribute('type', 'password');
+    } else {
+      passwdInput.setAttribute('type', 'text');
+    }
+  }
 }
 
 // Events
@@ -20,6 +28,26 @@ signUpButton.addEventListener("click", ContainerController.changeToRegister);
 
 const signInButton = document.getElementById("signIn") as HTMLButtonElement;
 signInButton.addEventListener("click", ContainerController.changeToLogin);
+
+// Login Passwd
+const loginPasswdVisiblityButton = document.getElementById('showLoginPasswd') as HTMLButtonElement;
+loginPasswdVisiblityButton.addEventListener('click', () => {
+  const passwdInput = document.getElementById('loginPasswd') as HTMLInputElement;
+  ContainerController.changePasswordVisibility(passwdInput);
+});
+
+// Register Passwd
+const passwdVisiblityButton = document.getElementById('showPasswd') as HTMLButtonElement;
+passwdVisiblityButton.addEventListener('click', () => {
+  const passwdInput = document.getElementById('registerPasswd') as HTMLInputElement;
+  ContainerController.changePasswordVisibility(passwdInput);
+});
+
+const confirmPasswdVisiblityButton = document.getElementById('showConfirmPasswd') as HTMLButtonElement;
+confirmPasswdVisiblityButton.addEventListener('click', () => {
+  const passwdInput = document.getElementById('registerConfirmPasswd') as HTMLInputElement;
+  ContainerController.changePasswordVisibility(passwdInput);
+});
 
 // Code
 if (window.location.pathname == "/register")

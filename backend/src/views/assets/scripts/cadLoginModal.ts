@@ -1,6 +1,4 @@
-
 // Functions
-
 /**
  * A function to close the modal.
  */
@@ -35,6 +33,22 @@ function toggleModal() {
   }
 }
 
+
 // Events
-const modalButton = document.getElementById('modal-button')!;
-modalButton.addEventListener('click', toggleModal);
+// Register event
+const registerSubmitButton = document.getElementById('submit-up') as HTMLButtonElement;
+registerSubmitButton.onclick = (event: Event) => {
+  // Check register errors.
+  if (!registerAccount(event)) {
+    return;
+  }
+  toggleModal();
+};
+
+// Login event
+const loginSubmitButton = document.getElementById('submit-in') as HTMLButtonElement;
+loginSubmitButton.onclick = (event: Event) => {
+  // Check login errors.
+  if (!loginAccount(event)) return;
+  toggleModal();
+};
