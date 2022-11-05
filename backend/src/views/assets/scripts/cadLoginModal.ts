@@ -44,11 +44,3 @@ registerSubmitButton.onclick = (event: Event) => {
   }
   toggleModal();
 };
-
-// Login event
-const loginSubmitButton = document.getElementById('submit-in') as HTMLButtonElement;
-loginSubmitButton.onclick = (event: Event) => {
-  // Check login errors.
-  if (!loginAccount(event)) return;
-  toggleModal();
-};

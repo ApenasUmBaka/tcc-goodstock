@@ -85,13 +85,28 @@ function setLabelIncorrect(field: HTMLInputElement, label: HTMLLabelElement, err
 function loginAccount(event: Event) {
   event.preventDefault();
 
+  // Test email
   const loginEmail = document.getElementById("loginEmail") as HTMLInputElement;
-  if (Validator.isEmailValid(loginEmail.value)) return false;
+  const loginEmailLabel = document.getElementById("loginEmailLabel") as HTMLLabelElement;
+  const emailError = Validator.isEmailValid(loginEmail.value);
+  if (emailError) {
+    setLabelIncorrect(loginEmail, loginEmailLabel, emailError);
+    return false;
+  } else {
+    setLabelCorrect(loginEmail, loginEmailLabel, 'Email: ');
+  }
 
+  // Test Password
   const loginPasswd = document.getElementById("loginPasswd") as HTMLInputElement;
-  if (Validator.isPasswdValid(loginPasswd.value)) return false;
+  const loginPasswdLabel = document.getElementById("loginPasswdLabel") as HTMLLabelElement;
+  const passwdError = Validator.isPasswdValid(loginPasswd.value);
+  if (passwdError) {
+    setLabelIncorrect(loginPasswd, loginPasswdLabel, passwdError);
+    return false;
+  } else {
+    setLabelCorrect(loginPasswd, loginPasswdLabel, 'Senha: ');
+  }
 
-  errorElement.innerHTML = "";
   return true;
 }
 
@@ -124,6 +139,7 @@ function registerAccount(event: Event) {
 }
 
 // Events
+// Register Events
 const nameField = document.getElementById('registerName') as HTMLInputElement;
 nameField.onkeyup = () => {
   const nameLabel = document.getElementById('registerNameLabel') as HTMLLabelElement;
@@ -133,7 +149,7 @@ nameField.onkeyup = () => {
 const emailField = document.getElementById('registerEmail') as HTMLInputElement;
 emailField.onkeyup = () => {
   const emailLabel = document.getElementById('registerEmailLabel') as HTMLLabelElement;
-  validateField(emailField, 'Email', emailLabel, Validator.isEmailValid);
+  validateField(emailField, 'Email: ', emailLabel, Validator.isEmailValid);
 };
 
 const passwdField = document.getElementById('registerPasswd') as HTMLInputElement;
@@ -152,4 +168,71 @@ confirmPasswdField.onkeyup = () => {
   } else {
     setLabelIncorrect(confirmPasswdField, confirmPasswdLabel, 'A senha e a confirmação da senha precisam ser a mesma.');
   }
+};
+
+// Last step to register
+// Register customer with non-existing organization
+const registerForm = document.getElementById('registerOrganizationForm') as HTMLFormElement;
+registerForm.onsubmit = () => {
+  const orgName = document.getElementById('registerOrgName') as HTMLInputElement;
+  const orgIdLabel = document.getElementById('registerOrgIdlabel') as HTMLLabelElement;
+  
+  const orgMasterPasswd = document.getElementById('registerOrgPasswd') as HTMLInputElement;
+  const orgMasterPasswdLabel = document.getElementById('registerOrgPasswdlabel') as HTMLLabelElement;
+  
+  // Check if the organization ID is valid.
+  if (Validator.isNameValid(orgName.value)) {
+    setLabelIncorrect(orgName, orgIdLabel, 'Organization name is not valid.');
+    return false;
+  }
+  if (Validator.isPasswdValid(orgMasterPasswd.value)) {
+    setLabelIncorrect(orgMasterPasswd, orgMasterPasswdLabel, 'Master Password is not valid.');
+    return false;
+  }
+
+  // Submit the forms
+  const name = document.getElementById('lastRegisterName') as HTMLInputElement;
+  name.value = (document.getElementById('registerName') as HTMLInputElement).value;
+
+  const email = document.getElementById('lastRegisterEmail') as HTMLInputElement;
+  email.value = (document.getElementById('registerEmail') as HTMLInputElement).value;
+
+  const passwd = document.getElementById('lastRegisterPasswd') as HTMLInputElement;
+  passwd.value = (document.getElementById('registerPasswd') as HTMLInputElement).value;
+
+  return true;
+};
+
+// Register customer with existing organization
+const loginForm = document.getElementById('loginOrganizationForm') as HTMLFormElement;
+loginForm.onsubmit = () => {
+  const orgId = document.getElementById('loginOrgId') as HTMLInputElement;
+  const orgIdLabel = document.getElementById('loginOrgIdLabel') as HTMLLabelElement;
+  
+  // Check if the organization ID is valid.
+  if (Validator.isOrgIdValid(orgId.value)) {
+    setLabelIncorrect(orgId, orgIdLabel, 'Organization ID not valid.');
+    return false;
+  }
+
+  // Submit the forms
+  const name = document.getElementById('lastLoginName') as HTMLInputElement;
+  name.value = (document.getElementById('loginName') as HTMLInputElement).value;
+
+  const email = document.getElementById('lastLoginEmail') as HTMLInputElement;
+  email.value = (document.getElementById('loginEmail') as HTMLInputElement).value;
+
+  const passwd = document.getElementById('lastLoginPasswd') as HTMLInputElement;
+  passwd.value = (document.getElementById('loginPasswd') as HTMLInputElement).value;
+  return true;
+};
+
+// Login user
+const formsLogin = document.getElementById('form-in') as HTMLFormElement;
+formsLogin.onsubmit = (event: Event) => {
+  // Check if the organization ID is valid.
+  console.log('Logging account...');
+  const loginAccountResult = loginAccount(event);
+  console.log(loginAccountResult);
+  return loginAccountResult;
 };
