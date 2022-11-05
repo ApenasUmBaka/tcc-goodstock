@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-br" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/css/base/normalize.css"/>
+    <link rel="icon" type="image/png" href="/assets/images/box.png" />
+    <link href="/assets/css/layout/cad-login-style.css" rel="stylesheet" />
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'>
+    <title>Welcome</title>
+</head>
+
+<body>
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <!-- Register Forms -->
+            <form id="form-up">
+                <h1>Criar uma nova conta</h1>
+                <div class="social-container">
+                    <a href="/microsoftAuth" class="social"><i class="fab fa-brands fa-microsoft"></i></a>
+                </div>
+                <span>Ou ultilize seu email para registrar</span>
+
+                <!-- Register Inputs -->
+                <div class="label-float">
+                    <input name="name" type="text" id="registerName" placeholder=" " required>
+                    <label id="registerNameLabel" for="registerName">Nome</label>
+                 </div>
+                 <div class="label-float">
+                    <input name="email" type="text" id="registerEmail" placeholder=" " required>
+                    <label id="registerEmailLabel" for="registerEmail">Email</label>
+                 </div>
+
+                 <div class="label-float">
+                    <input name="passwd" type="password" id="registerPasswd" placeholder=" " required>
+                    <label id="registerPasswdLabel" for="registerPasswd">Senha</label>
+                    <i id="showPasswd" class="fa fa-eye" aria-hidden="true"></i> 
+                 </div>
+                 <div class="label-float">
+                    <input type="password" id="registerConfirmPasswd" placeholder=" " required>
+                    <label id="registerConfirmPasswdLabel" for="registerConfirmPasswd">Confirmar Senha</label>
+                    <i id="showConfirmPasswd" class="fa fa-eye" aria-hidden="true"></i>
+                 </div>
+                  <input type="submit" id="submit-up" name="Register" value="Prosseguir">
+            </form>
+           <div id="error-message"><%= messageError %></div>
+        </div>
+        <div class="form-container sign-in-container">
+
+            <!-- Login Forms -->
+            <form id="form-in">
+                <h1>Se conectar</h1>
+                <div class="social-container">
+                    <a href="/microsoftAuth" class="social"><i class="fab fa-brands fa-microsoft"></i></a>
+                </div>
+                <span>Ou use sua conta</span>
+                <div class="label-float">
+                    <input type="email" name="loginEmail" id="loginEmail" placeholder=" " required>
+                    <label id="loginEmailLabel" for="loginEmail">Email</label>
+                 </div>
+                 
+                 <div class="label-float">
+                    <input type="password" name="loginPasswd" id="loginPasswd" placeholder=" " required>
+                    <label id="loginPasswdLabel" for="loginPasswd">Senha</label>
+                    <i id="showLoginPasswd" class="fa fa-eye" aria-hidden="true"></i> 
+                 </div>
+
+                <a class="form__hvr-underline-from-left" href="#">Esqueci minha senha</a>
+                <input type="submit" id="submit-in" name="login" value="Entrar">
+            </form>
+        </div>
+        <!-- Icons não aparecem -->
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Bem Vindo de volta!</h1>
+                    <p>Se mantenha conectado conosco, faça login de sua conta.</p>
+                    <button class="ghost" id="signIn">Conectar</button>
+                </div> 
+                <div class="overlay-panel overlay-right">
+                    <h1>Seja Bem Vindo!</h1>
+                    <p>Registre seus dados e crie uma conta conosco.</p>
+                    <button class="ghost" id="signUp">Registrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="organization-modal-bg" class="modal-background"></div>
+    <div id="organization-modal" class="modal modal-closed">
+      <h2>Modal Window</h2>
+      <p>
+        You have opened the modal, they are great for confirming actions or
+        displaying critical information.
+      </p>  
+          <div class="org-modal">
+            
+            <!-- Login organization id -->
+            <p>Logar Id</p>
+            <form id="loginOrganizationForm" method="post">
+                <!-- Old inputs -->
+                <input name="name" type="text" id="lastLoginName" hidden="true">
+                <input name="email" type="email" id="lastLoginEmail" hidden="true">
+                <input name="password" type="email" id="lastLoginPasswd" hidden="true">
+
+                <div class="label-float">
+                    <input type="number" name="organizationId" id="loginOrgId" placeholder=" " required /> 
+                    <label id="loginOrgIdLabel" for="loginOrgId">ID da organização</label>
+                </div>
+
+                <div class="label-float">
+                    <input type="password" name="masterPassword" id="loginOrgPasswd" placeholder=" " required /> 
+                    <label id="loginOrgPasswdLabel" for="loginOrgPasswd">Senha mestra</label>
+                    <i id="showLoginOrgPasswd" class="fa fa-eye" aria-hidden="true"></i> 
+                </div> 
+                <input class="justify-center" type="submit" id="submit-ip-finish" name="submit-ip-finish" value="Logar">
+            </form>
+
+             <!-- Register organization id -->
+            <p>Cadastrar id</p>
+            <form id="registerOrganizationForm" method="post">
+                <input name="name" type="text" id="lastRegisterName" hidden="true">
+                <input name="email" type="email" id="lastRegisterEmail" hidden="true">
+                <input name="password" type="email" id="lastRegisterPasswd" hidden="true">
+
+                <div class="label-float">
+                    <input type="text" name="organizationName" id="registerOrgName" placeholder=" " required />
+                    <label id="registerOrgNameLabel" for="registerOrgName">Nome da organização</label>
+                </div>
+
+                <div class="label-float">
+                    <input type="password" name="masterPassword" id="registerOrgPasswd" placeholder=" " required />
+                    <label id="registerOrgPasswdlabel" for="registerOrgPasswd">Senha mestra</label>
+                    <i id="showRegisterOrgPasswd" class="fa fa-eye" aria-hidden="true"></i> 
+                </div> 
+
+                <div class="label-float">
+                    <input type="password" id="registerConfirmOrgPasswd" placeholder=" " required>
+                    <label id="registerConfirmOrgPasswdLabel" for="registerConfirmOrgPasswd">Confirmar Senha</label>
+                    <i id="showRegisterConfirmOrgPasswd" class="fa fa-eye" aria-hidden="true"></i>
+                </div>
+                <input class="justify-center" type="submit" id="submit-up-finish" name="registerAccountRegisterOrganization" value="Cadastrar">
+           </form>
+    </div>  
+    </div>
+                <!-- Scripts -->
+    <script src="/assets/scripts/cadLoginContainer.js"></script>
+    <script src="/assets/scripts/cadLoginModal.js"></script>
+    <script src="/assets/scripts/cadLoginValidator.js"></script>
+</body>
+
+</html>

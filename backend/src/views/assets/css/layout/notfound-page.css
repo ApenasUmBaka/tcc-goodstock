@@ -1,0 +1,35 @@
+@import url("/assets/css/base/reset.css");
+@import url("/assets/css/base/global.css");
+
+body {
+  background: var(--bg2-color);
+}
+
+.notfound {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: auto;
+  margin-top: 100px;
+  width: 50%;
+  border: solid 4px var(--two-color);
+  box-shadow: 15px 15px 0 -4px var(--h1-color), 15px 15px var(--two-color);
+  background-color: var(--bg-color);
+  padding: 10px;
+}
+
+p {
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--h1-color);
+  text-align: center;
+}
+
+.notfound__logo {
+  font-size: 24px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+}
