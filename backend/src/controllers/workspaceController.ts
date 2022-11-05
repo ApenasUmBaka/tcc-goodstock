@@ -11,7 +11,8 @@ class WorkspaceController {
       return res.redirect("/login");
     }
 
-    res.status(200).render("work-station1");
+    console.log(req.session.user!.name);
+    res.status(200).render("work-station1", {user: req.session.user!});
   }
 }
 

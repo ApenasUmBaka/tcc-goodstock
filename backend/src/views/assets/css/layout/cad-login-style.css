@@ -58,7 +58,7 @@ input.submitInput {
   border-color: var(--button2-color);
 }
 
-button {
+button, input[type="submit"] {
   border-radius: 6px;
   background-color: var(--two-color);
   width: 10rem;
@@ -67,9 +67,10 @@ button {
   font-weight: 500;
   letter-spacing: 0.1rem;
   transition: var(--tran-03);
+  cursor: pointer;
 }
 
-button:hover {
+button:hover, input[type="submit"]:hover {
   color: var(--bg-color);
 }
 
@@ -77,12 +78,11 @@ input.submitInput:active {
   transform: scale(0.95);
 }
 
-button:focus,
-input.submitInput:focus {
+button:focus, input.submitInput:focus, input[type="submit"]:focus {
   outline: none;
 }
 
-button.ghost {
+button.ghost, input[type="submit"] {
   background-color: var(--button2-color);
   border-radius: 6px;
   width: 10rem;

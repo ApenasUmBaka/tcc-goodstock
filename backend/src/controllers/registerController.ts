@@ -18,7 +18,7 @@ class RegisterController {
       return res.status(200).render("cad-login", { messageError: "" });
     }
 
-    res.status(200).render("workstation");
+    res.status(200).redirect("/workspace");
   }
 
   public static async post(req: Request, res: Response) {
