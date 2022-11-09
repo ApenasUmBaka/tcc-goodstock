@@ -26,20 +26,11 @@ function toggleModal() {
   const modal = document.getElementById('organization-modal')! as HTMLDivElement;
   const modalBg = document.getElementById('organization-modal-bg')! as HTMLDivElement;
 
+  errorElement.innerHTML = "";
+
   if (!modal.classList.contains('modal-opened')) {
     openModal(modal, modalBg);
   } else {
     closeModal(modal, modalBg);
   }
 }
-
-// Events
-// Register event
-const registerSubmitButton = document.getElementById('submit-up') as HTMLButtonElement;
-registerSubmitButton.onclick = (event: Event) => {
-  // Check register errors.
-  if (!registerAccount(event)) {
-    return;
-  }
-  toggleModal();
-};
