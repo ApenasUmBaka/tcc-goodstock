@@ -11,7 +11,6 @@ import {
   RequestRegisterUserRegisterOrg,
 } from "@types";
 
-
 // Classes
 class RegisterController {
   public static async get(req: Request, res: Response) {
