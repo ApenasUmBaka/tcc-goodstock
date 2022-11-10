@@ -48,7 +48,7 @@ class CustomersModel extends APIModel {
     this.logger.info("Trying to auth the account...");
     const authResponse = await this.callAPI(
       "GET",
-      `/auth?email=${email}&password=${Security.toHash(password)}`
+      `/customers/auth?email=${email}&password=${password}`
     );
     if (!authResponse) return;
 
@@ -70,20 +70,8 @@ class CustomersModel extends APIModel {
     password: string,
     organizationId: number
   ): Promise<ClientUser | undefined> {
-    this.logger.info("Trying to create a new customer...");
+    this.logger.info("Creating a new customer...");
 
-    // Search on the API by the user's email.
-    const response = await this.callAPI("GET", `/customers/?email=${email}`);
-
-    if (!response) return;
-    const responseAPI: APIResponse = response.data;
-    if (responseAPI.status == "Success") {
-      this.logger.info("The provided email was already found.");
-      return;
-    }
-
-    // Create the new user.
-    this.logger.info("The provided email was not found in the API.");
     const userData: RequestCustomer = {
       name: name,
       email: email,

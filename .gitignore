@@ -3,6 +3,7 @@ db
 dist
 certs
 .vscode
+.prettierrc
 node_modules
 
 # Files

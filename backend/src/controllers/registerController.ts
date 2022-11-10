@@ -3,13 +3,13 @@ import { Logger } from "winston";
 import { Request, Response } from "express";
 
 import Security from "@security";
+import { toNumber } from "@utils";
+import CustomersModel from "@models/customersModel";
+import OrganizationsModel from "@models/organizationsModel";
 import {
   RequestRegisterUserLoginOrg,
   RequestRegisterUserRegisterOrg,
 } from "@types";
-import OrganizationsModel from "@models/organizationsModel";
-import ValidatorController from "@controllers/validatorController";
-import CustomersModel from "@models/customersModel";
 
 // Classes
 class RegisterController {
@@ -23,7 +23,7 @@ class RegisterController {
 
   public static async post(req: Request, res: Response) {
     // Check the params.
-    const neededParams = ["name", "email", "password"];
+    const neededParams = ["name", "email", "passwd"];
 
     if (!Security.filterParams(neededParams, req.body)) {
       req.logger.info("The request has some invalid param. Returning...");
@@ -52,7 +52,6 @@ class RegisterController {
     }
 
     // Try to auth with the organization
-    req.logger.info("Trying to auth with the organization...");
     const orgModel = new OrganizationsModel(req.logger);
     if (!(await orgModel.authOrganization(orgId, body.masterPassword))) {
       return res.status(401).render("cad-login", {
@@ -66,7 +65,7 @@ class RegisterController {
     const customer = await customersModel.createCustomer(
       body.name,
       body.email,
-      body.password,
+      body.passwd,
       orgId
     );
     if (!customer) {
@@ -119,20 +118,20 @@ class RegisterController {
     body: RequestRegisterUserLoginOrg
   ): Promise<number | undefined> {
     // Check the params.
-    const neededParamsToRegisterOrg = ["organizationId", "masterPassword"];
+    const neededParamsToRegisterOrg = ["organizationId"];
     if (!Security.filterParams(neededParamsToRegisterOrg, body)) {
       return;
     }
 
     // Try to create the organization.
     const organizationsModel = new OrganizationsModel(logger);
-    const createdOrganization = await organizationsModel.findOrganization(
-      body.organizationId
+    const foundedOrg = await organizationsModel.findOrganization(
+      { id: body.organizationId }
     );
 
     // Return the result.
-    if (!createdOrganization) return;
-    return createdOrganization.id;
+    if (!foundedOrg) return;
+    return foundedOrg.id;
   }
 }
 
