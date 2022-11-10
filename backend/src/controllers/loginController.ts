@@ -15,7 +15,7 @@ class LoginController {
   }
 
   public static async post(req: Request, res: Response) {
-    const neededParams = ["loginEmail", "loginPasswd"];
+    const neededParams = ["email", "passwd"];
 
     const params = Security.filterParams(neededParams, req.body);
     if (!params) {
@@ -30,19 +30,19 @@ class LoginController {
     // Check if customer is valid.
     const customerModel = new CustomersModel(req.logger);
     const user = await customerModel.authCustomer(
-      params.loginEmail,
-      params.loginPasswd
+      params.email,
+      params.passwd
     );
 
     if (!user) {
       req.logger.info("Invalid credentials. Returning...");
       return res.status(400).render("cad-login", {
-        messageError: "As credenciais inseridas não são válidas.",
+        messageError: "As credenciais inseridas são inválidas.",
       });
     }
 
     req.session.user = user;
-    res.redirect("/workstation");
+    res.redirect("/workspace");
   }
 }
 

@@ -167,6 +167,9 @@ loginFormSubmit.onclick = () => {
   }
 
   // Submit the forms
+  const name = document.getElementById('lastLoginName') as HTMLInputElement;
+  name.value = (document.getElementById('registerName') as HTMLInputElement).value;
+
   const email = document.getElementById('lastLoginEmail') as HTMLInputElement;
   email.value = (document.getElementById('registerEmail') as HTMLInputElement).value;
 

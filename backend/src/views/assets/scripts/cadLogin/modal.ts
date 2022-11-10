@@ -27,8 +27,10 @@ function toggleModal() {
   const modalBg = document.getElementById('organization-modal-bg')! as HTMLDivElement;
 
   errorElement.innerHTML = "";
+  errorElement.remove();
 
   if (!modal.classList.contains('modal-opened')) {
+    modal.appendChild(errorElement);
     openModal(modal, modalBg);
   } else {
     closeModal(modal, modalBg);

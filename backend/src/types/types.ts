@@ -36,7 +36,7 @@ export interface User {
 export interface RequestRegisterUserRegisterOrg {
   name: string;
   email: string;
-  password: string;
+  passwd: string;
   masterPassword: string;
   organizationName: string;
   registerAccountRegisterOrganization: "Cadastrar";
@@ -45,7 +45,7 @@ export interface RequestRegisterUserRegisterOrg {
 export interface RequestRegisterUserLoginOrg {
   name: string;
   email: string;
-  password: string;
+  passwd: string;
   masterPassword: string;
   organizationId: string;
 }
