@@ -11,27 +11,54 @@ class GraphApiModel {
   }
 
   /**
-   * A method to the user's email using the graph api.
+   * A method to the user's name using the graph api.
    */
-  public async getUserEmail(access_token: string): Promise<string | undefined> {
-    this.logger.info("Getting the user email using the graph API...");
+   public async getUserName(access_token: string): Promise<string | undefined> {
+    this.logger.info("Getting the user name using the graph API...");
+
+    let response: AxiosResponse;
+    const url = `${this.getGraphUrl()}/me`;
+
     try {
-      const url = `${this.getGraphUrl()}/me`;
-      const response = await axios.get(url, {
+      response = await axios.get(url, {
         headers: {
           Authorization: `Bearer ${access_token}`,
         },
       });
-
-      this.logger.info("The user's email has been caught.");
-
-      return response.data.userPrincipalName;
     } catch (err) {
       this.logger.warn(
         `The request to the graph api has returned an error. Error: ${err}`
       );
       return;
     }
+
+    this.logger.info("The user's name has been caught.");
+    return response.data.displayName;
+  }
+
+  /**
+   * A method to the user's email using the graph api.
+   */
+  public async getUserEmail(access_token: string): Promise<string | undefined> {
+    this.logger.info("Getting the user email using the graph API...");
+
+    let response: AxiosResponse;
+    const url = `${this.getGraphUrl()}/me`;
+    try {
+      response = await axios.get(url, {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      });
+    } catch (err) {
+      this.logger.warn(
+        `The request to the graph api has returned an error. Error: ${err}`
+      );
+      return;
+    }
+
+    this.logger.info("The user's email has been caught.");
+    return response.data.userPrincipalName;
   }
 
   /**

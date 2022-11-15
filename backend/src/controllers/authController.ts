@@ -9,6 +9,10 @@ class AuthController {
     req.logger = LoggerFactory.createLogger(req.ip);
     req.logger.info(`Request on endpoint: ${req.method} ${req.url}`);
 
+    if (!req.session.microsoftRegister) {
+      req.session.microsoftRegister = false;
+    }
+
     if (!req.session.user) {
       req.logger.info("Creating new session...");
       req.session.user = {

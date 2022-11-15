@@ -23,7 +23,8 @@ class CustomersModel {
     this.logger.info("Creating the new customer...");
 
     // Create the new customer.
-    params.password = Security.toHash(params.password);
+    if (params.password) params.password = Security.toHash(params.password);
+
     try {
       const newCustomer: Customer = (
         await this.model.create(params as any)
