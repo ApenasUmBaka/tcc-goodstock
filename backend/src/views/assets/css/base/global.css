@@ -92,7 +92,7 @@ h2::selection {
   --text-color: #191824;
 
   /* ====== Transition ====== */
-  --tran-03: all 0.2s ease;
+  --tran-02: all 1s ease;
   --tran-03: all 0.3s ease;
   --tran-04: all 0.3s ease;
   --tran-05: all 0.3s ease;
@@ -124,7 +124,6 @@ body.dark{
   transition: opacity .25s, visibility 1s;
 }
 
-
 .loader {
   display: inline-block;
   width: 50px;
@@ -143,7 +142,6 @@ body.dark{
   width: 100%;
   background-color: var(--two-color);
   animation: loader-inner 2s infinite ease-in;
-  z-index: 12;
 }
 
 @keyframes loader {

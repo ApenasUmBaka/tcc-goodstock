@@ -35,31 +35,13 @@
   </header>
   <!-- Main Elements -->
   <main class="css-selector">
-        <!-- <div class="main-slider">
-          <div class="main-slide__img">
-            <img src="../assets/images/10897.jpg" alt="Imagem1">
-            <img src="../assets/images/19199544.jpg" alt="Imagem2">
-            <img src="../assets/images/4334841.jpg" alt="imagem3">
-            <img src="../assets/images/Sandy_Bus-36_Single-01.jpg" alt="iamgem4">
-            <img src="../assets/images/box-safety.jpg" alt="imagem5">
-          </div>
-        </div>     -->
-        <h1 class="main-goodstock">Good Stock</h1>
-
-        <!-- <h1 class="main-text">
-          <span>always be</span>
-          <div class="message">
-            <div class="word1">close</div>
-            <div class="word2">code</div>
-            <div class="word3">creating</div>
-          </div>
-        </h1> -->
+    
     <!-- <div class="wrapper"><span class="loader"><span class="loader-inner"></span></span></div> -->
   </main>
   <!-- Landing Page -->
 
   <section>
-    <div class="container reveal" id="introducao">
+    <div class="container reveal --bg-intro" id="section__intro">
       <div class="intro__card-intro">
         <h1>Gerenciamento de Estoque para pequenos comércios</h1>
         <p>O projeto vindo de uma deficiência organizacional de pequenos negócios não informatizados, vem como uma
@@ -71,36 +53,37 @@
       </div>
   </section>
 
-  <section id="tutorial">
+  <section id="section__object">
     <div class="container reveal">
       <h1>Objetivos</h1>
       <div class="tutorial__cards">
       <div class="card-info">
-        <img src="/assets/images/box-safety.jpg" alt="Imagem1" class="photo" />
+        <figure><img src="/assets/images/box-safety.jpg" alt="Imagem1" class="--photo" /></figure>
         <p>Aumentar consideravelmente a acertividade de decisões relacionadas aos produtos do estoque.</p>
       </div>
       <div class="card-info">
-        <img src="/assets/images/security.jpg" alt="Imagem2" class="photo" />
+        <figure><img src="/assets/images/security.jpg" alt="Imagem2" class="--photo" /></figure>
         <p>Fornecer segurança e portabilidade dos dados pertinentes ao produto de software.</p>
       </div>
       <div class="card-info">
-        <img src="/assets/images/excel-panel.jpg" alt="imagem3" class="photo" />
+        <figure><img src="/assets/images/excel-panel.jpg" alt="imagem3" class="--photo" /></figure>
         <p>Facilitar a transição de outros modelos de organização digitais e físicos para a solução de software.</p>
       </div>
     </div>
   </section>
 
 
-  <section id="good">
-    <div class="container reveal">
-      <h1>Tutorial de Usabilidade</h1><br>
-      <video class="justify-center" width="600" height="400" poster="/assets/images/poster.jpg" controls>
+  <section id="section__video">
+    <div class="container reveal --bg-video">
+      <h1>Tutorial de Usabilidade</h1>
+      <video class="justify-center" width="750" height="550" poster="/assets/images/poster.jpg" controls>
         <source src="/assets/videos/X2Download.app-Space Cats — Magic Fly.mp4"  type="video/mp4">
         Your browser does not support the video tag.
       </video>
+     </div> 
   </section>
 
-  <section id="about-us">
+  <section id="section__about-us">
     <div class="container reveal">
       <h1>Sobre nós</h1><br>
       <div class="about-us__display">
@@ -121,8 +104,8 @@
           <figcaption>
             <img src="/assets/images/gatinho-preto.jpg" alt="profile-sample2" class="profile" />
             <h2>André Sousa<span>Front End</span></h2>
-            <p>O Homem empunha a espada para esconder a pequena ferida que há em seu coração, gravada em um passado
-              remoto e esquecido no fundo de sua memória.-Berserker.
+            <p>"A verdade é sempre um contato interior inexplicável. A verdade é irreconhecível. Portanto não existe? Não, para os homens não existe.”
+              - Clarice Lispector.
             </p>
             <a href="https://www.instagram.com/andresss2004" target="_blank" class="follow">instagram</a>
             <a href="https://github.com/ApenasUmBaka" target="_blank" class="info">Git Hub</a>
@@ -136,7 +119,7 @@
             <p>"Aquele que ri ao invés de se zangar. É sempre o mais forte." -Provérbio Japonês.
               "Desafie seu limites".
             </p>
-            <a href="#" target="_blank" class="follow">Follow</a>
+            <a href="#" target="_blank" class="follow">Linkedin</a>
             <a href="https://github.com/Eduardo711-a" target="_blank" class="info">Git Hub</a>
           </figcaption>
         </figure>
@@ -146,7 +129,22 @@
   <button id="btn-top" class="--btn-top --btn-top__hover"><i class="fas fa-solid fa-arrow-up fa-lg"></i></button>
   <!-- Footer -->
   <footer>
-    <span>© 2022 Todos os direitos Good Stock</span>
+    <ul class="icons">
+      <li><a href="#"><i class="fab fa-brands fa-twitter fa-lg"></i></a></li>
+      <li><a href="#"><i class="fab fa-brands fa-whatsapp fa-lg"></i></a></li>
+      <li><a href="#"><i class="fab fa-brands fa-linkedin-in fa-lg"></i></a></li>
+      <li><a href="#"><i class="fab fa-brands fa-instagram fa-lg"></i></a></li>
+  </ul>
+  <ul class="menu">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Sobre Nós</a></li>
+          <li><a href="#">Partners</a></li>
+          <li><a href="#">Specialties</a></li>
+          <li><a href="#">Contato</a></li>
+  </ul>
+      <div class="footer-copyright">
+          <p>Copyright @ 2022 Todos os direitos Good Stock.</p>
+      </div>
   </footer>
 
   <!-- Scripsts -->
@@ -155,7 +153,6 @@
   <script src="/assets/scripts/reveal.js"></script>
   <script src="/assets/scripts/mobile-navbar.js"></script>
   <script src="/assets/scripts/progressBar.js"></script>
-  <!-- Loader -->
   
 </body>
 

@@ -68,3 +68,49 @@ a.--hvr-underline-from-left {
   a.--hvr-underline-from-left:active:before {
     right: 0;
   }
+
+/* Backgrounds */
+  .--bg-zig-zag{
+    background-color: #e5e5e5;
+    opacity: 0.6;
+    background: linear-gradient(135deg, #e6844f55 25%, transparent 25%) -18px 0/ 36px 36px, linear-gradient(225deg, #e6844f 25%, transparent 25%) -18px 0/ 36px 36px, linear-gradient(315deg, #e6844f55 25%, transparent 25%) 0px 0/ 36px 36px, linear-gradient(45deg, #e6844f 25%, #e5e5e5 25%) 0px 0/ 36px 36px;
+  }
+
+  .-bg-isometric{
+    background-color: #e5e5e5;
+    opacity: 0.6;
+    background-image:  linear-gradient(30deg, #e6844f 12%, transparent 12.5%, transparent 87%, #e6844f 87.5%, #e6844f), linear-gradient(150deg, #e6844f 12%, transparent 12.5%, transparent 87%, #e6844f 87.5%, #e6844f), linear-gradient(30deg, #e6844f 12%, transparent 12.5%, transparent 87%, #e6844f 87.5%, #e6844f), linear-gradient(150deg, #e6844f 12%, transparent 12.5%, transparent 87%, #e6844f 87.5%, #e6844f), linear-gradient(60deg, #e6844f77 25%, transparent 25.5%, transparent 75%, #e6844f77 75%, #e6844f77), linear-gradient(60deg, #e6844f77 25%, transparent 25.5%, transparent 75%, #e6844f77 75%, #e6844f77);
+    background-size: 36px 63px;
+    background-position: 0 0, 0 0, 18px 32px, 18px 32px, 0 0, 18px 32px;
+  }
+
+/* Hovers */
+
+.--shine-hvr figure::before {
+	position: absolute;
+	top: 0;
+	left: -75%;
+	z-index: 2;
+	display: block;
+	content: '';
+	width: 50%;
+	height: 100%;
+	background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);
+	background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);
+	-webkit-transform: skewX(-25deg);
+	transform: skewX(-25deg);
+}
+.--shine-hvr figure:hover::before {
+	-webkit-animation: shine .75s;
+	animation: shine .75s;
+}
+@-webkit-keyframes shine {
+	100% {
+		left: 125%;
+	}
+}
+@keyframes shine {
+	100% {
+		left: 125%;
+	}
+}
