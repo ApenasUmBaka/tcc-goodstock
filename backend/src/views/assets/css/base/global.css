@@ -45,7 +45,7 @@ a {
   cursor: pointer;
 }
 
-input{
+input {
   caret-color: var(--two-color);
 }
 
@@ -82,13 +82,13 @@ h2::selection {
 }
 
 /* Color mode WorkStation */
-:root{
+:root {
   /* ===== Colors ===== */
   --body-color: #e5e5e5;
-  --sidebar-color: #FFF;
+  --sidebar-color: #fff;
   --two-color: #e6844f;
-  --two-color-light: #F6F5FF;
-  --toggle-color: #DDD;
+  --two-color-light: #f6f5ff;
+  --toggle-color: #ddd;
   --text-color: #191824;
 
   /* ====== Transition ====== */
@@ -98,7 +98,7 @@ h2::selection {
   --tran-05: all 0.3s ease;
 }
 
-body.dark{
+body.dark {
   --body-color: #18191a;
   --sidebar-color: #242526;
   --two-color: #e6844f;
@@ -134,7 +134,6 @@ body.dark{
   z-index: 1000;
   animation: loader 2s infinite ease;
 }
-
 
 .loader-inner {
   vertical-align: top;

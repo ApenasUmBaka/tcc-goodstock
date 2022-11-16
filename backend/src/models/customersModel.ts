@@ -1,9 +1,9 @@
 // Libs
 import { Logger } from "winston";
 
-import { User } from "@types";
 import Security from "@security";
 import APIModel from "@models/apiModel";
+import { APIResponse, ClientUser, RequestCustomer } from "@types";
 
 // Classes
 class CustomersModel extends APIModel {
@@ -19,7 +19,7 @@ class CustomersModel extends APIModel {
    * A method to get the ID from some customer using the email.
    */
   public async getIdByEmail(email: string): Promise<number | undefined> {
-    const apiResult = await this.callAPI('GET', '/customers', {email: email});
+    const apiResult = await this.callAPI("GET", `/customers/?email=${email}`);
     if (!apiResult) return;
     return apiResult.data.id;
   }
@@ -30,7 +30,7 @@ class CustomersModel extends APIModel {
   public async authCustomer(
     email: string,
     password: string
-  ): Promise<User | undefined> {
+  ): Promise<ClientUser | undefined> {
     this.logger.info(`Checking the auth from: ${email}`);
     // Search on the API by the user's email.
     const data = {
@@ -45,24 +45,50 @@ class CustomersModel extends APIModel {
     }
 
     this.logger.info("The provided email was found in the API.");
-    const userData: User = {
-      id: response.data.id,
-      email: response.data.email,
-      organizationId: response.data.organizationId,
-    };
-
     this.logger.info("Trying to auth the account...");
     const authResponse = await this.callAPI(
       "GET",
-      `/${userData.id}/auth?password=${Security.toHash(password)}`
+      `/customers/auth?email=${email}&password=${password}`
     );
     if (!authResponse) return;
-    if (authResponse.status == 400) {
+
+    const apiResponse: APIResponse = authResponse.data;
+    if (apiResponse.status == "Error") {
       this.logger.info("Bad login.");
       return;
     }
 
-    return userData;
+    return apiResponse.data;
+  }
+
+  /**
+   * A method to create a new customer.
+   */
+  public async createCustomer(
+    name: string,
+    email: string,
+    password: string,
+    organizationId: number
+  ): Promise<ClientUser | undefined> {
+    this.logger.info("Creating a new customer...");
+
+    const userData: RequestCustomer = {
+      name: name,
+      email: email,
+      password: password,
+      organizationId: organizationId,
+    };
+
+    const apiCall = await this.callAPI("POST", "/customers", userData);
+    if (!apiCall) return;
+    const apiResponse: APIResponse = apiCall.data;
+
+    if (apiResponse.status == "Error") {
+      this.logger.warn(`The customer was not created.`);
+      return;
+    }
+
+    return apiResponse.data;
   }
 }
 

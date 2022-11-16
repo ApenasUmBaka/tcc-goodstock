@@ -1,4 +1,3 @@
-
 /* Hover Button Background Linear */
 .--text,
 .--icon{
@@ -7,18 +6,18 @@
     height: 30px;
 }
 
-li a{
-    list-style: none;
-    height: 100%;
-    background-color: transparent;
-    display: flex;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    padding: 5px;
-    border-radius: 6px;
-    text-decoration: none;
-    transition: var(--tran-03);
+li a {
+  list-style: none;
+  height: 100%;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  padding: 5px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: var(--tran-03);
 }
 
 li a:hover{

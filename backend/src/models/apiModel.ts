@@ -2,8 +2,6 @@
 import { Logger } from "winston";
 import axios, { AxiosError, AxiosResponse } from "axios";
 
-import { APIResponse } from "@types";
-
 // Classes
 abstract class APIModel {
   abstract url: string;
@@ -24,8 +22,8 @@ abstract class APIModel {
         url: requestUrl,
         data: data,
         headers: {
-          'authorization':`Bearer ${process.env.API_AUTH}`
-        }
+          authorization: `Bearer ${process.env.API_AUTH}`,
+        },
       });
     } catch (err) {
       const error: AxiosError = err as any;

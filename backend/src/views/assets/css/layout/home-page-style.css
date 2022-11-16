@@ -95,7 +95,6 @@ i{
   transform: rotate(45deg) translate(-5px, -7px);
 }
 
-
 /* Button New sign */
 a.nav__new-cont {
   position: relative;
@@ -265,6 +264,35 @@ img.main-slide__img{
   background-color: var(--bg-color);
 }
 
+.tutorial__cards{
+  display: inline-flex;
+  margin: 10px;
+}
+
+.card-info{
+  background-color: var(--bg2-color);
+  text-align: center;
+  border-radius: 6px;
+  min-width: 120px;
+  max-width: 230px;
+  margin: 25px;
+  width: 100%;
+  border: solid 4px var(--primary-color);
+  box-shadow: 15px 15px 0 -4px var(--button-color), 15px 15px var(--primary-color);
+}
+
+.card-info .photo {
+  display: flex;
+  justify-content: center;
+  border-radius: 50%;
+  margin-top: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 1;
+  max-width: 180px;
+  opacity: 1;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
 
 .tutorial__cards{
   display: inline-flex;
@@ -337,7 +365,7 @@ video:hover{
   background-color: var(--bg-color);
 }
 
-.about-us__display{
+.about-us__display {
   display: inline-flex;
   flex-flow: wrap;
 }
@@ -374,7 +402,7 @@ figure.snip1336 * {
 }
 .snip1336 figcaption:before {
   position: absolute;
-  content: '';
+  content: "";
   bottom: 100%;
   left: 0;
   width: 0;
@@ -401,6 +429,7 @@ figure.snip1336 * {
 .snip1336 figcaption a:hover {
   opacity: 1;
 }
+/* Ideia de Card */
 .snip1336 .profile {
   border-radius: 50%;
   position: absolute;
@@ -425,7 +454,7 @@ figure.snip1336 * {
 .snip1336 h2 {
   margin: 0 0 5px;
   font-weight: 500;
-  color:  var(--h1-color);
+  color: var(--h1-color);
 }
 .snip1336 h2 span {
   display: block;
@@ -534,8 +563,8 @@ section:nth-child(2n) {
 /* Button to top */
 button.--btn-top {
   position: fixed;
-  bottom: 20px; 
-  right: 30px; 
+  bottom: 20px;
+  right: 30px;
   width: 45px;
   height: 45px;
   line-height: 45px;
@@ -579,7 +608,6 @@ button.--btn-top__hover:hover{
 }
 
 /* Loader */
-
 
 /* Background Linear Gradient */
 .css-selector {

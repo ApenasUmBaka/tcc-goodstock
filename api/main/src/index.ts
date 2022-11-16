@@ -3,7 +3,6 @@ import helmet from "helmet";
 import express from "express";
 import bodyParser from "body-parser";
 
-
 import router from "@router";
 import LoggerFactory from "./logger/logger";
 
@@ -14,7 +13,7 @@ const PORT = process.env.PORT;
 // Code
 app.use(helmet());
 app.use(express.json());
-app.set('trust-proxy', true);
+app.set("trust-proxy", true);
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(router);

@@ -6,57 +6,40 @@ services:
     build: ./backend
     ports:
       - 443:443     # HTTPS server
-    # volumes:
-    #   - ./backend:/app
     env_file:
       - backend.env
-    # depends_on:
-    #   - goodstock_api_main
-  
+    depends_on:
+      - goodstock_api_main
+
   goodstock_api_main:
     container_name: goodstock_api_main
     build: ./api/main/
-    ports:
-      - 3000:3000
     # volumes:
     #   - ./api/main:/app
     env_file:
       - api_main.env
+    links:
+      - goodstock_api_sales
+      - goodstock_api_products
+      - goodstock_api_customers
     depends_on:
       - goodstock_api_sales
       - goodstock_api_products
       - goodstock_api_customers
-
-  # Databases
-  goodstock_api_customers_db:
-    container_name: goodstock_api_customers_db
-    image: postgres
-    volumes:
-      - ./db/api-customers:/var/lib/postgresql/data
-    env_file:
-      - api_customers.env
-    depends_on:
-      - goodstock_api_customers
-
-  goodstock_api_products_db:
-    container_name: goodstock_api_products_db
-    image: mongo
-    volumes:
-      - ./db/api-products:/data/db
-    env_file:
-      - api_products.env
-    depends_on:
-      - goodstock_api_sales
-      - goodstock_api_products
 
   # APIs
   goodstock_api_customers:
     container_name: goodstock_api_customers
     build: ./api/customers/
+    restart: on-failure
     # volumes:
     #   - ./api/customers:/app
     env_file:
       - api_customers.env
+    links:
+      - goodstock_api_customers_db
+    depends_on:
+      - goodstock_api_customers_db
 
   goodstock_api_products:
     container_name: goodstock_api_products
@@ -71,7 +54,26 @@ services:
     container_name: goodstock_api_sales
     # volumes:
     #   - ./api/sales:/app
-    ports:
-      - 3003:3003
     env_file:
       - api_sales.env
+
+  # Databases
+  goodstock_api_customers_db:
+    container_name: goodstock_api_customers_db
+    image: postgres
+    volumes:
+      - ./db/api-customers:/var/lib/postgresql/data
+    env_file:
+      - api_customers.env
+
+  goodstock_api_products_db:
+    container_name: goodstock_api_products_db
+    image: mongo
+    volumes:
+      - ./db/api-products:/data/db
+    env_file:
+      - api_products.env
+
+  goodstock_api_data:
+    build: ./api/data/
+    container_name: goodstock_api_data

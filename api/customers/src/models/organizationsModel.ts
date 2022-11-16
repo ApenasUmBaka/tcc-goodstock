@@ -1,73 +1,97 @@
 // Libs
 import { Logger } from "winston";
+import { Model } from "sequelize";
 
 import Database from "./databaseModel";
+import { Organization, PatchOrganization } from "../types/types";
 import organizationsSchema from "./schemas/organizationsSchema";
-import { _Organization } from "@types";
 
 // Data
-abstract class OrganizationsModel {
-  public static model = Database.seq.define(
-    "organizations",
-    organizationsSchema
-  );
+class OrganizationsModel {
+  private logger: Logger;
+  public model = Database.seq.define("organizations", organizationsSchema);
+
+  constructor(logger: Logger) {
+    this.logger = logger;
+  }
 
   /**
    * A method to create a new organization.
    */
-  public static async createOrganization(
-    logger: Logger,
+  public async createOrganization(
     params: any
-  ): Promise<_Organization> {
-    logger.info("Creating the new organization...");
+  ): Promise<Organization | undefined> {
+    this.logger.info("Creating the new organization...");
 
-    let newOrganization: _Organization;
+    // Create the new organization.
     try {
-      newOrganization = (await this.model.create(params)).toJSON();
+      const newOrganization = (await this.model.create(params)).toJSON();
+      this.logger.info(
+        `The new organization #${newOrganization.id} was created.`
+      );
+      return newOrganization;
     } catch (err) {
-      logger.error(`The organization couldn't be created. Error: ${err}`);
-      throw err;
+      this.logger.error(`The organization couldn't be created. Error: ${err}`);
+      return;
     }
-
-    logger.info(`The new organization #${newOrganization.id} was created.`);
-    return newOrganization;
   }
 
   /**
    * A method to get a organization.
    */
-  public static async findOrganization(
-    logger: Logger,
-    params: any
-  ): Promise<_Organization | undefined> {
-    logger.info("Locating an organization...");
+  public async findOrganization(
+    params: any,
+    returnModel: boolean = false
+  ): Promise<Organization | Model | undefined> {
+    this.logger.info("Locating an organization...");
 
-    const organization = await this.model.findOne({
-      where: params,
-    });
-
-    if (!organization) {
-      logger.info("A organization with the provided query was not found.");
+    // Try to find the organization
+    let organization: Model | null;
+    try {
+      organization = await this.model.findOne({
+        where: params,
+      });
+    } catch (err) {
+      this.logger.error(`Couldn\'t search by the organization. Error: ${err}`);
       return;
     }
 
-    logger.info("A organization with the provided query was found.");
+    // Return the result.
+    if (!organization) {
+      this.logger.info("A organization with the provided query was not found.");
+      return;
+    }
+
+    this.logger.info("A organization with the provided query was found.");
+    if (returnModel) organization;
     return organization.toJSON();
   }
 
-  public static async updateOrganization(
-    logger: Logger,
+  /**
+   * A method to update an organization.
+   */
+  public async updateOrganization(
     id: number,
-    params: any
-  ): Promise<_Organization> {
-    logger.info(`Updating organization #${id}`);
+    params: PatchOrganization
+  ): Promise<Organization | undefined> {
+    this.logger.info(`Updating organization #${id}`);
 
-    await this.model.update(params, {
-      where: {
-        id: id,
-      },
-    });
-    return this.findOrganization(logger, { id: id }) as any;
+    // Update the organization.
+    try {
+      const organization = (await this.findOrganization({ id: id })) as any;
+      if (!organization) throw "No organization found.";
+
+      const paramsKeys = Object.keys(params);
+      paramsKeys.forEach((value, index) => {
+        organization[paramsKeys[index]] = value;
+      });
+
+      await organization.save();
+      return organization;
+    } catch (err) {
+      this.logger.error(`The organization couldn't be updated. Error: ${err}`);
+      return;
+    }
   }
 }
 

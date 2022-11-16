@@ -29,13 +29,15 @@ class HTTPSServer {
     app.set("view engine", "ejs");
     app.set("views", "src/views/pages");
 
-    app.use(helmet());
+    app.use(helmet({
+      crossOriginEmbedderPolicy: false,
+    }));
     app.use(
       session({
         secret: process.env.SESSIONSECRET!,
         cookie: { secure: true },
         saveUninitialized: false,
-        resave: true
+        resave: true,
       })
     );
     app.use(router);

@@ -3,6 +3,7 @@ import express, { Request, Response, Router } from "express";
 
 import AuthController from "@controllers/authController";
 import LoginController from "@controllers/loginController";
+import LogoutController from "@controllers/logoutController";
 import RegisterController from "@controllers/registerController";
 import ContactUsController from "@controllers/contactUsController";
 import WorkspaceController from "@controllers/workspaceController";
@@ -20,7 +21,10 @@ router.get("/", (req: Request, res: Response) => {
   res.status(200).render("index");
 });
 
-router.get('/microsoftAuth', microsoftAuthController.get.bind(microsoftAuthController));
+router.get(
+  "/microsoftAuth",
+  microsoftAuthController.get.bind(microsoftAuthController)
+);
 
 router.get("/register", RegisterController.get.bind(RegisterController));
 router.post("/register", RegisterController.post.bind(RegisterController));
@@ -30,10 +34,11 @@ router.post("/login", LoginController.post.bind(LoginController));
 
 router.get("/workspace", WorkspaceController.get.bind(WorkspaceController));
 
+router.get("/logout", LogoutController.get.bind(LogoutController));
 router.all("/contact-us", ContactUsController.all.bind(ContactUsController));
 
-router.all('*', (req: Request, res: Response) => {
-  res.status(404).render('notfound');
+router.all("*", (req: Request, res: Response) => {
+  res.status(404).render("notfound");
 });
 
 // Code
