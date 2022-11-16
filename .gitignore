@@ -3,10 +3,7 @@ db
 dist
 certs
 .vscode
-<<<<<<< HEAD
-=======
 .prettierrc
->>>>>>> develop
 node_modules
 
 # Files
