@@ -33,6 +33,7 @@ class GraphApiModel {
     }
 
     this.logger.info("The user's name has been caught.");
+    this.logger.info(JSON.stringify(response.data, null, 4));
     return response.data.displayName;
   }
 

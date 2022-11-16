@@ -18,7 +18,7 @@ class CustomersModel extends APIModel {
    * A method to get the ID from some customer using the email.
    */
   public async getCustomerByEmail(email: string): Promise<User | undefined> {
-    const apiResult = await this.callAPI("GET", `/customers/?email=${email.replace(/#/g, '')}`);
+    const apiResult = await this.callAPI("GET", `/customers/?email=${email}`);
     if (!apiResult) return;
     return apiResult.data;
   }

@@ -181,7 +181,6 @@ class CustomersController {
     if (body.password) {
       customerArgs['password'] = body.password;
     }
-    req.logger.info(customerArgs);
     const customer = await customersModel.createCustomer(customerArgs as any);
 
     // Return the response to the client.
