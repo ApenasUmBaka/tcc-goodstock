@@ -13,7 +13,10 @@
 </head>
 
 <body>
+<<<<<<< HEAD
+=======
     <div id="error-message" style="color: red;"><%= messageError %></div>
+>>>>>>> develop
     <div class="container" id="container">
         <div class="form-container sign-up-container">
             <!-- Register Forms -->
@@ -23,6 +26,34 @@
                     <a href="/microsoftAuth" class="social"><i class="fab fa-brands fa-microsoft"></i></a>
                 </div>
                 <span>Ou ultilize seu email para registrar</span>
+<<<<<<< HEAD
+                    <!-- <label class="--text-label" for="registerName">Nome Completo</label>
+                <input class="--text-input" type="text" name="registerName" id="registerName" placeholder="Nome Completo" autofocus required/>
+                    <label class="--text-label" for="registerEmail">Email</label>
+                <input class="--text-input" type="email" name="registerEmail" id="registerEmail" placeholder="Email" required />
+                    <label class="--text-label" for="registerPasswd">Senha</label>
+                <input class="--text-input" type="password" name="registerPasswd" id="registerPasswd" placeholder="Senha" required /> -->
+                
+                <div class="label-float">
+                    <input type="text" id="nome" placeholder=" " required>
+                    <label id="registerName" for="nome">Nome</label>
+                 </div>
+                 <div class="label-float">
+                    <input type="text" id="email" placeholder=" " required>
+                    <label id="registerEmail" for="email">Email</label>
+                 </div>
+                 <div class="label-float">
+                    <input type="password" id="senha" placeholder=" " required>
+                    <label id="labelSenha" for="senha">Senha</label>
+                    <i id="verSenha" class="fa fa-eye" aria-hidden="true"></i> 
+                 </div>
+                 <div class="label-float">
+                    <input type="password" id="confirmSenha" placeholder=" " required>
+                    <label id="labelConfirmSenha" for="confirmSenha">Confirmar Senha</label>
+                    <i id="verConfirmSenha" class="fa fa-eye" aria-hidden="true"></i>
+                 </div>
+                  <button  onclick="cadastrar()"  type="submit" id="submit-up" name="submit-up">Prosseguir</button>
+=======
 
                 <!-- Register Inputs -->
                 <div class="label-float">
@@ -45,6 +76,7 @@
                     <i id="showRegisterConfirmPasswd" class="fa fa-eye" aria-hidden="true"></i>
                  </div>
                   <input type="submit" id="submit-up" name="Register" value="Prosseguir">
+>>>>>>> develop
             </form>
         </div>
         <div class="form-container sign-in-container">
@@ -56,6 +88,26 @@
                     <a href="/microsoftAuth" class="social"><i class="fab fa-brands fa-microsoft"></i></a>
                 </div>
                 <span>Ou use sua conta</span>
+<<<<<<< HEAD
+                    <!-- <label class="--text-label" for="loginEmail">Email</label>
+                <input type="email" name="loginEmail" id="loginEmail" placeholder="Email" required/>
+                    <label class="--text-label" for="loginPasswd">Senha</label>
+                <input  type="password" name ="loginPasswd" id="loginPasswd" placeholder="Senha" required/> -->
+
+                <div class="label-float">
+                    <input type="email" name="loginEmail" id="loginEmail" placeholder=" " required>
+                    <label id="labelNomeLog" for="nome">Nome</label>
+                 </div>
+                 
+                 <div class="label-float">
+                    <input type="password" name="loginPasswd" id="loginPasswd" placeholder=" " required>
+                    <label id="labelSenhaLog" for="loginPasswd">Senha</label>
+                    <i id="verSenha" class="fa fa-eye" aria-hidden="true"></i> 
+                 </div>
+
+                <a class="form__hvr-underline-from-left" href="#">Esqueci minha senha</a>
+                <button type="submit" id="submit-in" name="submit-in">Entrar</button>
+=======
                 <div class="label-float">
                     <input type="email" name="email" id="loginEmail" placeholder=" " required>
                     <label id="loginEmailLabel" for="loginEmail">Email</label>
@@ -69,6 +121,7 @@
 
                 <a class="form__hvr-underline-from-left" href="#">Esqueci minha senha</a>
                 <input type="submit" id="submit-in" name="login" value="Entrar">
+>>>>>>> develop
             </form>
         </div>
         <!-- Icons não aparecem -->
@@ -88,6 +141,10 @@
         </div>
     </div>
 
+<<<<<<< HEAD
+    <button id="modal-button">Open Modal</button>
+=======
+>>>>>>> develop
     <div id="organization-modal-bg" class="modal-background"></div>
     <div id="organization-modal" class="modal modal-closed">
       <h2>Modal Window</h2>
@@ -96,6 +153,47 @@
         displaying critical information.
       </p>  
           <div class="org-modal">
+<<<<<<< HEAD
+            <p>Logar Id</p>
+
+            <div class="label-float">
+                <input type="number" name="registerOrgId" id="registerOrgId" placeholder=" " required /> 
+                <label id="labelId" for="registerOrgId">ID da organização</label>
+             </div>
+
+             <div class="label-float">
+                <input type="password" name="registerOrgPasswd" id="registerOrgPasswd" placeholder=" " required /> 
+                <label id="labelOrgPasswd" for="registerOrgPasswd">Senha mestra</label>
+                <i id="verSenha" class="fa fa-eye" aria-hidden="true"></i> 
+             </div> 
+
+            <p>Cadastrar id</p>
+
+            <div class="label-float">
+                <input type="number" name="NewregisterOrgId" id="NewregisterOrgId" placeholder=" " required />
+                <label id="labelIdNew" for="NewregisterOrgId">ID da organização</label>
+            </div>
+
+            <div class="label-float">
+                <input type="password" name="NewregisterOrgPasswd" id="NewregisterOrgPasswd" placeholder=" " required />
+                <label id="labelNewOrgPasswd" for="NewregisterOrgPasswd">Senha mestra</label>
+                <i id="verSenha" class="fa fa-eye" aria-hidden="true"></i> 
+            </div> 
+
+            <div class="label-float">
+                <input type="password" name="NewregisterOrgPasswdConf" id="NewregisterOrgPasswdConf" placeholder=" " required>
+                <label id="labelNewOrgPasswdConfirmSenha" for="NewregisterOrgPasswdConf">Confirmar Senha</label>
+                <i id="verConfirmSenha" class="fa fa-eye" aria-hidden="true"></i>
+             </div>
+           <button class="justify-center" type="submit" id="submit-up-finish" name="submit-up-finish">Cadastrar</button>    
+    </div>  
+    </div>
+                <!-- Scripts -->
+    <script src="/assets/scripts/cadLoginNewValidator"></script>
+    <script src="/assets/scripts/cadLoginContainer.js"></script>
+    <script src="/assets/scripts/cadLoginModal.js"></script>
+    <script src="/assets/scripts/cadLoginValidator.js"></script>
+=======
             
             <!-- Login organization id -->
             <p>Logar Id</p>
@@ -154,6 +252,7 @@
     <script src="/assets/scripts/cadLogin/modal.js"></script>
     <script src="/assets/scripts/cadLogin/treatButtons.js"></script>
     <script src="/assets/scripts/cadLogin/validateInputs.js"></script>
+>>>>>>> develop
 </body>
 
 </html>

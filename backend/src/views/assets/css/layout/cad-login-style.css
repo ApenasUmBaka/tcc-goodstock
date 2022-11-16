@@ -1,6 +1,10 @@
 @import url("/assets/css/base/global.css");
 @import url("/assets/css/base/reset.css");
+<<<<<<< HEAD
+@import url("/assets/css/module/module-styles.css");
+=======
 @import url("/assets/css/module/module-style.css");
+>>>>>>> develop
 
 body {
   display: flex;
@@ -29,7 +33,11 @@ p {
   margin: 20px 0 30px;
 }
 
+<<<<<<< HEAD
+i{
+=======
 i {
+>>>>>>> develop
   margin: 3px;
 }
 
@@ -58,7 +66,11 @@ input.submitInput {
   border-color: var(--button2-color);
 }
 
+<<<<<<< HEAD
+button{
+=======
 button, input[type="submit"] {
+>>>>>>> develop
   border-radius: 6px;
   background-color: var(--two-color);
   width: 10rem;
@@ -67,10 +79,17 @@ button, input[type="submit"] {
   font-weight: 500;
   letter-spacing: 0.1rem;
   transition: var(--tran-03);
+<<<<<<< HEAD
+}
+
+
+button:hover{
+=======
   cursor: pointer;
 }
 
 button:hover, input[type="submit"]:hover {
+>>>>>>> develop
   color: var(--bg-color);
 }
 
@@ -82,7 +101,11 @@ button:focus, input.submitInput:focus, input[type="submit"]:focus {
   outline: none;
 }
 
+<<<<<<< HEAD
+button.ghost {
+=======
 button.ghost, input[type="submit"] {
+>>>>>>> develop
   background-color: var(--button2-color);
   border-radius: 6px;
   width: 10rem;
@@ -112,7 +135,11 @@ input {
   width: 100%;
 }
 /* Input */
+<<<<<<< HEAD
+.label-float input{
+=======
 .label-float input {
+>>>>>>> develop
   width: 100%;
   padding: 5px 5px;
   display: inline-block;
@@ -134,11 +161,19 @@ input {
   margin-bottom: 1%;
 }
 
+<<<<<<< HEAD
+.label-float input:focus{
+  border-bottom: 2px solid #fcc99e;
+}
+
+.label-float label{
+=======
 .label-float input:focus {
   border-bottom: 2px solid #fcc99e;
 }
 
 .label-float label {
+>>>>>>> develop
   color: var(--two-color);
   /* pointer-event: none; */
   position: absolute;
@@ -149,18 +184,30 @@ input {
 }
 
 .label-float input:focus + label,
+<<<<<<< HEAD
+.label-float input:valid + label{
+=======
 .label-float input:valid + label {
+>>>>>>> develop
   font-size: 13px;
   margin-top: 0;
   color: #fcc99e;
 }
 
+<<<<<<< HEAD
+.justify-center{
+=======
 .justify-center {
+>>>>>>> develop
   display: flex;
   justify-content: center;
 }
 
+<<<<<<< HEAD
+.fa-eye{
+=======
 .fa-eye {
+>>>>>>> develop
   position: absolute;
   top: 15px;
   right: 10px;
@@ -170,7 +217,11 @@ input {
 
 /* Error message Forms */
 
+<<<<<<< HEAD
+#msgError{
+=======
 #msgError {
+>>>>>>> develop
   text-align: center;
   color: #ff0000;
   background-color: #ffbbbb;
@@ -179,7 +230,11 @@ input {
   display: none;
 }
 
+<<<<<<< HEAD
+#msgSuccess{
+=======
 #msgSuccess {
+>>>>>>> develop
   text-align: center;
   color: #00bb00;
   background-color: #bbffbe;
@@ -364,7 +419,11 @@ a.form__hvr-underline-from-left:active:before {
 
 /* Modal Window */
 
+<<<<<<< HEAD
+.org-modal{
+=======
 .org-modal {
+>>>>>>> develop
   display: flex;
   align-items: center;
   justify-content: center;
@@ -372,6 +431,10 @@ a.form__hvr-underline-from-left:active:before {
   padding: 0 50px;
 }
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> develop
 @keyframes background-in {
   0% {
     scale: 0 0.005;
