@@ -31,6 +31,7 @@ class HTTPSServer {
 
     app.use(helmet({
       crossOriginEmbedderPolicy: false,
+      contentSecurityPolicy: false
     }));
     app.use(
       session({

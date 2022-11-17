@@ -64,10 +64,13 @@ const inputsToValidate: {[key: string]: CallableFunction} = {
   loginOrgPasswd: Validator.isPasswdValid,
 };
 
-const registerInputsNames = Object.keys(inputsToValidate);
-registerInputsNames.forEach(elementName => {
-  setEventsToInputs(elementName, inputsToValidate[elementName]);
-});
+// Check the meta data.
+if (document.getElementById('meta-microsoftAuth')) inputsToValidate.registerPasswd = (
+  () => {return});
+
+for (const inputName in inputsToValidate) {
+  setEventsToInputs(inputName, inputsToValidate[inputName]);
+}
 
 // Register confirm password.
 const registerConfirmPasswd = document.getElementById('registerConfirmPasswd') as HTMLInputElement;
@@ -92,6 +95,11 @@ registerSubmitButton.onclick = (event: Event) => {
     'registerPasswdLabel',
     'registerConfirmPasswdLabel'
   ];
+
+  if (document.getElementById('meta-microsoftAuth')) {
+    inputs.pop()
+    inputs.pop();
+  }
 
   // Check inputs.
   for (const index in inputs) {
