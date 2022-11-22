@@ -130,7 +130,8 @@ class CustomersController {
    */
   public static async postCustomer(req: Request, res: Response) {
     // Check params.
-    const neededParams = ["name", "email", "password", "organizationId"];
+    const neededParams = (
+      ["name", "email", "?password", "organizationId"]);
     const body: PostCustomer = Security.filterArgs(neededParams, req.body);
     if (
       !Object.keys(body).length ||
@@ -172,12 +173,15 @@ class CustomersController {
     }
 
     // Create the new customer.
-    const customer = await customersModel.createCustomer({
+    const customerArgs: {[key: string]: string | number} = {
       name: body.name,
       email: body.email,
-      password: body.password,
       fk_organizationId: body.organizationId,
-    } as any);
+    };
+    if (body.password) {
+      customerArgs['password'] = body.password;
+    }
+    const customer = await customersModel.createCustomer(customerArgs as any);
 
     // Return the response to the client.
     if (!customer) {

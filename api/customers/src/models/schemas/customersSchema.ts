@@ -20,7 +20,7 @@ const customerSchema: ModelAttributes = {
   },
   password: {
     type: Sequelize.STRING,
-    allowNull: false,
+    allowNull: true,
   },
   fk_organizationId: {
     type: Sequelize.INTEGER,

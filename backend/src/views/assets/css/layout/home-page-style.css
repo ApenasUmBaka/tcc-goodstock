@@ -30,7 +30,7 @@ nav {
   z-index: 3;
 }
 
-i{
+i {
   margin: 10px;
 }
 
@@ -117,7 +117,6 @@ span.nav__new-cont-span::after {
   background: transparent;
   transition: 1s;
 }
-
 
 a.nav__new-cont::before {
   top: -2px;

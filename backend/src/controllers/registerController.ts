@@ -3,7 +3,6 @@ import { Logger } from "winston";
 import { Request, Response } from "express";
 
 import Security from "@security";
-import { toNumber } from "@utils";
 import CustomersModel from "@models/customersModel";
 import OrganizationsModel from "@models/organizationsModel";
 import {
@@ -23,7 +22,8 @@ class RegisterController {
 
   public static async post(req: Request, res: Response) {
     // Check the params.
-    const neededParams = ["name", "email", "passwd"];
+    const neededParams = (
+      (req.session.microsoftRegister) ? ["name", "email"] : ["name", "email", "passwd"]);
 
     if (!Security.filterParams(neededParams, req.body)) {
       req.logger.info("The request has some invalid param. Returning...");
@@ -61,6 +61,7 @@ class RegisterController {
 
     // Create the user.
     req.logger.info("All the data is valid. Creating new user...");
+    req.logger.info(`${typeof body.passwd} - ${body.passwd}`);
     const customersModel = new CustomersModel(req.logger);
     const customer = await customersModel.createCustomer(
       body.name,
