@@ -18,13 +18,15 @@ RUN openssl genrsa -out certs/key.pem;
 RUN openssl req -new -key certs/key.pem -out certs/csr.pem -subj ${CERTSUBJ};
 RUN openssl x509 -req -days 365 -in certs/csr.pem -signkey certs/key.pem -out certs/cert.pem;
 
+# Install the libs
+COPY package.json .
+RUN yarn install
+
 # Copy the files
 COPY . ./
 RUN chown -R node .
-
-# Install the libs
 USER node
-RUN yarn install
+
 
 # Run the container
 # CMD yarn run start:dev
