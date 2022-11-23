@@ -9,3 +9,12 @@ declare global {
     }
   }
 }
+
+// Interfaces
+export interface Product {
+  id: string,
+  name: string,
+  price: number,
+  amount: number,
+  organizationId: number
+}

@@ -10,23 +10,23 @@ const router = Router();
 router.use(AuthController.authRequest);
 
 // Customers
-router.post("/products", ProductsController.postProducts.bind);
+router.post("/products", ProductsController.postProducts.bind(ProductsController));
 
-router.get("/products/:organizationId/", ProductsController.getProduct.bind);
+router.get("/products/:organizationId/", ProductsController.getProduct.bind(ProductsController));
 
 router.get(
   "/products/:organizationId/:productId",
-  ProductsController.getProduct.bind
+  ProductsController.getProduct.bind(ProductsController)
 );
 
 router.patch(
   "/products/:organizationId/:productId",
-  ProductsController.patchProduct.bind
+  ProductsController.patchProduct.bind(ProductsController)
 );
 
 router.delete(
   "/products/:organizationId/:productId",
-  ProductsController.deleteProduct.bind
+  ProductsController.deleteProduct.bind(ProductsController)
 );
 
 router.all("*", (req, res) => {
