@@ -3,25 +3,46 @@ import { Logger } from "winston";
 
 import Database from "./databaseModel";
 import productsSchema from "./schemas/productsSchema";
+import { Product } from "@types";
 
 // Data
 abstract class ProductsModel {
   public static model = Database.mongoose.model("products", productsSchema);
 
-  public static async findProducts(logger: Logger, query: any): Promise<any[]> {
+  /**
+   * A method to find products using query.
+   */
+  public static async findProducts(logger: Logger, query: any): Promise<Product[] | undefined> {
     try {
       const findProductResult = await this.model.find(query);
 
       if (!findProductResult) {
         logger.info("The product was not found in the database.");
-        return [];
+        return;
       }
 
       logger.info("The product was found in the database.");
-      return findProductResult;
+      return findProductResult as any;
     } catch (err) {
       logger.error(`Error on getting a product in the database. Error: ${err}`);
-      return [];
+      return;
+    }
+  }
+
+  public static async findProduct(logger: Logger, query: any): Promise<Product | undefined> {
+    try {
+      const findProductResult = await this.model.findOne(query);
+
+      if (!findProductResult) {
+        logger.info("The product was not found in the database.");
+        return;
+      }
+
+      logger.info("The product was found in the database.");
+      return findProductResult as any;
+    } catch (err) {
+      logger.error(`Error on getting a product in the database. Error: ${err}`);
+      return;
     }
   }
 
@@ -32,7 +53,7 @@ abstract class ProductsModel {
       const updatedProduct = await this.model.findOneAndReplace(query, update);
 
       logger.info("The product was successfully updated.");
-      return this.findProducts(logger, query);
+      return updatedProduct;
     } catch (err) {
       logger.error(`Couldn't update the product. Error: ${err}`);
       return;

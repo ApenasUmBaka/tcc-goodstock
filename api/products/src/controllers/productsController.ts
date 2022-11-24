@@ -4,7 +4,10 @@ import { Request, Response } from "express";
 import Security from "@security";
 import { toNumber } from "@utils";
 import ProductModel from "@models/productsModel";
+import ValidatorController from "./validatorController";
 import OrganizationsModel from "@models/organizationsModel";
+
+import { Product } from '@types';
 
 // Classes
 /**
@@ -12,44 +15,61 @@ import OrganizationsModel from "@models/organizationsModel";
  */
 class ProductsController {
   /**
-   * POST /products
    * A route to create a new product.
    */
-  public static async postProducts(req: Request, res: Response) {
+  public static async postProduct(req: Request, res: Response) {
     // Check params.
-    const neededParams = ["name", "price", "organizationId"];
-    const params = Security.filterParamsOptional(neededParams, req.body);
+    const neededParams = ["name", "price", "amount", "organizationId"];
+    const params = Security.filterParams(neededParams, req.body);
     if (!Object.keys(params).length) {
       req.logger.info("The provided body is not valid. Returning...");
-      return res.sendStatus(400);
+      return res.status(400).json({
+        status: 'Error',
+        message: 'Invalid params.'
+      });
     }
 
-    if (!toNumber(params.price) || !toNumber(params.organizationId)) {
+    // Check if the request is valid.
+    const body: Product = req.body;
+    if (!ValidatorController.isValidProduct(body)) {
       req.logger.info("The provided body is not valid. Returning...");
-      return res.sendStatus(400);
+      return res.status(400).json({
+        status: 'Error',
+        message: 'Invalid params.'
+      });
     }
 
     // Check if the organization exists.
+    req.logger.info('Checking if the organization exists...');
     const findOrganizationResult = await OrganizationsModel.getOrganization(
       req.logger,
       params.organizationId
     );
+
     if (!findOrganizationResult) {
       req.logger.info("The provided organization doesn't exists. Returning...");
-      return res.sendStatus(400);
+      return res.status(400).json({
+        status: 'Error',
+        message: 'Organization not found.'
+      });
     }
 
     // Check if the product already exists.
-    const findProductResult = await ProductModel.findProducts(req.logger, {
+    req.logger.info('Checking if the product already exists...');
+    const findProductResult = await ProductModel.findProduct(req.logger, {
       organizationId: params.organizationId,
       name: params.name,
     });
 
-    if (findProductResult.length == 1) {
+    if (!findProductResult) {
       req.logger.info("A product with this name already exists. Returning...");
-      return res.sendStatus(400);
+      return res.status(400).json({
+        status: 'Error',
+        message: 'A product with this name already exists.'
+      });
     }
 
+    // Create the product.
     req.logger.info("Creating the new product.");
     try {
       const product = await ProductModel.model.create(req.body);
@@ -60,7 +80,10 @@ class ProductsController {
       });
     } catch (err) {
       req.logger.error(`Couldn't create the product. Error: ${err}`);
-      return res.sendStatus(500);
+      return res.status(500).json({
+        status: 'Error',
+        message: 'Internal server error.'
+      });
     }
   }
 
@@ -75,37 +98,79 @@ class ProductsController {
       req.logger.info(
         "The provided organization id is not valid. Returning..."
       );
-      return res.sendStatus(400);
+      return res.status(400).json({
+        status: 'Error',
+        message: 'Invalid organization id.'
+      });
     }
 
-    let query: any = {
+    const query: any = {
       _id: req.params.productId,
       organizationId: organizationId,
     };
 
-    if (!req.params.productId) {
-      query = {
-        organizationId: organizationId,
-      };
-    }
-
     // Check if the product id is valid.
-    const findProductResult = await ProductModel.findProducts(
+    const findProductResult = await ProductModel.findProduct(
       req.logger,
       query
     );
 
     if (!findProductResult) {
       req.logger.info(
-        "The products provided id doesn't not exist. Returning..."
+        "The provided product's id doesn't not exist. Returning..."
       );
-      return res.sendStatus(400);
+      return res.status(400).json({
+        status: 'Error',
+        message: 'Product id not found.'
+      });
     }
 
     req.logger.info("The product exists. Returning..");
     return res.status(200).json({
       status: "Success",
       data: findProductResult,
+    });
+  }
+
+  /**
+   * GET /products/:organizationId/
+   * A method to get some products.
+   */
+  public static async getProducts(req: Request, res: Response) {
+    // Check if the organization Id is valid.
+    const organizationId = toNumber(req.params.organizationId);
+    if (!organizationId) {
+      req.logger.info(
+        "The provided organization id is not valid. Returning..."
+      );
+      return res.status(400).json({
+        status: 'Error',
+        message: 'Organization id not found.'
+      });
+    }
+
+    const query: any = req.body;
+
+    // Check if the product id is valid.
+    const productsResult = await ProductModel.findProducts(
+      req.logger,
+      query
+    );
+
+    if (!productsResult) {
+      req.logger.info(
+        "The provided query doesn't returned any product. Returning..."
+      );
+      return res.status(400).json({
+        status: 'Error',
+        message: 'Invalid provided query.'
+      });
+    }
+
+    req.logger.info("The product exists. Returning..");
+    return res.status(200).json({
+      status: "Success",
+      data: productsResult,
     });
   }
 
@@ -128,7 +193,7 @@ class ProductsController {
     };
 
     // Check if the product id is valid.
-    const findProductResult = await ProductModel.findProducts(
+    const findProductResult = await ProductModel.findProduct(
       req.logger,
       query
     );
@@ -176,7 +241,7 @@ class ProductsController {
       _id: req.params.productId,
       organizationId: organizationId,
     };
-    const findProductResult = await ProductModel.findProducts(
+    const findProductResult = await ProductModel.findProduct(
       req.logger,
       query
     );

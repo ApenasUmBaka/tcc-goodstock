@@ -11,6 +11,7 @@ const productsSchema = new Schema(
   },
   {
     strict: false,
+    timestamps: true
   }
 );
 
