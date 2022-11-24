@@ -291,3 +291,7 @@ body.dark #section-dashboard .--text {
   border-style: solid;
   border-color: black;
 }
+
+#div-products-list {
+  border: 2px red;
+}

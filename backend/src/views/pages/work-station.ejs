@@ -136,15 +136,11 @@
     <section id="section-stock" style="display:none;">
         <div class="--text">Controle de estoque</div>
         <div id="div-products-list">
-            <% if (typeof products != 'undefined') { %>
-                <% for(const product in products) { %>
-                    <div class="product-item">
-                        <span class="product-amount">product.amount</span>
-                        <span class="product-name">product.name</span>
-                        <span class="product-price">product.price</span>
-                    </div>
-                <% } %>
-            <% } %>
+            <div class="div-products-header">
+                <span class="span-products-header">Quantidade</span>
+                <span class="span-products-header">Nome</span>
+                <span class="span-products-header">Valor</span>
+            </div>
         </div>
     </section>
     <!-- Analytics Home -->
@@ -166,6 +162,9 @@
 
     <!-- Scripts -->
     <script src="/assets/scripts/workspace/utils.js"></script>
+    <script src="/assets/scripts/workspace/productsModel.js"></script>
+    <script src="/assets/scripts/workspace/productsController.js"></script>
+
     <script src="/assets/scripts/workspace/eventsDefinition.js"></script>
 </body>
 
