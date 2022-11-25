@@ -17,7 +17,7 @@ class OrganizationsModel {
     try {
       const res = await axios.request({
         method: method,
-        url: `http://goodstock_api_customers:3001/${route}`,
+        url: `http://goodstock_api_customers:80/${route}`,
         headers: {
           Authorization: `Bearer ${this.apiKey}`,
         },

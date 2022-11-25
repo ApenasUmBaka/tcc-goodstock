@@ -18,4 +18,7 @@ function toggleVisibleSection(nextSection: string) {
 
 // Code
 document.getElementById('a-sidebar-dashboard')!.onclick = toggleVisibleSection('section-dashboard');
-document.getElementById('a-sidebar-stock')!.onclick = toggleVisibleSection('section-stock');
+document.getElementById('a-sidebar-stock')!.onclick = () => {
+  toggleVisibleSection('section-stock')();
+  ProductsController.refreshProducts();
+}

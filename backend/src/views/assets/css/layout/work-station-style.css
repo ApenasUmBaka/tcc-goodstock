@@ -292,6 +292,7 @@ body.dark #section-dashboard .--text {
   border-color: black;
 }
 
+<<<<<<< HEAD
 
 /* links */
 .nfl a, .mlb a, .nhl a, .pga a {
@@ -690,3 +691,8 @@ ul.more-content li {
 .circular-menu.active .menu-item:nth-child(4) {
   transform: translate3d(-7em,1em,0);
 }
+=======
+#div-products-list {
+  border: 2px red;
+}
+>>>>>>> 63d8c396de79b876f9cb8bf0eff1c87a0fe570f9
