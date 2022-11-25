@@ -1,7 +1,7 @@
 // Classes
 class Validator {
   public static isNameValid(name: string): string | undefined {
-    const regexName = /([^a-z])/i;
+    const regexName = /([^a-z ])/i;
     if (!name) return 'O nome não foi específicado.';
     if (name.length < 3) return 'O nome deve ter pelo menos 3 caracteres.';
     if (regexName.exec(name)) return 'Insira um nome válido.';

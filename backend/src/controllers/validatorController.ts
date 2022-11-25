@@ -14,8 +14,8 @@ class ValidatorController {
   ): Promise<boolean> {
     logger.info("Checking if the email already has been taken...");
     const customersModel = new CustomersModel(logger);
-    const userId = await customersModel.getIdByEmail(email);
-    if (userId) {
+    const user = await customersModel.getCustomerByEmail(email);
+    if (user?.name) {
       logger.info("The email has already been taken...");
       return true;
     }
