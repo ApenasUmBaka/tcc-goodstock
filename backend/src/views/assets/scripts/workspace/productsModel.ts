@@ -22,6 +22,7 @@ class ProductsModel {
       const res = await this.request('GET', `/products`);
   
       if (res.status == 'Error') return;
+      console.log(JSON.stringify(res.data, null, 4));
       return res.data;
     }
   /**

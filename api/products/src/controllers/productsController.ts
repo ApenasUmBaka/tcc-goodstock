@@ -61,7 +61,7 @@ class ProductsController {
       name: params.name,
     });
 
-    if (!findProductResult) {
+    if (findProductResult) {
       req.logger.info("A product with this name already exists. Returning...");
       return res.status(400).json({
         status: 'Error',
@@ -149,7 +149,9 @@ class ProductsController {
       });
     }
 
-    const query: any = req.body;
+    const query: any = {
+      organizationId: organizationId
+    };
 
     // Check if the product id is valid.
     const productsResult = await ProductModel.findProducts(
@@ -167,7 +169,7 @@ class ProductsController {
       });
     }
 
-    req.logger.info("The product exists. Returning..");
+    req.logger.info("The products exists. Returning..");
     return res.status(200).json({
       status: "Success",
       data: productsResult,

@@ -16,12 +16,12 @@ abstract class ProductsModel {
     try {
       const findProductResult = await this.model.find(query);
 
-      if (!findProductResult) {
-        logger.info("The product was not found in the database.");
+      if (!findProductResult.length) {
+        logger.info("The products was not found in the database.");
         return;
       }
 
-      logger.info("The product was found in the database.");
+      logger.info("The products was found in the database.");
       return findProductResult as any;
     } catch (err) {
       logger.error(`Error on getting a product in the database. Error: ${err}`);

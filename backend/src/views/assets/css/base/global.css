@@ -85,10 +85,10 @@ h2::selection {
 :root {
   /* ===== Colors ===== */
   --body-color: #e5e5e5;
-  --sidebar-color: #fff;
+  --sidebar-color: #f7f7f7;
   --two-color: #e6844f;
   --two-color-light: #f6f5ff;
-  --toggle-color: #ddd;
+  --toggle-color: #f9f2ed;
   --text-color: #191824;
 
   /* ====== Transition ====== */
@@ -104,7 +104,7 @@ body.dark {
   --two-color: #e6844f;
   --two-color-light: #3a3b3c;
   --toggle-color: #fff;
-  --text-color: #ccc;
+  --text-color: #eef2ff;
 }
 
 /* Loader */

@@ -108,7 +108,7 @@ registerSubmitButton.onclick = (event: Event) => {
     if (input.getAttribute('style') == 'color: red') return;
   }
 
-  toggleModal();
+  ModalController.toggleModal();
 };
 
 // Normal login form.

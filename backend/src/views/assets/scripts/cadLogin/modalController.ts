@@ -11,7 +11,7 @@ class ModalController {
     errorElement.remove();
 
     if (!modal.classList.contains('modal-opened')) {
-      modal.appendChild(errorElement);
+      modal.insertBefore(errorElement, modal.firstChild)
       this.openModal(modal, modalBg);
     } else {
       this.closeModal(modal, modalBg);
