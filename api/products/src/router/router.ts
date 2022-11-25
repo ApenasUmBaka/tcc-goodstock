@@ -1,5 +1,5 @@
 // Libs
-import { Router } from "express";
+import { Router, Request, Response } from "express";
 
 import LoggerFactory from "@logger";
 import AuthController from "@controllers/authController";
@@ -10,7 +10,7 @@ const router = Router();
 router.use(AuthController.authRequest);
 
 // Customers
-router.post("/products", ProductsController.postProducts.bind(ProductsController));
+router.post("/products", ProductsController.postProduct.bind(ProductsController));
 
 router.get("/products/:organizationId/", ProductsController.getProduct.bind(ProductsController));
 
@@ -29,7 +29,7 @@ router.delete(
   ProductsController.deleteProduct.bind(ProductsController)
 );
 
-router.all("*", (req, res) => {
+router.all("*", (req: Request, res: Response) => {
   const logger = LoggerFactory.createLogger(req.ip);
   logger.info("Acessed an unknown route.");
   return res.status(404).json({

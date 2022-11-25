@@ -6,6 +6,8 @@ services:
     build: ./backend
     ports:
       - 443:443     # HTTPS server
+    # volumes:
+    #   - ./backend/src:/app/src
     env_file:
       - backend.env
     depends_on:
@@ -14,6 +16,8 @@ services:
   goodstock_api_main:
     container_name: goodstock_api_main
     build: ./api/main/
+    # ports:
+    #   - 3000:3000
     # volumes:
     #   - ./api/main:/app
     env_file:
@@ -73,7 +77,3 @@ services:
       - ./db/api-products:/data/db
     env_file:
       - api_products.env
-
-  goodstock_api_data:
-    build: ./api/data/
-    container_name: goodstock_api_data
