@@ -25,7 +25,9 @@
                 </span>
 
                 <div class="--text logo-text">
-                    <span class="sidebar__name"><%= user.name %></span>
+                    <span class="sidebar__name">
+                        <%= user.name %>
+                    </span>
                     <span class="sidebar__profession">Usuário</span>
                 </div>
             </div>
@@ -114,18 +116,18 @@
     <!-- Dashboard Home -->
     <section class="section-visible" id="section-dashboard">
         <div class="--text">Dashboard Sidebar</div>
-            <h1 class="--text">Hello Word</h1>
-                <p class="home__text-p --padding">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-                dignissim iaculis lorem, vel ultrices orci ultrices lobortis. Nullam a
-                erat justo. Quisque vehicula nunc et mi maximus porttitor. Cras massa
-                enim, pulvinar id pharetra in, condimentum non massa. Praesent
-                porttitor tellus ac hendrerit tempus. Lorem ipsum dolor sit amet,
-                consectetur adipiscing elit. Donec sit amet faucibus nisl. Mauris eu
-                orci sed leo finibus vulputate auctor ut leo. Cras ullamcorper varius
-                sodales.
-                </p>
-            <textarea class="--padding --margin">aaaa</textarea> <br>
+        <h1 class="--text">Hello Word</h1>
+        <p class="home__text-p --padding">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+            dignissim iaculis lorem, vel ultrices orci ultrices lobortis. Nullam a
+            erat justo. Quisque vehicula nunc et mi maximus porttitor. Cras massa
+            enim, pulvinar id pharetra in, condimentum non massa. Praesent
+            porttitor tellus ac hendrerit tempus. Lorem ipsum dolor sit amet,
+            consectetur adipiscing elit. Donec sit amet faucibus nisl. Mauris eu
+            orci sed leo finibus vulputate auctor ut leo. Cras ullamcorper varius
+            sodales.
+        </p>
+        <textarea class="--padding --margin">aaaa</textarea> <br>
         <button class="--padding --margin"><a href="/index.ejs">Click me</a></button>
     </section>
     <!-- Statics Home  -->
@@ -133,19 +135,53 @@
 
     </section>
     <!-- Stock Home -->
-    <section id="section-stock" style="display:none;">
+    <section id="section-stock" class="--wrapper" style="display:none;">
         <div class="--text">Controle de estoque</div>
+        <main class="row title">
+            <ul>
+                <li>Nome</li>
+                <li>Preço</li>
+                <li>Quantidade</li>
+                <li>Data</li>
+                <li>Utils</li>
+            </ul>
+        </main>
+
         <div id="div-products-list">
-            <% if (typeof products != 'undefined') { %>
+            <% if (typeof products !='undefined' ) { %>
                 <% for(const product in products) { %>
-                    <div class="product-item">
-                        <span class="product-amount">product.amount</span>
-                        <span class="product-name">product.name</span>
-                        <span class="product-price">product.price</span>
-                    </div>
-                <% } %>
-            <% } %>
+                    <article class="row nfl">
+                        <ul>
+                            <li><a href="#"><span class="product-name">product.name</span></a></li>
+                            <li><span class="product-price">product.price</span></li>
+                            <li><span class="product-amount">product.amount</span></li>
+                            <li><span class="product-date">product.date</span>/li>
+                            <li></li>
+                        </ul>
+                        <ul class="more-content">
+                            <li><span class="product-description">product.descripition</span></li>
+                        </ul>
+                    </article>
+                    <% } %>
+                        <% } %>
         </div>
+
+        <div id="circularMenu" class="circular-menu">
+
+            <a class="floating-btn" onclick="document.getElementById('circularMenu').classList.toggle('active');">
+                <i class='bx bx-plus'></i>
+            </a>
+          
+            <menu class="items-wrapper">
+              <a href="#" class="menu-item"><i class='bx bx-add-to-queue'></i></a>
+              <a href="#" class="menu-item"><i class='bx bx-select-multiple' ></i></a>
+              <a href="#" class="menu-item"><i class='bx bx-edit'></i></a>
+              <a href="#" class="menu-item"><i class='bx bx-comment-x'></i></a>
+            </menu>
+          
+          </div>
+          
+
     </section>
     <!-- Analytics Home -->
     <section id="section-analytics" style="display:none;">
