@@ -31,8 +31,8 @@ function toggleModal() {
 
   if (!modal.classList.contains('modal-opened')) {
     modal.appendChild(errorElement);
-    openModal(modal, modalBg);
-  } else {
-    closeModal(modal, modalBg);
+    return openModal(modal, modalBg);
   }
+
+  closeModal(modal, modalBg);
 }

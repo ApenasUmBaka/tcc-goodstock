@@ -2,18 +2,38 @@
 <html lang="pt-br" dir="ltr">
 
 <head>
+    <!-- Metas -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Meta for Scripts -->
+    <% if (typeof microsoftName == 'string')  { %>
+    <meta name="microsoftAuth" content="true" id="meta-microsoftAuth">    
+    <% } %>
+
+    <!-- Links -->
     <link rel="stylesheet" href="/assets/css/base/normalize.css"/>
     <link rel="icon" type="image/png" href="/assets/images/box.png" />
     <link href="/assets/css/layout/cad-login-style.css" rel="stylesheet" />
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'>
     <title>Welcome</title>
+
+    <% if (typeof route == 'string' && route == '/register') { %>
+        <script>
+            window.history.replaceState('', '', '/register');
+        </script>
+    <% } %>
 </head>
 
 <body>
-    <div id="error-message" class="error"><%= messageError %></div>
+
+    <div id="error-message" class="error">
+        <% if (typeof messageError == 'string') { %>
+          <%= messageError %>
+        <% } %>
+    </div>
+    
     <div class="container" id="container">
         <div class="form-container sign-up-container">
             <!-- Register Forms -->
@@ -26,11 +46,11 @@
 
                 <!-- Register Inputs -->
                 <div class="label-float">
-                    <input name="name" type="text" id="registerName" placeholder=" " required>
+                    <input name="name" type="text" id="registerName" placeholder=" " value="<% if (typeof microsoftName == 'string')  { %><%= microsoftName %><% } %>"required>
                     <label id="registerNameLabel" for="registerName">Nome</label>
                  </div>
                  <div class="label-float">
-                    <input name="email" type="text" id="registerEmail" placeholder=" " required>
+                    <input name="email" type="text" id="registerEmail" placeholder=" " value="<% if (typeof microsoftEmail == 'string')  { %><%= microsoftEmail %><% } %>" required>
                     <label id="registerEmailLabel" for="registerEmail">Email</label>
                  </div>
 
@@ -148,10 +168,10 @@
     </div>
 
     <!-- Scripts -->
+    <script src="/assets/scripts/cadLogin/modalController.js"></script>
     <script src="/assets/scripts/cadLogin/containerController.js"></script>
     <script src="/assets/scripts/cadLogin/validatorController.js"></script>
-    
-    <script src="/assets/scripts/cadLogin/modal.js"></script>
+
     <script src="/assets/scripts/cadLogin/treatButtons.js"></script>
     <script src="/assets/scripts/cadLogin/validateInputs.js"></script>
 </body>

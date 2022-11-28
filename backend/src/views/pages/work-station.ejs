@@ -25,7 +25,9 @@
                 </span>
 
                 <div class="--text logo-text">
-                    <span class="sidebar__name"><%= user.name %></span>
+                    <span class="sidebar__name">
+                        <%= user.name %>
+                    </span>
                     <span class="sidebar__profession">Usuário</span>
                 </div>
             </div>
@@ -43,42 +45,42 @@
 
                 <ul class="sidebar__menu-links">
                     <li class="sidebar__nav-link">
-                        <a href="#">
+                        <a href="#" id="a-sidebar-dashboard">
                             <i class='bx bx-home-alt icon'></i>
                             <span class="--text nav-text">Dashboard</span>
                         </a>
                     </li>
 
                     <li class="sidebar__nav-link">
-                        <a href="#">
+                        <a href="#" id="a-sidebar-statics">
                             <i class='bx bx-bar-chart-alt-2 icon'></i>
                             <span class="--text nav-text">Statics</span>
                         </a>
                     </li>
 
                     <li class="sidebar__nav-link">
-                        <a href="#">
+                        <a href="#" id="a-sidebar-stock">
                             <i class='bx bx-package icon'></i>
                             <span class="--text nav-text">Stock</span>
                         </a>
                     </li>
 
                     <li class="sidebar__nav-link">
-                        <a href="#">
+                        <a href="#" id="a-sidebar-analytics">
                             <i class='bx bx-pie-chart-alt icon'></i>
                             <span class="--text nav-text">Analytics</span>
                         </a>
                     </li>
 
                     <li class="sidebar__nav-link">
-                        <a href="#">
+                        <a href="#" id="a-sidebar-teams">
                             <i class='bx bx-group icon'></i>
                             <span class="--text nav-text">Teams</span>
                         </a>
                     </li>
 
                     <li class="sidebar__nav-link">
-                        <a href="#">
+                        <a href="#" id="a-sidebar-settings">
                             <i class='bx bx-cog icon'></i>
                             <span class="--text nav-text">Settings</span>
                         </a>
@@ -112,50 +114,96 @@
 
     </nav>
     <!-- Dashboard Home -->
-    <section class="dashboard__home">
+    <section class="section-visible" id="section-dashboard">
         <div class="--text">Dashboard Sidebar</div>
-            <h1 class="--text">Hello Word</h1>
-                <p class="home__text-p --padding">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-                dignissim iaculis lorem, vel ultrices orci ultrices lobortis. Nullam a
-                erat justo. Quisque vehicula nunc et mi maximus porttitor. Cras massa
-                enim, pulvinar id pharetra in, condimentum non massa. Praesent
-                porttitor tellus ac hendrerit tempus. Lorem ipsum dolor sit amet,
-                consectetur adipiscing elit. Donec sit amet faucibus nisl. Mauris eu
-                orci sed leo finibus vulputate auctor ut leo. Cras ullamcorper varius
-                sodales.
-                </p>
-            <textarea class="--padding --margin">aaaa</textarea> <br>
+        <h1 class="--text">Hello Word</h1>
+        <p class="home__text-p --padding">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+            dignissim iaculis lorem, vel ultrices orci ultrices lobortis. Nullam a
+            erat justo. Quisque vehicula nunc et mi maximus porttitor. Cras massa
+            enim, pulvinar id pharetra in, condimentum non massa. Praesent
+            porttitor tellus ac hendrerit tempus. Lorem ipsum dolor sit amet,
+            consectetur adipiscing elit. Donec sit amet faucibus nisl. Mauris eu
+            orci sed leo finibus vulputate auctor ut leo. Cras ullamcorper varius
+            sodales.
+        </p>
+        <textarea class="--padding --margin">aaaa</textarea> <br>
         <button class="--padding --margin"><a href="/index.ejs">Click me</a></button>
     </section>
     <!-- Statics Home  -->
-    <section class="statics__home">
+    <section id="section-statics" style="display:none;">
 
     </section>
     <!-- Stock Home -->
-    <section class="stock__home">
+    <section id="section-stock" class="--wrapper" style="display:none;">
+        <div class="--text">Controle de estoque</div>
+        <main class="row title">
+            <ul>
+                <li>Nome</li>
+                <li>Preço</li>
+                <li>Quantidade</li>
+                <li>Data</li>
+                <li>Utils</li>
+            </ul>
+        </main>
+
+        <div id="div-products-list">
+            <% if (typeof products !='undefined' ) { %>
+                <% for(const product in products) { %>
+                    <article class="row nfl">
+                        <ul>
+                            <li><a href="#"><span class="product-name">product.name</span></a></li>
+                            <li><span class="product-price">product.price</span></li>
+                            <li><span class="product-amount">product.amount</span></li>
+                            <li><span class="product-date">product.date</span>/li>
+                            <li></li>
+                        </ul>
+                        <ul class="more-content">
+                            <li><span class="product-description">product.descripition</span></li>
+                        </ul>
+                    </article>
+                    <% } %>
+                        <% } %>
+        </div>
+
+        <div id="circularMenu" class="circular-menu">
+
+            <a class="floating-btn" onclick="document.getElementById('circularMenu').classList.toggle('active');">
+                <i class='bx bx-plus'></i>
+            </a>
+          
+            <menu class="items-wrapper">
+              <a href="#" class="menu-item"><i class='bx bx-add-to-queue'></i></a>
+              <a href="#" class="menu-item"><i class='bx bx-select-multiple' ></i></a>
+              <a href="#" class="menu-item"><i class='bx bx-edit'></i></a>
+              <a href="#" class="menu-item"><i class='bx bx-comment-x'></i></a>
+            </menu>
+          
+          </div>
+       
+          
 
     </section>
     <!-- Analytics Home -->
-    <section class="analytics__home">
+    <section id="section-analytics" style="display:none;">
 
     </section>
     <!-- Teams Home -->
-    <section class="teams__home">
+    <section id="section-teams" style="display:none;">
 
     </section>
     <!-- Settings Home -->
-    <section class="settings__home">
+    <section id="section-settings" style="display:none;">
 
     </section>
     <!-- Profile Home -->
-    <section class="profile__home">
+    <section id="section-profile" style="display:none;">
 
     </section>
 
     <!-- Scripts -->
     <script src="/assets/scripts/workspace/utils.js"></script>
-
+    <script src="/assets/scripts/workspace/eventsDefinition.js"></script>
 </body>
 
 </html>

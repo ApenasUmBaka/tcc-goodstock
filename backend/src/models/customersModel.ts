@@ -1,9 +1,8 @@
 // Libs
 import { Logger } from "winston";
 
-import Security from "@security";
 import APIModel from "@models/apiModel";
-import { APIResponse, ClientUser, RequestCustomer } from "@types";
+import { APIResponse, ClientUser, RequestCustomer, User } from "@types";
 
 // Classes
 class CustomersModel extends APIModel {
@@ -18,10 +17,10 @@ class CustomersModel extends APIModel {
   /**
    * A method to get the ID from some customer using the email.
    */
-  public async getIdByEmail(email: string): Promise<number | undefined> {
+  public async getCustomerByEmail(email: string): Promise<User | undefined> {
     const apiResult = await this.callAPI("GET", `/customers/?email=${email}`);
     if (!apiResult) return;
-    return apiResult.data.id;
+    return apiResult.data;
   }
 
   /**

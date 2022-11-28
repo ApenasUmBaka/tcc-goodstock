@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "build/index.js",
   "scripts": {
-    "start:dev": "nodemon --ext ts -r tsconfig-paths/register src/index.ts",
+    "start:dev": "tsc; nodemon --ext ts -r tsconfig-paths/register src/index.ts",
     "start:prod": "tsc; node -r ts-node/register/transpile-only -r tsconfig-paths/register ."
   },
   "license": "MIT",

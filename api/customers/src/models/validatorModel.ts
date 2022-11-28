@@ -9,6 +9,7 @@ class ValidatorModel {
   public static isNewCustomerArgsValid(body: PostCustomer): boolean {
     if (!this.isNameValid(body.name!)) return false;
     if (!this.isEmailValid(body.email!)) return false;
+    if (!body.password) return true;
     if (!this.isPasswdValid(body.password!)) return false;
 
     return true;
