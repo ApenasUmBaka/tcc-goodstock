@@ -46,14 +46,14 @@ abstract class ProductsModel {
     }
   }
 
-  public static async updateProduct(logger: Logger, query: any, update: any) {
+  public static async updateProduct(logger: Logger, query: any, update: any): Promise<Product | undefined> {
     logger.info("Updating product...");
 
     try {
       const updatedProduct = await this.model.findOneAndReplace(query, update);
 
       logger.info("The product was successfully updated.");
-      return updatedProduct;
+      return updatedProduct as any;
     } catch (err) {
       logger.error(`Couldn't update the product. Error: ${err}`);
       return;

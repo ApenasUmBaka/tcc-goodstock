@@ -2,12 +2,12 @@
 import { Request, Response } from "express";
 
 import Security from "@security";
-import { toNumber } from "@utils";
+import { productToClientproduct, toNumber } from "@utils";
 import ProductModel from "@models/productsModel";
 import ValidatorController from "./validatorController";
 import OrganizationsModel from "@models/organizationsModel";
 
-import { Product } from '@types';
+import { Product, PostProduct, ClientProduct } from '@types';
 
 // Classes
 /**
@@ -19,7 +19,7 @@ class ProductsController {
    */
   public static async postProduct(req: Request, res: Response) {
     // Check params.
-    const neededParams = ["name", "price", "amount", "organizationId"];
+    const neededParams = ["name", "price", "amount", "organizationId", "?details"];
     const params = Security.filterParams(neededParams, req.body);
     if (!Object.keys(params).length) {
       req.logger.info("The provided body is not valid. Returning...");
@@ -30,8 +30,8 @@ class ProductsController {
     }
 
     // Check if the request is valid.
-    const body: Product = req.body;
-    if (!ValidatorController.isValidProduct(body)) {
+    const body: PostProduct = params;
+    if (!ValidatorController.isValidProduct(body as any)) {
       req.logger.info("The provided body is not valid. Returning...");
       return res.status(400).json({
         status: 'Error',
@@ -72,11 +72,11 @@ class ProductsController {
     // Create the product.
     req.logger.info("Creating the new product.");
     try {
-      const product = await ProductModel.model.create(req.body);
+      const product: Product = (await ProductModel.model.create(params)) as any;
       req.logger.info("the product was created successfully. Returning...");
       return res.status(201).json({
         status: "Success",
-        data: product,
+        data: productToClientproduct(product),
       });
     } catch (err) {
       req.logger.error(`Couldn't create the product. Error: ${err}`);
@@ -110,12 +110,12 @@ class ProductsController {
     };
 
     // Check if the product id is valid.
-    const findProductResult = await ProductModel.findProduct(
+    const productResult = await ProductModel.findProduct(
       req.logger,
       query
     );
 
-    if (!findProductResult) {
+    if (!productResult) {
       req.logger.info(
         "The provided product's id doesn't not exist. Returning..."
       );
@@ -128,7 +128,7 @@ class ProductsController {
     req.logger.info("The product exists. Returning..");
     return res.status(200).json({
       status: "Success",
-      data: findProductResult,
+      data: productToClientproduct(productResult as any),
     });
   }
 
@@ -169,10 +169,16 @@ class ProductsController {
       });
     }
 
+    // Treat the products
+    const productsArray: ClientProduct[] = [];
+    productsResult.forEach((product) => {
+      productsArray.push(productToClientproduct(product));
+    });
+
     req.logger.info("The products exists. Returning..");
     return res.status(200).json({
       status: "Success",
-      data: productsResult,
+      data: productsArray,
     });
   }
 
@@ -186,7 +192,10 @@ class ProductsController {
       req.logger.info(
         "The provided organization id is not valid. Returning..."
       );
-      return res.sendStatus(400);
+      return res.status(400).json({
+        status: 'Error',
+        message: 'Organization id not found.'
+      });
     }
 
     const query = {
@@ -204,24 +213,42 @@ class ProductsController {
       req.logger.info(
         "The products provided id doesn't not exist. Returning..."
       );
-      return res.sendStatus(400);
+      return res.status(400).json({
+        status: 'Error',
+        message: 'Product not found.'
+      });
     }
 
+    // Check if the body is valid.
+    const neededParams = ["name", "price", "amount", "organizationId", "?details"];
+    const params = Security.filterParams(neededParams, req.body);
+    if (!Object.keys(params).length || !ValidatorController.isValidProduct(params)) {
+      req.logger.info("The provided body is not valid. Returning...");
+      return res.status(400).json({
+        status: 'Error',
+        message: 'Invalid params.'
+      });
+    }
+
+    // Update the product.
     const updatedProduct = await ProductModel.updateProduct(
       req.logger,
       query,
-      req.body
+      params
     );
 
     if (!updatedProduct) {
       req.logger.info("The product was not updated. Returning...");
-      return res.sendStatus(400);
+      return res.status(500).json({
+        status: 'Error',
+        message: 'Internal Server Error.'
+      });
     }
 
     req.logger.info("The product was updated. Returning...");
     return res.status(200).json({
       status: "Success",
-      data: updatedProduct,
+      data: productToClientproduct(updatedProduct),
     });
   }
 
@@ -235,7 +262,10 @@ class ProductsController {
       req.logger.info(
         "The provided organization id is not valid. Returning..."
       );
-      return res.sendStatus(400);
+      return res.status(400).json({
+        status: 'Error',
+        message: 'Invalid params.'
+      });
     }
 
     // Check if the product id is valid.
@@ -252,18 +282,27 @@ class ProductsController {
       req.logger.info(
         "The products provided id doesn't not exist. Returning..."
       );
-      return res.sendStatus(400);
+      return res.status(400).json({
+        status: 'Error',
+        message: 'Invalid params.'
+      });
     }
 
     // Delete the product.
     const deletedProduct = await ProductModel.deleteProduct(req.logger, query);
     if (!deletedProduct) {
       req.logger.info("The product was not deleted. Returning...");
-      return res.sendStatus(500);
+      return res.status(500).json({
+        status: 'Error',
+        message: 'Internal Server Error.'
+      });
     }
 
     req.logger.info("The product was successfully deleted. Returning...");
-    return res.sendStatus(200);
+    return res.status(200).json({
+      status: 'Succeess',
+      message: 'The product was successfully deleted.'
+    });
   }
 }
 

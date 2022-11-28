@@ -1,10 +1,16 @@
 // Types
 interface Product {
-  __id: number,
+  id: string,
   name: string,
-  organizationId: number,
   price: number,
   amount: number,
+  details: {
+    name: string,
+    value: string
+  }[],
+  organizationId: number,
+  createdAt: string,
+  updatedAt: string
 }
 
 interface serverResponse {
@@ -18,10 +24,10 @@ class ProductsModel {
   /**
    * A method to get all products from an organization.
   */
-     public static async getAllProducts(): Promise<Product[] | undefined> {
+     public static async getAllProducts(): Promise<Product[]> {
       const res = await this.request('GET', `/products`);
   
-      if (res.status == 'Error') return;
+      if (res.status == 'Error') return [];
       console.log(JSON.stringify(res.data, null, 4));
       return res.data;
     }
