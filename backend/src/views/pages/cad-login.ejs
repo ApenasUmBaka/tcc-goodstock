@@ -8,29 +8,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Meta for Scripts -->
-    <% if (typeof microsoftName == 'string')  { %>
+    <% if (typeof microsoftName=='string' ) { %>
+        <meta name="microsoftAuth" content="true" id="meta-microsoftAuth">
     <meta name="microsoftAuth" content="true" id="meta-microsoftAuth">    
-    <% } %>
+        <meta name="microsoftAuth" content="true" id="meta-microsoftAuth">
+        <% } %>
 
-    <!-- Links -->
-    <link rel="stylesheet" href="/assets/css/base/normalize.css"/>
-    <link rel="icon" type="image/png" href="/assets/images/box.png" />
-    <link href="/assets/css/layout/cad-login-style.css" rel="stylesheet" />
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'>
-    <title>Welcome</title>
+            <!-- Links -->
+            <link rel="stylesheet" href="/assets/css/base/normalize.css" />
+            <link rel="icon" type="image/png" href="/assets/images/box.png" />
+            <link href="/assets/css/layout/cad-login-style.css" rel="stylesheet" />
+            <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'>
+            <title>Welcome</title>
 
-    <% if (typeof route == 'string' && route == '/register') { %>
-        <script>
-            window.history.replaceState('', '', '/register');
-        </script>
-    <% } %>
+            <% if (typeof route=='string' && route=='/register' ) { %>
+                <script>
+                    window.history.replaceState('', '', '/register');
+                </script>
+                <% } %>
 </head>
 
 <body>
+    <div class="--bg-isometric"></div>
     <div id="error-message" class="error">
-        <% if (typeof messageError == 'string') { %>
-          <%= messageError %>
-        <% } %>
+        <% if (typeof messageError=='string' ) { %>
+            <%= messageError %>
+                <% } %>
     </div>
     <div class="container" id="container">
         <div class="form-container sign-up-container">
@@ -44,25 +47,27 @@
 
                 <!-- Register Inputs -->
                 <div class="label-float">
-                    <input name="name" type="text" id="registerName" placeholder=" " value="<% if (typeof microsoftName == 'string')  { %><%= microsoftName %><% } %>"required>
+                    <input name="name" type="text" id="registerName" placeholder=" "
+                        value="<% if (typeof microsoftName == 'string')  { %><%= microsoftName %><% } %>" required>
                     <label id="registerNameLabel" for="registerName">Nome</label>
-                 </div>
-                 <div class="label-float">
-                    <input name="email" type="text" id="registerEmail" placeholder=" " value="<% if (typeof microsoftEmail == 'string')  { %><%= microsoftEmail %><% } %>" required>
+                </div>
+                <div class="label-float">
+                    <input name="email" type="text" id="registerEmail" placeholder=" "
+                        value="<% if (typeof microsoftEmail == 'string')  { %><%= microsoftEmail %><% } %>" required>
                     <label id="registerEmailLabel" for="registerEmail">Email</label>
-                 </div>
+                </div>
 
-                 <div class="label-float">
+                <div class="label-float">
                     <input name="passwd" type="password" id="registerPasswd" placeholder=" " required>
                     <label id="registerPasswdLabel" for="registerPasswd">Senha</label>
-                    <i id="showRegisterPasswd" class="fa fa-eye" aria-hidden="true"></i> 
-                 </div>
-                 <div class="label-float">
+                    <i id="showRegisterPasswd" class="fa fa-eye" aria-hidden="true"></i>
+                </div>
+                <div class="label-float">
                     <input type="password" id="registerConfirmPasswd" placeholder=" " required>
                     <label id="registerConfirmPasswdLabel" for="registerConfirmPasswd">Confirmar Senha</label>
                     <i id="showRegisterConfirmPasswd" class="fa fa-eye" aria-hidden="true"></i>
-                 </div>
-                  <input type="submit" id="submit-up" name="Register" value="Prosseguir">
+                </div>
+                <input type="submit" id="submit-up" name="Register" value="Prosseguir">
             </form>
         </div>
         <div class="form-container sign-in-container">
@@ -77,13 +82,13 @@
                 <div class="label-float">
                     <input type="email" name="email" id="loginEmail" placeholder=" " required>
                     <label id="loginEmailLabel" for="loginEmail">Email</label>
-                 </div>
-                 
-                 <div class="label-float">
+                </div>
+
+                <div class="label-float">
                     <input type="password" name="passwd" id="loginPasswd" placeholder=" " required>
                     <label id="loginPasswdLabel" for="loginPasswd">Senha</label>
-                    <i id="showLoginPasswd" class="fa fa-eye" aria-hidden="true"></i> 
-                 </div>
+                    <i id="showLoginPasswd" class="fa fa-eye" aria-hidden="true"></i>
+                </div>
 
                 <a class="form__hvr-underline-from-left" href="#">Esqueci minha senha</a>
                 <input type="submit" id="submit-in" name="login" value="Entrar">
@@ -96,7 +101,7 @@
                     <h1>Bem Vindo de volta!</h1>
                     <p>Se mantenha conectado conosco, faça login de sua conta.</p>
                     <button class="ghost" id="signIn">Conectar</button>
-                </div> 
+                </div>
                 <div class="overlay-panel overlay-right">
                     <h1>Seja Bem Vindo!</h1>
                     <p>Registre seus dados e crie uma conta conosco.</p>
@@ -108,13 +113,15 @@
 
     <div id="organization-modal-bg" class="modal-background"></div>
     <div id="organization-modal" class="modal modal-closed">
-      <h2>Modal Window</h2>
-      <p>
-        You have opened the modal, they are great for confirming actions or
-        displaying critical information.
+        <h2>Organização</h2>
+        <p>
+            Para utilizar a aplicação, é necessário criar uma organização dentro do sistema, na qual todo usuário é
+            atrelado a uma organização de maneira obrigatória
+        </p>
       </p>  
-          <div class="org-modal">
-            
+        </p>
+        <div class="org-modal">
+
             <!-- Login organization id -->
             <p>Logar Id</p>
             <form id="loginOrganizationForm" method="post">
@@ -124,19 +131,20 @@
                 <input name="passwd" type="password" id="lastLoginPasswd" hidden="true">
 
                 <div class="label-float">
-                    <input type="number" name="organizationId" id="loginOrgId" placeholder=" " required /> 
+                    <input type="number" name="organizationId" id="loginOrgId" placeholder=" " required />
                     <label id="loginOrgIdLabel" for="loginOrgId">ID da organização</label>
                 </div>
 
                 <div class="label-float">
-                    <input type="password" name="masterPassword" id="loginOrgPasswd" placeholder=" " required /> 
+                    <input type="password" name="masterPassword" id="loginOrgPasswd" placeholder=" " required />
                     <label id="loginOrgPasswdLabel" for="loginOrgPasswd">Senha mestra</label>
-                    <i id="showLoginOrgPasswd" class="fa fa-eye" aria-hidden="true"></i> 
-                </div> 
+                    <i id="showLoginOrgPasswd" class="fa fa-eye" aria-hidden="true"></i>
+                </div>
+                <a class="form__hvr-underline-from-left" href="#">Não possui ID Cadastrado?</a>
                 <input class="justify-center" type="submit" id="submit-in-finish" name="submit-in-finish" value="Logar">
             </form>
 
-             <!-- Register organization id -->
+            <!-- Register organization id -->
             <p>Cadastrar id</p>
             <form id="registerOrganizationForm" method="post">
                 <!-- Old inputs -->
@@ -152,19 +160,20 @@
                 <div class="label-float">
                     <input type="password" name="masterPassword" id="registerOrgPasswd" placeholder=" " required />
                     <label id="registerOrgPasswdLabel" for="registerOrgPasswd">Senha mestra</label>
-                    <i id="showRegisterOrgPasswd" class="fa fa-eye" aria-hidden="true"></i> 
-                </div> 
+                    <i id="showRegisterOrgPasswd" class="fa fa-eye" aria-hidden="true"></i>
+                </div>
 
                 <div class="label-float">
                     <input type="password" id="registerConfirmOrgPasswd" placeholder=" " required>
                     <label id="registerConfirmOrgPasswdLabel" for="registerConfirmOrgPasswd">Confirmar Senha</label>
                     <i id="showRegisterConfirmOrgPasswd" class="fa fa-eye" aria-hidden="true"></i>
                 </div>
-                <input class="justify-center" type="submit" id="submit-up-finish" name="registerAccountRegisterOrganization" value="Cadastrar">
-           </form>
-    </div>  
+                <a class="form__hvr-underline-from-left" href="#">Já possui ID cadastrado?</a>
+                <input class="justify-center" type="submit" id="submit-up-finish"
+                    name="registerAccountRegisterOrganization" value="Cadastrar">
+            </form>
+        </div>
     </div>
-
     <!-- Scripts -->
     <script src="/assets/scripts/cadLogin/modalController.js"></script>
     <script src="/assets/scripts/cadLogin/containerController.js"></script>
