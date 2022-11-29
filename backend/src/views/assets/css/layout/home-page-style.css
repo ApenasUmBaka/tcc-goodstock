@@ -22,6 +22,7 @@ h1 {
 *:before,
 *:after {
 	position: relative;
+  box-sizing: border-box;
 }
 
 h2, h3, h4, h5 {
@@ -194,10 +195,10 @@ a.nav__new-cont:hover span.nav__new-cont-span::after {
 }
 
 /* Main Elements */
-/* main {
+main .grid {
   height: 100vh;
   width: 100%;
-} */
+}
 
 /* --------- Card Animation ---------- */
 
@@ -313,7 +314,7 @@ a.nav__new-cont:hover span.nav__new-cont-span::after {
     overflow-y: scroll;
  }
   .item1 {
-    grid-area: 0.1666666667;
+    grid-area: 1 / 1 / 2 / 3;
  }
   .card {
     grid-area: auto;
