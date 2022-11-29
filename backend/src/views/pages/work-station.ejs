@@ -135,43 +135,54 @@
 
     </section>
     <!-- Stock Home -->
-    <section id="section-stock" class="--wrapper" style="display:none;">
-        <div class="--text">Controle de estoque</div>
+    <section id="section-stock" class="--wrapper --padding --margin" style="display:none;">
+        
         <main class="row title">
             <ul>
-                <li>Nome</li>
-                <li>Preço</li>
-                <li>Quantidade</li>
-                <li>Data</li>
-                <li>Utils</li>
+
             </ul>
         </main>
 
-        <div id="div-products-list">
-            <% if (typeof products !='undefined' ) { %>
-                <% for(const product in products) { %>
-                    <article class="row nfl">
-                        <ul>
-                            <li><a href="#"><span class="product-name">product.name</span></a></li>
-                            <li><span class="product-price">product.price</span></li>
-                            <li><span class="product-amount">product.amount</span></li>
-                            <li><span class="product-date">product.date</span>/li>
-                            <li></li>
-                        </ul>
-                        <ul class="more-content">
-                            <li><span class="product-description">product.descripition</span></li>
-                        </ul>
-                    </article>
-                    <% } %>
-                        <% } %>
-        </div>
+        <table id="table-products">
+            <tr id="table-products-headers">
+                <th>Quantidade</th>
+                <th>Nome</th>
+                <th>Preço</th>
+                <th>Data</th>
+            </tr>
+            <!-- <tr class="product-entry">
+                <td class="entry-info">Name</td>
+                <td class="entry-info">Price</td>
+                <td class="entry-info">Amount</td>
+                <td class="entry-info">Date</td>
+                <div class="entry-detail">
+                    <span class="entry-detail-name">name</span>
+                    <span class="entry-detail-value">value</span>
+                </div>
+            </tr> -->
+        </table>
+
+        <!-- <div id="div-products-list">
+            <article class="row nfl">
+                <ul>
+                    <li><a href="#"><span class="product-name --pad">product.name</span></a></li>
+                    <li><span class="product-price --pad">product.price</span></li>
+                    <li><span class="product-amount --pad">product.amount</span></li>
+                    <li><span class="product-date --pad">product.date</span>/li>
+                    <li></li>
+                </ul>
+                <ul class="more-content">
+                    <li><span class="product-description">product.descripition</span></li>
+                </ul>
+            </article>
+        </div> -->
 
         <div id="circularMenu" class="circular-menu">
 
             <a class="floating-btn" onclick="document.getElementById('circularMenu').classList.toggle('active');">
                 <i class='bx bx-plus'></i>
             </a>
-          
+
             <menu class="items-wrapper">
               <a href="#" class="menu-item"><i class='bx bx-add-to-queue'></i></a>
               <a href="#" class="menu-item"><i class='bx bx-select-multiple' ></i></a>
@@ -180,8 +191,6 @@
             </menu>
           
           </div>
-       
-          
 
     </section>
     <!-- Analytics Home -->
@@ -203,7 +212,10 @@
 
     <!-- Scripts -->
     <script src="/assets/scripts/workspace/utils.js"></script>
-    <script src="/assets/scripts/workspace/eventsDefinition.js"></script>
+    <script src="/assets/scripts/workspace/productsModel.js"></script>
+    <script src="/assets/scripts/workspace/productsController.js"></script>
+
+    <script src="/assets/scripts/workspace/eventsDefinition.js"></script>    
 </body>
 
 </html>

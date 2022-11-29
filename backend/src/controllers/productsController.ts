@@ -109,8 +109,9 @@ class ProductsController {
     }
 
     // Check the param.
-    const neededParams = ['name', 'price', 'amount'];
-    if (!Security.filterParams(neededParams, req.body)) {
+    const neededParams = ['name', 'price', 'amount', 'details'];
+    const params = Security.filterParams(neededParams, req.body);
+    if (!Object.keys(params).length) {
       req.logger.info('Invalid product. Returning...');
       return res.status(400).json({
         status: 'Error',
@@ -120,7 +121,7 @@ class ProductsController {
 
     // Create the product.
     const productsModel = new ProductsModel(req.logger, req.session.user!.organizationId!);
-    const productResult = await productsModel.create(req.body);
+    const productResult = await productsModel.create(params);
 
     // Return the result.
     if (typeof productResult == "string") {
@@ -153,7 +154,7 @@ class ProductsController {
     }
 
     // Check the param.
-    const neededParams = ['name', 'price', 'amount'];
+    const neededParams = ['name', 'price', 'amount', '?details'];
     const params = Security.filterParams(neededParams, req.body);
     if (!Object.keys(params) || !req.params.productId) {
       req.logger.info('Invalid product. Returning...');
@@ -165,7 +166,7 @@ class ProductsController {
 
     // Update the product.
     const productsModel = new ProductsModel(req.logger, req.session.user!.organizationId!);
-    const productResult = await productsModel.updateById(req.params.productId, req.body);
+    const productResult = await productsModel.updateById(req.params.productId, params);
 
     // Return the result.
     if (typeof productResult == "string") {

@@ -12,7 +12,7 @@ router.use(AuthController.authRequest);
 // Customers
 router.post("/products", ProductsController.postProduct.bind(ProductsController));
 
-router.get("/products/:organizationId/", ProductsController.getProduct.bind(ProductsController));
+router.get("/products/:organizationId/", ProductsController.getProducts.bind(ProductsController));
 
 router.get(
   "/products/:organizationId/:productId",

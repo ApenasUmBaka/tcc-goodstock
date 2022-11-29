@@ -8,6 +8,14 @@ const productsSchema = new Schema(
     organizationId: Number,
     price: Number,
     amount: Number,
+    details: [
+      new Schema({
+        name: String,
+        value: String
+      }, {
+        _id: false
+      })
+    ]
   },
   {
     strict: false,
