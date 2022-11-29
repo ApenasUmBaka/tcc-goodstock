@@ -7,10 +7,6 @@ body {
   transition: var(--tran-05);
 }
 
-span.--pad{
-  padding: 1rem;
-}
-
 /* ===== Sidebar ===== */
 .sidebar {
   position: fixed;
@@ -290,6 +286,13 @@ body.dark #section-dashboard .--text {
   color: var(--text-color);
 }
 
+/* Products */
+.product-item {
+  border-style: solid;
+  border-color: black;
+}
+
+
 /* links */
 .nfl a, .mlb a, .nhl a, .pga a {
   text-decoration: none;
@@ -323,6 +326,8 @@ body.dark #section-dashboard .--text {
 .--wrapper {
   width: 100%;
   max-width: 1000px;
+  margin: 20px auto 100px auto;
+  padding: 0;
   background-color: var(--sidebar-color);
   color: var(--text-color);
   overflow: hidden;
