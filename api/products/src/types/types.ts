@@ -11,10 +11,43 @@ declare global {
 }
 
 // Interfaces
+// Products
 export interface Product {
+  _id: string,
+  name: string,
+  price: number,
+  amount: number,
+  organizationId: number,
+  details: {
+    name: string,
+    value: string
+  }[],
+  createdAt: string,
+  updatedAt: string,
+  __v: number
+}
+
+export interface PostProduct {
+  name: string,
+  price: number,
+  amount: number,
+  organizationId: number,
+  details?: {
+    name: string,
+    value: string
+  }[]
+}
+
+export interface ClientProduct {
   id: string,
   name: string,
   price: number,
   amount: number,
-  organizationId: number
+  organizationId: number,
+  details: {
+    name: string,
+    value: string
+  }[],
+  createdAt: string,
+  updatedAt: string
 }
