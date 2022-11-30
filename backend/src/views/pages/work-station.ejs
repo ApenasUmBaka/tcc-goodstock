@@ -116,19 +116,21 @@
     <!-- Dashboard Home -->
     <section class="section-visible" id="section-dashboard">
         <div class="--text">Dashboard Sidebar</div>
-        <h1 class="--text">Hello Word</h1>
-        <p class="home__text-p --padding">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-            dignissim iaculis lorem, vel ultrices orci ultrices lobortis. Nullam a
-            erat justo. Quisque vehicula nunc et mi maximus porttitor. Cras massa
-            enim, pulvinar id pharetra in, condimentum non massa. Praesent
-            porttitor tellus ac hendrerit tempus. Lorem ipsum dolor sit amet,
-            consectetur adipiscing elit. Donec sit amet faucibus nisl. Mauris eu
-            orci sed leo finibus vulputate auctor ut leo. Cras ullamcorper varius
-            sodales.
-        </p>
-        <textarea class="--padding --margin">aaaa</textarea> <br>
-        <button class="--padding --margin"><a href="/index.ejs">Click me</a></button>
+        
+        <div id="circularMenu" class="circular-menu">
+
+            <a class="floating-btn" onclick="document.getElementById('circularMenu').classList.toggle('active');">
+                <i class='bx bx-plus'></i>
+            </a>
+
+            <menu class="items-wrapper">
+              <a href="#" class="menu-item"><i class='bx bxs-detail'></i></a>
+              <a href="#" class="menu-item"><i class='bx bx-select-multiple' ></i></a>
+              <a href="#" class="menu-item"><i class='bx bx-edit'></i></a>
+              <a href="#" class="menu-item"><i class='bx bx-comment-x'></i></a>
+            </menu>
+          
+          </div>
     </section>
     <!-- Statics Home  -->
     <section id="section-statics" style="display:none;">
@@ -176,7 +178,7 @@
                 </ul>
             </article>
         </div> -->
-
+        <!-- Circular Menu -->
         <div id="circularMenu" class="circular-menu">
 
             <a class="floating-btn" onclick="document.getElementById('circularMenu').classList.toggle('active');">
@@ -191,7 +193,40 @@
             </menu>
           
           </div>
+          <!-- Modal -->
+          <div id="organization-modal-bg" class="modal-background"></div>
+            <div id="organization-modal" class="modal modal-closed">
 
+                <form id="porductAddItem" method="post" >
+                <div class="label-float">
+                    <input type="text"  name="name" id="nameItem" placeholder=" " required>
+                    <label id="nameItemLabel" for="nameItem">Nome</label>
+                </div>
+
+                <div class="label-float">
+                    <input type="number" name="price" id="priceItem" placeholder=" " required>
+                    <label id="priceItemLabel" for="priceItem">Preço</label>
+                </div>
+
+                <div class="label-float">
+                    <input type="number" name="amount" id="amountItem" placeholder=" " required>
+                    <label id="amountItemLabel" for="amountItem">Quantidade</label>
+                </div>
+
+                <div class="label-float">
+                    <input type="datetime-local" name="date" id="dateItem" placeholder=" " required>
+                    <label id="dateItemLabel" for="dateItem">Data de Entrada</label>
+                </div>
+
+                <div class="label-float">
+                    <textarea rows="6" placeholder="Sua Descrição do Item" id="description" name="descriptionItem"></textarea>
+                    <label id="descriptionItemLabel" for="descriptionItem">Descrição</label> 
+                </div> 
+                <input class="justify-center" type="submit" id="submit-up-finish"
+                    name="addItemTable" value="Adicionar">
+                </form>
+            </div>
+       
     </section>
     <!-- Analytics Home -->
     <section id="section-analytics" style="display:none;">
