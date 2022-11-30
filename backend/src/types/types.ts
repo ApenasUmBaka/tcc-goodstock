@@ -31,14 +31,14 @@ export interface User {
 
 /**
  * A interface to describe a product's structure.
-*/
+ */
 export interface Product {
-  name: string,
-  price: number,
-  amount: number,
-  organizationId: number,
-  created_at?: Date,
-  updated_at?: Date
+  name: string;
+  price: number;
+  amount: number;
+  organizationId: number;
+  created_at?: Date;
+  updated_at?: Date;
 }
 
 // Requests
