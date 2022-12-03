@@ -686,6 +686,32 @@ ul.more-content li {
   transform: translate3d(-7em,1em,0);
 }
 
+/* button and input */
+button, input[type="submit"] {
+  border-radius: 6px;
+  background-color: var(--two-color);
+  margin: 5px;
+  width: 10rem;
+  height: 2.25rem;
+  padding: 5px;
+  font-weight: 500;
+  letter-spacing: 0.1rem;
+  transition: var(--tran-03);
+  cursor: pointer;
+}
+
+button:hover, input[type="submit"]:hover {
+  color: var(--bg-color);
+}
+
+input.submitInput:active {
+  transform: scale(0.95);
+}
+
+button:focus, input.submitInput:focus, input[type="submit"]:focus {
+  outline: none;
+}
+
 /* Input */
 .label-float input {
   width: 100%;
@@ -734,6 +760,11 @@ ul.more-content li {
   justify-content: center;
 }
 
+.--end{
+  display: flex;
+  justify-content: end;
+}
+
 /* Message error */
 #error-message{
   position: relative;
@@ -756,4 +787,121 @@ ul.more-content li {
   padding: 10px;
   border-radius: 4px;
   display: none;
+}
+.org-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 50px;
+}
+
+@keyframes background-in {
+  0% {
+    scale: 0 0.005;
+  }
+  33% {
+    scale: 1 0.005;
+  }
+  66%,
+  100% {
+    scale: 1 1;
+  }
+}
+
+.modal-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1, 1);
+  background: rgba(0, 0, 0, 0.5);
+  transition: 0.5s;
+  z-index: 99;
+}
+
+.modal-background.modal-opened {
+  visibility: visible;
+  opacity: 1;
+  animation: background-in 1s both;
+}
+
+@keyframes modal-in {
+  0%,
+  66% {
+    opacity: 0;
+    visibility: hidden;
+    translate: -50% -30%;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  background: var(--bg2-color);
+  color: var(--h1-color);
+  padding: 48px 40px;
+  width: 600px;
+  border-radius: 12px;
+  translate: -50% -50%;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+  z-index: 100;
+}
+
+.modal.modal-opened {
+  opacity: 1;
+  visibility: visible;
+  animation: modal-in 1s;
+}
+
+.modal.modal-closed {
+  opacity: 0;
+  visibility: hidden;
+  translate: -50% -50%;
+}
+
+.modal h2 {
+  margin: 0 0 3px;
+  font-weight: 400;
+  font-size: 21px;
+  color: var(--h1-color);
+}
+
+.modal p {
+  color: var(--h1-color);
+}
+
+/* Org Modal */
+
+.org-modal1{
+  display: flex;
+  flex-direction: row;
+}
+
+.org-modal2{
+  display: flex;
+  flex-direction: row;
+}
+
+.org-modal3{
+  display: flex;
+  flex-direction: row;
+}
+
+textarea {
+  resize: none;
+  width: 40vw;
+  display: block;
 }

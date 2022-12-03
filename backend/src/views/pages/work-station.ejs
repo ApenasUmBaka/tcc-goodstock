@@ -198,6 +198,8 @@
             <div id="organization-modal" class="modal modal-closed">
 
                 <form id="porductAddItem" method="post" >
+                  
+                <div class="org-modal1">    
                 <div class="label-float">
                     <input type="text"  name="name" id="nameItem" placeholder=" " required>
                     <label id="nameItemLabel" for="nameItem">Nome</label>
@@ -208,22 +210,33 @@
                     <label id="priceItemLabel" for="priceItem">Preço</label>
                 </div>
 
+                </div><br>
+
+                <div class="org-modal2">
+
                 <div class="label-float">
                     <input type="number" name="amount" id="amountItem" placeholder=" " required>
                     <label id="amountItemLabel" for="amountItem">Quantidade</label>
                 </div>
 
                 <div class="label-float">
-                    <input type="datetime-local" name="date" id="dateItem" placeholder=" " required>
+                    <input type="date" name="date" id="dateItem" placeholder=" " required>
                     <label id="dateItemLabel" for="dateItem">Data de Entrada</label>
                 </div>
 
-                <div class="label-float">
+                </div><br>
+
+                <div class="label-float --description">
                     <textarea rows="6" placeholder="Sua Descrição do Item" id="description" name="descriptionItem"></textarea>
                     <label id="descriptionItemLabel" for="descriptionItem">Descrição</label> 
                 </div> 
-                <input class="justify-center" type="submit" id="submit-up-finish"
+                <br>
+                
+                <div class="org-modal3">
+                <button class="--end">Cancelar</button>
+                <input class="--end" type="submit" id="addItemTable"
                     name="addItemTable" value="Adicionar">
+                </div>
                 </form>
             </div>
        
