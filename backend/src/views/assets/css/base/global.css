@@ -75,8 +75,8 @@ h2::selection {
 }
 
 @font-face {
-  font-family: 'Age Regular';
-  src: url('/assets/Fonts/Age.otf') format('opentype');
+  font-family: "Age Regular";
+  src: url("/assets/Fonts/Age.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
 }
@@ -109,19 +109,19 @@ body.dark {
 
 /* Loader */
 
-.fade{
+.fade {
   opacity: 0;
   visibility: hidden;
 }
 
-.wrapper{
+.wrapper {
   position: fixed;
   inset: 0;
   z-index: 9999;
   background-color: #090c24;
   display: grid;
   place-items: center;
-  transition: opacity .25s, visibility 1s;
+  transition: opacity 0.25s, visibility 1s;
 }
 
 .loader {
@@ -145,36 +145,36 @@ body.dark {
 
 @keyframes loader {
   0% {
-      transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   25% {
-      transform: rotate(180deg);
+    transform: rotate(180deg);
   }
   50% {
-      transform: rotate(180deg);
+    transform: rotate(180deg);
   }
   75% {
-      transform: rotate(360deg);
+    transform: rotate(360deg);
   }
   100% {
-      transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 
 @keyframes loader-inner {
   0% {
-      height: 0%;
+    height: 0%;
   }
   25% {
-      height: 0%;
+    height: 0%;
   }
   50% {
-      height: 100%;
+    height: 100%;
   }
   75% {
-      height: 100%;
+    height: 100%;
   }
   100% {
-      height: 0%;
+    height: 0%;
   }
 }

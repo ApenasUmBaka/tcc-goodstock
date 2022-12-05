@@ -29,10 +29,7 @@ class LoginController {
 
     // Check if customer is valid.
     const customerModel = new CustomersModel(req.logger);
-    const user = await customerModel.authCustomer(
-      params.email,
-      params.passwd
-    );
+    const user = await customerModel.authCustomer(params.email, params.passwd);
 
     if (!user) {
       req.logger.info("Invalid credentials. Returning...");

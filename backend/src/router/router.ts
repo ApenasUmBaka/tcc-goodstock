@@ -42,11 +42,26 @@ router.get(
 router.get("/workspace", WorkspaceController.get.bind(WorkspaceController));
 
 // Products
-router.get('/products/', ProductsController.getProductsByQuery.bind(ProductsController));
-router.get('/products/:productId', ProductsController.getProductById.bind(ProductsController));
-router.post('/products/', ProductsController.postProduct.bind(ProductsController));
-router.patch('/products/:productId', ProductsController.patchProduct.bind(ProductsController));
-router.delete('/products/:productId', ProductsController.deleteProduct.bind(ProductsController));
+router.get(
+  "/products/",
+  ProductsController.getProductsByQuery.bind(ProductsController)
+);
+router.get(
+  "/products/:productId",
+  ProductsController.getProductById.bind(ProductsController)
+);
+router.post(
+  "/products/",
+  ProductsController.postProduct.bind(ProductsController)
+);
+router.patch(
+  "/products/:productId",
+  ProductsController.patchProduct.bind(ProductsController)
+);
+router.delete(
+  "/products/:productId",
+  ProductsController.deleteProduct.bind(ProductsController)
+);
 
 // All
 router.all("*", (req: Request, res: Response) => {
