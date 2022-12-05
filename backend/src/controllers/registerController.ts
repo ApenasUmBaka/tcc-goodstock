@@ -22,8 +22,9 @@ class RegisterController {
 
   public static async post(req: Request, res: Response) {
     // Check the params.
-    const neededParams = (
-      (req.session.microsoftRegister) ? ["name", "email"] : ["name", "email", "passwd"]);
+    const neededParams = req.session.microsoftRegister
+      ? ["name", "email"]
+      : ["name", "email", "passwd"];
 
     if (!Security.filterParams(neededParams, req.body)) {
       req.logger.info("The request has some invalid param. Returning...");
@@ -126,9 +127,9 @@ class RegisterController {
 
     // Try to create the organization.
     const organizationsModel = new OrganizationsModel(logger);
-    const foundedOrg = await organizationsModel.findOrganization(
-      { id: body.organizationId }
-    );
+    const foundedOrg = await organizationsModel.findOrganization({
+      id: body.organizationId,
+    });
 
     // Return the result.
     if (!foundedOrg) return;

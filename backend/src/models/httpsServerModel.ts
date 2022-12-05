@@ -29,10 +29,12 @@ class HTTPSServer {
     app.set("view engine", "ejs");
     app.set("views", "src/views/pages");
 
-    app.use(helmet({
-      crossOriginEmbedderPolicy: false,
-      contentSecurityPolicy: false
-    }));
+    app.use(
+      helmet({
+        crossOriginEmbedderPolicy: false,
+        contentSecurityPolicy: false,
+      })
+    );
     app.use(
       session({
         secret: process.env.SESSIONSECRET!,

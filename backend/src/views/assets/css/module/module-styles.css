@@ -1,9 +1,9 @@
 /* Hover Button Background Linear */
 .--text,
-.--icon{
-    color: var(--h1-color);
-    transition: var(--tran-03);
-    height: 30px;
+.--icon {
+  color: var(--h1-color);
+  transition: var(--tran-03);
+  height: 30px;
 }
 
 li a {
@@ -20,14 +20,14 @@ li a {
   transition: var(--tran-03);
 }
 
-li a:hover{
-    background-color: var(--two-color);
-    color: var(--bg-color);
-    font-weight: 500;
+li a:hover {
+  background-color: var(--two-color);
+  color: var(--bg-color);
+  font-weight: 500;
 }
 li a:hover .--icon,
-li a:hover .--text{
-    color: var(--bg-color);
+li a:hover .--text {
+  color: var(--bg-color);
 }
 
 button i:hover .--icon {
@@ -36,81 +36,140 @@ button i:hover .--icon {
 
 /* Hover Button underline-from-left */
 a.--hvr-underline-from-left {
-    display: inline-block;
-    vertical-align: middle;
-    -webkit-transform: perspective(1px) translateZ(0);
-    transform: perspective(1px) translateZ(0);
-    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-    position: relative;
-    overflow: hidden;
-  }
-  
-  a.--hvr-underline-from-left:before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    left: 0;
-    right: 100%;
-    bottom: 0;
-    background: var(--button-color);
-    height: 4px;
-    -webkit-transition-property: right;
-    transition-property: right;
-    -webkit-transition-duration: 0.3s;
-    transition-duration: 0.3s;
-    -webkit-transition-timing-function: ease-out;
-    transition-timing-function: ease-out;
-  }
-  
-  a.--hvr-underline-from-left:hover:before,
-  a.--hvr-underline-from-left:focus:before,
-  a.--hvr-underline-from-left:active:before {
-    right: 0;
-  }
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  position: relative;
+  overflow: hidden;
+}
+
+a.--hvr-underline-from-left:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  right: 100%;
+  bottom: 0;
+  background: var(--button-color);
+  height: 4px;
+  -webkit-transition-property: right;
+  transition-property: right;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+
+a.--hvr-underline-from-left:hover:before,
+a.--hvr-underline-from-left:focus:before,
+a.--hvr-underline-from-left:active:before {
+  right: 0;
+}
 
 /* Backgrounds */
-  .--bg-zig-zag{
-    background-color: #e5e5e5;
-    opacity: 0.6;
-    background: linear-gradient(135deg, #e6844f55 25%, transparent 25%) -18px 0/ 36px 36px, linear-gradient(225deg, #e6844f 25%, transparent 25%) -18px 0/ 36px 36px, linear-gradient(315deg, #e6844f55 25%, transparent 25%) 0px 0/ 36px 36px, linear-gradient(45deg, #e6844f 25%, #e5e5e5 25%) 0px 0/ 36px 36px;
-  }
+.--bg-zig-zag {
+  background-color: #e5e5e5;
+  opacity: 0.6;
+  background: linear-gradient(135deg, #e6844f55 25%, transparent 25%) -18px 0/
+      36px 36px,
+    linear-gradient(225deg, #e6844f 25%, transparent 25%) -18px 0/ 36px 36px,
+    linear-gradient(315deg, #e6844f55 25%, transparent 25%) 0px 0/ 36px 36px,
+    linear-gradient(45deg, #e6844f 25%, #e5e5e5 25%) 0px 0/ 36px 36px;
+}
 
-  .--bg-isometric{
-    background-color: #e5e5e5;
-    opacity: 0.6;
-    background-image:  linear-gradient(30deg, #e6844f 12%, transparent 12.5%, transparent 87%, #e6844f 87.5%, #e6844f), linear-gradient(150deg, #e6844f 12%, transparent 12.5%, transparent 87%, #e6844f 87.5%, #e6844f), linear-gradient(30deg, #e6844f 12%, transparent 12.5%, transparent 87%, #e6844f 87.5%, #e6844f), linear-gradient(150deg, #e6844f 12%, transparent 12.5%, transparent 87%, #e6844f 87.5%, #e6844f), linear-gradient(60deg, #e6844f77 25%, transparent 25.5%, transparent 75%, #e6844f77 75%, #e6844f77), linear-gradient(60deg, #e6844f77 25%, transparent 25.5%, transparent 75%, #e6844f77 75%, #e6844f77);
-    background-size: 36px 63px;
-    background-position: 0 0, 0 0, 18px 32px, 18px 32px, 0 0, 18px 32px;
-    z-index: 1;
-  }
+.--bg-isometric {
+  background-color: #e5e5e5;
+  opacity: 0.6;
+  background-image: linear-gradient(
+      30deg,
+      #e6844f 12%,
+      transparent 12.5%,
+      transparent 87%,
+      #e6844f 87.5%,
+      #e6844f
+    ),
+    linear-gradient(
+      150deg,
+      #e6844f 12%,
+      transparent 12.5%,
+      transparent 87%,
+      #e6844f 87.5%,
+      #e6844f
+    ),
+    linear-gradient(
+      30deg,
+      #e6844f 12%,
+      transparent 12.5%,
+      transparent 87%,
+      #e6844f 87.5%,
+      #e6844f
+    ),
+    linear-gradient(
+      150deg,
+      #e6844f 12%,
+      transparent 12.5%,
+      transparent 87%,
+      #e6844f 87.5%,
+      #e6844f
+    ),
+    linear-gradient(
+      60deg,
+      #e6844f77 25%,
+      transparent 25.5%,
+      transparent 75%,
+      #e6844f77 75%,
+      #e6844f77
+    ),
+    linear-gradient(
+      60deg,
+      #e6844f77 25%,
+      transparent 25.5%,
+      transparent 75%,
+      #e6844f77 75%,
+      #e6844f77
+    );
+  background-size: 36px 63px;
+  background-position: 0 0, 0 0, 18px 32px, 18px 32px, 0 0, 18px 32px;
+  z-index: 1;
+}
 
 /* Hovers */
 
 .--shine-hvr figure::before {
-	position: absolute;
-	top: 0;
-	left: -75%;
-	z-index: 2;
-	display: block;
-	content: '';
-	width: 50%;
-	height: 100%;
-	background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);
-	background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);
-	-webkit-transform: skewX(-25deg);
-	transform: skewX(-25deg);
+  position: absolute;
+  top: 0;
+  left: -75%;
+  z-index: 2;
+  display: block;
+  content: "";
+  width: 50%;
+  height: 100%;
+  background: -webkit-linear-gradient(
+    left,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 100%
+  );
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 100%
+  );
+  -webkit-transform: skewX(-25deg);
+  transform: skewX(-25deg);
 }
 .--shine-hvr figure:hover::before {
-	-webkit-animation: shine .75s;
-	animation: shine .75s;
+  -webkit-animation: shine 0.75s;
+  animation: shine 0.75s;
 }
 @-webkit-keyframes shine {
-	100% {
-		left: 125%;
-	}
+  100% {
+    left: 125%;
+  }
 }
 @keyframes shine {
-	100% {
-		left: 125%;
-	}
+  100% {
+    left: 125%;
+  }
 }
