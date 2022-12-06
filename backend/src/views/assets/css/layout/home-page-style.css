@@ -532,6 +532,16 @@ h1.main-goodstock {
   transition: var(--tran-03);
 }
 
+.--justify-content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-info p {
+  padding: 1rem;
+}
+
 .card-info:hover {
   box-shadow: 15px 15px 0 -4px var(--two-color), 15px 15px var(--primary-color);
 }
