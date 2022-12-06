@@ -23,11 +23,11 @@ services:
     env_file:
       - api_main.env
     links:
-      - goodstock_api_sales
+      # - goodstock_api_sales
       - goodstock_api_products
       - goodstock_api_customers
     depends_on:
-      - goodstock_api_sales
+      # - goodstock_api_sales
       - goodstock_api_products
       - goodstock_api_customers
 
@@ -53,13 +53,13 @@ services:
     env_file:
       - api_products.env
 
-  goodstock_api_sales:
-    build: ./api/sales/
-    container_name: goodstock_api_sales
-    # volumes:
-    #   - ./api/sales:/app
-    env_file:
-      - api_sales.env
+  # goodstock_api_sales:
+  #   build: ./api/sales/
+  #   container_name: goodstock_api_sales
+  #   # volumes:
+  #   #   - ./api/sales:/app
+  #   env_file:
+  #     - api_sales.env
 
   # Databases
   goodstock_api_customers_db:

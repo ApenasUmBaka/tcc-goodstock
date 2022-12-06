@@ -3,6 +3,7 @@ import { Request, Response } from "express";
 
 import Security from "@security";
 import CustomersModel from "@models/customersModel";
+import OrganizationsModel from "@models/organizationsModel";
 
 // Classes
 class LoginController {
@@ -29,19 +30,28 @@ class LoginController {
 
     // Check if customer is valid.
     const customerModel = new CustomersModel(req.logger);
-    const user = await customerModel.authCustomer(
-      params.email,
-      params.passwd
-    );
-
-    if (!user) {
+    const authUserResult = await customerModel.authCustomer(params.email, params.passwd);
+    if (!authUserResult) {
       req.logger.info("Invalid credentials. Returning...");
       return res.status(400).render("cad-login", {
         messageError: "As credenciais inseridas são inválidas.",
       });
     }
 
-    req.session.user = user;
+    // Set the customer on the session.
+    const org = await new OrganizationsModel(req.logger).findOrganization({
+      id: authUserResult.id
+    });
+
+    req.session.user = {
+      id: authUserResult.id,
+      name: authUserResult.name,
+      email: authUserResult.email,
+      organizationName: org?.name,
+      organizationId: org?.id,
+    }
+    req.session.save();
+
     res.redirect("/workspace");
   }
 }

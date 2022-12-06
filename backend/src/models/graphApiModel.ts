@@ -13,7 +13,7 @@ class GraphApiModel {
   /**
    * A method to the user's name using the graph api.
    */
-   public async getUserName(access_token: string): Promise<string | undefined> {
+  public async getUserName(access_token: string): Promise<string | undefined> {
     this.logger.info("Getting the user name using the graph API...");
 
     let response: AxiosResponse;

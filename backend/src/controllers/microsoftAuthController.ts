@@ -10,10 +10,12 @@ class microsoftAuthController {
 
     const code = req.query.code;
     if (req.query.error) {
-      req.logger.warn(`Error on trying to auth with Microsoft. Error: ${req.query.error}`);
-      return res.status(302).render('cad-login', {
-        route: '/register',
-        messageError: 'Erro ao tentar se autenticar com a Microsoft.'
+      req.logger.warn(
+        `Error on trying to auth with Microsoft. Error: ${req.query.error}`
+      );
+      return res.status(302).render("cad-login", {
+        route: "/register",
+        messageError: "Erro ao tentar se autenticar com a Microsoft.",
       });
     }
     if (!code) {
@@ -37,23 +39,24 @@ class microsoftAuthController {
     const userName = await graphApi.getUserName(accessToken);
 
     // Try to find if the customer exists.
-    req.logger.info('Trying to find the customer in the database...');
+    req.logger.info("Trying to find the customer in the database...");
     const customersModel = new CustomersModel(req.logger);
     const customer = await customersModel.getCustomerByEmail(userEmail);
     if (customer?.name) {
-      req.logger.info('The customer was found. Redirecting to /woskspace...');
+      req.logger.info("The customer was found. Redirecting to /woskspace...");
       req.session.user = customer;
-      return res.status(302).redirect('/workspace');
+      return res.status(302).redirect("/workspace");
     }
 
     // Redirect the user to the cad login and wait for his register.
     req.session.microsoftRegister = true;
-    req.logger.info('Rendering the user to cad-login...');
-    res.status(302).render('cad-login', {
+    req.logger.info("Rendering the user to cad-login...");
+    res.status(302).render("cad-login", {
       microsoftName: userName,
       microsoftEmail: userEmail,
-      route: '/register',
-      messageError: 'Revise seu nome e email. Caso tudo esteja correto, apenas prossiga.'
+      route: "/register",
+      messageError:
+        "Revise seu nome e email. Caso tudo esteja correto, apenas prossiga.",
     });
   }
 }

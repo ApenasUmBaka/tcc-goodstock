@@ -29,12 +29,13 @@
 </head>
 
 <body>
+    <!-- Message error -->
     <div class="--bg-isometric"></div>
-    <div id="error-message" class="error">
-        <% if (typeof messageError=='string' ) { %>
-            <%= messageError %>
-                <% } %>
-    </div>
+    <% if (typeof messageError == 'string' && messageError) { %>
+        <div id="error-message" class="error"><%= messageError %></div>
+    <% } else { %>
+        <div id="error-message" class="error hidden"></div>
+    <% } %>
     <div class="container" id="container">
         <div class="form-container sign-up-container">
             <!-- Register Forms -->
@@ -123,61 +124,66 @@
         <div class="org-modal">
 
             <!-- Login organization id -->
-            <h1>Logar Id</h1>
-            <form id="loginOrganizationForm" method="post">
-                <!-- Old inputs -->
-                <input name="name" type="tex" id="lastLoginName" hidden="true">
-                <input name="email" type="email" id="lastLoginEmail" hidden="true">
-                <input name="passwd" type="password" id="lastLoginPasswd" hidden="true">
-
-                <div class="label-float">
-                    <input type="number" name="organizationId" id="loginOrgId" placeholder=" " required />
-                    <label id="loginOrgIdLabel" for="loginOrgId">ID da organização</label>
-                </div>
-
-                <div class="label-float">
-                    <input type="password" name="masterPassword" id="loginOrgPasswd" placeholder=" " required />
-                    <label id="loginOrgPasswdLabel" for="loginOrgPasswd">Senha mestra</label>
-                    <i id="showLoginOrgPasswd" class="fa fa-eye" aria-hidden="true"></i>
-                </div>
-                <a class="form__hvr-underline-from-left" href="#">Não possui ID Cadastrado?</a>
-                <input class="justify-center" type="submit" id="submit-in-finish" name="submit-in-finish" value="Logar">
-            </form>
+            <div id="div-org-login" class="hidden">
+                <p>Logar Id</p>
+                <form id="loginOrganizationForm" method="post">
+                    <!-- Old inputs -->
+                    <input name="name" type="tex" id="lastLoginName" hidden="true">
+                    <input name="email" type="email" id="lastLoginEmail" hidden="true">
+                    <input name="passwd" type="password" id="lastLoginPasswd" hidden="true">
+    
+                    <div class="label-float">
+                        <input type="number" name="organizationId" id="loginOrgId" placeholder=" " required />
+                        <label id="loginOrgIdLabel" for="loginOrgId">ID da organização</label>
+                    </div>
+    
+                    <div class="label-float">
+                        <input type="password" name="masterPassword" id="loginOrgPasswd" placeholder=" " required />
+                        <label id="loginOrgPasswdLabel" for="loginOrgPasswd">Senha mestra</label>
+                        <i id="showLoginOrgPasswd" class="fa fa-eye" aria-hidden="true"></i>
+                    </div>
+                    <a class="form__hvr-underline-from-left">Não possui ID Cadastrado?</a>
+                    <input class="justify-center" type="submit" id="submit-in-finish" name="submit-in-finish" value="Logar">
+                </form>
+            </div>
 
             <!-- Register organization id -->
-            <h1>Cadastrar id</h1>
-            <form id="registerOrganizationForm" method="post">
-                <!-- Old inputs -->
-                <input name="name" type="text" id="lastRegisterName" hidden="true">
-                <input name="email" type="email" id="lastRegisterEmail" hidden="true">
-                <input name="passwd" type="password" id="lastRegisterPasswd" hidden="true">
-
-                <div class="label-float">
-                    <input type="text" name="organizationName" id="registerOrgName" placeholder=" " required />
-                    <label id="registerOrgNameLabel" for="registerOrgName">Nome da organização</label>
-                </div>
-
-                <div class="label-float">
-                    <input type="password" name="masterPassword" id="registerOrgPasswd" placeholder=" " required />
-                    <label id="registerOrgPasswdLabel" for="registerOrgPasswd">Senha mestra</label>
-                    <i id="showRegisterOrgPasswd" class="fa fa-eye" aria-hidden="true"></i>
-                </div>
-
-                <div class="label-float">
-                    <input type="password" id="registerConfirmOrgPasswd" placeholder=" " required>
-                    <label id="registerConfirmOrgPasswdLabel" for="registerConfirmOrgPasswd">Confirmar Senha</label>
-                    <i id="showRegisterConfirmOrgPasswd" class="fa fa-eye" aria-hidden="true"></i>
-                </div>
-                <a class="form__hvr-underline-from-left" href="#">Já possui ID cadastrado?</a>
-                <input class="justify-center" type="submit" id="submit-up-finish"
-                    name="registerAccountRegisterOrganization" value="Cadastrar">
-            </form>
+            <div id="div-org-register">
+                <p>Cadastrar id</p>
+                <form id="registerOrganizationForm" method="post">
+                    <!-- Old inputs -->
+                    <input name="name" type="text" id="lastRegisterName" hidden="true">
+                    <input name="email" type="email" id="lastRegisterEmail" hidden="true">
+                    <input name="passwd" type="password" id="lastRegisterPasswd" hidden="true">
+    
+                    <div class="label-float">
+                        <input type="text" name="organizationName" id="registerOrgName" placeholder=" " required />
+                        <label id="registerOrgNameLabel" for="registerOrgName">Nome da organização</label>
+                    </div>
+    
+                    <div class="label-float">
+                        <input type="password" name="masterPassword" id="registerOrgPasswd" placeholder=" " required />
+                        <label id="registerOrgPasswdLabel" for="registerOrgPasswd">Senha mestra</label>
+                        <i id="showRegisterOrgPasswd" class="fa fa-eye" aria-hidden="true"></i>
+                    </div>
+    
+                    <div class="label-float">
+                        <input type="password" id="registerConfirmOrgPasswd" placeholder=" " required>
+                        <label id="registerConfirmOrgPasswdLabel" for="registerConfirmOrgPasswd">Confirmar Senha</label>
+                        <i id="showRegisterConfirmOrgPasswd" class="fa fa-eye" aria-hidden="true"></i>
+                    </div>
+                    <a class="form__hvr-underline-from-left">Já possui ID cadastrado?</a>
+                    <input class="justify-center" type="submit" id="submit-up-finish"
+                        name="registerAccountRegisterOrganization" value="Cadastrar">
+                </form>
+            </div>
         </div>
     </div>
     <!-- Scripts -->
     <script src="/assets/scripts/cadLogin/modalController.js"></script>
     <script src="/assets/scripts/cadLogin/containerController.js"></script>
     <script src="/assets/scripts/cadLogin/validatorController.js"></script>
+    <script src="/assets/scripts/cadLogin/messageErrorController.js"></script>
 
     <script src="/assets/scripts/cadLogin/treatButtons.js"></script>
     <script src="/assets/scripts/cadLogin/validateInputs.js"></script>

@@ -22,8 +22,9 @@ class RegisterController {
 
   public static async post(req: Request, res: Response) {
     // Check the params.
-    const neededParams = (
-      (req.session.microsoftRegister) ? ["name", "email"] : ["name", "email", "passwd"]);
+    const neededParams = req.session.microsoftRegister
+      ? ["name", "email"]
+      : ["name", "email", "passwd"];
 
     if (!Security.filterParams(neededParams, req.body)) {
       req.logger.info("The request has some invalid param. Returning...");
@@ -63,23 +64,30 @@ class RegisterController {
     req.logger.info("All the data is valid. Creating new user...");
     req.logger.info(`${typeof body.passwd} - ${body.passwd}`);
     const customersModel = new CustomersModel(req.logger);
-    const customer = await customersModel.createCustomer(
+    const authUserResult = await customersModel.createCustomer(
       body.name,
       body.email,
       body.passwd,
       orgId
     );
-    if (!customer) {
+    if (!authUserResult) {
       return res.status(500).render("cad-login", {
         messageError: "O usuário não foi criado devido a um erro no servidor.",
       });
     }
 
-    // Set the user in the session.
-    req.session.user!.id = customer.id;
-    req.session.user!.name = customer.name;
-    req.session.user!.email = customer.email;
-    req.session.user!.organizationId = customer.organizationId;
+    // Set the customer on the session.
+    const org = await new OrganizationsModel(req.logger).findOrganization({
+      id: authUserResult.id
+    });
+
+    req.session.user = {
+      id: authUserResult.id,
+      name: authUserResult.name,
+      email: authUserResult.email,
+      organizationName: org?.name,
+      organizationId: org?.id,
+    }
     req.session.save();
 
     // Redirect to the workspace.
@@ -126,9 +134,9 @@ class RegisterController {
 
     // Try to create the organization.
     const organizationsModel = new OrganizationsModel(logger);
-    const foundedOrg = await organizationsModel.findOrganization(
-      { id: body.organizationId }
-    );
+    const foundedOrg = await organizationsModel.findOrganization({
+      id: body.organizationId,
+    });
 
     // Return the result.
     if (!foundedOrg) return;
