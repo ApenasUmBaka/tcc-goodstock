@@ -111,6 +111,14 @@ form {
   text-align: center;
 }
 
+form #registerOrganizationForm{
+  background-color: var(--bg2-color);
+}
+
+form #loginOrganizationForm{
+  background-color: var(--bg2-color);
+}
+
 input {
   background-color: #f2eee3;
   border: none;
@@ -160,7 +168,6 @@ input {
 
 .label-float label {
   color: var(--two-color);
-  /* pointer-event: none; */
   position: absolute;
   top: 0;
   left: 0;
