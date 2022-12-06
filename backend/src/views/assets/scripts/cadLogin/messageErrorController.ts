@@ -5,9 +5,8 @@ class MessageErrorController {
    */
   public static setMessage(text: string) {
     const element = document.getElementById("error-message") as HTMLDivElement;
-    element.innerHTML = text;
-
-    if (!text.length) element.setAttribute("style", "display: none");
-    else element.setAttribute("style", "");
+    element.innerText = text;
+    if (!text) element.classList.add('hidden');
+    else element.classList.remove('hidden');
   }
 }

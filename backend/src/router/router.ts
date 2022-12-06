@@ -18,6 +18,7 @@ const router = Router();
 router.use(AuthController.authRequest);
 router.use(express.static("src/views"));
 router.use(express.static("build/views"));
+router.use(express.static("node_modules/bootstrap/scss"));
 
 // Index and basics
 router.get("/", (req: Request, res: Response) => {

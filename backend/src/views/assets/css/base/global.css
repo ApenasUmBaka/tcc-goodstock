@@ -107,6 +107,10 @@ body.dark {
   --text-color: #eef2ff;
 }
 
+.hidden {
+  display: none;
+}
+
 /* Loader */
 
 .fade {

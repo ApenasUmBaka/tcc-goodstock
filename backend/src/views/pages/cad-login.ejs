@@ -29,11 +29,13 @@
 </head>
 
 <body>
-    <div id="error-message" class="error">
-        <% if (typeof messageError=='string' ) { %>
-            <%= messageError %>
-                <% } %>
-    </div>
+    <!-- Message error -->
+    <div class="--bg-isometric"></div>
+    <% if (typeof messageError == 'string' && messageError) { %>
+        <div id="error-message" class="error"><%= messageError %></div>
+    <% } else { %>
+        <div id="error-message" class="error hidden"></div>
+    <% } %>
     <div class="container" id="container">
         <div class="form-container sign-up-container">
             <!-- Register Forms -->
@@ -122,7 +124,7 @@
         <div class="org-modal">
 
             <!-- Login organization id -->
-            <div id="div-org-login" style="display: none;">
+            <div id="div-org-login" class="hidden">
                 <p>Logar Id</p>
                 <form id="loginOrganizationForm" method="post">
                     <!-- Old inputs -->
@@ -181,6 +183,7 @@
     <script src="/assets/scripts/cadLogin/modalController.js"></script>
     <script src="/assets/scripts/cadLogin/containerController.js"></script>
     <script src="/assets/scripts/cadLogin/validatorController.js"></script>
+    <script src="/assets/scripts/cadLogin/messageErrorController.js"></script>
 
     <script src="/assets/scripts/cadLogin/treatButtons.js"></script>
     <script src="/assets/scripts/cadLogin/validateInputs.js"></script>
