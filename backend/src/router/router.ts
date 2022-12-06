@@ -4,11 +4,13 @@ import express, { Request, Response, Router } from "express";
 import AuthController from "@controllers/authController";
 import LoginController from "@controllers/loginController";
 import LogoutController from "@controllers/logoutController";
+import MembersController from "@controllers/membersController";
+import ProductsController from "@controllers/productsController";
 import RegisterController from "@controllers/registerController";
 import ContactUsController from "@controllers/contactUsController";
 import WorkspaceController from "@controllers/workspaceController";
 import microsoftAuthController from "@controllers/microsoftAuthController";
-import ProductsController from "@controllers/productsController";
+
 
 // Data
 const router = Router();
@@ -41,6 +43,9 @@ router.get(
 
 // Workspace
 router.get("/workspace", WorkspaceController.get.bind(WorkspaceController));
+
+// Members
+router.get('/members', MembersController.get.bind(MembersController));
 
 // Products
 router.get(

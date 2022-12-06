@@ -10,7 +10,7 @@ interface Member {
 
 
 // Classes
-class MemberController {
+class MembersController {
   /**
    * A method to update the members in the table.
    */
@@ -34,7 +34,7 @@ class MemberController {
     const headers = document.getElementById('table-members-headers') as HTMLTableRowElement;
 
     // Remove the entries.
-    const tableElement = document.getElementById('section-members') as HTMLTableElement;
+    const tableElement = document.getElementById('table-members') as HTMLTableElement;
     while (tableElement.firstChild) {
       tableElement.removeChild(tableElement.firstChild);
     }

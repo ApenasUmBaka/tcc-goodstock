@@ -4,6 +4,7 @@ services:
   goodstock_backend:
     container_name: goodstock_backend
     build: ./backend
+    restart: on-failure
     ports:
       - 443:443     # HTTPS server
     # volumes:
@@ -16,6 +17,7 @@ services:
   goodstock_api_main:
     container_name: goodstock_api_main
     build: ./api/main/
+    restart: on-failure
     # ports:
     #   - 3000:3000
     # volumes:
@@ -48,6 +50,7 @@ services:
   goodstock_api_products:
     container_name: goodstock_api_products
     build: ./api/products/
+    restart: on-failure
     # volumes:
     #   - ./api/products:/app
     env_file:
@@ -65,6 +68,7 @@ services:
   goodstock_api_customers_db:
     container_name: goodstock_api_customers_db
     image: postgres
+    restart: on-failure
     volumes:
       - ./db/api-customers:/var/lib/postgresql/data
     env_file:
@@ -73,6 +77,7 @@ services:
   goodstock_api_products_db:
     container_name: goodstock_api_products_db
     image: mongo
+    restart: on-failure
     volumes:
       - ./db/api-products:/data/db
     env_file:

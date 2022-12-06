@@ -15,15 +15,6 @@ class CustomersModel extends APIModel {
   }
 
   /**
-   * A method to get the ID from some customer using the email.
-   */
-  public async getCustomerByEmail(email: string): Promise<User | undefined> {
-    const apiResult = await this.callAPI("GET", `/customers/?email=${email}`);
-    if (!apiResult) return;
-    return apiResult.data;
-  }
-
-  /**
    * A method to test the auth using the email and password from some customer.
    */
   public async authCustomer(
@@ -88,6 +79,27 @@ class CustomersModel extends APIModel {
     }
 
     return apiResponse.data;
+  }
+
+  /**
+   * A method to get the ID from some customer using the email.
+   */
+   public async getCustomerByEmail(email: string): Promise<User | undefined> {
+    const apiResult = await this.callAPI("GET", `/customers/?email=${email}`);
+    if (!apiResult) return;
+    return apiResult.data;
+  }
+
+  /**
+   * A method to search by customers using a query.
+  */
+  public async getCustomerByQuery(query: any): Promise<ClientUser[] | undefined> {
+    // Add the query to the url.
+    const url = `/customers/query?${new URLSearchParams(query).toString()}`;
+
+    const apiResult = await this.callAPI("GET", url);
+    if (!apiResult || apiResult.data.status == 'Error') return;
+    return apiResult.data.data;
   }
 }
 

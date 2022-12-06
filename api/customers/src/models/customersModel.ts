@@ -68,6 +68,34 @@ class CustomersModel {
   }
 
   /**
+   * A method to get a customers.
+   */
+   public async findCustomers(
+    params: FindCustomer
+  ): Promise<Model[] | undefined> {
+    this.logger.info("Locating the customers...");
+
+    // Try to find the customers.
+    try {
+      const customer = await this.model.findAll({
+        where: params as any,
+      });
+
+      // Return the result to the caller.
+      if (!customer) {
+        this.logger.info("Customers with the provided query was not found.");
+        return;
+      }
+
+      this.logger.info("Customers with the provided query was found.");
+      return customer;
+    } catch (err) {
+      this.logger.error(`The customers couldn't be found. Error: ${err}`);
+      return;
+    }
+  }
+
+  /**
    * A method to update a customer
    */
   public async updateCustomer(

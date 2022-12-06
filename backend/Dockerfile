@@ -18,12 +18,13 @@ RUN openssl req -new -key certs/key.pem -out certs/csr.pem -subj ${CERTSUBJ};
 RUN openssl x509 -req -days 365 -in certs/csr.pem -signkey certs/key.pem -out certs/cert.pem;
 
 # Install libs.
-COPY package.json .
+COPY package.json tsconfig.json ./
 RUN yarn
+RUN chown -R node .
 
 # Change to user
 COPY . ./
-RUN chown -R node .
+RUN chown -R node src
 USER node
 
 # Run

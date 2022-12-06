@@ -55,13 +55,6 @@
                     </li>
 
                     <li class="sidebar__nav-link">
-                        <a href="#" id="a-sidebar-statics">
-                            <i class='bx bx-bar-chart-alt-2 icon'></i>
-                            <span class="--text nav-text">Statics</span>
-                        </a>
-                    </li>
-
-                    <li class="sidebar__nav-link">
                         <a href="#" id="a-sidebar-stock">
                             <i class='bx bx-package icon'></i>
                             <span class="--text nav-text">Stock</span>
@@ -69,16 +62,9 @@
                     </li>
 
                     <li class="sidebar__nav-link">
-                        <a href="#" id="a-sidebar-analytics">
-                            <i class='bx bx-pie-chart-alt icon'></i>
-                            <span class="--text nav-text">Analytics</span>
-                        </a>
-                    </li>
-
-                    <li class="sidebar__nav-link">
-                        <a href="#" id="a-sidebar-teams">
+                        <a href="#" id="a-sidebar-members">
                             <i class='bx bx-group icon'></i>
-                            <span class="--text nav-text">Teams</span>
+                            <span class="--text nav-text">Members</span>
                         </a>
                     </li>
 
@@ -134,7 +120,7 @@
         <button class="--padding --margin"><a href="/index.ejs">Click me</a></button>
     </section>
     <!-- Stock Home -->
-    <section id="section-stock" class="--wrapper --padding --margin" style="display:none;">
+    <section id="section-stock" class="--wrapper --padding --margin hidden">
         
         <main class="row title">
             <ul>
@@ -179,16 +165,17 @@
 
     </section>
     <!-- members Home -->
-    <section id="section-members" style="display:none;">
+    <section id="section-members" class="hidden">
         <table id="table-members" class="table table-striped">
             <tr id="table-members-headers">
                 <th>ID</th>
                 <th>Nome</th>
                 <th>online</th>
             </tr>
+        </table>
     </section>
     <!-- Settings Home -->
-    <section id="section-settings" style="display:none;">
+    <section id="section-settings" class="hidden">
     </section>
     <!-- Scripts -->
     <script src="/assets/scripts/workspace/utils.js"></script>

@@ -18,6 +18,11 @@ router.get(
 );
 
 router.get(
+  "/customers/query",
+  CustomersController.getCustomers.bind(CustomersController)
+);
+
+router.get(
   "/customers/auth/",
   CustomersController.getAuth.bind(CustomersController)
 );
