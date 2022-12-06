@@ -16,6 +16,7 @@ h1 {
   font-size: 20px;
   font-weight: 900;
 }
+
 /*--------- Layout -------- */
 
 *,
@@ -32,16 +33,20 @@ h5 {
   margin: 2.75rem 0 1.05rem;
   line-height: 1.2;
 }
+
 h1 {
   margin-top: 0;
   font-size: 3.052em;
 }
+
 h2 {
   font-size: 1em;
 }
+
 p {
   line-height: 1.3;
 }
+
 /* Navbar */
 nav {
   display: flex;
@@ -186,6 +191,54 @@ a.nav__new-cont:hover span.nav__new-cont-span::after {
   margin-right: auto;
 }
 
+/* Hover Border Fade */
+.hvr-border-fade {
+  display: inline-block;
+  padding: 5px;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  -webkit-transition-duration: .3s;
+  transition-duration: .3s;
+  -webkit-transition-property: box-shadow;
+  transition-property: box-shadow;
+  box-shadow: inset 0 0 0 2px var(--button2-color), 0 0 1px rgba(0, 0, 0, 0)
+}
+
+.hvr-border-fade:active,
+.hvr-border-fade:focus,
+.hvr-border-fade:hover {
+  box-shadow: inset 0 0 0 4px var(--button2-color), 0 0 1px rgba(0, 0, 0, 0)
+}
+
+/* Hover Hollow */
+.hvr-hollow {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  -webkit-transition-duration: .3s;
+  transition-duration: .3s;
+  -webkit-transition-property: background;
+  transition-property: background;
+  box-shadow: inset 0 0 0 4px #e1e1e1, 0 0 1px rgba(0, 0, 0, 0)
+}
+
+.hvr-hollow:active,
+.hvr-hollow:focus,
+.hvr-hollow:hover {
+  background: 0 0
+}
+
+.hvr-trim {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  position: relative
+}
+
 /* Progress Bar */
 #progress {
   background-color: var(--two-color);
@@ -198,7 +251,7 @@ a.nav__new-cont:hover span.nav__new-cont-span::after {
 }
 
 /* Main Elements */
-main .grid {
+main {
   height: 100vh;
   width: 100%;
 }
@@ -213,31 +266,38 @@ main .grid {
   opacity: 1;
   cursor: pointer;
 }
+
 .card:not(:empty):hover:after,
 .card:not(:empty):focus:after {
   opacity: 1;
 }
+
 .card:not(:empty):hover:before,
 .card:not(:empty):focus:before {
   opacity: 0;
 }
+
 .card {
   padding: 10px;
   background: #fcc99e;
   border-radius: 0.7em;
   opacity: 0.6;
   display: flex;
+  max-height: 200px;
   justify-content: flex-start;
   align-items: flex-end;
   transition: var(--tran-03);
   transition-property: background, transform, color, opacity;
 }
+
 .card:not(:empty):before {
   box-shadow: -2px 2px 8px 2px rgba(0, 0, 0, 0.2);
 }
+
 .card:empty {
   opacity: 0.3;
 }
+
 .card:before,
 .card:after {
   content: "";
@@ -250,14 +310,16 @@ main .grid {
   height: 100%;
   transition: opacity 0.4s;
 }
+
 .card:after {
   box-shadow: -20px 20px 12px 6px rgba(0, 0, 0, 0.2);
   opacity: 0;
 }
+
 /* --------- Grid ---------- */
 .grid {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   padding: 20px;
   display: grid;
   overflow: hidden;
@@ -265,51 +327,66 @@ main .grid {
   grid-template-rows: repeat(4, 1fr);
   grid-gap: 20px;
 }
+
 .item1 {
   grid-area: 1 / 1 / 3 / 3;
 }
+
 .item2 {
   grid-area: 3 / 3 / 4 / 4;
 }
+
 .item2.card:hover,
 .item2.card:focus {
-  background: #2b6e8f;
+  background: #2B6E8F;
 }
+
 .item3 {
   grid-area: 4 / 1 / 5 / 4;
 }
+
 .item4 {
   grid-area: 1 / 3 / 2 / 5;
 }
+
 .item5 {
   grid-area: 2 / 4 / 3 / 5;
 }
+
 .item6 {
   grid-area: 3 / 4 / 4 / 5;
 }
+
 .item7 {
   grid-area: 3 / 4 / 5 / 5;
 }
+
 .item8 {
   grid-area: 1 / 5 / 2 / 6;
 }
+
 .item8.card:hover,
 .item8.card:focus {
   background: #f57b51;
 }
+
 .item9 {
   grid-area: 2 / 5 / 3 / 6;
 }
+
 .item10 {
   grid-area: 3 / 5 / 4 / 6;
 }
+
 .item11 {
   grid-area: 4 / 5 / 5 / 6;
 }
+
 .item11.card:hover,
 .item11.card:focus {
-  background: #379f70;
+  background: #379F70;
 }
+
 .content {
   display: flex;
   flex-direction: column;
@@ -323,13 +400,16 @@ main .grid {
     grid-template-rows: repeat(6, minmax(auto, 300px));
     overflow-y: scroll;
   }
+
   .item1 {
     grid-area: 1 / 1 / 2 / 3;
   }
+
   .card {
     grid-area: auto;
     text-align: left;
   }
+
   .card:empty {
     display: none;
   }
@@ -366,7 +446,8 @@ h1.main-goodstock {
 
 .intro__card-intro {
   background-color: var(--bg-color);
-  padding: 5px;
+  padding: 10px;
+  margin: 3rem;
   text-align: center;
   text-align-last: center;
   border-radius: 6px;
@@ -511,23 +592,27 @@ figure.snip1336 {
   line-height: 1.4em;
   background-color: var(--bg-color);
 }
+
 figure.snip1336 * {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   -webkit-transition: all 0.25s ease;
   transition: all 0.25s ease;
 }
+
 .snip1336 img {
   max-width: 100%;
   vertical-align: top;
   opacity: 0.85;
 }
+
 .snip1336 figcaption {
   width: 100%;
   background-color: var(--bg2-color);
   padding: 25px;
   position: relative;
 }
+
 .snip1336 figcaption:before {
   position: absolute;
   content: "";
@@ -539,6 +624,7 @@ figure.snip1336 * {
   border-width: 55px 0 0 400px;
   border-color: transparent transparent transparent var(--bg2-color);
 }
+
 .snip1336 figcaption a {
   padding: 5px;
   border: 1px solid var(--primary-color);
@@ -554,9 +640,11 @@ figure.snip1336 * {
   font-weight: 500;
   letter-spacing: 1px;
 }
+
 .snip1336 figcaption a:hover {
   opacity: 1;
 }
+
 /* Ideia de Card */
 .snip1336 .profile {
   border-radius: 50%;
@@ -579,16 +667,19 @@ figure.snip1336 * {
   border-color: var(--button2-color);
   color: var(--button2-color);
 }
+
 .snip1336 h2 {
   margin: 0 0 5px;
   font-weight: 500;
   color: var(--h1-color);
 }
+
 .snip1336 h2 span {
   display: block;
   font-size: 0.5em;
   color: var(--two-color);
 }
+
 .snip1336 p {
   font-weight: 500;
   margin: 0 0 10px;
@@ -675,7 +766,10 @@ figure.snip1336 * {
 }
 
 /* Fade Reveal Section */
-section {
+section #section__intro,
+#section__about-us,
+#section__video,
+#section__object {
   min-height: 100vh;
   width: 100%;
   display: flex;
@@ -763,6 +857,7 @@ footer li {
   border-radius: 100%;
   display: flex;
 }
+
 .icons i:hover {
   color: var(--bg-color);
   transition: var(--tran-02);
