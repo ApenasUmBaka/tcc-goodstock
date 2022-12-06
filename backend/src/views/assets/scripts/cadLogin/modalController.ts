@@ -23,51 +23,6 @@ class ModalController {
   }
 
   /**
-   * A method to change the modal to receive an new organization.
-   */
-  public static toggleOrgInputs() {
-    if (document.getElementById("div-org-login")?.getAttribute("style") == "") {
-      this.changeToRegisterOrg();
-    } else {
-      this.changeToLoginOrg();
-    }
-  }
-
-  /**
-   * A method to change the visibity from the login div.
-   */
-  private static changeToLoginOrg() {
-    // Change the login div.
-    const loginElement = document.getElementById(
-      "div-org-login"
-    ) as HTMLDivElement;
-    loginElement.setAttribute("style", "");
-
-    // Change the register div.
-    const registerElement = document.getElementById(
-      "div-org-register"
-    ) as HTMLDivElement;
-    registerElement.setAttribute("style", "display: none");
-  }
-
-  /**
-   * A method to change the visibity from the register div.
-   */
-  private static changeToRegisterOrg() {
-    // Change the login div.
-    const registerElement = document.getElementById(
-      "div-org-register"
-    ) as HTMLDivElement;
-    registerElement.setAttribute("style", "");
-
-    // Change the register div.
-    const loginElement = document.getElementById(
-      "div-org-login"
-    ) as HTMLDivElement;
-    loginElement.setAttribute("style", "display: none");
-  }
-
-  /**
    * A function to close the modal.
    */
   private static closeModal(modal: HTMLDivElement, modalBg: HTMLDivElement) {
@@ -85,5 +40,22 @@ class ModalController {
     modal.classList.remove("modal-closed");
 
     modalBg.classList.add("modal-opened");
+  }
+
+  /**
+   * A method to change the modal to receive an new organization.
+   */
+   public static toggleOrgInputs() {
+    // Change the login div.
+    const loginElement = document.getElementById(
+      "div-org-login"
+    ) as HTMLDivElement;
+    loginElement.classList.toggle('hidden');
+
+    // Change the register div.
+    const registerElement = document.getElementById(
+      "div-org-register"
+    ) as HTMLDivElement;
+    registerElement.classList.toggle('hidden');
   }
 }

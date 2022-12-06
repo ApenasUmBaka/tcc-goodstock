@@ -26,6 +26,7 @@ export interface User {
   id?: number;
   name?: string;
   email?: string;
+  organizationName?: string;
   organizationId?: number;
 }
 
