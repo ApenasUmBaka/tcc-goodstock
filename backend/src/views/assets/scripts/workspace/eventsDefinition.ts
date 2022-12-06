@@ -23,3 +23,5 @@ document.getElementById("a-sidebar-stock")!.onclick = () => {
   toggleVisibleSection("section-stock")();
   ProductsController.refreshProducts();
 };
+document.getElementById('section-teams')!.onclick = 
+  TeamsController.updateMembersOnTable.bind(TeamsController);

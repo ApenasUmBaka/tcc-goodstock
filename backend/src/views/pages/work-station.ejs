@@ -133,10 +133,6 @@
         <textarea class="--padding --margin">aaaa</textarea> <br>
         <button class="--padding --margin"><a href="/index.ejs">Click me</a></button>
     </section>
-    <!-- Statics Home  -->
-    <section id="section-statics" style="display:none;">
-
-    </section>
     <!-- Stock Home -->
     <section id="section-stock" class="--wrapper --padding --margin" style="display:none;">
         
@@ -182,28 +178,29 @@
           </div>
 
     </section>
-    <!-- Analytics Home -->
-    <section id="section-analytics" style="display:none;">
-
-    </section>
-    <!-- Teams Home -->
-    <section id="section-teams" style="display:none;">
-
+    <!-- members Home -->
+    <section id="section-members" style="display:none;">
+        <table id="table-members" class="table table-striped">
+            <tr id="table-members-headers">
+                <th>ID</th>
+                <th>Nome</th>
+                <th>online</th>
+            </tr>
     </section>
     <!-- Settings Home -->
     <section id="section-settings" style="display:none;">
-
     </section>
-    <!-- Profile Home -->
-    <section id="section-profile" style="display:none;">
-
-    </section>
-
     <!-- Scripts -->
     <script src="/assets/scripts/workspace/utils.js"></script>
+    <!-- Scripts Products -->
     <script src="/assets/scripts/workspace/productsModel.js"></script>
     <script src="/assets/scripts/workspace/productsController.js"></script>
 
+    <!-- Scripts Members -->
+    <script src="/assets/scripts/workspace/membersModel.js"></script>
+    <script src="/assets/scripts/workspace/membersController.js"></script>
+
+    <!-- Dependencies -->
     <script src="/assets/scripts/workspace/eventsDefinition.js"></script>    
 </body>
 
