@@ -931,6 +931,7 @@ td {
 }
 .product-entry:hover {
   background: #818386;
+  transition: 0.4s;
 }
 td.member-status-online {
   color: green;
