@@ -30,12 +30,17 @@ class MembersController {
       // Define the session as json
       if (err || !sessionsInStore) return;
       const sessions = JSON.parse(JSON.stringify(sessionsInStore));
-      console.log('members', sessions);
       for (const index in sessions) {
         const session = sessions[index];
         const user: User = session.user;
-        console.log(user.email);
         if (!user.name) continue;
+
+        // Check if the members already was added (two or more clients)
+        if (members.find((member) => {
+          if (member.id == user.id) return true;
+        })) continue;
+
+        // Add to the array.
         members.push({
           id: user.id!,
           name: user.name,
@@ -54,7 +59,6 @@ class MembersController {
 
       // Add the customer to the members list.
       if (member) continue;
-      console.log('customer', customer.name);
       members.push({
         id: customer.id,
         name: customer.name,
