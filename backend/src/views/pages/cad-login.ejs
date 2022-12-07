@@ -29,13 +29,14 @@
 </head>
 
 <body>
+
     <!-- Message error -->
-    <div class="--bg-isometric"></div>
     <% if (typeof messageError == 'string' && messageError) { %>
         <div id="error-message" class="error"><%= messageError %></div>
     <% } else { %>
         <div id="error-message" class="error hidden"></div>
     <% } %>
+
     <div class="container" id="container">
         <div class="form-container sign-up-container">
             <!-- Register Forms -->
