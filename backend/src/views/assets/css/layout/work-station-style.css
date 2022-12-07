@@ -734,7 +734,7 @@ button:focus, input.submitInput:focus, input[type="submit"]:focus {
 
 /* Input */
 .label-float input {
-  width: 100%;
+  width: 40%;
   padding: 5px 5px;
   display: inline-block;
   border: 0;
@@ -781,8 +781,8 @@ button:focus, input.submitInput:focus, input[type="submit"]:focus {
 }
 
 .--end{
-  display: flex;
   justify-content: end;
+  flex-flow: wrap;
 }
 
 /* Message error */
@@ -906,17 +906,17 @@ button:focus, input.submitInput:focus, input[type="submit"]:focus {
 /* Org Modal */
 
 .org-modal1{
-  display: flex;
+  /* display: flex; */
   flex-direction: row;
 }
 
 .org-modal2{
-  display: flex;
+  /* display: flex; */
   flex-direction: row;
 }
 
 .org-modal3{
-  display: flex;
+  /* display: flex; */
   flex-direction: row;
 }
 
@@ -927,6 +927,18 @@ textarea {
 }
 
 /* Member Table */
+td {
+  Justify-content: Center;
+  Align-items: Center
+}
+.product-entry {
+  cursor: pointer;
+  background: var(--bg-color);
+}
+.product-entry:hover {
+  background: #818386;
+  transition: 0.4s;
+}
 td.member-status-online {
   color: green;
 }

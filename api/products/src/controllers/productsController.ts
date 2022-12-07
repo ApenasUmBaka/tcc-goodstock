@@ -222,7 +222,8 @@ class ProductsController {
     // Check if the body is valid.
     const neededParams = ["name", "price", "amount", "organizationId", "?details"];
     const params = Security.filterParams(neededParams, req.body);
-    if (!Object.keys(params).length || !ValidatorController.isValidProduct(params)) {
+    console.log(JSON.stringify(params, null, 4));
+    if (!params || !ValidatorController.isValidProduct(params)) {
       req.logger.info("The provided body is not valid. Returning...");
       return res.status(400).json({
         status: 'Error',

@@ -2,6 +2,8 @@
 <html lang="pt-br">
 
 <head>
+    <title>WorkStation</title>
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,11 +12,10 @@
     <link rel="stylesheet" href="/assets/css/layout/work-station-style.css">
     <link rel="stylesheet" href="/assets/css/base/normalize.css">
     <!----===== Custom CSS ===== -->
-    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'><!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link rel="icon" type="image/png" href="/assets/images/box.png" />
 
-    <title>WorkStation</title>
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'><!-- CSS only -->
+    <link href="/assets/css/base/bootstrap.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/assets/images/box.png" />
 </head>
 
 <body>
@@ -105,22 +106,8 @@
     <!-- Dashboard Home -->
     <section class="section-visible" id="section-dashboard">
         <div class="--text">Dashboard Sidebar</div>
-        
-        <div id="circularMenu" class="circular-menu">
-
-            <a class="floating-btn" onclick="document.getElementById('circularMenu').classList.toggle('active');">
-                <i class='bx bx-plus'></i>
-            </a>
-
-            <menu class="items-wrapper">
-              <a href="#" class="menu-item"><i class='bx bxs-detail'></i></a>
-              <a href="#" class="menu-item"><i class='bx bx-select-multiple' ></i></a>
-              <a href="#" class="menu-item"><i class='bx bx-edit'></i></a>
-              <a href="#" class="menu-item"><i class='bx bx-comment-x'></i></a>
-            </menu>
-          
-          </div>
     </section>
+
     <!-- Stock Home -->
     <section id="section-stock" class="hidden">
         
@@ -138,35 +125,9 @@
                 <th>Preço</th>
                 <th>Data</th>
             </tr>
-
-            <!-- <tr class="product-entry">
-                <td class="entry-info">Name</td>
-                <td class="entry-info">Price</td>
-                <td class="entry-info">Amount</td>
-                <td class="entry-info">Date</td>
-                <div class="entry-detail">
-                    <span class="entry-detail-name">name</span>
-                    <span class="entry-detail-value">value</span>
-                </div>
-            </tr> -->
         </table>
 
-        <!-- <div id="div-products-list">
-            <article class="row nfl">
-                <ul>
-                    <li><a href="#"><span class="product-name --pad">product.name</span></a></li>
-                    <li><span class="product-price --pad">product.price</span></li>
-                    <li><span class="product-amount --pad">product.amount</span></li>
-                    <li><span class="product-date --pad">product.date</span>/li>
-                    <li></li>
-                </ul>
-                <ul class="more-content">
-                    <li><span class="product-description">product.descripition</span></li>
-                </ul>
-            </article>
-        </div> -->
         <!-- Circular Menu -->
-
         <div id="circularMenu" class="circular-menu">
 
             <a class="floating-btn" onclick="document.getElementById('circularMenu').classList.toggle('active');">
@@ -174,61 +135,82 @@
             </a>
 
             <menu class="items-wrapper">
-              <a href="#" class="menu-item"><i class='bx bx-add-to-queue'></i></a>
-              <a href="#" class="menu-item"><i class='bx bx-select-multiple' ></i></a>
-              <a href="#" class="menu-item"><i class='bx bx-edit'></i></a>
-              <a href="#" class="menu-item"><i class='bx bx-comment-x'></i></a>
+              <a id="a-menu-products-add" class="menu-item"><i class='bx bx-add-to-queue'></i></a>
+              <!-- <a href="#" class="menu-item"><i class='bx bx-select-multiple'></i></a> -->
+              <a class="menu-item"><i class='bx bx-edit'></i></a>
+              <!-- <a href="#" class="menu-item"><i class='bx bx-comment-x'></i></a> -->
             </menu>
           
           </div>
-          <!-- Modal -->
-          <div id="organization-modal-bg" class="modal-background"></div>
-            <div id="organization-modal" class="modal modal-closed">
 
-                <form id="porductAddItem" method="post" >
-                  
-                <div class="org-modal1">    
-                <div class="label-float">
-                    <input type="text"  name="name" id="nameItem" placeholder=" " required>
-                    <label id="nameItemLabel" for="nameItem">Nome</label>
-                </div>
+        <!-- Modal -->
+        <div id="products-modal-bg" class="modal-background"></div>
+            <div id="products-modal" class="modal modal-closed">
+                <form id="form-products-modal" method="post">
+                    <h2 id="h2-products-modal">Criação de produtos</h2>
+                    <input id="input-product-id" hidden>
+                    <div class="org-modal1">    
+                        <div class="label-float">
+                            <input type="text"  name="name" id="input-product-name" placeholder=" " required>
+                            <label id="input-product-name-label" for="input-product-name">Nome</label>
+                        </div>
 
-                <div class="label-float">
-                    <input type="number" name="price" id="priceItem" placeholder=" " required>
-                    <label id="priceItemLabel" for="priceItem">Preço</label>
-                </div>
+                        <div class="label-float">
+                            <input type="number" name="price" id="input-product-price" placeholder=" " required>
+                            <label id="input-product-price-label" for="input-product-price">Preço</label>
+                        </div>
 
-                </div><br>
+                    </div><br>
 
-                <div class="org-modal2">
+                    <div class="org-modal2">
 
-                <div class="label-float">
-                    <input type="number" name="amount" id="amountItem" placeholder=" " required>
-                    <label id="amountItemLabel" for="amountItem">Quantidade</label>
-                </div>
+                        <div class="label-float">
+                            <input type="number" name="amount" id="input-product-amount" placeholder=" " required>
+                            <label id="input-product-amountLabel" for="input-product-amount">Quantidade</label>
+                        </div>
 
-                <div class="label-float">
-                    <input type="date" name="date" id="dateItem" placeholder=" " required>
-                    <label id="dateItemLabel" for="dateItem">Data de Entrada</label>
-                </div>
+                    </div><br>
 
-                </div><br>
+                    <h2>Detalhes</h2>
+                    <div id="div-details" class="label-float --description">
+                        <!-- Details 0 -->
+                        <div class="details-field">
+                            <input type="text" class="detail-field" placeholder="Chave"/>
+                            <input type="text" class="detail-field" placeholder="Valor"/>
+                        </div>
 
-                <div class="label-float --description">
-                    <textarea rows="6" placeholder="Sua Descrição do Item" id="description" name="descriptionItem"></textarea>
-                    <label id="descriptionItemLabel" for="descriptionItem">Descrição</label> 
-                </div> 
-                <br>
-                
-                <div class="org-modal3">
-                <button class="--end">Cancelar</button>
-                <input class="--end" type="submit" id="addItemTable"
-                    name="addItemTable" value="Adicionar">
-                </div>
+                        <!-- Details 1 -->
+                        <div class="details-field">
+                            <input type="text" class="detail-field" placeholder="Chave"/>
+                            <input type="text" class="detail-field" placeholder="Valor"/>
+                        </div>
+
+                        <!-- Details 2 -->
+                        <div class="details-field">
+                            <input type="text" class="detail-field" placeholder="Chave"/>
+                            <input type="text" class="detail-field" placeholder="Valor"/>
+                        </div>
+                    </div> 
+                    <br>
+
+                    <div class="org-modal3">
+                        <button class="--end" onclick="ProductsModalController.closeModal()">
+                            Cancelar
+                        </button>
+                        <button id="del-item-table" class="--end" onclick="ProductsController.delProduct.bind(ProductsController)();">
+                            Deletar
+                        </button>
+                        <button id="add-item-table" class="--end" onclick="ProductsController.addProduct.bind(ProductsController)();">
+                            Adicionar
+                        </button>
+                        <button id="edit-item-table" class="--end hidden" onclick="ProductsController.editProduct.bind(ProductsController)();">
+                            Editar
+                        </button>
+                    </div>
                 </form>
             </div>
-       
     </section>
+
     <!-- members Home -->
     <section id="section-members" class="hidden">
         <table id="table-members" class="table table-striped">
@@ -239,21 +221,20 @@
             </tr>
         </table>
     </section>
+
     <!-- Settings Home -->
-    <section id="section-settings" class="hidden">
-        
-    </section>
+    <section id="section-settings" class="hidden"></section>
     <!-- Scripts -->
-    <script src="/assets/scripts/workspace/utils.js"></script>
     <!-- Scripts Products -->
     <script src="/assets/scripts/workspace/productsModel.js"></script>
     <script src="/assets/scripts/workspace/productsController.js"></script>
+    <script src="/assets/scripts/workspace/productsModalController.js"></script>
 
     <!-- Scripts Members -->
     <script src="/assets/scripts/workspace/membersModel.js"></script>
     <script src="/assets/scripts/workspace/membersController.js"></script>
-
     <!-- Dependencies -->
+    <script src="/assets/scripts/workspace/utils.js"></script>
     <script src="/assets/scripts/workspace/eventsDefinition.js"></script>    
 </body>
 

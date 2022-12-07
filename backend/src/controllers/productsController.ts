@@ -119,7 +119,7 @@ class ProductsController {
     // Check the param.
     const neededParams = ["name", "price", "amount", "details"];
     const params = Security.filterParams(neededParams, req.body);
-    if (!Object.keys(params).length) {
+    if (!params) {
       req.logger.info("Invalid product. Returning...");
       return res.status(400).json({
         status: "Error",

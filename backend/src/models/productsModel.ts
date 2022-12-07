@@ -22,6 +22,7 @@ class ProductsModel extends APIModel {
    */
   public async create(product: Product): Promise<Product | string> {
     this.logger.info("Creating a new product...");
+    product.organizationId = this.organizationId;
 
     // Do the request to the api.
     const response = await this.callAPI("POST", `/products`, product);
@@ -87,6 +88,7 @@ class ProductsModel extends APIModel {
 
     // Do the request to the api.
     const url = `/products/${this.organizationId}/${id}`;
+    product.organizationId = this.organizationId;
     const response = await this.callAPI("PATCH", url, product);
     if (!response) return "Error on communication with some micro-service.";
 
