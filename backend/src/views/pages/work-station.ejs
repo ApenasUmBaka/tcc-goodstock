@@ -105,19 +105,21 @@
     <!-- Dashboard Home -->
     <section class="section-visible" id="section-dashboard">
         <div class="--text">Dashboard Sidebar</div>
-        <h1 class="--text">Hello Word</h1>
-        <p class="home__text-p --padding">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-            dignissim iaculis lorem, vel ultrices orci ultrices lobortis. Nullam a
-            erat justo. Quisque vehicula nunc et mi maximus porttitor. Cras massa
-            enim, pulvinar id pharetra in, condimentum non massa. Praesent
-            porttitor tellus ac hendrerit tempus. Lorem ipsum dolor sit amet,
-            consectetur adipiscing elit. Donec sit amet faucibus nisl. Mauris eu
-            orci sed leo finibus vulputate auctor ut leo. Cras ullamcorper varius
-            sodales.
-        </p>
-        <textarea class="--padding --margin">aaaa</textarea> <br>
-        <button class="--padding --margin"><a href="/index.ejs">Click me</a></button>
+        
+        <div id="circularMenu" class="circular-menu">
+
+            <a class="floating-btn" onclick="document.getElementById('circularMenu').classList.toggle('active');">
+                <i class='bx bx-plus'></i>
+            </a>
+
+            <menu class="items-wrapper">
+              <a href="#" class="menu-item"><i class='bx bxs-detail'></i></a>
+              <a href="#" class="menu-item"><i class='bx bx-select-multiple' ></i></a>
+              <a href="#" class="menu-item"><i class='bx bx-edit'></i></a>
+              <a href="#" class="menu-item"><i class='bx bx-comment-x'></i></a>
+            </menu>
+          
+          </div>
     </section>
     <!-- Stock Home -->
     <section id="section-stock" class="--wrapper --padding --margin hidden">
@@ -148,6 +150,22 @@
             </tr> -->
         </table>
 
+        <!-- <div id="div-products-list">
+            <article class="row nfl">
+                <ul>
+                    <li><a href="#"><span class="product-name --pad">product.name</span></a></li>
+                    <li><span class="product-price --pad">product.price</span></li>
+                    <li><span class="product-amount --pad">product.amount</span></li>
+                    <li><span class="product-date --pad">product.date</span>/li>
+                    <li></li>
+                </ul>
+                <ul class="more-content">
+                    <li><span class="product-description">product.descripition</span></li>
+                </ul>
+            </article>
+        </div> -->
+        <!-- Circular Menu -->
+
         <div id="circularMenu" class="circular-menu">
 
             <a class="floating-btn" onclick="document.getElementById('circularMenu').classList.toggle('active');">
@@ -162,7 +180,53 @@
             </menu>
           
           </div>
+          <!-- Modal -->
+          <div id="organization-modal-bg" class="modal-background"></div>
+            <div id="organization-modal" class="modal modal-closed">
 
+                <form id="porductAddItem" method="post" >
+                  
+                <div class="org-modal1">    
+                <div class="label-float">
+                    <input type="text"  name="name" id="nameItem" placeholder=" " required>
+                    <label id="nameItemLabel" for="nameItem">Nome</label>
+                </div>
+
+                <div class="label-float">
+                    <input type="number" name="price" id="priceItem" placeholder=" " required>
+                    <label id="priceItemLabel" for="priceItem">Preço</label>
+                </div>
+
+                </div><br>
+
+                <div class="org-modal2">
+
+                <div class="label-float">
+                    <input type="number" name="amount" id="amountItem" placeholder=" " required>
+                    <label id="amountItemLabel" for="amountItem">Quantidade</label>
+                </div>
+
+                <div class="label-float">
+                    <input type="date" name="date" id="dateItem" placeholder=" " required>
+                    <label id="dateItemLabel" for="dateItem">Data de Entrada</label>
+                </div>
+
+                </div><br>
+
+                <div class="label-float --description">
+                    <textarea rows="6" placeholder="Sua Descrição do Item" id="description" name="descriptionItem"></textarea>
+                    <label id="descriptionItemLabel" for="descriptionItem">Descrição</label> 
+                </div> 
+                <br>
+                
+                <div class="org-modal3">
+                <button class="--end">Cancelar</button>
+                <input class="--end" type="submit" id="addItemTable"
+                    name="addItemTable" value="Adicionar">
+                </div>
+                </form>
+            </div>
+       
     </section>
     <!-- members Home -->
     <section id="section-members" class="hidden">
