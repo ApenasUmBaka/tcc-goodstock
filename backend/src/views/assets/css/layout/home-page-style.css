@@ -415,10 +415,6 @@ main {
   }
 }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 95b8996bb33a6ddfd7bbbd779f1934ff4ac5d616
 h1.main-goodstock {
   font-size: 50px;
   text-transform: uppercase;
@@ -534,7 +530,6 @@ h1.main-goodstock {
   transition: var(--tran-03);
 }
 
-<<<<<<< HEAD
 .--justify-content{
   display: flex;
   justify-content: center;
@@ -545,8 +540,7 @@ h1.main-goodstock {
   padding: 1rem;
 }
 
-=======
->>>>>>> 95b8996bb33a6ddfd7bbbd779f1934ff4ac5d616
+
 .card-info:hover {
   box-shadow: 15px 15px 0 -4px var(--two-color), 15px 15px var(--primary-color);
 }
@@ -812,10 +806,6 @@ button.--btn-top {
   border-style: solid;
 }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 95b8996bb33a6ddfd7bbbd779f1934ff4ac5d616
 button.--btn-top__hover {
   opacity: 0.65;
   transition: all 0.25s ease;
