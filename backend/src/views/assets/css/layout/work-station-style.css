@@ -7,14 +7,10 @@ body {
   transition: var(--tran-05);
 }
 
-<<<<<<< HEAD
-=======
-
 span.--pad {
   padding: 1rem;
 }
 
->>>>>>> 95b8996bb33a6ddfd7bbbd779f1934ff4ac5d616
 /* ===== Sidebar ===== */
 .sidebar {
   position: fixed;
