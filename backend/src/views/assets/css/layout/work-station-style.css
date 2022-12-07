@@ -921,6 +921,17 @@ textarea {
 }
 
 /* Member Table */
+td {
+  Justify-content: Center;
+  Align-items: Center
+}
+.product-entry {
+  cursor: pointer;
+  background: var(--bg-color);
+}
+.product-entry:hover {
+  background: #818386;
+}
 td.member-status-online {
   color: green;
 }

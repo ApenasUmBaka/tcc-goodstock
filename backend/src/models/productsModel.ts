@@ -88,6 +88,7 @@ class ProductsModel extends APIModel {
 
     // Do the request to the api.
     const url = `/products/${this.organizationId}/${id}`;
+    product.organizationId = this.organizationId;
     const response = await this.callAPI("PATCH", url, product);
     if (!response) return "Error on communication with some micro-service.";
 

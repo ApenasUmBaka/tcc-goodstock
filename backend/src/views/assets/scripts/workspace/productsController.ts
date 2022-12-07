@@ -41,10 +41,14 @@ class ProductsController {
   public static getProductElementEntry(product: Product, index: number): HTMLTableRowElement {
     // Create and add the amount, name and the value to the product entry.
     const productEntry = document.createElement("tr");
+    productEntry.classList.add('product-entry');
+    productEntry.onclick = () => {
+      ProductsModalController.openModalWithProduct(product.id);
+    };
 
     // Add the index to the product.
     const indexField = document.createElement("td");
-    indexField.classList.add("entry-info");
+    indexField.classList.add("product-entry-info");
     indexField.innerText = index.toString();
     productEntry.appendChild(indexField);
 
@@ -52,20 +56,20 @@ class ProductsController {
     const fieldsToAdd = ["amount", "name"];
     fieldsToAdd.forEach((fieldName) => {
       const field = document.createElement("td");
-      field.classList.add("entry-info");
+      field.classList.add("product-entry-info");
       field.innerText = (product as any)[fieldName];
       productEntry.appendChild(field);
     });
 
     // Add the price to the product.
     const priceField = document.createElement("td");
-    priceField.classList.add("entry-info");
+    priceField.classList.add("product-entry-info");
     priceField.innerText = `R$ ${(product as any)['price']}`;
     productEntry.appendChild(priceField);
 
     // Add the date field.
     const dateField = document.createElement("td");
-    dateField.classList.add("entry-info");
+    dateField.classList.add("product-entry-info");
     const productDate = new Date(product.createdAt);
     dateField.innerText = `${productDate.getDay()}/${productDate.getMonth()}/${productDate.getFullYear()}`;
     productEntry.appendChild(dateField);
@@ -157,6 +161,9 @@ class ProductsController {
     } catch (err) {
       console.log(`Error while trying to update the product. Error: ${err}`);
     }
+
+    // Close the modal.
+    ProductsModalController.closeModal();
   }
 
   /**

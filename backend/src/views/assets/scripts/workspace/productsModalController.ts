@@ -54,6 +54,7 @@ class ProductsModalController {
   */
   public static closeModal(): void {
     // Check if the modal is close.
+    this.clearModal();
     const modalElement = document.getElementById('products-modal') as HTMLDivElement;
     if (!modalElement.classList.contains('modal-opened')) return;
 
@@ -64,6 +65,16 @@ class ProductsModalController {
     // Close modal.
     modalElement.classList.add('modal-closed');
     modalElement.classList.remove('modal-opened');
+  }
+
+  /**
+   * A method to clear the inputs from the modal.
+  */
+  private static clearModal(): void {
+    (document.getElementById('input-product-id') as HTMLInputElement).value = "";
+    (document.getElementById('input-product-name') as HTMLInputElement).value = "";
+    (document.getElementById('input-product-price') as HTMLInputElement).value = "";
+    (document.getElementById('input-product-amount') as HTMLInputElement).value = "";
   }
 
   /**
