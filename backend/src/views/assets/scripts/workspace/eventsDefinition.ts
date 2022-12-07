@@ -17,13 +17,28 @@ function toggleVisibleSection(nextSection: string) {
 }
 
 // Code
+// Sidebar dashboard
 document.getElementById("a-sidebar-dashboard")!.onclick =
   toggleVisibleSection("section-dashboard");
+
+// Sidebar stock
 document.getElementById("a-sidebar-stock")!.onclick = () => {
   toggleVisibleSection("section-stock")();
   ProductsController.refreshProducts();
 };
+
+// Sidebar Stock menu
+document.getElementById('a-menu-products-add')!.onclick = () => {
+  ProductsModalController.openModal();
+};
+
+// Sidebar members
 document.getElementById('a-sidebar-members')!.onclick = async () => {
   toggleVisibleSection('section-members')();
   await MembersController.updateMembersOnTable.bind(MembersController)();
+}
+
+// Stock Form 
+(document.getElementById('form-products-modal') as HTMLFormElement).onsubmit = (event: Event) => {
+  event.preventDefault();
 }

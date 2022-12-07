@@ -22,6 +22,7 @@ class ProductsModel extends APIModel {
    */
   public async create(product: Product): Promise<Product | string> {
     this.logger.info("Creating a new product...");
+    product.organizationId = this.organizationId;
 
     // Do the request to the api.
     const response = await this.callAPI("POST", `/products`, product);

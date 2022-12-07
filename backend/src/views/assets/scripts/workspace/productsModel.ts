@@ -28,13 +28,12 @@ class ProductsModel {
     const res = await this.request("GET", `/products`);
 
     if (res.status == "Error") return [];
-    console.log(JSON.stringify(res.data, null, 4));
     return res.data;
   }
   /**
    * A method to get a product by id.
    */
-  public static async getProductById(id: number): Promise<Product | undefined> {
+  public static async getProductById(id: string): Promise<Product | undefined> {
     const res = await this.request("GET", `/products/${id}`);
 
     if (res.status == "Error") return;

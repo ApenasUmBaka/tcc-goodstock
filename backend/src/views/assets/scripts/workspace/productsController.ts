@@ -49,13 +49,19 @@ class ProductsController {
     productEntry.appendChild(indexField);
 
     // Add the fields to the product.
-    const fieldsToAdd = ["amount", "name", "price"];
+    const fieldsToAdd = ["amount", "name"];
     fieldsToAdd.forEach((fieldName) => {
       const field = document.createElement("td");
       field.classList.add("entry-info");
       field.innerText = (product as any)[fieldName];
       productEntry.appendChild(field);
     });
+
+    // Add the price to the product.
+    const priceField = document.createElement("td");
+    priceField.classList.add("entry-info");
+    priceField.innerText = `R$ ${(product as any)['price']}`;
+    productEntry.appendChild(priceField);
 
     // Add the date field.
     const dateField = document.createElement("td");
@@ -83,5 +89,106 @@ class ProductsController {
     }
 
     return productEntry;
+  }
+
+  /**
+   * A method to create a new product.
+  */
+  public static async addProduct(): Promise<void> {
+    // Send the new product to the server.
+    const product = this.getProductInModal();
+    console.log(product);
+    try {
+      await fetch('/products', {
+        method: 'POST',
+        body: JSON.stringify(product),
+        credentials: "include",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      await this.refreshProducts();
+    } catch (err) {
+      console.log(`Error while trying to create the product. Error: ${err}`);
+    }
+
+    // Close the modal.
+    ProductsModalController.closeModal();
+  }
+
+  /**
+   * A method to edit a product.
+  */
+  public static async editProduct(): Promise<void> {
+    // Send the product to the server.
+    const product = this.getProductInModal();
+    try {
+      await fetch(`/products/${product.id}`, {
+        method: 'PATCH',
+        body: JSON.stringify(product),
+        credentials: "include",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      await this.refreshProducts();
+    } catch (err) {
+      console.log(`Error while trying to update the product. Error: ${err}`);
+    }
+
+    // Close the modal.
+    ProductsModalController.closeModal();
+  }
+
+  /**
+   * A method to del a product.
+  */
+  public static async delProduct(): Promise<void> {
+    // Get the product ID.
+    const product = this.getProductInModal();
+
+    // Send the DELETE to the server
+    try {
+      await fetch(`/products/${product.id}`, {
+        method: 'DELETE',
+        credentials: "include",
+      });
+      await this.refreshProducts();
+    } catch (err) {
+      console.log(`Error while trying to update the product. Error: ${err}`);
+    }
+  }
+
+  /**
+   * A method to get the current product in the modal.
+  */
+   private static getProductInModal(): any {
+    // Get the basic params from the product.
+    const productName = (document.getElementById('input-product-name') as HTMLInputElement).value;
+    const productPrice = Number(
+      (document.getElementById('input-product-price') as HTMLInputElement).value);
+    const productAmount = Number(
+      (document.getElementById('input-product-amount') as HTMLInputElement).value);
+    
+    // Get the details from the product.
+    const detailsDiv = document.getElementById('div-details') as HTMLDivElement;
+    const details: any = {};
+    for (let i = 0; i < detailsDiv.children.length; i++) {
+      const detailRow = detailsDiv.children[i];
+      if (!detailRow.firstChild) continue;
+
+      details[(detailRow.firstChild as HTMLInputElement).value] = (
+        detailRow.lastChild as HTMLInputElement).value;
+    }
+
+    // Return the product.
+    const product = {
+      id: (document.getElementById('input-product-id') as HTMLInputElement).value,
+      name: productName,
+      price:productPrice,
+      amount: productAmount,
+      details: details
+    };
+    return product;
   }
 }
