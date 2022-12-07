@@ -7,7 +7,6 @@ body {
   transition: var(--tran-05);
 }
 
-
 span.--pad {
   padding: 1rem;
 }
@@ -282,6 +281,13 @@ body.dark .switch::before {
   margin: 25px;
 }
 
+#section-stock .--margin{
+  margin: 25px;
+}
+
+#section-stock .--padding {
+  padding: 6px 30px;
+}
 .sidebar.close ~ #section-dashboard {
   left: 78px;
   height: 100vh;
