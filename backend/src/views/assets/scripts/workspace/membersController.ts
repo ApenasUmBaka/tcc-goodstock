@@ -5,7 +5,7 @@
 interface Member {
   id: number;
   name: string;
-  online: boolean;
+  status: boolean;
 }
 
 
@@ -62,14 +62,18 @@ class MembersController {
       // Member status
       const memberStatus = document.createElement('td');
       memberStatus.classList.add('entry-info');
-      memberStatus.innerText = '●' ;
 
       // Set the color in the dot.
-      if (member.online) memberStatus.classList.add('member-status-online');
-      else memberStatus.classList.add('member-status-offline');
+      if (member.status) {
+        memberStatus.innerText = '● Online';
+        memberStatus.classList.add('member-status-online');
+      } else {
+        memberStatus.innerText = '● Offline';
+        memberStatus.classList.add('member-status-offline');
+      }
 
       // Add then to the table row.
-      const tableElement = document.getElementById('section-members') as HTMLTableElement;
+      const tableElement = document.getElementById('table-members') as HTMLTableElement;
       const tableRow = document.createElement('tr');
       tableRow.classList.add('member-entry');
       tableRow.appendChild(memberId);

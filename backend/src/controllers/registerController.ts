@@ -62,7 +62,6 @@ class RegisterController {
 
     // Create the user.
     req.logger.info("All the data is valid. Creating new user...");
-    req.logger.info(`${typeof body.passwd} - ${body.passwd}`);
     const customersModel = new CustomersModel(req.logger);
     const authUserResult = await customersModel.createCustomer(
       body.name,
@@ -78,7 +77,7 @@ class RegisterController {
 
     // Set the customer on the session.
     const org = await new OrganizationsModel(req.logger).findOrganization({
-      id: authUserResult.id
+      id: authUserResult.organizationId
     });
 
     req.session.user = {

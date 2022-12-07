@@ -12,7 +12,7 @@ class MembersController {
   */
   public static async get(req: Request, res: Response) {
     // Check if the user is logged.
-    if (!req.session.user) {
+    if (!req.session.user?.id) {
       req.logger.info('User not logged in.');
     }
 

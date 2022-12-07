@@ -701,9 +701,9 @@ ul.more-content li {
 }
 
 /* Member Table */
-tr.member-status-online {
-  color: greenyellow;
+td.member-status-online {
+  color: green;
 }
-tr.member-status-offline {
+td.member-status-offline {
   color: red;
 }
