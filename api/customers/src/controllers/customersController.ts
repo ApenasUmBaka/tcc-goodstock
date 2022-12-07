@@ -2,7 +2,7 @@
 import { Request, Response } from "express";
 
 import Security from "@security";
-import { Customer, PostCustomer } from "@types";
+import { ClientCustomer, Customer, PostCustomer } from "@types";
 import CustomersModel from "@models/customersModel";
 import ValidatorModel from "@models/validatorModel";
 import OrganizationsModel from "@models/organizationsModel";
@@ -56,6 +56,47 @@ class CustomersController {
     return res.status(200).json({
       status: "Success",
       data: customerToClientCustomer(customer),
+    });
+  }
+
+  /**
+   * GET /customers
+   * A route to get some customer.
+   */
+   public static async getCustomers(req: Request, res: Response) {
+    // Check if the request has an param.
+    if (!Object.keys(req.query).length) {
+      req.logger.info("The searchQuery is empty. Returning...");
+      return res.status(400).json({
+        status: "Error",
+        message: "Any query/param was send.",
+      });
+    }
+
+    // Search if the database by the customer.
+    req.logger.info("Searching by the customers, using a query, in the database...");
+    const customersModel = new CustomersModel(req.logger);
+    const customersResult = await customersModel.findCustomers(req.query);
+
+    if (!customersResult || !(customersResult!.length)) {
+      req.logger.info("The customers was not found. Returning...");
+      return res.status(400).json({
+        status: "Error",
+        message: "The customers was not found.",
+      });
+    }
+
+    // Treat all customers
+    const customers: ClientCustomer[] = [];
+    for (const customer of customersResult!) {
+      customers.push(customerToClientCustomer(customer.toJSON()));
+    }
+
+    // Return the result to the client.
+    req.logger.info(`The customer was found. Returning...`);
+    return res.status(200).json({
+      status: "Success",
+      data: customers,
     });
   }
 

@@ -9,6 +9,11 @@ declare module "express-session" {
     microsoftRegister: boolean;
   }
 }
+declare module "express-session" {
+  interface Store {
+    user: User;
+  }
+}
 
 declare global {
   namespace Express {

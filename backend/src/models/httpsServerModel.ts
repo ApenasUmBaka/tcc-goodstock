@@ -38,7 +38,7 @@ class HTTPSServer {
     app.use(
       session({
         secret: process.env.SESSIONSECRET!,
-        cookie: { secure: true },
+        cookie: { secure: true, maxAge: ((1000 * 60) * 60) * 24},
         saveUninitialized: false,
         resave: true,
       })

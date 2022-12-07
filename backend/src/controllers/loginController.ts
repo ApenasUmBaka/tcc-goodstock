@@ -40,7 +40,7 @@ class LoginController {
 
     // Set the customer on the session.
     const org = await new OrganizationsModel(req.logger).findOrganization({
-      id: authUserResult.id
+      id: authUserResult.organizationId
     });
 
     req.session.user = {

@@ -919,3 +919,11 @@ textarea {
   width: 40vw;
   display: block;
 }
+
+/* Member Table */
+td.member-status-online {
+  color: green;
+}
+td.member-status-offline {
+  color: red;
+}
